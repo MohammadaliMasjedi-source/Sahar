@@ -24,7 +24,10 @@ const STRINGS = {
     doneSub: 'همه‌ی کارت‌های امروز تمام شد. سحر به تو افتخار می‌کند.',
     restart: 'دوباره تمرین کن',
     factOpinion: 'حقیقت یا نظر',
-    counting: 'شمارش'
+    counting: 'شمارش',
+    letterSound: 'حرف و صدا',
+    thinking: 'فکر کردن',
+    pick: 'یک درس را انتخاب کن'
   },
   en: {
     dir: 'ltr',
@@ -41,7 +44,10 @@ const STRINGS = {
     doneSub: "You've cleared today's cards. Sahar is proud of you.",
     restart: 'Practice again',
     factOpinion: 'Fact or opinion',
-    counting: 'Counting'
+    counting: 'Counting',
+    letterSound: 'Letter & sound',
+    thinking: 'Thinking',
+    pick: 'Pick a lesson'
   },
   de: {
     dir: 'ltr',
@@ -58,7 +64,10 @@ const STRINGS = {
     doneSub: 'Du hast die heutigen Karten geschafft. Sahar ist stolz auf dich.',
     restart: 'Nochmal üben',
     factOpinion: 'Tatsache oder Meinung',
-    counting: 'Zählen'
+    counting: 'Zählen',
+    letterSound: 'Buchstabe & Klang',
+    thinking: 'Denken',
+    pick: 'Wähle eine Lektion'
   }
 };
 
@@ -126,13 +135,29 @@ const I18nProvider = {
   dir(lang) { return (STRINGS[lang] || STRINGS.en).dir; }
 };
 
-const KIND_KEY = { 'fact-opinion': 'factOpinion', 'counting': 'counting' };
+const KIND_KEY = {
+  'fact-opinion': 'factOpinion',
+  'counting': 'counting',
+  'letter-sound': 'letterSound',
+  'thinking': 'thinking'
+};
+
+/* PACKS — the bundled Tier-1 content shelf. Add a pack = add a line here
+ * (and to APP_SHELL in sw.js so it precaches for offline). Titles are read
+ * from each pack's own `title` map, so this stays a thin index of paths. */
+const PACKS = [
+  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json' },
+  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json' },
+  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json' },
+  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json' }
+];
 
 /* =========================================================================
  * VIEWMODEL — app state (no DOM here)
  * ========================================================================= */
 const state = {
   lang: localStorage.getItem('sahar.lang') || 'fa',
+  packPath: null,    // path of the loaded pack (null = show the lesson picker)
   pack: null,        // loaded content pack
   queue: [],         // due cards in order (merged with saved progress)
   idx: 0,            // current card index
@@ -174,9 +199,26 @@ function applyLanguageChrome() {
   });
 }
 
+/** The lesson picker: a warm shelf of the bundled packs. Shown when no pack
+ *  is open. Each tile reads its title from the pack's own title map. */
+function renderPicker() {
+  const lang = state.lang;
+  const tiles = PACKS.map((p) => {
+    const title = (p.titleByLang && (p.titleByLang[lang] || p.titleByLang.en)) || p.id;
+    return `<button class="lesson-tile" data-act="open" data-path="${p.path}">
+        <span class="tile-sun">🌅</span><span class="tile-title">${title}</span>
+      </button>`;
+  }).join('');
+  $('stage').innerHTML = `
+    <p class="lesson-title">${I18nProvider.t(lang, 'pick')}</p>
+    <div class="lesson-shelf">${tiles}</div>`;
+}
+
 function renderStage() {
   const lang = state.lang;
   const stage = $('stage');
+
+  if (!state.pack) { renderPicker(); return; }
 
   if (state.idx >= state.queue.length) { renderDone(); return; }
 
@@ -192,7 +234,10 @@ function renderStage() {
   const title = (state.pack.title && (state.pack.title[lang] || state.pack.title.en)) || '';
 
   stage.innerHTML = `
-    <p class="lesson-title">${title}</p>
+    <p class="lesson-title">
+      <button type="button" class="link-btn back" data-act="lessons" aria-label="${I18nProvider.t(lang, 'pick')}">↩</button>
+      ${title}
+    </p>
     <div class="card">
       <div class="pips">${pips}</div>
       <div class="kind">${kindLabel}</div>
@@ -216,6 +261,7 @@ function renderDone() {
       <h2>${I18nProvider.t(lang, 'doneTitle')}</h2>
       <p>${I18nProvider.t(lang, 'doneSub')}</p>
       <button type="button" data-act="restart">${I18nProvider.t(lang, 'restart')}</button>
+      <button type="button" class="link-btn" data-act="lessons">${I18nProvider.t(lang, 'pick')}</button>
     </div>`;
 }
 
@@ -248,6 +294,33 @@ function onRestart() {
   render();
 }
 
+/** Open a pack by path: load it, build the due queue, show its first card. */
+async function openPack(path) {
+  try {
+    state.pack = await ContentProvider.getPack(path);
+    state.packPath = path;
+    state.queue = buildQueue(state.pack, ProgressProvider.load());
+    state.idx = 0;
+    state.revealed = false;
+  } catch (err) {
+    state.pack = null;
+    $('stage').innerHTML = `<div class="done"><div class="big">🌙</div>
+      <p>Could not load the lesson pack. (${String(err.message || err)})</p>
+      <button type="button" data-act="lessons">${I18nProvider.t(state.lang, 'pick')}</button></div>`;
+    return;
+  }
+  render();
+}
+
+/** Return to the lesson shelf. */
+function openLessons() {
+  state.pack = null;
+  state.packPath = null;
+  state.idx = 0;
+  state.revealed = false;
+  render();
+}
+
 function setLang(lang) {
   if (!STRINGS[lang]) return;
   state.lang = lang;
@@ -273,21 +346,20 @@ function wireEvents() {
     else if (act === 'good') onAnswer(true);
     else if (act === 'again') onAnswer(false);
     else if (act === 'restart') onRestart();
+    else if (act === 'open') openPack(btn.getAttribute('data-path'));
+    else if (act === 'lessons') openLessons();
   });
 }
 
 async function boot() {
   wireEvents();
-  try {
-    state.pack = await ContentProvider.getPack('./content/tier1-demo.json');
-    state.queue = buildQueue(state.pack, ProgressProvider.load());
-  } catch (err) {
-    // Honest, friendly failure — still no crash.
-    $('stage').innerHTML = `<div class="done"><div class="big">🌙</div>
-      <p>Could not load the lesson pack. (${String(err.message || err)})</p></div>`;
-    applyLanguageChrome();
-    return;
-  }
+  // Read each pack's title (cheap JSON) so the picker can label the shelf.
+  // Offline-safe: the service worker has these precached after first visit.
+  await Promise.all(PACKS.map(async (p) => {
+    try { p.titleByLang = (await ContentProvider.getPack(p.path)).title; }
+    catch (_) { p.titleByLang = null; }
+  }));
+  // Start on the lesson shelf; the learner chooses where to begin.
   render();
 
   // Register the service worker for offline use (no-op when opened via file://).
