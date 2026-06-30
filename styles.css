@@ -151,6 +151,36 @@ html, body {
   background: linear-gradient(180deg, var(--gold), var(--amber)); color: var(--ink);
 }
 
+/* ---- lesson picker (the shelf) ---- */
+.lesson-shelf { display: grid; gap: 12px; }
+.lesson-tile {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; min-height: var(--tap); padding: 16px 18px;
+  text-align: start;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  color: var(--cream); font: inherit; font-weight: 600; cursor: pointer;
+  box-shadow: 0 18px 40px -30px rgba(0,0,0,.9);
+  transition: transform .12s ease, border-color .2s ease;
+  animation: cardin .35s ease;
+}
+.lesson-tile:active { transform: translateY(1px); }
+.lesson-tile:hover { border-color: var(--amber); }
+.lesson-tile .tile-sun { font-size: 1.6rem; line-height: 1; flex: 0 0 auto; }
+.lesson-tile .tile-title { font-size: 1.05rem; line-height: 1.4; }
+
+/* the small back-to-lessons link (in the lesson title row + done screen) */
+.link-btn {
+  border: 1px solid var(--line); background: rgba(255,255,255,.06);
+  color: var(--cream); font: inherit; cursor: pointer;
+  border-radius: 12px; min-height: 36px; padding-inline: 12px;
+}
+.link-btn.back {
+  min-width: 36px; min-height: 36px; padding: 0;
+  font-size: 1.1rem; margin-inline-end: 8px; vertical-align: middle;
+}
+.done .link-btn { background: rgba(255,255,255,.06); margin-inline-start: 8px; }
+
 /* ---- footer rule (Leitner explained, not just used) ---- */
 .foot {
   margin-block-start: auto; padding-block-start: 22px;
@@ -161,6 +191,6 @@ html, body {
   border: 1px solid var(--line); border-radius: 100px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .card, .done { animation: none; }
-  .btn { transition: none; }
+  .card, .done, .lesson-tile { animation: none; }
+  .btn, .lesson-tile { transition: none; }
 }
