@@ -1,0 +1,128 @@
+{
+  "packId": "t1.thinking.what-is-a-question",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "critical thinking (seed) — what is a question?",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "title": {
+    "fa": "سؤال چیست؟",
+    "en": "What Is a Question?",
+    "de": "Was ist eine Frage?"
+  },
+  "intro": {
+    "fa": "پرسیدن یک کار خوب است. وقتی چیزی را نمی‌دانیم، می‌پرسیم. بیا با هم یاد بگیریم پرسیدن چه شکلی است.",
+    "en": "Asking is a good thing to do. When we do not know something, we ask. Let's learn together what asking looks like.",
+    "de": "Fragen ist etwas Gutes. Wenn wir etwas nicht wissen, fragen wir. Lass uns zusammen lernen, wie Fragen aussieht."
+  },
+  "cards": [
+    {
+      "id": "q-1",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "کدام یک سؤال است؟ «آسمان آبی است.» یا «چرا آسمان آبی است؟»",
+        "en": "Which one is a question? \"The sky is blue.\" or \"Why is the sky blue?\"",
+        "de": "Welches ist eine Frage? „Der Himmel ist blau.\" oder „Warum ist der Himmel blau?\""
+      },
+      "answer": {
+        "fa": "«چرا آسمان آبی است؟» یک سؤال است — چیزی می‌پرسد. جمله‌ی اول فقط چیزی را می‌گوید.",
+        "en": "\"Why is the sky blue?\" is a question — it asks something. The first sentence just tells something.",
+        "de": "„Warum ist der Himmel blau?\" ist eine Frage — sie fragt etwas. Der erste Satz erzählt nur etwas."
+      }
+    },
+    {
+      "id": "q-2",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "وقتی چیزی را نمی‌دانی، کار خوب چیست: ساکت بمانی یا بپرسی؟",
+        "en": "When you don't know something, what is the good thing to do: stay quiet, or ask?",
+        "de": "Wenn du etwas nicht weißt, was ist das Richtige: still bleiben oder fragen?"
+      },
+      "answer": {
+        "fa": "بپرسی! پرسیدن خجالت ندارد. هر کس از پرسیدن یاد می‌گیرد — حتی بزرگ‌ترها.",
+        "en": "Ask! There is no shame in asking. Everyone learns by asking — even grown-ups.",
+        "de": "Fragen! Fragen ist nichts, wofür man sich schämen muss. Alle lernen durchs Fragen — auch Erwachsene."
+      }
+    },
+    {
+      "id": "q-3",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "این یک گفتن است یا یک پرسیدن؟ «گربه‌ام را دوست دارم.»",
+        "en": "Is this telling or asking? \"I love my cat.\"",
+        "de": "Ist das Erzählen oder Fragen? „Ich liebe meine Katze.\""
+      },
+      "answer": {
+        "fa": "گفتن است. داری چیزی را می‌گویی، نه می‌پرسی. سؤال‌ها معمولاً با چه، چرا، کجا، چه‌طور شروع می‌شوند.",
+        "en": "It is telling. You are saying something, not asking. Questions often begin with what, why, where, or how.",
+        "de": "Es ist Erzählen. Du sagst etwas, du fragst nicht. Fragen beginnen oft mit was, warum, wo oder wie."
+      }
+    },
+    {
+      "id": "q-4",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "می‌خواهی بدانی پرنده چه می‌خورد. یک سؤال خوب بساز که با «چه» شروع شود.",
+        "en": "You want to know what a bird eats. Make a good question that starts with \"what\".",
+        "de": "Du möchtest wissen, was ein Vogel frisst. Stelle eine gute Frage, die mit „was\" beginnt."
+      },
+      "answer": {
+        "fa": "مثلاً: «پرنده چه می‌خورد؟» این یک سؤال خوب است، چون چیزی می‌پرسد که می‌توانیم بفهمیم.",
+        "en": "For example: \"What does a bird eat?\" That is a good question, because it asks something we can find out.",
+        "de": "Zum Beispiel: „Was frisst ein Vogel?\" Das ist eine gute Frage, weil sie etwas fragt, das wir herausfinden können."
+      }
+    },
+    {
+      "id": "q-5",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "اگر کسی چیزی بگوید و تو مطمئن نباشی، چه می‌توانی بپرسی تا بهتر بفهمی؟",
+        "en": "If someone says something and you are not sure, what could you ask to understand better?",
+        "de": "Wenn jemand etwas sagt und du nicht sicher bist, was könntest du fragen, um es besser zu verstehen?"
+      },
+      "answer": {
+        "fa": "می‌توانی بپرسی: «از کجا می‌دانیم؟» یا «می‌توانی نشانم بدهی؟» پرسیدن کمک می‌کند بهتر بفهمیم.",
+        "en": "You could ask: \"How do we know?\" or \"Can you show me?\" Asking helps us understand better.",
+        "de": "Du könntest fragen: „Woher wissen wir das?\" oder „Kannst du es mir zeigen?\" Fragen hilft uns, besser zu verstehen."
+      }
+    },
+    {
+      "id": "q-6",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "آیا همه‌ی سؤال‌ها یک جواب دارند؟ بعضی سؤال‌ها جواب روشن دارند و بعضی نه. کدام سؤال جواب روشن دارد: «۲ به‌علاوه‌ی ۲ چند می‌شود؟» یا «کدام رنگ از همه قشنگ‌تر است؟»",
+        "en": "Does every question have one answer? Some questions have a clear answer, and some do not. Which one has a clear answer: \"What is 2 plus 2?\" or \"Which colour is the most beautiful?\"",
+        "de": "Hat jede Frage eine Antwort? Manche Fragen haben eine klare Antwort, manche nicht. Welche hat eine klare Antwort: „Was ist 2 plus 2?\" oder „Welche Farbe ist die schönste?\""
+      },
+      "answer": {
+        "fa": "«۲ به‌علاوه‌ی ۲» جواب روشن دارد: ۴. اما «قشنگ‌ترین رنگ» جواب روشن ندارد — هر کس نظر خودش را دارد، و این هم خوب است.",
+        "en": "\"2 plus 2\" has a clear answer: 4. But \"the most beautiful colour\" has no single answer — everyone has their own, and that is fine too.",
+        "de": "„2 plus 2\" hat eine klare Antwort: 4. Aber „die schönste Farbe\" hat keine einzige Antwort — jeder hat seine eigene, und das ist auch in Ordnung."
+      }
+    },
+    {
+      "id": "q-7",
+      "type": "thinking",
+      "box": 1,
+      "prompt": {
+        "fa": "یک چیز هست که امروز دوست داری درباره‌اش بدانی. آن سؤال در ذهنت چیست؟ آن را بلند بپرس.",
+        "en": "There is something you would like to know about today. What is that question in your mind? Ask it out loud.",
+        "de": "Es gibt etwas, das du heute gern wissen möchtest. Welche Frage ist das in deinem Kopf? Stelle sie laut."
+      },
+      "answer": {
+        "fa": "آفرین که پرسیدی! هر سؤال خوب، آغاز یاد گرفتن است. سحر هم هر روز یک سؤال تازه می‌پرسد.",
+        "en": "Well done for asking! Every good question is the beginning of learning. Sahar asks a new question every day too.",
+        "de": "Gut gemacht, dass du gefragt hast! Jede gute Frage ist der Anfang des Lernens. Auch Sahar stellt jeden Tag eine neue Frage."
+      }
+    }
+  ]
+}
