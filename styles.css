@@ -1,0 +1,166 @@
+/* Sahar — dawn palette, RTL-aware, design tokens (house principle #5).
+   Deep night -> amber sunrise. Its own identity (Farr-adjacent warmth, dawn soul). */
+
+:root {
+  /* --- dawn tokens --- */
+  --night:   #0b1026;   /* deep night sky */
+  --night-2: #141a3a;   /* lifted night */
+  --dusk:    #3b2f63;   /* indigo before light */
+  --rose:    #e0719b;   /* first blush */
+  --amber:   #f4a259;   /* sunrise */
+  --gold:    #ffd89b;   /* warm light */
+  --cream:   #fff6ea;   /* paper / text on dark */
+  --ink:     #1c1430;   /* text on light */
+  --good:    #6fcf97;   /* got it */
+  --again:   #f2994a;   /* again (warm, not punishing) */
+  --line:    rgba(255,255,255,.12);
+
+  --radius: 18px;
+  --tap: 52px;                 /* min touch target (a11y §7) */
+  --font: "Vazirmatn", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font);
+  color: var(--cream);
+  background:
+    radial-gradient(120% 80% at 50% 105%, var(--amber) 0%, var(--rose) 18%, var(--dusk) 45%, var(--night-2) 72%, var(--night) 100%)
+    fixed;
+}
+
+/* RTL is first-class: logical properties everywhere, mirror is automatic */
+[dir="rtl"] { direction: rtl; }
+[dir="ltr"] { direction: ltr; }
+
+.wrap {
+  max-width: 560px;
+  margin-inline: auto;
+  padding: 18px 16px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- top bar ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block-end: 10px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand .logo { width: 40px; height: 40px; }
+.brand h1 { font-size: 1.35rem; margin: 0; letter-spacing: .5px; }
+.brand .motto { font-size: .72rem; opacity: .8; margin: 0; }
+
+.langs { display: flex; gap: 6px; }
+.langs button {
+  min-width: 44px; min-height: 40px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color: var(--cream);
+  border-radius: 12px;
+  font: inherit; font-weight: 600;
+  cursor: pointer;
+}
+.langs button.on {
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+  color: var(--ink);
+  border-color: transparent;
+}
+
+/* ---- hero: Sahar + greeting ---- */
+.hero {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-block: 8px 18px;
+}
+.hero .sahar { width: 96px; height: 110px; flex: 0 0 auto; }
+.hero .say h2 { margin: 0 0 4px; font-size: 1.05rem; }
+.hero .say p { margin: 0; font-size: .9rem; opacity: .9; line-height: 1.5; }
+
+/* ---- lesson + card ---- */
+.lesson-title { font-size: 1rem; opacity: .9; margin: 0 0 10px; }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 18px 40px -28px rgba(0,0,0,.9);
+  animation: cardin .35s ease;
+}
+@keyframes cardin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.card .kind {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: 1px;
+  opacity: .7; margin-block-end: 12px;
+}
+.card .prompt { font-size: 1.3rem; line-height: 1.6; margin: 0 0 8px; }
+.card .answer {
+  font-size: 1.15rem; color: var(--gold); font-weight: 600;
+  margin-block-start: 16px; min-height: 1.4em;
+}
+.card .answer.hidden { visibility: hidden; }
+
+/* progress pips */
+.pips { display: flex; gap: 6px; justify-content: center; margin-block-end: 14px; }
+.pips i {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--line); background: transparent; display: inline-block;
+}
+.pips i.fill { background: var(--gold); border-color: var(--gold); }
+
+/* ---- buttons ---- */
+.actions { display: flex; gap: 10px; margin-block-start: 20px; }
+.btn {
+  flex: 1; min-height: var(--tap);
+  border: 1px solid var(--line); border-radius: 14px;
+  font: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+  color: var(--cream); background: rgba(255,255,255,.07);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn.show { background: linear-gradient(180deg, var(--gold), var(--amber)); color: var(--ink); border-color: transparent; }
+.btn.good { background: linear-gradient(180deg, var(--good), #4faf78); color: #07210f; border-color: transparent; }
+.btn.again { background: rgba(242,153,74,.16); border-color: rgba(242,153,74,.5); color: var(--gold); }
+.btn .ico { font-size: 1.3rem; line-height: 1; }
+
+/* ---- done state ---- */
+.done {
+  text-align: center; padding: 30px 20px;
+  background: rgba(255,255,255,.05); border: 1px solid var(--line);
+  border-radius: var(--radius); animation: cardin .4s ease;
+}
+.done .big { font-size: 2.4rem; }
+.done h2 { margin: 10px 0 6px; }
+.done p { opacity: .9; margin: 0 0 16px; line-height: 1.5; }
+.done button {
+  min-height: var(--tap); padding-inline: 22px;
+  border: none; border-radius: 14px; cursor: pointer; font: inherit; font-weight: 700;
+  background: linear-gradient(180deg, var(--gold), var(--amber)); color: var(--ink);
+}
+
+/* ---- footer rule (Leitner explained, not just used) ---- */
+.foot {
+  margin-block-start: auto; padding-block-start: 22px;
+  font-size: .78rem; opacity: .75; line-height: 1.6; text-align: center;
+}
+.foot .ladder { font-weight: 700; color: var(--gold); }
+.foot .status { display: inline-block; margin-block-start: 6px; padding: 3px 10px;
+  border: 1px solid var(--line); border-radius: 100px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .done { animation: none; }
+  .btn { transition: none; }
+}
