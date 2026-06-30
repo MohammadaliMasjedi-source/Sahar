@@ -1,0 +1,72 @@
+<div class="wrap" id="app">
+
+  <!-- top bar: brand + language switcher -->
+  <header class="topbar">
+    <div class="brand">
+      <!-- Sahar mark (small): a sun cresting over night -->
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="var(--night)"/>
+            <stop offset="1" stop-color="var(--amber)"/>
+          </linearGradient>
+        </defs>
+        <rect width="48" height="48" rx="12" fill="url(#lg)"/>
+        <circle cx="24" cy="32" r="11" fill="var(--gold)"/>
+      </svg>
+      <div>
+        <h1>Sahar</h1>
+        <p class="motto" data-i18n="motto">Learn to live, live to learn.</p>
+      </div>
+    </div>
+    <nav class="langs" id="langs" aria-label="Language">
+      <button data-lang="fa" type="button">دری</button>
+      <button data-lang="en" type="button">EN</button>
+      <button data-lang="de" type="button">DE</button>
+    </nav>
+  </header>
+
+  <!-- Sahar the heroine + her greeting -->
+  <section class="hero">
+    <!-- Sahar: a hopeful girl facing the dawn. Secular — no religious symbols. -->
+    <svg class="sahar" viewBox="0 0 96 110" role="img" aria-label="Sahar, a girl at dawn">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="var(--amber)"/>
+          <stop offset=".5" stop-color="var(--rose)"/>
+          <stop offset="1" stop-color="var(--dusk)"/>
+        </linearGradient>
+      </defs>
+      <!-- dawn behind her -->
+      <circle cx="48" cy="60" r="46" fill="url(#sky)" opacity=".55"/>
+      <circle cx="48" cy="78" r="20" fill="var(--gold)" opacity=".9"/>
+      <!-- hair -->
+      <path d="M30 44 q18 -26 36 0 q4 18 -2 30 q-16 8 -32 0 q-6 -12 -2 -30Z" fill="#2a1f3d"/>
+      <!-- face -->
+      <circle cx="48" cy="50" r="16" fill="#f6c9a4"/>
+      <!-- eyes + smile (hopeful) -->
+      <circle cx="42" cy="49" r="1.8" fill="#1c1430"/>
+      <circle cx="54" cy="49" r="1.8" fill="#1c1430"/>
+      <path d="M42 56 q6 5 12 0" stroke="#1c1430" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- shoulders -->
+      <path d="M30 86 q18 -14 36 0 v18 h-36Z" fill="var(--rose)"/>
+    </svg>
+    <div class="say">
+      <h2 id="greet">سلام! من سحرم.</h2>
+      <p id="greetSub">بیا با هم یاد بگیریم.</p>
+    </div>
+  </section>
+
+  <!-- the lesson stage (rendered by app.js) -->
+  <main id="stage" aria-live="polite"></main>
+
+  <!-- footer: the Leitner rule, made visible -->
+  <footer class="foot">
+    <span id="ruleText">Got it &rarr; the card waits longer.  Again &rarr; you'll see it tomorrow.</span><br>
+    <span class="ladder">1 &rarr; 2 &rarr; 4 &rarr; 9 &rarr; 21</span>
+    <span data-i18n="days"> days</span>
+    <br><span class="status" id="offline">offline-ready</span>
+  </footer>
+</div>
+
+<script src="./app.js"></script>

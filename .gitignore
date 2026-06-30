@@ -1,0 +1,30 @@
+# dependencies (if a build step is ever added)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# build output
+dist/
+build/
+.cache/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# logs / env
+*.log
+.env
+.env.*
+
+# local learner data should NEVER be committed (privacy by default)
+*.localdata
+learner-progress*.json

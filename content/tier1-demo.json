@@ -1,0 +1,98 @@
+{
+  "packId": "t1.thinking.fact-opinion-counting",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "7-9",
+  "subject": "critical-thinking + numeracy (demo)",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "title": {
+    "fa": "حقیقت یا نظر؟ و کمی شمارش",
+    "en": "Fact or Opinion? And a little counting",
+    "de": "Tatsache oder Meinung? Und ein bisschen Zählen"
+  },
+  "intro": {
+    "fa": "بیا با هم یاد بگیریم: بعضی جمله‌ها حقیقت‌اند و بعضی فقط نظر. آماده‌ای؟",
+    "en": "Let's learn together: some sentences are facts, some are just opinions. Ready?",
+    "de": "Lass es uns zusammen lernen: Manche Sätze sind Tatsachen, manche nur Meinungen. Bereit?"
+  },
+  "cards": [
+    {
+      "id": "fo-1",
+      "type": "fact-opinion",
+      "box": 1,
+      "prompt": {
+        "fa": "«خورشید صبح بالا می‌آید.» این حقیقت است یا نظر؟",
+        "en": "\"The sun rises in the morning.\" Is this a fact or an opinion?",
+        "de": "„Die Sonne geht am Morgen auf.“ Ist das eine Tatsache oder eine Meinung?"
+      },
+      "answer": {
+        "fa": "حقیقت — هر روز می‌توان آن را دید و آزمود.",
+        "en": "Fact — you can see and check it every day.",
+        "de": "Tatsache — man kann es jeden Tag sehen und prüfen."
+      }
+    },
+    {
+      "id": "fo-2",
+      "type": "fact-opinion",
+      "box": 1,
+      "prompt": {
+        "fa": "«رنگ آبی قشنگ‌ترین رنگ است.» حقیقت است یا نظر؟",
+        "en": "\"Blue is the prettiest colour.\" Fact or opinion?",
+        "de": "„Blau ist die schönste Farbe.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "نظر — هر کس می‌تواند نظر دیگری داشته باشد.",
+        "en": "Opinion — different people can feel differently.",
+        "de": "Meinung — verschiedene Menschen können anders empfinden."
+      }
+    },
+    {
+      "id": "fo-3",
+      "type": "fact-opinion",
+      "box": 1,
+      "prompt": {
+        "fa": "«آب در دمای صفر یخ می‌زند.» حقیقت یا نظر؟",
+        "en": "\"Water freezes at zero degrees.\" Fact or opinion?",
+        "de": "„Wasser gefriert bei null Grad.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "حقیقت — می‌توان آن را آزمایش کرد.",
+        "en": "Fact — you can test it.",
+        "de": "Tatsache — man kann es testen."
+      }
+    },
+    {
+      "id": "num-1",
+      "type": "counting",
+      "box": 1,
+      "prompt": {
+        "fa": "۳ + ۴ چند می‌شود؟ با انگشت‌هایت بشمار.",
+        "en": "What is 3 + 4? Count on your fingers.",
+        "de": "Was ist 3 + 4? Zähle mit den Fingern."
+      },
+      "answer": {
+        "fa": "۷",
+        "en": "7",
+        "de": "7"
+      }
+    },
+    {
+      "id": "num-2",
+      "type": "counting",
+      "box": 1,
+      "prompt": {
+        "fa": "اگر ۵ پرنده داشته باشی و ۲ تا پرواز کنند، چند می‌ماند؟",
+        "en": "If you have 5 birds and 2 fly away, how many are left?",
+        "de": "Wenn du 5 Vögel hast und 2 wegfliegen, wie viele bleiben?"
+      },
+      "answer": {
+        "fa": "۳",
+        "en": "3",
+        "de": "3"
+      }
+    }
+  ]
+}
