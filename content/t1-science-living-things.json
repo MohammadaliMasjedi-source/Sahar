@@ -1,0 +1,143 @@
+{
+  "packId": "t1.science.living-things",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "science — living vs non-living, my body, plants & animals (gentle observation)",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "title": {
+    "fa": "چیزهای زنده و ناز‌نده",
+    "en": "Living Things and Non-Living Things",
+    "de": "Lebendige und nicht lebendige Dinge"
+  },
+  "intro": {
+    "fa": "بیا با هم نگاه کنیم. بعضی چیزها زنده‌اند: نفس می‌کشند، بزرگ می‌شوند و غذا می‌خورند. بعضی چیزها زنده نیستند. هر بار اول خوب نگاه کن و فکر کن: از کجا می‌دانیم؟",
+    "en": "Let's look together. Some things are living: they breathe, grow, and need food. Some things are not living. Each time, look carefully first and think: how do we know?",
+    "de": "Lass uns zusammen schauen. Manche Dinge leben: Sie atmen, wachsen und brauchen Nahrung. Manche Dinge leben nicht. Schau jedes Mal zuerst genau hin und denke nach: Woher wissen wir das?"
+  },
+  "cards": [
+    {
+      "id": "lt-1",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "کدام یک زنده است: یک گربه یا یک سنگ؟ خوب فکر کن: کدام‌شان بزرگ می‌شود و غذا می‌خورد؟",
+        "en": "Which one is living: a cat or a stone? Think carefully: which one grows and needs food?",
+        "de": "Was lebt: eine Katze oder ein Stein? Denk genau nach: Was wächst und braucht Nahrung?"
+      },
+      "answer": {
+        "fa": "گربه زنده است — نفس می‌کشد، غذا می‌خورد و بزرگ می‌شود. سنگ زنده نیست؛ همان‌طور می‌ماند.",
+        "en": "The cat is living — it breathes, eats, and grows. The stone is not living; it stays the same.",
+        "de": "Die Katze lebt — sie atmet, frisst und wächst. Der Stein lebt nicht; er bleibt gleich."
+      }
+    },
+    {
+      "id": "lt-2",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "آیا یک درخت زنده است؟ از کجا می‌توانیم بفهمیم؟",
+        "en": "Is a tree living? How could we find out?",
+        "de": "Lebt ein Baum? Wie könnten wir das herausfinden?"
+      },
+      "answer": {
+        "fa": "بله، درخت زنده است. بزرگ می‌شود، برگ تازه می‌دهد و به آب و نور نیاز دارد. می‌توانیم نگاه کنیم و ببینیم که رشد می‌کند.",
+        "en": "Yes, a tree is living. It grows, makes new leaves, and needs water and light. We can watch and see it grow.",
+        "de": "Ja, ein Baum lebt. Er wächst, bildet neue Blätter und braucht Wasser und Licht. Wir können zuschauen und sehen, wie er wächst."
+      }
+    },
+    {
+      "id": "lt-3",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "چیزهای زنده به چه چیزهایی نیاز دارند تا زنده بمانند؟ به گربه و درخت فکر کن.",
+        "en": "What do living things need to stay alive? Think about a cat and a tree.",
+        "de": "Was brauchen Lebewesen, um am Leben zu bleiben? Denk an eine Katze und einen Baum."
+      },
+      "answer": {
+        "fa": "به غذا (یا برای گیاه، آب و نور) و به آب و هوا نیاز دارند. تو هم مثل آن‌ها زنده‌ای و به این‌ها نیاز داری.",
+        "en": "They need food (or for a plant, water and light), plus water and air. You are living too, and you need these as well.",
+        "de": "Sie brauchen Nahrung (oder bei einer Pflanze Wasser und Licht) sowie Wasser und Luft. Auch du lebst und brauchst das."
+      }
+    },
+    {
+      "id": "lt-4",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "دستت را روی سینه‌ات بگذار و آرام نفس بکش. چه چیزی حس می‌کنی که نشان می‌دهد تو زنده‌ای؟",
+        "en": "Put your hand on your chest and breathe gently. What can you feel that shows you are living?",
+        "de": "Leg deine Hand auf die Brust und atme sanft. Was kannst du fühlen, das zeigt, dass du lebst?"
+      },
+      "answer": {
+        "fa": "نفس‌ کشیدن و تپش قلب. بدن تو کار می‌کند، بزرگ می‌شوی و یاد می‌گیری — تو یک موجود زنده‌ی شگفت‌انگیزی.",
+        "en": "Your breathing and your heartbeat. Your body is working, you grow, and you learn — you are a wonderful living being.",
+        "de": "Dein Atem und dein Herzschlag. Dein Körper arbeitet, du wächst und lernst — du bist ein wunderbares Lebewesen."
+      }
+    },
+    {
+      "id": "lt-5",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "یک اسباب‌بازیِ رباتِ کوکی حرکت می‌کند. آیا حرکت‌ کردن یعنی زنده‌بودن؟ خوب فکر کن.",
+        "en": "A wind-up toy robot can move. Does moving mean it is alive? Think carefully.",
+        "de": "Ein aufziehbarer Spielzeugroboter kann sich bewegen. Bedeutet Bewegung, dass er lebt? Denk genau nach."
+      },
+      "answer": {
+        "fa": "نه. ربات حرکت می‌کند اما زنده نیست — بزرگ نمی‌شود، غذا نمی‌خورد و نفس نمی‌کشد. پس فقط حرکت کافی نیست.",
+        "en": "No. The robot moves but is not alive — it does not grow, eat, or breathe. So moving alone is not enough.",
+        "de": "Nein. Der Roboter bewegt sich, lebt aber nicht — er wächst nicht, isst nicht und atmet nicht. Bewegung allein reicht also nicht."
+      }
+    },
+    {
+      "id": "lt-6",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "پرنده‌ها و ماهی‌ها هر دو زنده‌اند، اما یک فرق دارند: کجا زندگی می‌کنند؟",
+        "en": "Birds and fish are both living, but there is one difference: where do they live?",
+        "de": "Vögel und Fische leben beide, aber es gibt einen Unterschied: Wo leben sie?"
+      },
+      "answer": {
+        "fa": "پرنده در هوا و روی درخت زندگی می‌کند و پرواز می‌کند. ماهی در آب زندگی می‌کند و شنا می‌کند. هر کدام جای خودشان را دارند.",
+        "en": "A bird lives in the air and in trees and flies. A fish lives in water and swims. Each has its own home.",
+        "de": "Ein Vogel lebt in der Luft und in Bäumen und fliegt. Ein Fisch lebt im Wasser und schwimmt. Jeder hat sein eigenes Zuhause."
+      }
+    },
+    {
+      "id": "lt-7",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "دور و برت را نگاه کن. یک چیز زنده و یک چیز ناز‌نده پیدا کن و بگو از کجا فهمیدی.",
+        "en": "Look around you. Find one living thing and one non-living thing, and say how you knew.",
+        "de": "Schau dich um. Finde ein lebendiges und ein nicht lebendiges Ding und sag, woran du es erkannt hast."
+      },
+      "answer": {
+        "fa": "آفرین که نگاه کردی! اگر چیزی بزرگ می‌شود، نفس می‌کشد یا غذا می‌خواهد، زنده است. خوب نگاه‌ کردن، راهِ فهمیدن است.",
+        "en": "Well done for looking! If a thing grows, breathes, or needs food, it is living. Looking carefully is how we find out.",
+        "de": "Gut gemacht, dass du geschaut hast! Wenn etwas wächst, atmet oder Nahrung braucht, lebt es. Genaues Hinschauen ist der Weg, es herauszufinden."
+      }
+    },
+    {
+      "id": "lt-8",
+      "type": "science",
+      "box": 1,
+      "prompt": {
+        "fa": "چیزهای زنده مهربانی می‌خواهند. اگر یک گربه یا یک گیاه کوچک داشتی، چه‌طور از آن مراقبت می‌کردی؟",
+        "en": "Living things need kindness. If you had a cat or a little plant, how would you care for it?",
+        "de": "Lebewesen brauchen Freundlichkeit. Wenn du eine Katze oder eine kleine Pflanze hättest, wie würdest du sie pflegen?"
+      },
+      "answer": {
+        "fa": "به گربه غذا و آب می‌دهی و نوازشش می‌کنی؛ به گیاه آب و نور می‌دهی. مراقبت‌ کردن از موجودات زنده کار قشنگ و مهربانانه‌ای است.",
+        "en": "Give the cat food and water and gentle care; give the plant water and light. Caring for living things is a kind and beautiful thing to do.",
+        "de": "Gib der Katze Futter und Wasser und sanfte Pflege; gib der Pflanze Wasser und Licht. Für Lebewesen zu sorgen ist etwas Freundliches und Schönes."
+      }
+    }
+  ]
+}
