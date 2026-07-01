@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v2';
+const CACHE = 'sahar-v3';
 
 const APP_SHELL = [
   './',
@@ -14,7 +14,10 @@ const APP_SHELL = [
   './content/tier1-demo.json',
   './content/t1-literacy-first-letters.json',
   './content/t1-numeracy-counting-0-20.json',
-  './content/t1-thinking-what-is-a-question.json'
+  './content/t1-numeracy-shapes-patterns.json',
+  './content/t1-science-living-things.json',
+  './content/t1-thinking-what-is-a-question.json',
+  './content/t1-thinking-fact-vs-guess.json'
 ];
 
 self.addEventListener('install', (event) => {
