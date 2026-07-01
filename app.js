@@ -27,6 +27,9 @@ const STRINGS = {
     counting: 'شمارش',
     letterSound: 'حرف و صدا',
     thinking: 'فکر کردن',
+    science: 'نگاه و کشف',
+    guessCheck: 'حدس و امتحان',
+    shapes: 'شکل و نقش',
     pick: 'یک درس را انتخاب کن'
   },
   en: {
@@ -47,6 +50,9 @@ const STRINGS = {
     counting: 'Counting',
     letterSound: 'Letter & sound',
     thinking: 'Thinking',
+    science: 'Look & discover',
+    guessCheck: 'Guess & check',
+    shapes: 'Shapes & patterns',
     pick: 'Pick a lesson'
   },
   de: {
@@ -67,6 +73,9 @@ const STRINGS = {
     counting: 'Zählen',
     letterSound: 'Buchstabe & Klang',
     thinking: 'Denken',
+    science: 'Schauen & entdecken',
+    guessCheck: 'Raten & prüfen',
+    shapes: 'Formen & Muster',
     pick: 'Wähle eine Lektion'
   }
 };
@@ -139,7 +148,10 @@ const KIND_KEY = {
   'fact-opinion': 'factOpinion',
   'counting': 'counting',
   'letter-sound': 'letterSound',
-  'thinking': 'thinking'
+  'thinking': 'thinking',
+  'science': 'science',
+  'guess-check': 'guessCheck',
+  'shapes': 'shapes'
 };
 
 /* PACKS — the bundled Tier-1 content shelf. Add a pack = add a line here
@@ -148,7 +160,10 @@ const KIND_KEY = {
 const PACKS = [
   { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json' },
   { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json' },
+  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json' },
+  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json' },
   { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json' },
+  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json' },
   { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json' }
 ];
 
