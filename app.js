@@ -81,7 +81,7 @@ const STRINGS = {
 };
 
 /* =========================================================================
- * CORE — the Leitner box engine (mirrors internal/leitner.html exactly).
+ * CORE — the Leitner box engine (classic 5-box spaced repetition).
  * Pure functions, no DOM. boxes 1..5, intervals in days. Testable headless.
  * ========================================================================= */
 const INTERVALS = [1, 2, 4, 9, 21]; // box 1..5 → days until due again

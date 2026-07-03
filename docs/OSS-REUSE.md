@@ -10,7 +10,7 @@ external calls).*
 ## 1. Spaced-repetition algorithm
 | Option | License | Use |
 |---|---|---|
-| **SM-2 / Leitner box** (our current engine) | algorithm = public domain; our impl MIT | **Shipping now.** Mirrors `internal/leitner.html` — boxes 1–5, intervals `[1,2,4,9,21]` days. Tiny, transparent, **works fully offline with no library.** |
+| **SM-2 / Leitner box** (our current engine) | algorithm = public domain; our impl MIT | **Shipping now.** Classic Leitner — boxes 1–5, intervals `[1,2,4,9,21]` days. Tiny, transparent, **works fully offline with no library.** |
 | **FSRS** (Free Spaced Repetition Scheduler) | **MIT** (`open-spaced-repetition/fsrs.js`) | **Upgrade path.** Better retention modeling. Drop-in behind the same `schedule()` function (provider-style, ARCHITECTURE §3/§6) when we have enough review data to benefit. |
 
 We **hand-write the glue** (the `schedule()` + persistence) so it stays dependency-free for the
@@ -56,7 +56,7 @@ exercises, and texts from open OER — adapted, translated, and re-illustrated i
 ## 6. i18n
 | Option | License | Use |
 |---|---|---|
-| **Hand-rolled `STRINGS[lang]` + `data-i18n`** | ours, MIT | **Shipping now** — matches the house pattern (Service Hub `I18N[lang][key]`); dependency-free, offline. |
+| **Hand-rolled `STRINGS[lang]` + `data-i18n`** | ours, MIT | **Shipping now** — a flat `STRINGS[lang][key]` dictionary; dependency-free, offline. |
 | **FormatJS / `Intl` (built-in)** | MIT / platform | Plurals, dates, numbers per locale when content grows; `Intl` needs no dependency. |
 | **Fluent (`@fluent/bundle`, Mozilla)** | **Apache-2.0** | Considered for rich RTL/plural grammar if `STRINGS` outgrows flat keys. |
 
@@ -77,8 +77,8 @@ exercises, and texts from open OER — adapted, translated, and re-illustrated i
 ---
 
 ## License posture for Sahar itself
-- **Code → MIT** (maximally reusable; let anyone fork the engine for their own denied children).
-- **Original content/packs → CC-BY-SA 4.0** (free, attributed, stays free).
+- **Code → MIT** (maximally reusable; let anyone fork the engine for their own denied children) — see [`../LICENSE`](../LICENSE).
+- **Original content/packs → CC-BY-SA 4.0** (free, attributed, stays free) — see [`../LICENSE-CONTENT.md`](../LICENSE-CONTENT.md).
 - Third-party OER keeps its own license, recorded per pack.
 
-**Final license choice is Mo's call** — see [`../LICENSE-NOTE.md`](../LICENSE-NOTE.md).
+See [`../LICENSE-NOTE.md`](../LICENSE-NOTE.md) for the reasoning.

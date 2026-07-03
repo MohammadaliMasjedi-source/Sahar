@@ -9,7 +9,7 @@
   "attribution": "Original Sahar content.",
   "signature": null,
   "title": {
-    "fa": "چیزهای زنده و ناز‌نده",
+    "fa": "چیزهای زنده و غیرزنده",
     "en": "Living Things and Non-Living Things",
     "de": "Lebendige und nicht lebendige Dinge"
   },
@@ -114,7 +114,7 @@
       "type": "science",
       "box": 1,
       "prompt": {
-        "fa": "دور و برت را نگاه کن. یک چیز زنده و یک چیز ناز‌نده پیدا کن و بگو از کجا فهمیدی.",
+        "fa": "دور و برت را نگاه کن. یک چیز زنده و یک چیز غیرزنده پیدا کن و بگو از کجا فهمیدی.",
         "en": "Look around you. Find one living thing and one non-living thing, and say how you knew.",
         "de": "Schau dich um. Finde ein lebendiges und ein nicht lebendiges Ding und sag, woran du es erkannt hast."
       },

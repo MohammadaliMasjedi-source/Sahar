@@ -1,17 +1,33 @@
 # Sahar — سحر · "Learn to live, live to learn."
 
+**Sahar is a free, offline-first education app for children denied school** — literacy, numeracy,
+science, and critical thinking as small spaced-repetition lessons, in Dari (RTL), English, and German.
+
 > **Status: scaffold + working prototype.** This repo is the *foundation* — an honest, runnable
 > offline-first prototype plus the architecture, curriculum, naming, and open-source plan that the
 > full app will grow from. It is **not** a finished product, and nothing here pretends to be.
 > (House rule: *REAL 90 > FAKE 100*.)
+
+## Quickstart
+
+```bash
+# serve the folder (any static server works), then open http://localhost:8000
+python -m http.server 8000
+
+# run the headless core tests (pure Node, no dependencies)
+npm test
+```
+
+Double-clicking `index.html` also works for a quick look; serving over `http://` enables the full
+service-worker/offline behaviour. After the first visit, the app runs with **zero internet**.
 
 ---
 
 ## The vision
 
 **Sahar** (Dari/Persian: *سحر*, "dawn / the last hour before sunrise") is a **free, offline-first
-education app for girls barred from school** — built first for Afghan girls shut out by the Taliban,
-and for **any child anywhere denied an education.** It runs as a serious, game-like learning world
+education app for girls barred from school** — built first for Afghan girls shut out of school
+since 2021, and for **any child anywhere denied an education.** It runs as a serious, game-like learning world
 on a phone, tablet, or PC, **online or fully offline**, because the children who need it most often
 have a borrowed phone, no data, and no permission to be seen learning.
 
@@ -74,20 +90,33 @@ never *from* her.
 ```
 Sahar/
 ├─ README.md                  ← you are here
-├─ LICENSE-NOTE.md            ← recommended dual license (code MIT / content CC-BY-SA) — Mo's final call
-├─ .gitignore
+├─ LICENSE                    ← MIT (the code)
+├─ LICENSE-CONTENT.md         ← CC-BY-SA 4.0 (the original learning packs)
+├─ LICENSE-NOTE.md            ← how the dual license was decided
 ├─ docs/
 │  ├─ ARCHITECTURE.md         ← offline-first PWA, Clean-Arch + MVVM, signed packs, i18n, Leitner, a11y, child-safety
-│  ├─ NAME.md                 ← name shortlist + the Sahar-as-heroine idea (Mo's final call)
+│  ├─ NAME.md                 ← name shortlist + the Sahar-as-heroine idea
 │  ├─ CURRICULUM-MAP.md       ← the UN "educated person" body of knowledge mapped to 4 tiers + companion books
 │  └─ OSS-REUSE.md            ← concrete open-source to reuse, with licenses
+├─ learning/
+│  └─ PROJECT-EXPLAINED.md    ← the project explained in four layers (child → architect)
+├─ handbook/                  ← maintainer handbook: overview, setup, standards, diagrams, task guides
+├─ test/
+│  └─ core.test.js            ← 28 headless tests for the UI-free core (node:assert, no framework)
+├─ content/                   ← versioned Tier-1 learning packs (fa/en/de), JSON
+│  ├─ t1-literacy-first-letters.json
+│  ├─ t1-numeracy-counting-0-20.json
+│  ├─ t1-numeracy-shapes-patterns.json
+│  ├─ t1-science-living-things.json
+│  ├─ t1-thinking-what-is-a-question.json
+│  ├─ t1-thinking-fact-vs-guess.json
+│  └─ tier1-demo.json
 └─ (prototype — runnable, offline)
    ├─ index.html
    ├─ manifest.webmanifest
    ├─ sw.js                   ← cache-first service worker
    ├─ app.js                  ← state + render + Leitner flow (logic separated from view)
-   ├─ styles.css              ← dawn palette, RTL-aware, design tokens
-   └─ content/tier1-demo.json ← one real demo lesson as a versioned content pack
+   └─ styles.css              ← dawn palette, RTL-aware, design tokens
 ```
 
 ### The working prototype
@@ -96,14 +125,15 @@ Open **`index.html`** in any modern browser (double-click works; for full PWA/se
 behaviour serve the folder over `http://`). With **zero internet** you can:
 
 - meet **Sahar**, the girl-at-dawn character (inline SVG, secular — no religious symbols);
-- switch language **fa (RTL) / en / de** and watch one real lesson re-render in all three;
-- run a real **spaced-repetition card flow** (show → reveal → *got it / again*) over ~5 cards drawn
-  from a tiny "fact vs. opinion" + counting micro-lesson;
-- see review progress **persist** in `localStorage` using the same **Leitner box model** as internal
+- switch language **fa (RTL) / en / de** and watch every lesson re-render in all three;
+- pick from a shelf of **seven real Tier-1 packs** — first letters, counting 0–20, shapes &
+  patterns, living things, "what is a question?", "guess first, then check", and fact vs. opinion;
+- run a real **spaced-repetition card flow** (show → reveal → *got it / again*);
+- see review progress **persist** in `localStorage` using a classic **Leitner box model**
   (`1 → 2 → 4 → 9 → 21` day intervals; *got it* climbs a box, *again* falls to box 1).
 
-It is a **prototype**: one demo pack, three languages, the engine real. The curriculum, the full pack
-pipeline, signing, and the other tiers are documented but **not yet built**.
+It is a **prototype**: seven Tier-1 packs, three languages, the engine real and tested. The full
+curriculum, the pack signing pipeline, audio, and the higher tiers are documented but **not yet built**.
 
 ---
 
@@ -111,18 +141,21 @@ pipeline, signing, and the other tiers are documented but **not yet built**.
 
 Offline-first **PWA** · Clean-Architecture + MVVM (logic separated from view) · content shipped as
 **versioned, signed JSON packs** downloaded per age-tier so a phone stores only what it needs ·
-**i18n from day one** (fa-RTL / en / de) · spaced repetition reusing our **Leitner engine** ·
+**i18n from day one** (fa-RTL / en / de) · spaced repetition on a classic **Leitner box engine** ·
 accessibility and **low-literacy icon-first UX** · **privacy by default — no tracking, no ads, no
-accounts required.** Aligned to the house **EMotion 3 Architecture Standard**
-(`internal-path`). See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+accounts required.** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ---
 
-## Public when Mo says
+## License
 
-This repository is **private until Mo decides to publish.** Do not create a public mirror, do not
-push to a public remote, and do not announce it. Mo publishes Sahar to the world himself, on his own
-timing. Until then it lives locally and grows quietly, like its name — the hour before dawn.
+Dual-licensed on purpose, so the engine travels far and the lessons stay free:
+
+- **Code → [MIT](LICENSE).** Fork it, build your own Sahar for your own denied children.
+- **Original learning packs → [CC-BY-SA 4.0](LICENSE-CONTENT.md).** Use and adapt them freely,
+  credit the source, and keep derivatives free under the same terms.
+
+See [`LICENSE-NOTE.md`](LICENSE-NOTE.md) for the reasoning.
 
 ---
 
