@@ -70,7 +70,7 @@ citizenship, and the ability to not be fooled.*
 | **Literacy & expression** | Essays with thesis & evidence; argument & counter-argument; reading literature critically; note-taking; **English & German to conversational/working level**; a window into one more world language. |
 | **Mathematics** | **Algebra basics** (variables, equations, linear functions); geometry & proof intuition; ratio/proportion mastery; **statistics & probability** (average, spread, "what a percentage hides"); intro to graphs/functions. |
 | **The scientific method** | Hypothesis → experiment → data → conclusion → peer check; controls & variables; **biology** (genetics, evolution, the body), **chemistry** (atoms, reactions), **physics** (motion, energy, electricity), **Earth & space** at Crash-Course breadth. |
-| **Critical thinking & logic** | Logical fallacies; **media literacy** — propaganda, bias, how headlines manipulate; statistics used to lie; **science vs. belief** handled gently (companion book below); how to change your mind. |
+| **Critical thinking & logic** | Logical fallacies; **media literacy** — propaganda, bias, how headlines manipulate; statistics used to lie; **science and belief** handled gently and respectfully (companion book below); how to change your mind. |
 | **Health & the body** | **Puberty & adolescent development** (honest, age-appropriate, body-positive); nutrition; mental health & stress; consent & safety; reproductive basics (factual, dignified). |
 | **Civics / politics / economy** | What a government does; rights & responsibilities; **personal finance** (budgeting, saving, interest, scams); how markets & jobs work; what an election is; human rights — incl. **the right to education**. |
 | **Digital literacy** | Misinformation & verification; account & device security; algorithms shape what you see; a footprint is forever; basic intro to *how* code works. |
@@ -86,9 +86,9 @@ Delivered as their own packs.
 
 1. **"How to Think"** — critical thinking for kids: questions, evidence, changing your mind, fallacies
    you can spot. (T2 seed → T4 depth.)
-2. **"Why the Sky Does That"** — science & wonder; **science vs. belief handled gently, à la Dawkins
-   but agnostic-leaning** — *how we find things out*, never mocking faith, never telling a child what
-   to believe; "here is how we know, and it's okay to wonder." (T3–T4.)
+2. **"Why the Sky Does That"** — science & wonder; **science and belief handled gently** — *how we
+   find things out*, never mocking faith, never telling a child what to believe; "here is how we
+   know, and it's okay to wonder." (T3–T4.)
 3. **"Sahar and the Locked Door"** — friendship & courage; Sahar's own story; not alone. (All tiers.)
 4. **"What Money Is"** — economy for kids: trade, saving, scams, fairness. (T3–T4.)
 5. **"If You're Ever Lost"** — survival & safety: first aid, water, fire, finding your way, asking for
@@ -102,6 +102,7 @@ Delivered as their own packs.
   (the prototype already demos that seed), then widen across subjects, then climb tiers.
 - A learner only ever stores the packs for her current tier(s); finishing a tier unlocks the next.
 
-> Honest status: this map is the **plan**. The only content **built** today is one Tier-1/Tier-2
-> critical-thinking + counting demo pack (`content/tier1-demo.json`). Everything else is specified
-> here and not yet authored.
+> Honest status: this map is the **plan**. The content **built** today is seven Tier-1 packs in
+> `content/` (first letters, counting 0–20, shapes & patterns, living things, "what is a question?",
+> "guess first, then check", and the fact-vs-opinion demo), each in fa/en/de. Everything else is
+> specified here and not yet authored.

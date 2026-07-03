@@ -3,10 +3,11 @@
 *How Sahar is built. Companion to [`CURRICULUM-MAP.md`](CURRICULUM-MAP.md) (what it teaches),
 [`NAME.md`](NAME.md) (who Sahar is), and [`OSS-REUSE.md`](OSS-REUSE.md) (what we don't rebuild).*
 
-This document **aligns to the house EMotion 3 Architecture Standard**
-(`internal-path`). EMotion 3 is C#/Avalonia; Sahar is a web PWA,
-so — per the standard — we adopt the **principles**, not the Avalonia code. The mapping is explicit
-in [§9](#9-alignment-to-the-house-standard-emotion-3).
+This document follows a small set of **house architecture principles** (layered core, provider
+boundaries at every edge, writes separated from reads, MVVM, design tokens, externalized strings,
+one access-policy source, headless tests, honest real-vs-mock documentation). Sahar is a web PWA,
+so we adopt the **principles**, not any particular framework. The mapping is explicit in
+[§9](#9-the-nine-house-principles-in-sahar).
 
 ---
 
@@ -29,18 +30,18 @@ Consequences that ripple through every later section:
 
 Sahar is a **Progressive Web App** so one codebase reaches iPhone, Samsung/Android, tablet, and PC,
 installs to the home screen, and runs full-screen like a game — without app-store gatekeeping
-(which matters when a regime can pressure a store to drop you).
+(which matters when a child's access can be taken away by others).
 
 - **`manifest.webmanifest`** — name, icons, `display: standalone`, `dir`/`lang`, dawn theme color →
   makes it installable and launchable like a native app.
 - **`sw.js`** — a **cache-first** service worker. On `install` it precaches the app shell + the demo
   pack; on `fetch` it serves from cache and only falls back to network for things not yet cached.
   Result: after the very first visit, **the app opens at zero internet, instantly.**
-- **Versioned cache** (`CACHE = 'sahar-v1'`): bumping the version retires the old cache cleanly, so
-  updates are atomic and a half-downloaded update never corrupts a working install.
+- **Versioned cache** (`CACHE = 'sahar-vN'` in `sw.js`): bumping the version retires the old cache
+  cleanly, so updates are atomic and a half-downloaded update never corrupts a working install.
 
-> Prototype status: `sw.js` is real and registers; the demo pack is precached. Pack *signing* and
-> background pack sync are **designed below but not yet implemented** — honest gap.
+> Prototype status: `sw.js` is real and registers; the app shell + all Tier-1 packs are precached.
+> Pack *signing* and background pack sync are **designed below but not yet implemented** — honest gap.
 
 ---
 
@@ -144,18 +145,17 @@ text anywhere.
 
 ---
 
-## 6. Spaced repetition — the Leitner box (mirrors internal)
+## 6. Spaced repetition — the Leitner box
 
-Sahar reuses the **exact box model** proven in `internal-path` so the family of
-apps shares one learning engine:
+Sahar uses the **classic Leitner box model**, a simple and proven spaced-repetition method:
 
-- **5 boxes**, intervals **`[1, 2, 4, 9, 21]` days** (`INTERVALS` in `app.js`, copied from internal).
+- **5 boxes**, intervals **`[1, 2, 4, 9, 21]` days** (`INTERVALS` in `app.js`).
 - **Got it →** card climbs one box and waits longer.
 - **Again →** card falls back to **box 1** and returns tomorrow.
 - A card is **due** when `today >= due`. Progress (`box`, `due`, `reps`, `lapses`) **persists** in
   `localStorage` — this is *real* spaced repetition, not a throwaway demo loop.
 
-This is intentionally the *same* algorithm Mo already trusts; the FSRS upgrade path is noted in
+The algorithm is deliberately tiny and transparent; the FSRS upgrade path is noted in
 [`OSS-REUSE.md`](OSS-REUSE.md) (drop-in behind the same `schedule()` function — provider-style).
 
 ---
@@ -202,7 +202,7 @@ This is the section that protects a real child from real danger. **Privacy is th
 
 ---
 
-## 9. Alignment to the house standard (EMotion 3)
+## 9. The nine house principles in Sahar
 
 | # | House principle | In Sahar |
 |---|-----------------|----------|
@@ -213,16 +213,16 @@ This is the section that protects a real child from real danger. **Privacy is th
 | 5 | Design tokens + live theme swap | `styles.css` CSS custom properties (dawn tokens); RTL theme via `[dir]` |
 | 6 | Externalize all strings | §5 — `STRINGS[lang]` + per-pack strings; add a language = add a file |
 | 7 | One access-policy source | learner-only today; a future **educator** role gates pack authoring through one policy |
-| 8 | Tests prove the core without UI | **the universal gap.** Plan: headless tests for `schedule()`, pack-load, i18n. Not yet written — named honestly |
+| 8 | Tests prove the core without UI | `test/core.test.js` — 28 headless tests (pure `node:assert`) covering `schedule()`, `isDue()`, date helpers, i18n key parity, pack shape, `buildQueue()` |
 | 9 | ARCHITECTURE.md + real-vs-mock honesty | this file + the "honest status" notes throughout + README banner |
 
 ### Real vs. mocked (the honesty section the standard demands)
 - **REAL:** offline app shell + service worker; cache-first; the Leitner box engine with persistence;
-  i18n fa-RTL/en/de re-rendering a real lesson; the Sahar SVG character; the pack *format*; zero
-  network calls.
+  i18n fa-RTL/en/de re-rendering real lessons; seven Tier-1 content packs; the Sahar SVG character;
+  the pack *format*; the headless test suite (28 tests); zero network calls.
 - **MOCKED / DESIGNED-NOT-BUILT:** pack **signing** (Ed25519); multi-pack catalog + per-tier
-  download/sideload sync; audio prompts; encrypted backup; quick-hide; the test suite; tiers 2–4
-  content; FSRS upgrade.
+  download/sideload sync; audio prompts; encrypted backup; quick-hide; tiers 2–4 content; FSRS
+  upgrade.
 
 ---
 
@@ -239,7 +239,8 @@ character system grows.
 ## Phased delivery (per the standard's Analyse → Prototyp → … model)
 
 1. **Analyse** ✅ — this repo: vision, architecture, curriculum map, OSS plan, name.
-2. **Prototyp** ✅ (current) — runnable offline demo: 1 pack, 3 languages, real Leitner.
-3. **Align** — review with educators/Afghan teachers; lock pack schema + signing; write the tests.
+2. **Prototyp** ✅ (current) — runnable offline demo: 7 Tier-1 packs, 3 languages, real Leitner,
+   28 headless core tests.
+3. **Align** — review with educators/Afghan teachers; lock pack schema + signing.
 4. **V1** — Tier-1 full literacy+numeracy packs, audio, installable, sideload distribution.
 5. **vNext** — Tiers 2–4, companion books, FSRS, more languages, educator authoring.
