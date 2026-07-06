@@ -1,0 +1,128 @@
+/* Sahar — bootstrap.css
+ * The KID design language for the audio-first first-contact flow
+ * (SAHAR-COVERAGE §6.5 C): a dawn-bird mascot, big touch targets, warm colors,
+ * a visible progress path, celebration. Layers ON TOP of styles.css tokens.
+ * UX over polish — clear and gentle, not fancy.
+ */
+
+/* ---- prototype-honesty banner ---- */
+.prototype-banner {
+  font-size: .74rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+/* ---- the dawn progress path (Duolingo-style bar + flying bird) ---- */
+.dawn-progress { margin: 4px 0 18px; }
+.dawn-progress .path {
+  position: relative;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--line);
+  overflow: visible;
+}
+.dawn-progress .fill {
+  position: absolute; inset-block: 0; inset-inline-start: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--rose), var(--amber), var(--gold));
+  transition: inline-size .5s cubic-bezier(.2,.8,.2,1);
+  min-inline-size: 34px;
+}
+.dawn-progress .bird {
+  position: absolute; inset-block-start: 0;
+  transition: inset-inline-start .5s cubic-bezier(.2,.8,.2,1);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));
+  animation: flutter 1.6s ease-in-out infinite;
+}
+[dir="rtl"] .dawn-progress .bird { transform: scaleX(-1); }
+@keyframes flutter { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+[dir="rtl"] .dawn-progress .bird { animation: flutter-rtl 1.6s ease-in-out infinite; }
+@keyframes flutter-rtl { 0%,100% { transform: translateY(0) scaleX(-1); } 50% { transform: translateY(-3px) scaleX(-1); } }
+.dawn-progress .goal {
+  position: absolute; inset-block-start: 2px; inset-inline-end: 4px;
+  font-size: 1.5rem; line-height: 1;
+}
+
+/* ---- first-contact hero: the big picture being named ---- */
+.fc-hero { text-align: center; margin-block-end: 10px; }
+.fc-pic.big {
+  width: 150px; height: 150px; margin-inline: auto;
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 18px 40px -24px rgba(0,0,0,.9);
+  animation: cardin .35s ease;
+}
+.fc-pic.big svg { width: 100%; height: 100%; display: block; }
+
+/* two big LISTEN buttons — icon + word, no reading needed to know what they do */
+.listen-row { display: flex; gap: 10px; justify-content: center; margin-block-start: 14px; flex-wrap: wrap; }
+.listen-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: var(--tap); padding: 0 18px;
+  border-radius: 999px; border: 1px solid var(--line);
+  font: inherit; font-weight: 700; cursor: pointer;
+  color: var(--ink);
+}
+.listen-btn .lico { font-size: 1.25rem; }
+.listen-btn.l1 { background: linear-gradient(180deg, #bfe3ff, #7cc0f0); }
+.listen-btn.l2 { background: linear-gradient(180deg, var(--gold), var(--amber)); }
+.listen-btn:active { transform: scale(.96); }
+
+/* ---- tap prompt + the picture choice grid (tap-to-match) ---- */
+.fc-tap { text-align: center; font-size: 1.05rem; opacity: .92; margin: 18px 0 12px; }
+.pic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 12px; max-width: 420px; margin-inline: auto;
+}
+.pic-choice {
+  aspect-ratio: 1 / 1;
+  border-radius: 20px; overflow: hidden;
+  border: 3px solid transparent;
+  background: rgba(255,255,255,.06);
+  cursor: pointer; padding: 6px;
+  transition: transform .12s ease, border-color .2s ease;
+}
+.pic-choice svg { width: 100%; height: 100%; display: block; border-radius: 14px; }
+.pic-choice:hover { transform: translateY(-2px); }
+.pic-choice:active { transform: scale(.95); }
+.pic-choice.wrong { border-color: var(--again); animation: shake .4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+.fc-feedback { text-align: center; min-height: 1.6em; margin-block-start: 14px; font-weight: 700; color: var(--gold); font-size: 1.15rem; }
+
+/* ---- done / celebration ---- */
+.fc-done { text-align: center; padding: 20px 10px; animation: cardin .35s ease; }
+.fc-bird-big { display: inline-block; animation: flutter 1.6s ease-in-out infinite; }
+.fc-done h2 { margin: 12px 0 6px; }
+.fc-done p { opacity: .9; margin: 0 0 18px; }
+.fc-btn {
+  min-height: var(--tap); padding: 0 26px;
+  border-radius: 999px; border: none; cursor: pointer;
+  font: inherit; font-weight: 700; color: var(--ink);
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+}
+
+/* ---- caregiver sheet ---- */
+.caregiver { animation: cardin .35s ease; }
+.cg-note { opacity: .92; margin: 4px 0 14px; line-height: 1.6; }
+.cg-list { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.cg-list li {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.05); border: 1px solid var(--line);
+  border-radius: 14px; padding: 8px 12px; line-height: 1.5;
+}
+.cg-pic { flex: 0 0 auto; width: 44px; height: 44px; }
+.cg-pic svg { width: 100%; height: 100%; }
+.cg-rec { font-size: .82rem; opacity: .85; background: rgba(255,255,255,.05); border: 1px dashed var(--line); border-radius: 12px; padding: 10px 12px; margin-block-end: 16px; }
+
+.link-btn {
+  background: none; border: none; color: var(--gold);
+  font: inherit; cursor: pointer; text-decoration: underline; padding: 8px;
+}

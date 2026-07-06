@@ -120,6 +120,20 @@ html, body {
 }
 .pips i.fill { background: var(--gold); border-color: var(--gold); }
 
+/* ---- audio-first doorway (to bootstrap.html) ---- */
+.bootstrap-door {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; color: var(--ink);
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+  border-radius: var(--radius); padding: 14px 18px;
+  margin-block-end: 16px;
+  box-shadow: 0 14px 30px -22px rgba(0,0,0,.9);
+}
+.bootstrap-door .door-ico { font-size: 1.6rem; flex: 0 0 auto; }
+.bootstrap-door .door-txt { display: flex; flex-direction: column; line-height: 1.4; }
+.bootstrap-door .door-txt b { font-size: 1.05rem; }
+.bootstrap-door .door-txt small { opacity: .85; font-size: .78rem; }
+
 /* ---- buttons ---- */
 .actions { display: flex; gap: 10px; margin-block-start: 20px; }
 .btn {
