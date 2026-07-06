@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sahar — First Words (audio-first)</title>
+  <meta name="description" content="Sahar's audio-first, picture-first bootstrap: a pre-literate child learns their first English words through Dari, with zero reading.">
+  <meta name="theme-color" content="#f4a259">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./bootstrap.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%230b1026'/%3E%3Ccircle cx='24' cy='30' r='10' fill='%23ffd89b'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- top bar: brand + language switcher (chrome language, NOT the course) -->
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect width="48" height="48" rx="12" fill="var(--night)"/>
+        <circle cx="24" cy="30" r="11" fill="var(--gold)"/>
+      </svg>
+      <div>
+        <h1 id="bs-title">اولین کلمه‌ها</h1>
+        <p class="motto">Sahar · audio-first</p>
+      </div>
+    </div>
+    <nav class="langs" id="bs-langs" aria-label="Language">
+      <button data-lang="fa" type="button">دری</button>
+      <button data-lang="en" type="button">EN</button>
+      <button data-lang="de" type="button">DE</button>
+    </nav>
+  </header>
+
+  <!-- PROTOTYPE HONESTY banner (real vs placeholder) -->
+  <p class="prototype-banner" id="bs-banner"></p>
+
+  <!-- the dawn progress path: a bird flying toward the sunrise -->
+  <div class="dawn-progress" id="bs-progress"></div>
+
+  <!-- the first-contact stage (rendered by bootstrap.js) -->
+  <main id="bs-stage" aria-live="polite"></main>
+
+  <!-- caregiver / grown-up entry -->
+  <footer class="foot">
+    <button type="button" class="link-btn" id="bs-caregiver">👪 <span data-cg>For grown-ups</span></button>
+  </footer>
+</div>
+
+<!-- pure core + providers, then the view -->
+<script src="./pictures.js"></script>
+<script src="./audio.js"></script>
+<script src="./bootstrap-core.js"></script>
+<script src="./bootstrap.js"></script>
+</body>
+</html>

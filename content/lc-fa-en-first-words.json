@@ -1,0 +1,147 @@
+{
+  "packId": "lc.fa-en.first-words",
+  "packType": "language-course",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "language-course — first English words, taught through Dari (audio-first, pre-literacy)",
+  "l1": "fa-AF",
+  "l2": "en",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content. Pictures are inline SVG (no external assets).",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. به‌جای صدای ضبط‌شده، صدای ساختگی مرورگر پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Instead of recorded voice, the browser's synthetic speech (or a placeholder tone) plays. Real native-speaker recordings — ideally Mo's or Neda's voice — come later.",
+    "de": "Audio ist noch NICHT echt. Statt einer Aufnahme spielt die synthetische Stimme des Browsers (oder ein Platzhalter-Ton). Echte muttersprachliche Aufnahmen folgen später."
+  },
+  "title": {
+    "fa": "اولین کلمه‌های انگلیسی",
+    "en": "First English Words",
+    "de": "Erste englische Wörter"
+  },
+  "intro": {
+    "fa": "بیا انگلیسی یاد بگیریم! اول تصویر را ببین و اسمش را به زبان خودت بشنو، بعد به انگلیسی. لازم نیست بخوانی — فقط گوش کن و تصویر درست را لمس کن.",
+    "en": "Let's learn English! First see the picture and hear its name in your language, then in English. No reading needed — just listen and tap the right picture.",
+    "de": "Lass uns Englisch lernen! Sieh zuerst das Bild und höre seinen Namen in deiner Sprache, dann auf Englisch. Kein Lesen nötig — nur zuhören und das richtige Bild antippen."
+  },
+  "caregiverIntro": {
+    "fa": "برای بزرگ‌ترها: این درس بدون خواندن کار می‌کند. اگر صدا پخش نشد، شما این کلمه‌ها را بلند برای کودک بخوانید.",
+    "en": "For caregivers: this lesson works with no reading. If audio does not play, read these words aloud to the child.",
+    "de": "Für Betreuende: Diese Lektion funktioniert ohne Lesen. Wenn kein Ton abgespielt wird, lesen Sie dem Kind die Wörter laut vor."
+  },
+  "items": [
+    {
+      "id": "w-water",
+      "pic": "water",
+      "l1": { "text": "آب", "translit": "aab", "audio": "audio/fa-AF/water.mp3" },
+      "l2": { "text": "water", "translit": "waa-ter", "audio": "audio/en/water.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این آب است. به انگلیسی می‌شود water.»",
+        "en": "Say to the child: \"This is water. In English it is water.\"",
+        "de": "Sag zum Kind: „Das ist Wasser. Auf Englisch heißt es water.\""
+      }
+    },
+    {
+      "id": "w-sun",
+      "pic": "sun",
+      "l1": { "text": "آفتاب", "translit": "aaftaab", "audio": "audio/fa-AF/sun.mp3" },
+      "l2": { "text": "sun", "translit": "san", "audio": "audio/en/sun.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این آفتاب است. به انگلیسی می‌شود sun.»",
+        "en": "Say to the child: \"This is the sun. In English it is sun.\"",
+        "de": "Sag zum Kind: „Das ist die Sonne. Auf Englisch heißt es sun.\""
+      }
+    },
+    {
+      "id": "w-bird",
+      "pic": "bird",
+      "l1": { "text": "پرنده", "translit": "parinda", "audio": "audio/fa-AF/bird.mp3" },
+      "l2": { "text": "bird", "translit": "berd", "audio": "audio/en/bird.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این پرنده است. به انگلیسی می‌شود bird.»",
+        "en": "Say to the child: \"This is a bird. In English it is bird.\"",
+        "de": "Sag zum Kind: „Das ist ein Vogel. Auf Englisch heißt es bird.\""
+      }
+    },
+    {
+      "id": "w-tree",
+      "pic": "tree",
+      "l1": { "text": "درخت", "translit": "derakht", "audio": "audio/fa-AF/tree.mp3" },
+      "l2": { "text": "tree", "translit": "tree", "audio": "audio/en/tree.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این درخت است. به انگلیسی می‌شود tree.»",
+        "en": "Say to the child: \"This is a tree. In English it is tree.\"",
+        "de": "Sag zum Kind: „Das ist ein Baum. Auf Englisch heißt es tree.\""
+      }
+    },
+    {
+      "id": "w-house",
+      "pic": "house",
+      "l1": { "text": "خانه", "translit": "khaana", "audio": "audio/fa-AF/house.mp3" },
+      "l2": { "text": "house", "translit": "haus", "audio": "audio/en/house.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این خانه است. به انگلیسی می‌شود house.»",
+        "en": "Say to the child: \"This is a house. In English it is house.\"",
+        "de": "Sag zum Kind: „Das ist ein Haus. Auf Englisch heißt es house.\""
+      }
+    },
+    {
+      "id": "w-cat",
+      "pic": "cat",
+      "l1": { "text": "پشک", "translit": "pishak", "audio": "audio/fa-AF/cat.mp3" },
+      "l2": { "text": "cat", "translit": "kat", "audio": "audio/en/cat.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این پشک است. به انگلیسی می‌شود cat.»",
+        "en": "Say to the child: \"This is a cat. In English it is cat.\"",
+        "de": "Sag zum Kind: „Das ist eine Katze. Auf Englisch heißt es cat.\""
+      }
+    },
+    {
+      "id": "w-hand",
+      "pic": "hand",
+      "l1": { "text": "دست", "translit": "dast", "audio": "audio/fa-AF/hand.mp3" },
+      "l2": { "text": "hand", "translit": "hand", "audio": "audio/en/hand.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این دست است. به انگلیسی می‌شود hand.»",
+        "en": "Say to the child: \"This is a hand. In English it is hand.\"",
+        "de": "Sag zum Kind: „Das ist eine Hand. Auf Englisch heißt es hand.\""
+      }
+    },
+    {
+      "id": "w-moon",
+      "pic": "moon",
+      "l1": { "text": "مهتاب", "translit": "mahtaab", "audio": "audio/fa-AF/moon.mp3" },
+      "l2": { "text": "moon", "translit": "moon", "audio": "audio/en/moon.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این مهتاب است. به انگلیسی می‌شود moon.»",
+        "en": "Say to the child: \"This is the moon. In English it is moon.\"",
+        "de": "Sag zum Kind: „Das ist der Mond. Auf Englisch heißt es moon.\""
+      }
+    },
+    {
+      "id": "w-fish",
+      "pic": "fish",
+      "l1": { "text": "ماهی", "translit": "maahi", "audio": "audio/fa-AF/fish.mp3" },
+      "l2": { "text": "fish", "translit": "fish", "audio": "audio/en/fish.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این ماهی است. به انگلیسی می‌شود fish.»",
+        "en": "Say to the child: \"This is a fish. In English it is fish.\"",
+        "de": "Sag zum Kind: „Das ist ein Fisch. Auf Englisch heißt es fish.\""
+      }
+    },
+    {
+      "id": "w-star",
+      "pic": "star",
+      "l1": { "text": "ستاره", "translit": "sitaara", "audio": "audio/fa-AF/star.mp3" },
+      "l2": { "text": "star", "translit": "staar", "audio": "audio/en/star.mp3" },
+      "caregiver": {
+        "fa": "به کودک بگو: «این ستاره است. به انگلیسی می‌شود star.»",
+        "en": "Say to the child: \"This is a star. In English it is star.\"",
+        "de": "Sag zum Kind: „Das ist ein Stern. Auf Englisch heißt es star.\""
+      }
+    }
+  ]
+}
