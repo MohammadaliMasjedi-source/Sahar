@@ -1,0 +1,200 @@
+/* Sahar — audio.js
+ * The audio-first voice layer for the pre-literacy bootstrap (SAHAR-COVERAGE §6.5 A).
+ *
+ * A pre-literate child NEVER reads a prompt — every label is SPOKEN. This module
+ * decides HOW a label is voiced, in a strict, honest fallback chain:
+ *
+ *   1) REAL RECORDING  — a pre-recorded native-speaker file at item.audio
+ *                        (ideally Mo's / Neda's voice). Mo-gated: not shipped yet,
+ *                        so today these files are absent and we fall through.
+ *   2) BROWSER TTS     — speechSynthesis, ONLY for a language the browser can
+ *                        genuinely speak. Honest note: fa/Dari TTS is unreliable
+ *                        in browsers, so we treat fa TTS as UNAVAILABLE by default
+ *                        and rely on the caregiver line + tone instead. English
+ *                        TTS is broadly available, so L2=en may use it.
+ *   3) TONE PLACEHOLDER — a short synthesized chime (Web Audio) so the flow still
+ *                        has audible feedback with zero assets and zero network.
+ *
+ * Every call resolves to a {mode} so the UI can show the honest banner
+ * (what's real vs placeholder). NO external network calls, ever.
+ */
+'use strict';
+
+const AudioEngine = (() => {
+  let ctx = null;                 // lazy Web Audio context (needs a user gesture)
+  const fileCache = {};           // url -> HTMLAudioElement (real recordings)
+  const missing = {};             // url -> true once a real file 404s
+  let ttsVoices = [];
+
+  function ac() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) ctx = new AC();
+    }
+    return ctx;
+  }
+
+  // --- 3) TONE PLACEHOLDER ------------------------------------------------
+  // A gentle two-note chime. `high` = a brighter tone (used for the L2 word)
+  // so the child can *hear* two different "voices" even with no recordings.
+  function tone(high) {
+    const a = ac();
+    if (!a) return Promise.resolve();
+    if (a.state === 'suspended') { try { a.resume(); } catch (_) {} }
+    return new Promise((resolve) => {
+      const t0 = a.currentTime;
+      const base = high ? 660 : 440;
+      const dur = 0.34;
+      const o = a.createOscillator();
+      const g = a.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(base, t0);
+      o.frequency.exponentialRampToValueAtTime(base * 1.5, t0 + dur);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + 0.04);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      o.connect(g).connect(a.destination);
+      o.start(t0);
+      o.stop(t0 + dur + 0.02);
+      o.onended = () => resolve();
+      setTimeout(resolve, (dur + 0.1) * 1000); // safety
+    });
+  }
+
+  // --- 2) BROWSER TTS -----------------------------------------------------
+  function ttsAvailableFor(lang) {
+    if (!('speechSynthesis' in window)) return false;
+    // HONEST POLICY: never claim Dari/Persian TTS. Browsers lack reliable
+    // fa voices; a wrong-accent robotic voice would teach the wrong sound.
+    if (lang === 'fa' || lang === 'fa-AF' || lang === 'fa-IR' || lang === 'ps') return false;
+    return true; // en / de etc. — broadly supported
+  }
+
+  function speak(text, lang) {
+    return new Promise((resolve) => {
+      try {
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : lang;
+        u.rate = 0.85;            // slow + clear for a child
+        const match = ttsVoices.find((v) => v.lang && v.lang.toLowerCase().startsWith(u.lang.toLowerCase().slice(0, 2)));
+        if (match) u.voice = match;
+        u.onend = () => resolve(true);
+        u.onerror = () => resolve(false);
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(u);
+        setTimeout(() => resolve(true), 4000); // safety
+      } catch (_) { resolve(false); }
+    });
+  }
+
+  // --- 1) REAL RECORDING --------------------------------------------------
+  function tryFile(url) {
+    return new Promise((resolve) => {
+      if (!url || missing[url]) return resolve(false);
+      let el = fileCache[url];
+      if (!el) { el = new Audio(url); el.preload = 'auto'; fileCache[url] = el; }
+      const ok = () => { cleanup(); resolve(true); };
+      const fail = () => { missing[url] = true; cleanup(); resolve(false); };
+      const cleanup = () => {
+        el.removeEventListener('playing', ok);
+        el.removeEventListener('error', fail);
+      };
+      el.addEventListener('playing', ok, { once: true });
+      el.addEventListener('error', fail, { once: true });
+      el.currentTime = 0;
+      const p = el.play();
+      if (p && p.catch) p.catch(() => fail());
+      setTimeout(() => resolve(!missing[url]), 3000); // safety
+    });
+  }
+
+  /**
+   * Voice a label. Returns { mode } where mode is one of:
+   *   'recording' | 'tts' | 'tone'  — the HONEST source that actually played.
+   * @param {{text:string, translit?:string, audio?:string}} label
+   * @param {string} lang  the label's language (l1 or l2), e.g. 'fa-AF' | 'en'
+   * @param {boolean} isL2 true for the target word (brighter tone)
+   */
+  async function voice(label, lang, isL2) {
+    if (!label) return { mode: 'tone' };
+    // 1) real recording
+    if (label.audio && !missing[label.audio]) {
+      const played = await tryFile(label.audio);
+      if (played) return { mode: 'recording' };
+    }
+    // 2) browser TTS where it genuinely works
+    const sayText = label.translit || label.text;
+    if (ttsAvailableFor(lang) && sayText) {
+      const spoke = await speak(sayText, lang);
+      if (spoke) return { mode: 'tts' };
+    }
+    // 3) placeholder tone (always available, zero assets)
+    await tone(!!isL2);
+    return { mode: 'tone' };
+  }
+
+  /** A tiny happy arpeggio for correct answers (celebration sound). */
+  function cheer() {
+    const a = ac();
+    if (!a) return;
+    if (a.state === 'suspended') { try { a.resume(); } catch (_) {} }
+    const notes = [523.25, 659.25, 783.99, 1046.5]; // C E G C
+    notes.forEach((f, i) => {
+      const t0 = a.currentTime + i * 0.09;
+      const o = a.createOscillator();
+      const g = a.createGain();
+      o.type = 'triangle';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.18, t0 + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.25);
+      o.connect(g).connect(a.destination);
+      o.start(t0); o.stop(t0 + 0.28);
+    });
+  }
+
+  /** Prime on first user gesture (browsers gate audio behind a tap). */
+  function unlock() {
+    const a = ac();
+    if (a && a.state === 'suspended') { try { a.resume(); } catch (_) {} }
+    if ('speechSynthesis' in window) {
+      ttsVoices = window.speechSynthesis.getVoices() || [];
+    }
+  }
+
+  if ('speechSynthesis' in window) {
+    try {
+      ttsVoices = window.speechSynthesis.getVoices() || [];
+      window.speechSynthesis.onvoiceschanged = () => {
+        ttsVoices = window.speechSynthesis.getVoices() || [];
+      };
+    } catch (_) {}
+  }
+
+  /* -----------------------------------------------------------------------
+   * CAREGIVER RECORD MODE — STUB (SAHAR-COVERAGE §6.5 A "caregiver mode").
+   * The realistic delivery channel for out-of-school kids: an older sibling
+   * or parent records the native word once, and it becomes the real audio.
+   * Designed here, NOT wired to storage yet (Mo-gated). Kept honest.
+   * --------------------------------------------------------------------- */
+  const CaregiverRecorder = {
+    supported() {
+      return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+    },
+    /** STUB: would capture a short clip and hand back a blob URL to store
+     *  locally (IndexedDB) against item.audio. No child data ever leaves the
+     *  device. Returns a clear not-implemented marker for now. */
+    async record(/* itemId, lang */) {
+      return { ok: false, reason: 'not-implemented', note: 'Caregiver record mode is a designed stub — local-only capture, Mo-gated.' };
+    }
+  };
+
+  return { voice, cheer, unlock, tone, ttsAvailableFor, CaregiverRecorder };
+})();
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { AudioEngine };
+}
+if (typeof window !== 'undefined') {
+  window.AudioEngine = AudioEngine;
+}
