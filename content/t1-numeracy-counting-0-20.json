@@ -1,6 +1,6 @@
 {
   "packId": "t1.numeracy.counting-0-20",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "tier": 1,
   "ageBand": "6-7",
   "subject": "numeracy — counting and numbers 0 to 20",
@@ -8,136 +8,182 @@
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
+    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+  },
   "title": {
     "fa": "بشمار! از صفر تا بیست",
     "en": "Let's Count! From Zero to Twenty",
     "de": "Lass uns zählen! Von Null bis Zwanzig"
   },
   "intro": {
-    "fa": "اعداد به ما می‌گویند «چند تا». بیا با هم بشماریم. هر وقت خواستی، روی انگشت‌هایت بشمار.",
-    "en": "Numbers tell us \"how many\". Let's count together. Use your fingers any time you like.",
-    "de": "Zahlen sagen uns „wie viele\". Lass uns zusammen zählen. Benutze deine Finger, wann immer du magst."
+    "fa": "اعداد به ما می‌گویند «چند تا». بیا با هم بشماریم. هر وقت خواستی، روی انگشت‌هایت بشمار، بعد عدد درست را لمس کن.",
+    "en": "Numbers tell us \"how many\". Let's count together. Use your fingers any time you like, then tap the right number.",
+    "de": "Zahlen sagen uns „wie viele\". Lass uns zusammen zählen. Benutze deine Finger, wann immer du magst, und tippe dann die richtige Zahl an."
   },
   "cards": [
     {
       "id": "ct-1",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "بعد از ۳ کدام عدد می‌آید؟ بشمار: ۱، ۲، ۳، …",
         "en": "Which number comes after 3? Count: 1, 2, 3, …",
         "de": "Welche Zahl kommt nach 3? Zähle: 1, 2, 3, …"
       },
-      "answer": {
-        "fa": "۴ (چهار).",
-        "en": "4 (four).",
-        "de": "4 (vier)."
-      }
+      "answer": { "fa": "۴ (چهار).", "en": "4 (four).", "de": "4 (vier)." },
+      "caregiver": {
+        "fa": "با کودک بشمار: «یک، دو، سه...» و بپرس بعدش چه عددی می‌آید. بگذار عدد درست را لمس کند.",
+        "en": "Count with the child: \"one, two, three...\" and ask what comes next. Let them tap the right number.",
+        "de": "Zähle mit dem Kind: „eins, zwei, drei...\" und frage, was als Nächstes kommt. Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "3", "glyph": "۳" }, { "id": "4", "glyph": "۴" }, { "id": "5", "glyph": "۵" } ],
+      "answerId": "4"
     },
     {
       "id": "ct-2",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "اگر ۲ سیب داشته باشی و ۳ سیب دیگر بگیری، چند سیب داری؟ بشمار.",
         "en": "If you have 2 apples and you get 3 more, how many apples do you have? Count them.",
         "de": "Wenn du 2 Äpfel hast und 3 weitere bekommst, wie viele Äpfel hast du? Zähle sie."
       },
-      "answer": {
-        "fa": "۵ سیب. ۲ و ۳ می‌شود ۵.",
-        "en": "5 apples. 2 and 3 make 5.",
-        "de": "5 Äpfel. 2 und 3 ergeben 5."
-      }
+      "answer": { "fa": "۵ سیب. ۲ و ۳ می‌شود ۵.", "en": "5 apples. 2 and 3 make 5.", "de": "5 Äpfel. 2 und 3 ergeben 5." },
+      "caregiver": {
+        "fa": "به کودک بگو: «۲ سیب داری و ۳ سیب دیگر می‌گیری. با هم بشماریم؟» بگذار عدد درست را لمس کند.",
+        "en": "Say to the child: \"You have 2 apples and get 3 more. Shall we count together?\" Let them tap the right number.",
+        "de": "Sag zum Kind: „Du hast 2 Äpfel und bekommst 3 weitere. Zählen wir zusammen?\" Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "4", "glyph": "۴" }, { "id": "5", "glyph": "۵" }, { "id": "6", "glyph": "۶" } ],
+      "answerId": "5"
     },
     {
       "id": "ct-3",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "کدام بیشتر است: ۷ یا ۴؟",
         "en": "Which is more: 7 or 4?",
         "de": "Was ist mehr: 7 oder 4?"
       },
-      "answer": {
-        "fa": "۷ بیشتر است. ۷ بعد از ۴ می‌آید، پس بزرگ‌تر است.",
-        "en": "7 is more. 7 comes after 4, so it is bigger.",
-        "de": "7 ist mehr. 7 kommt nach 4, also ist es größer."
-      }
+      "answer": { "fa": "۷ بیشتر است. ۷ بعد از ۴ می‌آید، پس بزرگ‌تر است.", "en": "7 is more. 7 comes after 4, so it is bigger.", "de": "7 ist mehr. 7 kommt nach 4, also ist es größer." },
+      "caregiver": {
+        "fa": "به کودک بگو: «کدام بیشتر است، هفت یا چهار؟» بگذار عدد بزرگ‌تر را لمس کند.",
+        "en": "Say to the child: \"Which is more, seven or four?\" Let them tap the bigger number.",
+        "de": "Sag zum Kind: „Was ist mehr, sieben oder vier?\" Lass es die größere Zahl antippen."
+      },
+      "choices": [ { "id": "7", "glyph": "۷" }, { "id": "4", "glyph": "۴" } ],
+      "answerId": "7"
     },
     {
       "id": "ct-4",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "اگر هیچ گلی نداشته باشی، چند گل داری؟",
         "en": "If you have no flowers at all, how many flowers do you have?",
         "de": "Wenn du gar keine Blumen hast, wie viele Blumen hast du?"
       },
-      "answer": {
-        "fa": "صفر (۰). صفر یعنی «هیچ».",
-        "en": "Zero (0). Zero means \"none\".",
-        "de": "Null (0). Null bedeutet „keine\"."
-      }
+      "answer": { "fa": "صفر (۰). صفر یعنی «هیچ».", "en": "Zero (0). Zero means \"none\".", "de": "Null (0). Null bedeutet „keine\"." },
+      "caregiver": {
+        "fa": "به کودک بگو: «اگر هیچ گلی نداشته باشی، چند گل داری؟» بگذار عدد درست را لمس کند.",
+        "en": "Say to the child: \"If you have no flowers at all, how many do you have?\" Let them tap the right number.",
+        "de": "Sag zum Kind: „Wenn du gar keine Blumen hast, wie viele hast du?\" Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "0", "glyph": "۰" }, { "id": "1", "glyph": "۱" }, { "id": "2", "glyph": "۲" } ],
+      "answerId": "0"
     },
     {
       "id": "ct-5",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "بعد از ۹ کدام عدد می‌آید؟ این اولین عدد دو رقمی است.",
         "en": "Which number comes after 9? This is the first two-digit number.",
         "de": "Welche Zahl kommt nach 9? Das ist die erste zweistellige Zahl."
       },
-      "answer": {
-        "fa": "۱۰ (ده).",
-        "en": "10 (ten).",
-        "de": "10 (zehn)."
-      }
+      "answer": { "fa": "۱۰ (ده).", "en": "10 (ten).", "de": "10 (zehn)." },
+      "caregiver": {
+        "fa": "با کودک بشمار تا ۹ و بپرس بعدش چه عددی می‌آید. بگذار عدد درست را لمس کند.",
+        "en": "Count with the child up to 9 and ask what comes next. Let them tap the right number.",
+        "de": "Zähle mit dem Kind bis 9 und frage, was als Nächstes kommt. Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "9", "glyph": "۹" }, { "id": "10", "glyph": "۱۰" }, { "id": "11", "glyph": "۱۱" } ],
+      "answerId": "10"
     },
     {
       "id": "ct-6",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "۵ پرنده روی شاخه نشسته‌اند و ۲ تا پرواز می‌کنند. چند پرنده می‌ماند؟",
         "en": "5 birds sit on a branch and 2 fly away. How many birds are left?",
         "de": "5 Vögel sitzen auf einem Ast und 2 fliegen weg. Wie viele Vögel bleiben?"
       },
-      "answer": {
-        "fa": "۳ پرنده. ۵ منهای ۲ می‌شود ۳.",
-        "en": "3 birds. 5 take away 2 leaves 3.",
-        "de": "3 Vögel. 5 weniger 2 ergibt 3."
-      }
+      "answer": { "fa": "۳ پرنده. ۵ منهای ۲ می‌شود ۳.", "en": "3 birds. 5 take away 2 leaves 3.", "de": "3 Vögel. 5 weniger 2 ergibt 3." },
+      "caregiver": {
+        "fa": "به کودک بگو: «۵ پرنده بودند، ۲ تا پرواز کردند. چند تا ماندند؟» بگذار عدد درست را لمس کند.",
+        "en": "Say to the child: \"5 birds, and 2 fly away. How many are left?\" Let them tap the right number.",
+        "de": "Sag zum Kind: „5 Vögel, und 2 fliegen weg. Wie viele bleiben?\" Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "2", "glyph": "۲" }, { "id": "3", "glyph": "۳" }, { "id": "4", "glyph": "۴" } ],
+      "answerId": "3"
     },
     {
       "id": "ct-7",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "بیا تا بیست بشماریم! بعد از ۱۹ کدام عدد می‌آید؟",
         "en": "Let's count to twenty! Which number comes after 19?",
         "de": "Lass uns bis zwanzig zählen! Welche Zahl kommt nach 19?"
       },
-      "answer": {
-        "fa": "۲۰ (بیست). آفرین، تا بیست شمردی!",
-        "en": "20 (twenty). Well done, you counted to twenty!",
-        "de": "20 (zwanzig). Gut gemacht, du hast bis zwanzig gezählt!"
-      }
+      "answer": { "fa": "۲۰ (بیست). آفرین، تا بیست شمردی!", "en": "20 (twenty). Well done, you counted to twenty!", "de": "20 (zwanzig). Gut gemacht, du hast bis zwanzig gezählt!" },
+      "caregiver": {
+        "fa": "با کودک تا ۱۹ بشمار و بپرس بعدش چه عددی می‌آید. بگذار عدد درست را لمس کند.",
+        "en": "Count with the child up to 19 and ask what comes next. Let them tap the right number.",
+        "de": "Zähle mit dem Kind bis 19 und frage, was als Nächstes kommt. Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "19", "glyph": "۱۹" }, { "id": "20", "glyph": "۲۰" }, { "id": "21", "glyph": "۲۱" } ],
+      "answerId": "20"
     },
     {
       "id": "ct-8",
       "type": "counting",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "دو دست داری. روی هر دست چند انگشت است؟ روی هم چند انگشت داری؟",
         "en": "You have two hands. How many fingers on each hand? How many fingers altogether?",
         "de": "Du hast zwei Hände. Wie viele Finger an jeder Hand? Wie viele Finger insgesamt?"
       },
-      "answer": {
-        "fa": "هر دست ۵ انگشت، روی هم ۱۰ انگشت. ۵ و ۵ می‌شود ۱۰.",
-        "en": "5 fingers on each hand, 10 altogether. 5 and 5 make 10.",
-        "de": "5 Finger an jeder Hand, 10 insgesamt. 5 und 5 ergeben 10."
-      }
+      "answer": { "fa": "هر دست ۵ انگشت، روی هم ۱۰ انگشت. ۵ و ۵ می‌شود ۱۰.", "en": "5 fingers on each hand, 10 altogether. 5 and 5 make 10.", "de": "5 Finger an jeder Hand, 10 insgesamt. 5 und 5 ergeben 10." },
+      "caregiver": {
+        "fa": "با کودک انگشت‌هایش را بشمارید: «۵ روی این دست، ۵ روی آن دست. روی هم چند تا؟» بگذار عدد درست را لمس کند.",
+        "en": "Count the child's fingers together: \"5 on this hand, 5 on that hand. How many altogether?\" Let them tap the right number.",
+        "de": "Zählt gemeinsam die Finger des Kindes: „5 an dieser Hand, 5 an jener Hand. Wie viele insgesamt?\" Lass es die richtige Zahl antippen."
+      },
+      "choices": [ { "id": "9", "glyph": "۹" }, { "id": "10", "glyph": "۱۰" }, { "id": "11", "glyph": "۱۱" } ],
+      "answerId": "10"
     }
   ]
 }

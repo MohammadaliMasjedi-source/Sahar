@@ -102,6 +102,124 @@ const PICTURES = {
     <rect width="100" height="100" rx="12" fill="#171436"/>
     <path d="M50 14 L61 40 L89 42 L67 60 L74 88 L50 72 L26 88 L33 60 L11 42 L39 40Z"
           fill="#ffd89b" stroke="#f4a259" stroke-width="2"/>
+  </svg>`,
+
+  /* ---- added for the Tier-1 picture-first migration (SAHAR-COVERAGE §6.5 A).
+   * Deliberately simple placeholders, same spirit as the set above — NOT the
+   * final illustrated design pass (§6.5 C, out of scope for this lane). ---- */
+
+  garden: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1c3a24"/>
+    <rect x="0" y="72" width="100" height="28" fill="#2f5233"/>
+    <circle cx="30" cy="60" r="14" fill="#6fcf97"/>
+    <rect x="27" y="60" width="6" height="18" fill="#8a5a2b"/>
+    <circle cx="66" cy="50" r="8" fill="#e0719b"/>
+    <circle cx="76" cy="56" r="8" fill="#ffd89b"/>
+    <rect x="69" y="58" width="5" height="20" fill="#5bbd85"/>
+  </svg>`,
+
+  circle: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <circle cx="50" cy="50" r="34" fill="#4db6e6"/>
+  </svg>`,
+
+  square: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <rect x="20" y="20" width="60" height="60" rx="6" fill="#f4a259"/>
+  </svg>`,
+
+  triangle: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <path d="M50 18 L82 78 L18 78 Z" fill="#e0719b"/>
+  </svg>`,
+
+  'swatch-red': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#2a2350"/>
+    <circle cx="50" cy="50" r="32" fill="#e0575e"/>
+  </svg>`,
+
+  'swatch-blue': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#2a2350"/>
+    <circle cx="50" cy="50" r="32" fill="#4d8fe6"/>
+  </svg>`,
+
+  stone: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1f2733"/>
+    <path d="M20 66 q-4 -22 22 -26 q20 -10 38 2 q22 6 18 26 q2 14 -20 16 h-40 q-20 -2 -18 -18Z" fill="#93a1ad"/>
+    <path d="M32 58 q10 -6 20 -2" stroke="#6f7b87" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  robot: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1c2436"/>
+    <rect x="28" y="34" width="44" height="38" rx="8" fill="#b7c4d1"/>
+    <circle cx="42" cy="52" r="5" fill="#1c1430"/>
+    <circle cx="58" cy="52" r="5" fill="#1c1430"/>
+    <rect x="38" y="64" width="24" height="5" rx="2" fill="#1c1430"/>
+    <rect x="46" y="20" width="8" height="14" fill="#b7c4d1"/>
+    <circle cx="50" cy="18" r="5" fill="#f4a259"/>
+    <rect x="18" y="42" width="10" height="22" rx="4" fill="#93a1ad"/>
+    <rect x="72" y="42" width="10" height="22" rx="4" fill="#93a1ad"/>
+  </svg>`,
+
+  leaf: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1c3a24"/>
+    <path d="M50 18 C74 30 78 60 50 86 C22 60 26 30 50 18Z" fill="#6fcf97"/>
+    <path d="M50 26 L50 78" stroke="#2f5233" stroke-width="3" fill="none"/>
+  </svg>`,
+
+  'check-mark': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#123a2c"/>
+    <circle cx="50" cy="50" r="34" fill="#6fcf97"/>
+    <path d="M34 52 L46 64 L68 38" stroke="#0b2417" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,
+
+  'cross-mark': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#3a1c1c"/>
+    <circle cx="50" cy="50" r="34" fill="#e0575e"/>
+    <path d="M38 38 L62 62 M62 38 L38 62" stroke="#3a0f0f" stroke-width="7" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  'thought-bubble': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#2a2350"/>
+    <ellipse cx="52" cy="42" rx="30" ry="22" fill="#c9b6ff"/>
+    <circle cx="30" cy="70" r="7" fill="#c9b6ff"/>
+    <circle cx="20" cy="82" r="4" fill="#c9b6ff"/>
+    <circle cx="44" cy="38" r="4" fill="#2a2350"/>
+    <circle cx="58" cy="38" r="4" fill="#2a2350"/>
+    <circle cx="72" cy="38" r="4" fill="#2a2350"/>
+  </svg>`,
+
+  'guess-cloud': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <path d="M30 60 a16 16 0 1 1 4 -31 a20 20 0 0 1 38 6 a15 15 0 0 1 -4 30 Z" fill="#ffd89b" opacity=".9"/>
+    <text x="50" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1430">?</text>
+  </svg>`,
+
+  'question-mark': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#2a2350"/>
+    <path d="M22 34 Q30 46 46 40 Q68 32 74 46 Q78 58 60 62 L58 68" stroke="#ffd89b" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="56" cy="80" r="5" fill="#ffd89b"/>
+  </svg>`,
+
+  statement: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1c3350"/>
+    <rect x="18" y="26" width="64" height="40" rx="14" fill="#bfe3ff"/>
+    <path d="M30 78 L30 62 L46 62Z" fill="#bfe3ff"/>
+    <rect x="30" y="40" width="40" height="6" rx="3" fill="#1c3350"/>
+    <rect x="30" y="52" width="26" height="6" rx="3" fill="#1c3350"/>
+  </svg>`,
+
+  'quiet-icon': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#241d44"/>
+    <path d="M32 40 h14 l16 -14 v48 l-16 -14 h-14Z" fill="#c9b6ff"/>
+    <path d="M62 36 L82 64 M82 36 L62 64" stroke="#e0575e" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  sky: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#2a6fb3"/>
+    <ellipse cx="42" cy="52" rx="22" ry="14" fill="#fff" opacity=".92"/>
+    <ellipse cx="62" cy="46" rx="16" ry="11" fill="#fff" opacity=".92"/>
+    <circle cx="78" cy="26" r="10" fill="#ffd89b"/>
   </svg>`
 };
 
