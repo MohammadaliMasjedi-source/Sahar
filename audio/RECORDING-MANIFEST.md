@@ -157,6 +157,22 @@ child's mother tongue and the one no honest browser TTS can currently do at all.
 | 7 | حدس بزن: فکر می‌کنی یک برگ سبک‌تر است یا یک سنگ کوچک؟ بعد اگر می‌توانی، هر دو را در دست بگیر و امتحان کن. | `audio/t1.thinking.fact-vs-guess.gc-7.fa.mp3` |
 | 8 | امروز یک چیز هست که نمی‌دانی درست است یا نه. آن را بگو، و بگو چه‌طور می‌توانی بفهمی. | `audio/t1.thinking.fact-vs-guess.gc-8.fa.mp3` |
 
+## Pack: Healthy and Safe (`t1.life.healthy-and-safe`)
+8 lines. This is the life-skills pack (hand-washing, clean water, teeth, sleep,
+naming feelings, asking a trusted adult for help) — kid-safe and universal,
+no politics or religion.
+
+| # | Line to record (fa) | Target filename |
+|---|---|---|
+| 1 | قبل از غذا خوردن، آیا باید دست‌هایمان را بشوییم — بله یا نه؟ | `audio/t1.life.healthy-and-safe.hs-1.fa.mp3` |
+| 2 | برای شستن خوبِ دست‌ها، همراه با آب از چه چیزی کمک می‌گیریم: صابون یا سنگ؟ | `audio/t1.life.healthy-and-safe.hs-2.fa.mp3` |
+| 3 | کدام آب برای نوشیدن امن است: آب پاک، یا آب کثیف؟ | `audio/t1.life.healthy-and-safe.hs-3.fa.mp3` |
+| 4 | دندان‌هایمان را هر روز با چه چیزی تمیز می‌کنیم: مسواک، یا سنگ؟ | `audio/t1.life.healthy-and-safe.hs-4.fa.mp3` |
+| 5 | بیا جفت کنیم: کدام برای بازیِ روز است، و کدام برای خوابِ شب؟ | `audio/t1.life.healthy-and-safe.hs-5.fa.mp3` |
+| 6 | لمس کن: کدام صورت خوشحال است؟ | `audio/t1.life.healthy-and-safe.hs-6.fa.mp3` |
+| 7 | الان چه احساسی داری — خوشحال، غمگین، یا یک احساس دیگر؟ بلند بگو. | `audio/t1.life.healthy-and-safe.hs-7.fa.mp3` |
+| 8 | اگر یک وقت ترسیدی، درد داشتی، یا احساس ناامنی کردی، به کدام بزرگ‌ترِ مورد اعتمادت می‌توانی کمک بخواهی؟ نامش را بلند بگو. | `audio/t1.life.healthy-and-safe.hs-8.fa.mp3` |
+
 ## Pack: Fact or Opinion? And a little counting (`t1.thinking.fact-opinion-counting`, the demo pack)
 5 lines.
 
@@ -194,13 +210,14 @@ genuinely cannot say correctly today, so it is the highest-value recording.)
 ---
 
 ## Totals
-- **67 Tier-1 prompt lines** across 9 packs (full sentences/questions, ~2-15
-  seconds each when read naturally).
+- **75 Tier-1 prompt lines** across 10 packs (full sentences/questions, ~2-15
+  seconds each when read naturally) — includes the 8 new lines for
+  `t1.life.healthy-and-safe`, the life-skills pack.
 - **10 single words** for the First-English-Words pack (1-2 seconds each).
-- **77 lines total** for a complete real-voice pass in Dari. English (67 + 10)
-  and German (67) versions of the same content are optional, lower-priority
+- **85 lines total** for a complete real-voice pass in Dari. English (75 + 10)
+  and German (75) versions of the same content are optional, lower-priority
   extras — every card also has a machine-voice draft in those languages
   already, and browser TTS genuinely works for both, so a "wrong voice" is a
   much smaller honesty problem there than it is for Dari.
-- Recording all 77 Dari lines in short sittings (one pack at a time, ~5-15
+- Recording all 85 Dari lines in short sittings (one pack at a time, ~5-15
   minutes each) is a realistic weekend project, not an all-at-once ask.

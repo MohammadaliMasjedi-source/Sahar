@@ -7,7 +7,8 @@
 > (audio-first bootstrap) lane, then again same day after the Tier-1
 > subject-coverage lane (2 new packs, structure only), then again same day
 > after the audio-generation lane (Amendment E: a real machine-draft voice,
-> honestly flagged — see §6.5 E).
+> honestly flagged — see §6.5 E), then again same day after the life-skills
+> lane (§3 DoD's last missing bucket — see the updated §3 entry below).
 
 ## 1. Vision
 Unchanged — no technical work needed here; the vision statement in
@@ -42,9 +43,10 @@ Unchanged — no technical work needed here; the vision statement in
     no new picture assets were needed.
   - **Tier-1 DoD from §3 ("≥2 packs per core subject") is now MET for
     literacy, numeracy, and science.** `thinking` already had 2. The
-    remaining gap: **no dedicated life-skills pack yet** — out of this
-    lane's scope (task was literacy + science only), flagged honestly, still
-    open.
+    remaining gap at the time: **no dedicated life-skills pack yet** — out
+    of this lane's scope (task was literacy + science only), flagged
+    honestly. **Closed same day by the life-skills lane below — see the new
+    entry for the full detail.**
   - Both packs registered in `app.js` (`PACKS`, plus new `KIND_KEY`/`STRINGS`
     chip labels `firstWords`/`dayNight` in fa/en/de), precached in `sw.js`
     (`APP_SHELL`, cache bumped `sahar-v6` → `sahar-v7`), added to the
@@ -61,6 +63,57 @@ Unchanged — no technical work needed here; the vision statement in
   - Validator green: `npm test` now runs **123 passed, 0 failed** (28 core +
     14 bootstrap + **81 content** — up from 63, i.e. exactly +18 = 2 new
     packs × 9 checks/pack), exit code 0.
+- ✅ **NEW (2026-07-11, life-skills lane):** Tier 1 now has **10 packs** — the
+  §3 DoD's last missing bucket is closed. `t1.life.healthy-and-safe`
+  (`content/t1-life-healthy-and-safe.json`) — 8 cards, subject `life`
+  (health/safety/feelings per §4): hand-washing (soap + water, and a
+  yes/no on washing before eating), clean vs. dirty drinking water,
+  brushing teeth, a day-play/night-sleep match pairing rest with health,
+  naming a happy feeling, an open `repeat-aloud` naming-your-own-feeling
+  card, and a closing `repeat-aloud` card asking the child to name a
+  trusted grown-up (mother/father/aunt/any caring family adult) they can
+  ask for help if scared, hurt, or unsafe — framed as a gentle safety
+  habit, never as distrust of the family. Interactions: tap-the-picture
+  ×5, match ×1 (2 rounds), repeat-aloud ×2 — no letters/reading anywhere.
+  Kid-safe, universal, no politics/religion — read once more specifically
+  for "could this get a child in trouble at home" (the extra life-skills
+  check) and found clean.
+  - 7 new placeholder icons added to `pictures.js`: `soap`, `muddy-water`,
+    `toothbrush`, `bed`, `ball`, `happy-face`, `sad-face` — same simple
+    flat-SVG style as the existing set, not the final illustration pass.
+  - Registered in `app.js` (`PACKS`, plus new `KIND_KEY`/`STRINGS`
+    `healthSafety` chip label in fa/en/de), precached in `sw.js`
+    (`APP_SHELL`, cache bumped `sahar-v9` → `sahar-v10`), added to the
+    validator's `PACK_FILES`, `tools/generate-draft-audio.py`'s
+    `TIER1_PACK_FILES`, and `teacher.html`'s printable sheet — all wiring
+    points found and updated, not just the content file.
+  - Draft audio generated for all 8 cards × fa/en/de (24 new `.mp3` files,
+    ~1 MB) via the existing `tools/generate-draft-audio.py` — honest
+    `audioPending` → `audioDraft` flip verified, `audioStatus` flipped to
+    `draft` with the standard accent-honesty note. `audio/audio-manifest.json`
+    regenerated (245 entries) for `sw.js`'s offline precache.
+    `audio/RECORDING-MANIFEST.md` updated with the 8 new Dari lines and
+    exact target filenames for Mo/Neda; totals corrected to 75 Tier-1
+    prompt lines / 85 lines overall.
+  - Validator green: `npm test` now runs **132 passed, 0 failed** (28 core +
+    14 bootstrap + **90 content** — up from 81, i.e. exactly +9 = 1 new
+    pack × 9 checks/pack), exit code 0, verified via the same Node runtime
+    used all session (`node --version` → v20.18.0, invoked via the
+    Adobe-bundled `node.exe` since `node` is not on this machine's PATH).
+  - Verified in-browser (local static server on port 8099, service worker
+    + all caches cleared first to rule out stale state): the lesson picker
+    lists all 10 tiles including "سالم و ایمن / Healthy and Safe / Gesund
+    und sicher"; the pack was opened and played card-by-card end to end
+    (scripted taps through the real `openPack`/`onTapChoice`/`onAnswer` app
+    functions, including the 2-round `match` card and both `repeat-aloud`
+    cards) reaching the "آفرین!" (Well done!) screen with zero console
+    errors; network log confirms all 8 `hs-*.fa.mp3` files fetched 200 OK
+    and the in-app honesty banner read "اکنون: صدای رایانه‌ای موقت" (now
+    playing: temporary machine voice) mid-card, confirming the real draft
+    audio — not TTS/tone — actually played; RTL layout correct for fa,
+    chip label and caregiver line verified correct in fa/en/de;
+    `teacher.html` re-verified rendering all 10 packs' fa/en/de text with
+    zero console errors.
 - ❌ Tiers 2-4 still don't exist. Not this lane's scope.
 
 ## 4. Fixed subject list
@@ -239,3 +292,39 @@ machine-draft voice, not a real human voice.**
 - **No "ready to use / deployable" claim is made anywhere as a result of this
   lane.** Sahar has a voice today; it is not yet the *right* voice, and it has
   not been tested the way a real learner would encounter it.
+
+## 2026-07-11 — Tier-1 life-skills lane (§3 DoD's last missing bucket, closed)
+
+Scope: build the one remaining Tier-1 pack subject-coverage §3 DoD required —
+a `life` (health/safety/feelings) pack — full audio-first schema, real draft
+audio generated (not left structure-only this time), registered everywhere,
+verified in-browser. See the updated §3 entry above for the full pack
+content/interaction breakdown.
+
+- ✅ **Tier-1 DoD from §3 ("≥2 packs per core subject + 1 life-skills pack")
+  is now fully MET.** Tier 1 has **10 packs**: literacy×2, numeracy×2,
+  science×2, thinking×2, life×1 (new), demo×1.
+- ✅ New pack `t1.life.healthy-and-safe` — hand-washing, clean water,
+  toothbrushing, sleep-as-a-health-need, naming a happy feeling, an
+  open-ended "how do you feel" card, and a trusted-adult safety card. Every
+  string re-read once more specifically against "could this get a child in
+  trouble at home" (the extra life-skills red-team check) — the trusted-adult
+  card explicitly names parents/family as the example trusted grown-ups, so
+  it reinforces the family rather than creating any tension with it.
+- ✅ Real draft audio generated this lane (not deferred) — 24 new `.mp3`
+  files via the existing `tools/generate-draft-audio.py`, same honest
+  `audioDraft`/accent-mismatch contract as every other pack. No human
+  recording — still Mo/Neda-gated, added to `audio/RECORDING-MANIFEST.md`.
+- ✅ Validator green: **132 passed, 0 failed**, exit code 0 (28 core + 14
+  bootstrap + 90 content, up from 123/81 before this lane).
+- ✅ Verified in-browser end to end (see §3 for detail): all 10 tiles listed,
+  full 8-card playthrough including the `match` and both `repeat-aloud`
+  cards, zero console errors, real audio confirmed playing (not TTS/tone)
+  via network log + in-app banner, RTL correct, `teacher.html` re-verified.
+- ❌ **Still not claimed ready.** No human voice, no real-device offline
+  test, no child pilot, no illustration design pass — unchanged from every
+  prior lane. `fa-AF`/`fa-IR` split still not formalized. Tiers 2-4 still
+  don't exist.
+- **What this lane did NOT do:** no Tier 2-4 work, no mascot/illustration
+  pass, no README rewrite, no books-track work, no real audio recorded, no
+  repo other than `E:/Mo Pers/Sahar` touched.
