@@ -4,7 +4,8 @@
 > with real, verified work. **This is a prototype. It is not ready for real
 > learners without an adult present.** No "ready to use / deployable" claim is
 > made anywhere in this file. Updated 2026-07-11 after the Amendment A
-> (audio-first bootstrap) lane.
+> (audio-first bootstrap) lane, then again same day after the Tier-1
+> subject-coverage lane (2 new packs, structure only).
 
 ## 1. Vision
 Unchanged — no technical work needed here; the vision statement in
@@ -20,15 +21,44 @@ Unchanged — no technical work needed here; the vision statement in
   lane's scope; still open.
 
 ## 3. Age packages
-- ✅ Tier 1 still has 7 packs (literacy×1, numeracy×2, science×1, thinking×2,
-  demo×1) — same count as baseline. **No new lessons were added this session**
-  (explicitly out of scope for the audio-first lane — see "what this lane did
-  NOT do" below).
-- ❌ Tier-1 DoD from §3 ("≥2 packs per core subject + 1 life-skills pack") is
-  **still not met**: literacy has 1 pack (needs 2), science has 1 pack (needs
-  2), and there is no dedicated life-skills pack yet. This gap pre-dates this
-  session and remains open — flagged honestly, not fixed (out of Amendment A
-  scope, which was structure, not new content volume).
+- ✅ **NEW (2026-07-11, subject-coverage lane):** Tier 1 now has **9 packs**
+  (literacy×2, numeracy×2, science×2, thinking×2, demo×1). Two packs were
+  added this lane, both built directly to the audio-first schema (no
+  migration needed):
+  - `t1.literacy.first-words` (`content/t1-literacy-first-words.json`) — 8
+    cards, "the natural step after first letters": simple Dari words
+    (aab/baagh/maah/setaare/sang/derakht/dast) built from the letter-sounds
+    already taught in `t1.literacy.first-letters`, plus two explicit
+    sound-blending `repeat-aloud` cards ("د + ست → دست"). Interactions:
+    tap-the-picture ×3, tap-the-letter-shape ×2, match ×1 (2 rounds),
+    repeat-aloud ×2.
+  - `t1.science.day-and-night` (`content/t1-science-day-and-night.json`) — 8
+    cards, observable-world wonder ("the world is knowable"): sun/moon/stars,
+    day-vs-night, warmth, and the day-night rhythm. Interactions:
+    tap-the-picture ×4, match ×1 (2 rounds), repeat-aloud ×2. Reuses existing
+    `pictures.js` icons only (sun, moon, star, tree, check-mark, cross-mark) —
+    no new picture assets were needed.
+  - **Tier-1 DoD from §3 ("≥2 packs per core subject") is now MET for
+    literacy, numeracy, and science.** `thinking` already had 2. The
+    remaining gap: **no dedicated life-skills pack yet** — out of this
+    lane's scope (task was literacy + science only), flagged honestly, still
+    open.
+  - Both packs registered in `app.js` (`PACKS`, plus new `KIND_KEY`/`STRINGS`
+    chip labels `firstWords`/`dayNight` in fa/en/de), precached in `sw.js`
+    (`APP_SHELL`, cache bumped `sahar-v6` → `sahar-v7`), added to the
+    validator's `PACK_FILES` list, and added to `teacher.html`'s printable
+    sheet — all four wiring points found and updated, not just the content
+    files.
+  - Verified in-browser (local static server, zero console errors both
+    times): the lesson picker lists all 9 tiles; both new packs were played
+    card-by-card end to end (scripted through the real `openPack` /
+    `onTapChoice` / `onAnswer` app functions, confirming card order fw-1…fw-8
+    and dn-1…dn-8 each ran exactly once with no skip and no repeat) reaching
+    the "Well done!" screen; `teacher.html` renders both new packs' fa/en/de
+    text correctly.
+  - Validator green: `npm test` now runs **123 passed, 0 failed** (28 core +
+    14 bootstrap + **81 content** — up from 63, i.e. exactly +18 = 2 new
+    packs × 9 checks/pack), exit code 0.
 - ❌ Tiers 2-4 still don't exist. Not this lane's scope.
 
 ## 4. Fixed subject list
@@ -136,3 +166,12 @@ result of this session's work.
 No new lessons invented. No Tier 2-4 work started. No mascot/illustration
 design pass. No README rewrite. No books-track work. No real audio recorded
 or fabricated. No repo other than `E:/Mo Pers/Sahar` touched.
+
+## 2026-07-11 — Tier-1 subject-coverage lane (2 new packs, structure only)
+Scope: close the literacy/science half of the §3 DoD gap flagged above with
+exactly 2 new Tier-1 packs, audio-first schema, structure only — audio stays
+Mo-gated (no `.mp3` files added or claimed real). See the updated §3 entry
+above for the full detail. Not done this lane, still open: the life-skills
+pack (§3 DoD's 5th bucket), `fa-AF`/`fa-IR` split, real-device offline/PWA
+test, Duolingo-grade illustration pass, Tiers 2-4, README/curriculum-map
+refresh. No "ready to use" claim added anywhere.
