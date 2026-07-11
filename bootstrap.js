@@ -104,11 +104,19 @@ function applyChrome() {
 
 /* ---- the honest "what's real vs placeholder" banner ------------------------
  * Reads the pack's declared audioStatus AND what actually played this session. */
+const BS_AUDIO_MODE_LABELS = {
+  fa: { recording: 'صدای رایانه‌ای موقت', tts: 'صدای مرورگر', tone: 'زنگ جایگزین' },
+  en: { recording: 'temporary machine voice', tts: 'browser voice', tone: 'placeholder tone' },
+  de: { recording: 'vorübergehende Computerstimme', tts: 'Browser-Stimme', tone: 'Platzhalter-Ton' }
+};
+const BS_NOT_PLAYED_YET = { fa: 'هنوز پخش نشده', en: 'not played yet', de: 'noch nicht abgespielt' };
+
 function honestyLine() {
   const modes = Object.keys(bs.audioModes);
+  const labels = BS_AUDIO_MODE_LABELS[bs.lang] || BS_AUDIO_MODE_LABELS.en;
   const played = modes.length
-    ? modes.map((m) => ({ recording: 'real recordings', tts: 'browser voice', tone: 'placeholder tone' }[m] || m)).join(' + ')
-    : 'not played yet';
+    ? modes.map((m) => labels[m] || m).join(' + ')
+    : (BS_NOT_PLAYED_YET[bs.lang] || BS_NOT_PLAYED_YET.en);
   const declared = (bs.pack && bs.pack.audioStatus) || 'placeholder';
   return { declared, played };
 }
@@ -116,9 +124,9 @@ function honestyLine() {
 function renderBanner() {
   const h = honestyLine();
   const msg = {
-    fa: `نمونهٔ اولیه · صداها هنوز واقعی نیستند (اکنون: ${h.played}) · صدای واقعی سحر/ندا بعداً · نیاز به آزمایش با ۲–۳ کودک`,
-    en: `PROTOTYPE · audio is ${h.declared} (now playing: ${h.played}) · real Sahar/Neda voice comes later · needs a 2–3 child pilot`,
-    de: `PROTOTYP · Audio ist ${h.declared} (jetzt: ${h.played}) · echte Sahar/Neda-Stimme folgt · braucht Pilot mit 2–3 Kindern`
+    fa: `نمونهٔ اولیه · این صدا فعلاً یک صدای رایانه‌ای موقت است (اکنون: ${h.played}) · صدای واقعی انسان (سحر/ندا) به‌زودی می‌آید · نیاز به آزمایش با ۲–۳ کودک`,
+    en: `PROTOTYPE · this voice is a temporary machine voice for now (now playing: ${h.played}) · a real human voice (Sahar/Neda) is coming · needs a 2–3 child pilot`,
+    de: `PROTOTYP · diese Stimme ist vorübergehend eine Computerstimme (jetzt: ${h.played}) · eine echte menschliche Stimme (Sahar/Neda) folgt · braucht Pilot mit 2–3 Kindern`
   }[bs.lang];
   $$('bs-banner').textContent = msg;
 }

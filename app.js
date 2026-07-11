@@ -416,18 +416,26 @@ async function voiceCard(card, round) {
 
 /** The prototype-honesty banner (SAHAR-COVERAGE §6.5 D): what's declared vs
  *  what actually played this card. Never claims real audio that isn't real. */
+const AUDIO_MODE_LABELS = {
+  fa: { recording: 'صدای رایانه‌ای موقت', tts: 'صدای مرورگر', tone: 'زنگ جایگزین' },
+  en: { recording: 'temporary machine voice', tts: 'browser voice', tone: 'placeholder tone' },
+  de: { recording: 'vorübergehende Computerstimme', tts: 'Browser-Stimme', tone: 'Platzhalter-Ton' }
+};
+const NOT_PLAYED_YET = { fa: 'هنوز پخش نشده', en: 'not played yet', de: 'noch nicht abgespielt' };
+
 function renderBanner() {
   const el = $('banner');
   if (!el) return;
-  const modes = Object.keys(state.audioModes);
-  const played = modes.length
-    ? modes.map((m) => ({ recording: 'real recordings', tts: 'browser voice', tone: 'placeholder tone' }[m] || m)).join(' + ')
-    : 'not played yet';
   const lang = state.lang;
+  const modes = Object.keys(state.audioModes);
+  const labels = AUDIO_MODE_LABELS[lang] || AUDIO_MODE_LABELS.en;
+  const played = modes.length
+    ? modes.map((m) => labels[m] || m).join(' + ')
+    : (NOT_PLAYED_YET[lang] || NOT_PLAYED_YET.en);
   el.textContent = {
-    fa: `نمونهٔ اولیه · صداها هنوز واقعی نیستند (اکنون: ${played}) · صدای واقعی سحر/ندا بعداً`,
-    en: `PROTOTYPE · audio is placeholder (now playing: ${played}) · real Sahar/Neda voice comes later`,
-    de: `PROTOTYP · Audio ist Platzhalter (jetzt: ${played}) · echte Sahar/Neda-Stimme folgt später`
+    fa: `نمونهٔ اولیه · این صدا فعلاً یک صدای رایانه‌ای موقت است (اکنون: ${played}) · صدای واقعی انسان (سحر/ندا) به‌زودی می‌آید`,
+    en: `PROTOTYPE · this voice is a temporary machine voice for now (now playing: ${played}) · a real human voice (Sahar/Neda) is coming`,
+    de: `PROTOTYP · diese Stimme ist vorübergehend eine Computerstimme (jetzt: ${played}) · eine echte menschliche Stimme (Sahar/Neda) folgt bald`
   }[lang] || '';
 }
 
