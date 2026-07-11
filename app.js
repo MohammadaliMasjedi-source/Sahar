@@ -30,7 +30,13 @@ const STRINGS = {
     science: 'نگاه و کشف',
     guessCheck: 'حدس و امتحان',
     shapes: 'شکل و نقش',
-    pick: 'یک درس را انتخاب کن'
+    pick: 'یک درس را انتخاب کن',
+    listen: 'گوش کن',
+    tapPrompt: 'کدام درست است؟ لمس کن.',
+    tryAgain: 'دوباره امتحان کن',
+    great: 'آفرین!',
+    iSaidIt: 'گفتم!',
+    caregiver: 'برای بزرگ‌ترها'
   },
   en: {
     dir: 'ltr',
@@ -53,7 +59,13 @@ const STRINGS = {
     science: 'Look & discover',
     guessCheck: 'Guess & check',
     shapes: 'Shapes & patterns',
-    pick: 'Pick a lesson'
+    pick: 'Pick a lesson',
+    listen: 'Listen',
+    tapPrompt: 'Which one is right? Tap it.',
+    tryAgain: 'Try again',
+    great: 'Great!',
+    iSaidIt: 'I said it!',
+    caregiver: 'For grown-ups'
   },
   de: {
     dir: 'ltr',
@@ -76,7 +88,13 @@ const STRINGS = {
     science: 'Schauen & entdecken',
     guessCheck: 'Raten & prüfen',
     shapes: 'Formen & Muster',
-    pick: 'Wähle eine Lektion'
+    pick: 'Wähle eine Lektion',
+    listen: 'Hören',
+    tapPrompt: 'Welches ist richtig? Tippe darauf.',
+    tryAgain: 'Nochmal versuchen',
+    great: 'Super!',
+    iSaidIt: 'Ich hab\'s gesagt!',
+    caregiver: 'Für Erwachsene'
   }
 };
 
@@ -176,8 +194,39 @@ const state = {
   pack: null,        // loaded content pack
   queue: [],         // due cards in order (merged with saved progress)
   idx: 0,            // current card index
-  revealed: false    // is the answer showing?
+  revealed: false,   // is the answer showing? (legacy read-based cards only)
+  subIdx: 0,          // sub-round index, for "match" interaction cards
+  shuffledChoices: null, // tap choices for the current card/round, order randomised at prepareCard()
+  audioModes: {}      // which audio modes actually played this card (honesty banner)
 };
+
+/** Fisher-Yates shuffle (reuses bootstrap-core.js's implementation when present,
+ *  so the tap-choice position is never predictable — never a memorised "always
+ *  first" button). Falls back to an in-place copy if bootstrap-core.js isn't
+ *  loaded on this page for some reason (defensive, should not happen). */
+function shuffleChoices(arr) {
+  if (window.BootstrapCore && typeof window.BootstrapCore.shuffle === 'function') {
+    return window.BootstrapCore.shuffle(arr);
+  }
+  return (arr || []).slice();
+}
+
+/** Reset per-card interaction state (sub-round + shuffled choice order) whenever
+ *  the current card changes. Called from openPack/onAnswer/onRestart — NOT from
+ *  render(), so a wrong tap or a language switch never reshuffles mid-card. */
+function prepareCard() {
+  state.subIdx = 0;
+  state.audioModes = {};
+  const card = state.queue[state.idx];
+  if (!card) { state.shuffledChoices = null; return; }
+  if (card.interaction === 'match' && Array.isArray(card.rounds) && card.rounds.length) {
+    state.shuffledChoices = shuffleChoices(card.rounds[0].choices);
+  } else if (Array.isArray(card.choices)) {
+    state.shuffledChoices = shuffleChoices(card.choices);
+  } else {
+    state.shuffledChoices = null;
+  }
+}
 
 /** Merge a pack's cards with saved per-card progress, keep only due ones. */
 function buildQueue(pack, progress) {
@@ -230,14 +279,22 @@ function renderPicker() {
 }
 
 function renderStage() {
+  if (!state.pack) { renderPicker(); return; }
+  if (state.idx >= state.queue.length) { renderDone(); return; }
+  const card = state.queue[state.idx];
+  // Audio-first / picture-first path (SAHAR-COVERAGE §6.5 A) — every Tier-1 card
+  // shipped today declares an `interaction`. The text-prompt+reveal path below
+  // is kept ONLY as a defensive fallback for a malformed/legacy card.
+  if (card && card.interaction) { renderInteractiveCard(card); return; }
+  renderLegacyCard(card);
+}
+
+/** LEGACY view: text prompt + reveal + self-report (pre-audio-first). Not used
+ *  by any shipped pack anymore (all migrated to `interaction`), kept only as a
+ *  defensive fallback so a malformed pack never crashes the app. */
+function renderLegacyCard(card) {
   const lang = state.lang;
   const stage = $('stage');
-
-  if (!state.pack) { renderPicker(); return; }
-
-  if (state.idx >= state.queue.length) { renderDone(); return; }
-
-  const card = state.queue[state.idx];
   const kindLabel = I18nProvider.t(lang, KIND_KEY[card.type] || 'factOpinion');
   const prompt = card.prompt[lang] || card.prompt.en;
   const answer = card.answer[lang] || card.answer.en;
@@ -268,6 +325,102 @@ function renderStage() {
     </div>`;
 }
 
+/** AUDIO-FIRST / PICTURE-FIRST view (SAHAR-COVERAGE §6.5 A). No card text is
+ *  ever required reading: the lesson content is SPOKEN (AudioEngine — real
+ *  recording if present, honest TTS/tone fallback otherwise) and answered by
+ *  tapping a picture or a big letter/number shape. The original prompt/answer
+ *  text is never shown on the child-facing card; it lives only behind the
+ *  "For grown-ups" caregiver toggle, as the realistic delivery channel. */
+function renderInteractiveCard(card) {
+  const lang = state.lang;
+  const stage = $('stage');
+  const total = state.queue.length;
+  let pips = '';
+  for (let i = 0; i < total; i++) pips += `<i class="${i < state.idx ? 'fill' : ''}"></i>`;
+  const title = (state.pack.title && (state.pack.title[lang] || state.pack.title.en)) || '';
+  const kindLabel = I18nProvider.t(lang, KIND_KEY[card.type] || 'factOpinion');
+  const isMatch = card.interaction === 'match' && Array.isArray(card.rounds);
+  const round = isMatch ? card.rounds[state.subIdx] : card;
+  const choices = state.shuffledChoices || [];
+  const cgLine = (card.caregiver && (card.caregiver[lang] || card.caregiver.en)) || '';
+
+  let body;
+  if (card.interaction === 'repeat-aloud') {
+    body = `
+      <div class="fc-hero">
+        <button type="button" class="listen-btn l1" data-act="listen">
+          <span class="lico">🔊</span><span class="ltxt">${I18nProvider.t(lang, 'listen')}</span>
+        </button>
+      </div>
+      <div class="fc-feedback" id="fb" aria-live="polite"></div>
+      <button type="button" class="fc-btn" data-act="said-it">${I18nProvider.t(lang, 'iSaidIt')}</button>`;
+  } else {
+    const heroPic = round.heroPic ? `<div class="fc-pic big">${window.pictureFor(round.heroPic)}</div>` : '';
+    const choiceHtml = choices.map((c) => {
+      const inner = c.glyph
+        ? `<span class="glyph">${c.glyph}</span>`
+        : window.pictureFor(c.pic);
+      const sizeClass = c.size ? (' ' + c.size) : '';
+      return `<button type="button" class="pic-choice${sizeClass}" data-tap="${c.id}" aria-label="choice">${inner}</button>`;
+    }).join('');
+    body = `
+      ${heroPic}
+      <button type="button" class="listen-btn l1" data-act="listen">
+        <span class="lico">🔊</span><span class="ltxt">${I18nProvider.t(lang, 'listen')}</span>
+      </button>
+      <p class="fc-tap">${I18nProvider.t(lang, 'tapPrompt')}</p>
+      <div class="pic-grid">${choiceHtml}</div>
+      <div class="fc-feedback" id="fb" aria-live="polite"></div>`;
+  }
+
+  stage.innerHTML = `
+    <p class="lesson-title">
+      <button type="button" class="link-btn back" data-act="lessons" aria-label="${I18nProvider.t(lang, 'pick')}">↩</button>
+      ${title}
+    </p>
+    <div class="pips">${pips}</div>
+    <div class="card interactive">
+      <div class="kind">${kindLabel}</div>
+      ${body}
+      <button type="button" class="link-btn cg-toggle" data-act="caregiver">👪 ${I18nProvider.t(lang, 'caregiver')}</button>
+      <p class="cg-line" id="cgLine" style="display:none">${cgLine}</p>
+    </div>`;
+
+  voiceCard(card, round);
+}
+
+/** Speak the card/round's lesson content honestly (real recording if present,
+ *  browser TTS where genuinely supported, otherwise a placeholder tone) and
+ *  track which mode actually played so the prototype-honesty banner is true. */
+async function voiceCard(card, round) {
+  if (!window.AudioEngine) return;
+  const lang = state.lang;
+  const text = (card.prompt && (card.prompt[lang] || card.prompt.en)) || '';
+  const label = { text, audio: card.audioPending ? undefined : (card.audio && card.audio[lang]) };
+  try {
+    const r = await window.AudioEngine.voice(label, lang, false);
+    state.audioModes[r.mode] = true;
+    renderBanner();
+  } catch (_) { /* honest no-op: audio is optional, never blocks the lesson */ }
+}
+
+/** The prototype-honesty banner (SAHAR-COVERAGE §6.5 D): what's declared vs
+ *  what actually played this card. Never claims real audio that isn't real. */
+function renderBanner() {
+  const el = $('banner');
+  if (!el) return;
+  const modes = Object.keys(state.audioModes);
+  const played = modes.length
+    ? modes.map((m) => ({ recording: 'real recordings', tts: 'browser voice', tone: 'placeholder tone' }[m] || m)).join(' + ')
+    : 'not played yet';
+  const lang = state.lang;
+  el.textContent = {
+    fa: `نمونهٔ اولیه · صداها هنوز واقعی نیستند (اکنون: ${played}) · صدای واقعی سحر/ندا بعداً`,
+    en: `PROTOTYPE · audio is placeholder (now playing: ${played}) · real Sahar/Neda voice comes later`,
+    de: `PROTOTYP · Audio ist Platzhalter (jetzt: ${played}) · echte Sahar/Neda-Stimme folgt später`
+  }[lang] || '';
+}
+
 function renderDone() {
   const lang = state.lang;
   $('stage').innerHTML = `
@@ -282,6 +435,8 @@ function renderDone() {
 
 function render() {
   applyLanguageChrome();
+  const banner = $('banner');
+  if (banner && !(state.pack && state.idx < state.queue.length)) banner.textContent = '';
   renderStage();
 }
 
@@ -299,13 +454,47 @@ function onAnswer(gotIt) {
   ProgressProvider.save(progress);             // persist on device
   state.idx += 1;
   state.revealed = false;
+  prepareCard();
   render();
+}
+
+/** A wrong tap never counts as a lapse (gentle, non-punishing tone — house
+ *  rule): it just invites another try, in place, no schedule() call. */
+function onWrongTap(tappedId) {
+  const fb = $('fb');
+  const btn = document.querySelector(`.pic-choice[data-tap="${tappedId}"]`);
+  if (btn) { btn.classList.add('wrong'); setTimeout(() => btn.classList.remove('wrong'), 500); }
+  if (fb) fb.textContent = I18nProvider.t(state.lang, 'tryAgain');
+}
+
+/** Handle a tap on a picture/letter choice for the current interactive card
+ *  (or the current sub-round of a "match" card). Correct -> cheer + advance
+ *  (recording a Leitner "got it"); wrong -> gentle retry, no scheduling. */
+function onTapChoice(tappedId) {
+  const card = state.queue[state.idx];
+  if (!card) return;
+  const isMatch = card.interaction === 'match' && Array.isArray(card.rounds);
+  const round = isMatch ? card.rounds[state.subIdx] : card;
+  if (tappedId !== round.answerId) { onWrongTap(tappedId); return; }
+
+  if (window.AudioEngine) window.AudioEngine.cheer();
+  const fb = $('fb');
+  if (fb) fb.textContent = '🌟 ' + I18nProvider.t(state.lang, 'great');
+
+  if (isMatch && state.subIdx < card.rounds.length - 1) {
+    state.subIdx += 1;
+    state.shuffledChoices = shuffleChoices(card.rounds[state.subIdx].choices);
+    setTimeout(render, 700);
+  } else {
+    setTimeout(() => onAnswer(true), 700);
+  }
 }
 
 function onRestart() {
   state.queue = buildQueue(state.pack, ProgressProvider.load());
   state.idx = 0;
   state.revealed = false;
+  prepareCard();
   render();
 }
 
@@ -317,6 +506,7 @@ async function openPack(path) {
     state.queue = buildQueue(state.pack, ProgressProvider.load());
     state.idx = 0;
     state.revealed = false;
+    prepareCard();
   } catch (err) {
     state.pack = null;
     $('stage').innerHTML = `<div class="done"><div class="big">🌙</div>
@@ -354,6 +544,9 @@ function wireEvents() {
   });
   // stage actions (delegated so re-renders keep working)
   $('stage').addEventListener('click', (e) => {
+    if (window.AudioEngine) window.AudioEngine.unlock(); // prime audio on first tap (browser gesture rule)
+    const tapBtn = e.target.closest('[data-tap]');
+    if (tapBtn) { onTapChoice(tapBtn.getAttribute('data-tap')); return; }
     const btn = e.target.closest('[data-act]');
     if (!btn) return;
     const act = btn.getAttribute('data-act');
@@ -363,6 +556,16 @@ function wireEvents() {
     else if (act === 'restart') onRestart();
     else if (act === 'open') openPack(btn.getAttribute('data-path'));
     else if (act === 'lessons') openLessons();
+    else if (act === 'listen') {
+      const card = state.queue[state.idx];
+      const round = (card && card.interaction === 'match' && card.rounds) ? card.rounds[state.subIdx] : card;
+      if (card) voiceCard(card, round);
+    }
+    else if (act === 'said-it') onAnswer(true); // repeat-aloud: ungraded, self-paced completion
+    else if (act === 'caregiver') {
+      const el = $('cgLine');
+      if (el) el.style.display = (el.style.display === 'none') ? '' : 'none';
+    }
   });
 }
 

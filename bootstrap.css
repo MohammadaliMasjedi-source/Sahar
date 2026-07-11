@@ -126,3 +126,27 @@
   background: none; border: none; color: var(--gold);
   font: inherit; cursor: pointer; text-decoration: underline; padding: 8px;
 }
+
+/* ---- big letter/number glyph choices (tap-the-letter-shape) — reuses
+ * .pic-choice's tap target/feedback but shows the character itself: the
+ * spec's "text is the destination, not the medium" (§6.5 A). ---- */
+.pic-choice .glyph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.6rem; font-weight: 800; color: var(--ink);
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72));
+  border-radius: 14px;
+}
+/* size variants for shape-comparison cards (e.g. "which circle is bigger") */
+.pic-choice.small svg, .pic-choice.small .glyph { transform: scale(.55); }
+.pic-choice.big svg, .pic-choice.big .glyph { transform: scale(1.1); }
+
+/* ---- Tier-1 interactive card wrapper (main shelf) — same visual language
+ * as the bootstrap first-contact flow, on the main app's .card frame. ---- */
+.card.interactive .fc-hero { margin-block-end: 6px; }
+.card.interactive .cg-toggle { margin-block-start: 16px; font-size: .85rem; }
+.card.interactive .cg-line {
+  text-align: start; font-size: .88rem; line-height: 1.6; opacity: .92;
+  background: rgba(255,255,255,.05); border: 1px dashed var(--line);
+  border-radius: 12px; padding: 10px 12px; margin-block-start: 10px;
+}

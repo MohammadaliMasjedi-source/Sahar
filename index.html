@@ -8,6 +8,10 @@
   <meta name="theme-color" content="#f4a259">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css">
+  <!-- reuses the audio-first bootstrap's kid-language styles (pic-grid, listen-btn,
+       progress path, etc.) so the main Tier-1 shelf and the first-contact flow
+       share one visual system (SAHAR-COVERAGE §6.5 A). -->
+  <link rel="stylesheet" href="./bootstrap.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%230b1026'/%3E%3Cstop offset='1' stop-color='%23f4a259'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Ccircle cx='24' cy='32' r='11' fill='%23ffd89b'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -79,6 +83,9 @@
     </span>
   </a>
 
+  <!-- PROTOTYPE HONESTY banner: what's real vs placeholder for the card on screen -->
+  <p class="prototype-banner" id="banner"></p>
+
   <!-- the lesson stage (rendered by app.js) -->
   <main id="stage" aria-live="polite"></main>
 
@@ -88,9 +95,15 @@
     <span class="ladder">1 &rarr; 2 &rarr; 4 &rarr; 9 &rarr; 21</span>
     <span data-i18n="days"> days</span>
     <br><span class="status" id="offline">offline-ready</span>
+    <br><a class="link-btn" href="./teacher.html" style="display:inline-block; margin-block-start:10px; text-decoration:none;">📄 برای آموزگاران / For teachers / Für Lehrkräfte</a>
   </footer>
 </div>
 
+<!-- audio-first providers, shared with bootstrap.html: pictures (offline SVGs),
+     audio (honest recording->TTS->tone fallback chain), the shuffle helper -->
+<script src="./pictures.js"></script>
+<script src="./audio.js"></script>
+<script src="./bootstrap-core.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>
