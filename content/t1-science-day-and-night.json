@@ -1,0 +1,234 @@
+{
+  "packId": "t1.science.day-and-night",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "science — day, night, and the sky we can observe (the world is knowable)",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
+    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+  },
+  "title": {
+    "fa": "روز و شب",
+    "en": "Day and Night",
+    "de": "Tag und Nacht"
+  },
+  "intro": {
+    "fa": "دنیا یک آهنگ دارد: روز، بعد شب، بعد دوباره روز. بیا با هم نگاه کنیم و گوش کنیم — آسمان چه چیزی به ما نشان می‌دهد؟",
+    "en": "The world has a rhythm: day, then night, then day again. Let's look and listen together — what does the sky show us?",
+    "de": "Die Welt hat einen Rhythmus: Tag, dann Nacht, dann wieder Tag. Lass uns gemeinsam schauen und hören — was zeigt uns der Himmel?"
+  },
+  "cards": [
+    {
+      "id": "dn-1",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "کدام یک را در آسمانِ روز می‌بینیم: خورشید یا ماه؟",
+        "en": "Which one do we see in the daytime sky: the sun or the moon?",
+        "de": "Was sehen wir am Taghimmel: die Sonne oder den Mond?"
+      },
+      "answer": {
+        "fa": "خورشید! روزها خورشید در آسمان است و همه‌جا را روشن می‌کند.",
+        "en": "The sun! During the day, the sun is in the sky and lights everything up.",
+        "de": "Die Sonne! Tagsüber steht die Sonne am Himmel und macht alles hell."
+      },
+      "caregiver": {
+        "fa": "بپرس: «روزها کدام‌یک در آسمان است، خورشید یا ماه؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Which one is in the sky during the day, the sun or the moon?\" Let them tap the right picture.",
+        "de": "Frag: „Was ist tagsüber am Himmel, die Sonne oder der Mond?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "sun", "pic": "sun" },
+        { "id": "moon", "pic": "moon" }
+      ],
+      "answerId": "sun"
+    },
+    {
+      "id": "dn-2",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "کدام یک را معمولاً در آسمانِ شب می‌بینیم: ماه یا خورشید؟",
+        "en": "Which one do we usually see in the night sky: the moon or the sun?",
+        "de": "Was sehen wir meist am Nachthimmel: den Mond oder die Sonne?"
+      },
+      "answer": {
+        "fa": "ماه! شب‌ها معمولاً ماه را می‌بینیم، گاهی با ستاره‌ها.",
+        "en": "The moon! At night we usually see the moon, sometimes with stars.",
+        "de": "Der Mond! Nachts sehen wir meist den Mond, manchmal mit Sternen."
+      },
+      "caregiver": {
+        "fa": "بپرس: «شب‌ها کدام‌یک در آسمان است، ماه یا خورشید؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Which one is in the sky at night, the moon or the sun?\" Let them tap the right picture.",
+        "de": "Frag: „Was ist nachts am Himmel, der Mond oder die Sonne?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "moon", "pic": "moon" },
+        { "id": "sun", "pic": "sun" }
+      ],
+      "answerId": "moon"
+    },
+    {
+      "id": "dn-3",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "شب‌ها نقطه‌های کوچکِ نورانی در آسمان چشمک می‌زنند. کدام‌اند: ستاره‌ها یا درخت‌ها؟",
+        "en": "At night, tiny points of light twinkle in the sky. Which are they: stars or trees?",
+        "de": "Nachts blinken winzige Lichtpunkte am Himmel. Was sind das: Sterne oder Bäume?"
+      },
+      "answer": {
+        "fa": "ستاره‌ها! آن‌ها دور دور در آسمان‌اند و شب‌ها چشمک می‌زنند.",
+        "en": "Stars! They are far away in the sky and twinkle at night.",
+        "de": "Sterne! Sie sind weit weg am Himmel und blinken nachts."
+      },
+      "caregiver": {
+        "fa": "بپرس: «چه چیزی شب‌ها در آسمان چشمک می‌زند، ستاره یا درخت؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"What twinkles in the sky at night, a star or a tree?\" Let them tap the right picture.",
+        "de": "Frag: „Was blinkt nachts am Himmel, ein Stern oder ein Baum?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "star", "pic": "star" },
+        { "id": "tree", "pic": "tree" }
+      ],
+      "answerId": "star"
+    },
+    {
+      "id": "dn-4",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "آیا شب معمولاً تاریک است؟ آری یا نه؟",
+        "en": "Is it usually dark at night — yes or no?",
+        "de": "Ist es nachts meist dunkel — ja oder nein?"
+      },
+      "answer": {
+        "fa": "بله! شب‌ها خورشید نیست، برای همین هوا تاریک می‌شود.",
+        "en": "Yes! At night the sun is not there, so it gets dark.",
+        "de": "Ja! Nachts ist die Sonne nicht da, deshalb wird es dunkel."
+      },
+      "caregiver": {
+        "fa": "بپرس: «شب تاریک است، آری یا نه؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Is night dark — yes or no?\" Let them tap the right picture.",
+        "de": "Frag: „Ist die Nacht dunkel — ja oder nein?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "yes", "pic": "check-mark" },
+        { "id": "no", "pic": "cross-mark" }
+      ],
+      "answerId": "yes"
+    },
+    {
+      "id": "dn-5",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "روزها معمولاً کدام گرم‌تر است: وقتی خورشید هست یا وقتی ماه هست؟",
+        "en": "Which is usually warmer: when the sun is out, or when the moon is out?",
+        "de": "Was ist meist wärmer: wenn die Sonne scheint oder wenn der Mond da ist?"
+      },
+      "answer": {
+        "fa": "وقتی خورشید هست! نور و گرمای خورشید به زمین می‌رسد.",
+        "en": "When the sun is out! The sun's light and warmth reach the earth.",
+        "de": "Wenn die Sonne scheint! Ihr Licht und ihre Wärme erreichen die Erde."
+      },
+      "caregiver": {
+        "fa": "بپرس: «کِی گرم‌تر است، وقتی خورشید هست یا وقتی ماه هست؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"When is it warmer, when the sun is out or the moon?\" Let them tap the right picture.",
+        "de": "Frag: „Wann ist es wärmer, wenn die Sonne scheint oder der Mond?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "sun", "pic": "sun" },
+        { "id": "moon", "pic": "moon" }
+      ],
+      "answerId": "sun"
+    },
+    {
+      "id": "dn-6",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "match",
+      "audioPending": true,
+      "prompt": {
+        "fa": "بیا جفت کنیم: کدام تصویر برای «روز» است و کدام برای «شب»؟",
+        "en": "Let's match: which picture belongs to \"day\", and which to \"night\"?",
+        "de": "Lass uns zuordnen: Welches Bild gehört zu „Tag\", welches zu „Nacht\"?"
+      },
+      "answer": {
+        "fa": "روز با خورشید می‌آید، شب با ماه. هر دو بخشی از یک روزِ کامل‌اند.",
+        "en": "Day comes with the sun, night with the moon. Both are part of one whole day.",
+        "de": "Der Tag kommt mit der Sonne, die Nacht mit dem Mond. Beide gehören zu einem ganzen Tag."
+      },
+      "caregiver": {
+        "fa": "بگو «روز» و بگذار تصویر درست را لمس کند؛ بعد بگو «شب» و دوباره لمس کند.",
+        "en": "Say \"day\" and let the child tap the right picture; then say \"night\" and tap again.",
+        "de": "Sag „Tag\" und lass das Kind das richtige Bild antippen; sag dann „Nacht\" und wieder antippen."
+      },
+      "rounds": [
+        { "choices": [ { "id": "sun", "pic": "sun" }, { "id": "moon", "pic": "moon" } ], "answerId": "sun" },
+        { "choices": [ { "id": "moon", "pic": "moon" }, { "id": "sun", "pic": "sun" } ], "answerId": "moon" }
+      ]
+    },
+    {
+      "id": "dn-7",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
+      "prompt": {
+        "fa": "الان بیرون روز است یا شب؟ نگاه کن و بلند بگو.",
+        "en": "Right now, is it day or night outside? Look and say it out loud.",
+        "de": "Ist es gerade draußen Tag oder Nacht? Schau nach und sag es laut."
+      },
+      "answer": {
+        "fa": "آفرین که نگاه کردی! نگاه‌ کردن به آسمان یکی از راه‌های فهمیدن دنیاست.",
+        "en": "Well done for looking! Looking at the sky is one way we come to understand the world.",
+        "de": "Gut gemacht, dass du hingeschaut hast! Den Himmel zu beobachten ist ein Weg, die Welt zu verstehen."
+      },
+      "caregiver": {
+        "fa": "با کودک بیرون یا از پنجره نگاه کنید. بگذار بگوید روز است یا شب، بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Look outside or through a window together. Let the child say whether it is day or night, then tap \"I said it!\"",
+        "de": "Schaut gemeinsam nach draußen oder aus dem Fenster. Lass das Kind sagen, ob Tag oder Nacht ist, dann auf „Ich hab's gesagt!\" tippen."
+      }
+    },
+    {
+      "id": "dn-8",
+      "type": "day-night",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
+      "prompt": {
+        "fa": "روز و شب هر روز دوباره می‌آیند — مثل یک آهنگ. بلند بگو: اول چه می‌آید، روز یا شب؟",
+        "en": "Day and night come again every day — like a rhythm. Say out loud: which comes first, day or night?",
+        "de": "Tag und Nacht kommen jeden Tag wieder — wie ein Rhythmus. Sag laut: Was kommt zuerst, Tag oder Nacht?"
+      },
+      "answer": {
+        "fa": "هر دو جواب درست‌اند، چون این آهنگ همیشه می‌چرخد: روز، شب، روز، شب... دنیا همیشه همین کار را می‌کند.",
+        "en": "Either answer is fine, because the rhythm just keeps turning: day, night, day, night… the world always does this.",
+        "de": "Beide Antworten sind richtig, denn der Rhythmus dreht sich einfach weiter: Tag, Nacht, Tag, Nacht… die Welt macht das immer so."
+      },
+      "caregiver": {
+        "fa": "از کودک بپرس اول روز می‌آید یا شب و بگذار بلند فکرش را بگوید. بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Ask the child whether day or night comes first and let them say their thought out loud. Then tap \"I said it!\"",
+        "de": "Frag das Kind, ob Tag oder Nacht zuerst kommt, und lass es seine Gedanken laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
+      }
+    }
+  ]
+}

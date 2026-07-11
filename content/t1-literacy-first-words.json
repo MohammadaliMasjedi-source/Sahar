@@ -1,0 +1,236 @@
+{
+  "packId": "t1.literacy.first-words",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "literacy — simple words built from known letter-sounds (blending)",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
+    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+  },
+  "title": {
+    "fa": "از حرف‌ها به کلمه‌ها",
+    "en": "From Letters to Words",
+    "de": "Von Buchstaben zu Wörtern"
+  },
+  "intro": {
+    "fa": "حرف‌هایی را که بلد شدی به یاد بیاور. حالا می‌بینیم چه‌طور کنار هم می‌آیند و یک کلمه می‌سازند. اول گوش کن، بعد تصویر یا حرف درست را لمس کن.",
+    "en": "Remember the letters you already know. Now let's see how they come together to make a word. Listen first, then tap the right picture or letter.",
+    "de": "Erinnere dich an die Buchstaben, die du schon kennst. Jetzt sehen wir, wie sie zusammen ein Wort ergeben. Höre zuerst zu, dann tippe auf das richtige Bild oder den richtigen Buchstaben."
+  },
+  "cards": [
+    {
+      "id": "fw-1",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "گوش کن: «آب» (aab). کدام تصویر همین است؟",
+        "en": "Listen: \"aab\" (water). Which picture is it?",
+        "de": "Höre zu: „aab\" (Wasser). Welches Bild ist das?"
+      },
+      "answer": {
+        "fa": "آب مثل «آب خوردن». حرف اولش هم «آ» است — همان که بلد بودی!",
+        "en": "\"aab\" means water. Its first sound is \"aa\" — the one you already know!",
+        "de": "„aab\" bedeutet Wasser. Der erste Laut ist „aa\" — den kennst du schon!"
+      },
+      "caregiver": {
+        "fa": "بگو «آب» و بگذار کودک تصویر درست را لمس کند.",
+        "en": "Say \"aab\" (water) aloud and let the child tap the right picture.",
+        "de": "Sag „aab\" (Wasser) laut vor und lass das Kind das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "water", "pic": "water" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "water"
+    },
+    {
+      "id": "fw-2",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "گوش کن: «باغ» (baagh). کدام تصویر همین است؟",
+        "en": "Listen: \"baagh\" (garden). Which picture is it?",
+        "de": "Höre zu: „baagh\" (Garten). Welches Bild ist das?"
+      },
+      "answer": {
+        "fa": "باغ جایی است که گل و درخت می‌کارند. حرف اولش «ب» است.",
+        "en": "A \"baagh\" is a place with flowers and trees. Its first sound is \"b\".",
+        "de": "Ein „baagh\" ist ein Ort mit Blumen und Bäumen. Der erste Laut ist „b\"."
+      },
+      "caregiver": {
+        "fa": "بگو «باغ» و بگذار کودک تصویر درست را لمس کند.",
+        "en": "Say \"baagh\" (garden) aloud and let the child tap the right picture.",
+        "de": "Sag „baagh\" (Garten) laut vor und lass das Kind das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "garden", "pic": "garden" },
+        { "id": "moon", "pic": "moon" }
+      ],
+      "answerId": "garden"
+    },
+    {
+      "id": "fw-3",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
+      "prompt": {
+        "fa": "کلمه‌ی «آب» با کدام حرف شروع می‌شود؟ اول صدایش را بگو: آ...",
+        "en": "Which letter does the word \"aab\" (water) start with? Say its first sound first: aa…",
+        "de": "Mit welchem Buchstaben beginnt das Wort „aab\" (Wasser)? Sprich zuerst den ersten Laut: aa…"
+      },
+      "answer": {
+        "fa": "آب با «آ» شروع می‌شود — همان حرفی که بلد بودی!",
+        "en": "\"aab\" starts with \"aa\" — the letter you already know!",
+        "de": "„aab\" beginnt mit „aa\" — der Buchstabe, den du schon kennst!"
+      },
+      "caregiver": {
+        "fa": "بگو «آب» و بگذار کودک اول صدایش را بگوید، بعد حرف «آ» را لمس کند.",
+        "en": "Say \"aab\" and let the child say its first sound, then tap the letter \"aa\".",
+        "de": "Sag „aab\" und lass das Kind zuerst den ersten Laut sagen, dann den Buchstaben „aa\" antippen."
+      },
+      "choices": [
+        { "id": "aa", "glyph": "آ" },
+        { "id": "b", "glyph": "ب" },
+        { "id": "m", "glyph": "م" }
+      ],
+      "answerId": "aa"
+    },
+    {
+      "id": "fw-4",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
+      "prompt": {
+        "fa": "گوش کن: «ماه» (maah). کدام تصویر همین است؟",
+        "en": "Listen: \"maah\" (moon). Which picture is it?",
+        "de": "Höre zu: „maah\" (Mond). Welches Bild ist das?"
+      },
+      "answer": {
+        "fa": "ماه شب‌ها در آسمان می‌درخشد. حرف اولش «م» است.",
+        "en": "The moon shines in the sky at night. Its first sound is \"m\".",
+        "de": "Der Mond leuchtet nachts am Himmel. Der erste Laut ist „m\"."
+      },
+      "caregiver": {
+        "fa": "بگو «ماه» و بگذار کودک تصویر درست را لمس کند.",
+        "en": "Say \"maah\" (moon) aloud and let the child tap the right picture.",
+        "de": "Sag „maah\" (Mond) laut vor und lass das Kind das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "moon", "pic": "moon" },
+        { "id": "sun", "pic": "sun" }
+      ],
+      "answerId": "moon"
+    },
+    {
+      "id": "fw-5",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
+      "prompt": {
+        "fa": "کلمه‌ی «ستاره» (setaare) با کدام حرف شروع می‌شود؟",
+        "en": "Which letter does the word \"setaare\" (star) start with?",
+        "de": "Mit welchem Buchstaben beginnt das Wort „setaare\" (Stern)?"
+      },
+      "answer": {
+        "fa": "ستاره با «س» شروع می‌شود — مثل «سحر»!",
+        "en": "\"setaare\" starts with \"s\" — like \"Sahar\"!",
+        "de": "„setaare\" beginnt mit „s\" — wie „Sahar\"!"
+      },
+      "caregiver": {
+        "fa": "بگو «ستاره» و بگذار کودک حرف «س» را لمس کند.",
+        "en": "Say \"setaare\" (star) and let the child tap the letter \"s\".",
+        "de": "Sag „setaare\" (Stern) und lass das Kind den Buchstaben „s\" antippen."
+      },
+      "choices": [
+        { "id": "s", "glyph": "س" },
+        { "id": "d", "glyph": "د" },
+        { "id": "aa", "glyph": "آ" }
+      ],
+      "answerId": "s"
+    },
+    {
+      "id": "fw-6",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "match",
+      "audioPending": true,
+      "prompt": {
+        "fa": "دو کلمه را با تصویرشان جفت کن: «سنگ» (sang) و «درخت» (derakht).",
+        "en": "Match two words to their pictures: \"sang\" (stone) and \"derakht\" (tree).",
+        "de": "Ordne zwei Wörter ihren Bildern zu: „sang\" (Stein) und „derakht\" (Baum)."
+      },
+      "answer": {
+        "fa": "سنگ همان تکه‌ی سخت است که روی زمین می‌بینی. درخت بزرگ می‌شود و برگ دارد.",
+        "en": "\"sang\" is the hard thing you see on the ground. \"derakht\" grows and has leaves.",
+        "de": "„sang\" ist das harte Ding, das du auf dem Boden siehst. „derakht\" wächst und hat Blätter."
+      },
+      "caregiver": {
+        "fa": "بگو «سنگ» و بگذار تصویر درست را لمس کند؛ بعد بگو «درخت» و دوباره لمس کند.",
+        "en": "Say \"sang\" (stone) and let the child tap the right picture; then say \"derakht\" (tree) and tap again.",
+        "de": "Sag „sang\" (Stein) und lass das Kind das richtige Bild antippen; sag dann „derakht\" (Baum) und wieder antippen."
+      },
+      "rounds": [
+        { "choices": [ { "id": "stone", "pic": "stone" }, { "id": "star", "pic": "star" } ], "answerId": "stone" },
+        { "choices": [ { "id": "tree", "pic": "tree" }, { "id": "garden", "pic": "garden" } ], "answerId": "tree" }
+      ]
+    },
+    {
+      "id": "fw-7",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
+      "prompt": {
+        "fa": "بیا صداها را کنار هم بگذاریم: د + ست می‌شود «دست». به دستت نگاه کن و کلمه را بلند بگو: دست!",
+        "en": "Let's put sounds together: \"d\" + \"ast\" makes \"dast\" (hand). Look at your own hand and say the whole word out loud: dast!",
+        "de": "Lass uns Laute zusammensetzen: „d\" + „ast\" ergibt „dast\" (Hand). Schau auf deine Hand und sprich das ganze Wort laut: dast!"
+      },
+      "answer": {
+        "fa": "آفرین! وقتی صداها را کنار هم می‌گذاری، یک کلمه‌ی کامل می‌سازی. این را «ترکیب‌ کردن» می‌گویند.",
+        "en": "Well done! When you put sounds together one after another, you build a whole word. This is called \"blending\".",
+        "de": "Gut gemacht! Wenn du Laute nacheinander zusammensetzt, baust du ein ganzes Wort. Das nennt man „Verschmelzen der Laute\"."
+      },
+      "caregiver": {
+        "fa": "بگو «د» بعد «ست» و بگذار کودک آن‌ها را کنار هم بگذارد و «دست» را بگوید. بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Say \"d\" then \"ast\" and let the child blend them into \"dast\" out loud. Then tap \"I said it!\"",
+        "de": "Sag „d\" und dann „ast\" und lass das Kind sie zu „dast\" zusammensetzen und laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
+      }
+    },
+    {
+      "id": "fw-8",
+      "type": "first-words",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
+      "prompt": {
+        "fa": "حالا خودت امتحان کن: اگر «م» و «اه» را کنار هم بگذاری، چه کلمه‌ای می‌سازی؟ بلند بگو.",
+        "en": "Now you try: if you put \"m\" and \"aah\" together, what word do you make? Say it out loud.",
+        "de": "Jetzt versuch es selbst: Wenn du „m\" und „aah\" zusammensetzt, welches Wort ergibt das? Sprich es laut."
+      },
+      "answer": {
+        "fa": "ماه! وقتی صداها را قدم‌به‌قدم کنار هم می‌گذاری، به یک کلمه‌ی کامل می‌رسی — همان‌طور که بلد بودی.",
+        "en": "\"maah\" (moon)! When you place sounds step by step, you arrive at a whole word — just like you already know how.",
+        "de": "„maah\" (Mond)! Wenn du Laute Schritt für Schritt zusammensetzt, kommst du zu einem ganzen Wort — genau wie du es schon kannst."
+      },
+      "caregiver": {
+        "fa": "از کودک بخواه «م» و «اه» را آرام کنار هم بگذارد تا «ماه» شود. بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Ask the child to gently blend \"m\" and \"aah\" into \"maah\". Then tap \"I said it!\"",
+        "de": "Bitte das Kind, „m\" und „aah\" sanft zu „maah\" zusammenzusetzen. Dann auf „Ich hab's gesagt!\" tippen."
+      }
+    }
+  ]
+}
