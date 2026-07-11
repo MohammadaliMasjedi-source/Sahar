@@ -4,15 +4,19 @@
   "tier": 1,
   "ageBand": "6-7",
   "subject": "critical thinking — guess vs check, is it true? how can we find out?",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
-    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "حدس بزنیم، بعد امتحان کنیم",
@@ -30,154 +34,271 @@
       "type": "guess-check",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "این یک حدس است یا چیزی که بررسی شده؟ «فکر می‌کنم فردا باران می‌آید.»",
         "en": "Is this a guess or something already checked? \"I think it will rain tomorrow.\"",
         "de": "Ist das eine Vermutung oder etwas schon Geprüftes? „Ich glaube, morgen regnet es.\""
       },
-      "answer": { "fa": "یک حدس است — با «فکر می‌کنم» شروع شده. شاید درست باشد، شاید نه. فردا می‌توانیم نگاه کنیم و بفهمیم.", "en": "It is a guess — it starts with \"I think\". It might be right, it might not. Tomorrow we can look and find out.", "de": "Es ist eine Vermutung — es beginnt mit „Ich glaube\". Vielleicht stimmt es, vielleicht nicht. Morgen können wir nachsehen." },
+      "answer": {
+        "fa": "یک حدس است — با «فکر می‌کنم» شروع شده. شاید درست باشد، شاید نه. فردا می‌توانیم نگاه کنیم و بفهمیم.",
+        "en": "It is a guess — it starts with \"I think\". It might be right, it might not. Tomorrow we can look and find out.",
+        "de": "Es ist eine Vermutung — es beginnt mit „Ich glaube\". Vielleicht stimmt es, vielleicht nicht. Morgen können wir nachsehen."
+      },
       "caregiver": {
         "fa": "جمله‌ی «فکر می‌کنم فردا باران می‌آید» را بلند بخوان و بپرس آیا حدس است یا بررسی‌شده. بگذار تصویر درست را لمس کند.",
         "en": "Read \"I think it will rain tomorrow\" aloud and ask if it's a guess or already checked. Let them tap the right picture.",
         "de": "Lies „Ich glaube, morgen regnet es\" laut vor und frage, ob das eine Vermutung oder schon geprüft ist. Lass es das richtige Bild antippen."
       },
-      "choices": [ { "id": "guess", "pic": "guess-cloud" }, { "id": "checked", "pic": "check-mark" } ],
-      "answerId": "guess"
+      "choices": [
+        {
+          "id": "guess",
+          "pic": "guess-cloud"
+        },
+        {
+          "id": "checked",
+          "pic": "check-mark"
+        }
+      ],
+      "answerId": "guess",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-1.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-1.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-2",
       "type": "guess-check",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "دوستت می‌گوید «این جعبه سنگین است.» چه‌طور می‌توانی بفهمی که درست است یا نه؟",
         "en": "Your friend says \"this box is heavy.\" How could you find out if that is true?",
         "de": "Deine Freundin sagt „diese Kiste ist schwer.\" Wie könntest du herausfinden, ob das stimmt?"
       },
-      "answer": { "fa": "می‌توانی آرام بلندش کنی و امتحان کنی. وقتی خودت امتحان می‌کنی، می‌فهمی درست است یا نه. این یعنی «بررسی‌ کردن».", "en": "You could gently try to lift it. When you try it yourself, you find out if it is true. That is called \"checking\".", "de": "Du könntest sie vorsichtig anheben. Wenn du es selbst ausprobierst, findest du heraus, ob es stimmt. Das nennt man „nachprüfen\"." },
+      "answer": {
+        "fa": "می‌توانی آرام بلندش کنی و امتحان کنی. وقتی خودت امتحان می‌کنی، می‌فهمی درست است یا نه. این یعنی «بررسی‌ کردن».",
+        "en": "You could gently try to lift it. When you try it yourself, you find out if it is true. That is called \"checking\".",
+        "de": "Du könntest sie vorsichtig anheben. Wenn du es selbst ausprobierst, findest du heraus, ob es stimmt. Das nennt man „nachprüfen\"."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «دوستت می‌گوید جعبه سنگین است. چه‌طور بفهمیم؟ بلندش کنیم یا فقط باور کنیم؟» تصویر درست را لمس کند.",
         "en": "Say to the child: \"Your friend says the box is heavy. How do we find out — lift it, or just believe it?\" Let them tap the right picture.",
         "de": "Sag zum Kind: „Deine Freundin sagt, die Kiste ist schwer. Wie finden wir es heraus — anheben oder einfach glauben?\" Lass es das richtige Bild antippen."
       },
-      "choices": [ { "id": "lift", "pic": "hand" }, { "id": "believe", "pic": "guess-cloud" } ],
-      "answerId": "lift"
+      "choices": [
+        {
+          "id": "lift",
+          "pic": "hand"
+        },
+        {
+          "id": "believe",
+          "pic": "guess-cloud"
+        }
+      ],
+      "answerId": "lift",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-2.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-2.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-3",
       "type": "guess-check",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "حدس بزن: فکر می‌کنی در یک مشت، چند دانه لوبیا جا می‌شود؟ یک عدد بگو. بعد چه‌طور می‌فهمی؟",
         "en": "Make a guess: how many beans do you think fit in one handful? Say a number. Then how would you find out?",
         "de": "Rate mal: Wie viele Bohnen passen wohl in eine Handvoll? Nenne eine Zahl. Wie findest du es dann heraus?"
       },
-      "answer": { "fa": "اول حدس می‌زنی، بعد می‌شماری! شمردن به تو جواب واقعی را می‌دهد. اگر حدست نزدیک بود، آفرین؛ اگر نه، تازه یک چیز یاد گرفتی.", "en": "First you guess, then you count! Counting gives you the real answer. If your guess was close, well done; if not, you just learned something.", "de": "Erst rätst du, dann zählst du! Zählen gibt dir die echte Antwort. War deine Vermutung nah dran, super; wenn nicht, hast du gerade etwas gelernt." },
+      "answer": {
+        "fa": "اول حدس می‌زنی، بعد می‌شماری! شمردن به تو جواب واقعی را می‌دهد. اگر حدست نزدیک بود، آفرین؛ اگر نه، تازه یک چیز یاد گرفتی.",
+        "en": "First you guess, then you count! Counting gives you the real answer. If your guess was close, well done; if not, you just learned something.",
+        "de": "Erst rätst du, dann zählst du! Zählen gibt dir die echte Antwort. War deine Vermutung nah dran, super; wenn nicht, hast du gerade etwas gelernt."
+      },
       "caregiver": {
         "fa": "با کودک یک مشت لوبیا (یا هر چیز کوچک) بردارید، بگذار حدس بزند، بعد با هم بشمارید. بگذار عددش را بلند بگوید، بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Take a handful of beans (or any small items) together, let the child guess, then count together. Let them say their guess out loud, then tap \"I said it!\"",
         "de": "Nehmt gemeinsam eine Handvoll Bohnen (oder kleine Gegenstände), lasst das Kind raten und zählt dann zusammen. Lass es seine Vermutung laut sagen, dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-3.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-3.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-4",
       "type": "guess-check",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "اگر حدست اشتباه از آب دربیاید، این بد است؟ خوب فکر کن.",
         "en": "If your guess turns out to be wrong, is that a bad thing? Think about it.",
         "de": "Wenn deine Vermutung falsch war, ist das schlimm? Denk darüber nach."
       },
-      "answer": { "fa": "نه، اصلاً! اشتباه‌ کردن بخشی از یاد گرفتن است. وقتی می‌فهمی حدست درست نبود، چیز تازه‌ای یاد می‌گیری. حتی دانشمندها هم زیاد حدس می‌زنند و امتحان می‌کنند.", "en": "No, not at all! Being wrong is part of learning. When you find out your guess was off, you learn something new. Even scientists guess and check a lot.", "de": "Nein, überhaupt nicht! Sich zu irren gehört zum Lernen. Wenn du merkst, dass deine Vermutung daneben lag, lernst du etwas Neues. Sogar Forscher raten und prüfen viel." },
+      "answer": {
+        "fa": "نه، اصلاً! اشتباه‌ کردن بخشی از یاد گرفتن است. وقتی می‌فهمی حدست درست نبود، چیز تازه‌ای یاد می‌گیری. حتی دانشمندها هم زیاد حدس می‌زنند و امتحان می‌کنند.",
+        "en": "No, not at all! Being wrong is part of learning. When you find out your guess was off, you learn something new. Even scientists guess and check a lot.",
+        "de": "Nein, überhaupt nicht! Sich zu irren gehört zum Lernen. Wenn du merkst, dass deine Vermutung daneben lag, lernst du etwas Neues. Sogar Forscher raten und prüfen viel."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «اگر حدست اشتباه بود، بد است؟ آری یا نه؟» تصویر درست را لمس کند و بگو اشتباه‌ کردن بخشی از یاد گرفتن است.",
         "en": "Say to the child: \"If your guess is wrong, is that bad — yes or no?\" Let them tap the right picture, and remind them being wrong is part of learning.",
         "de": "Sag zum Kind: „Wenn deine Vermutung falsch ist, ist das schlimm — ja oder nein?\" Lass es das richtige Bild antippen und erinnere es daran, dass Irren zum Lernen gehört."
       },
-      "choices": [ { "id": "yes", "pic": "check-mark" }, { "id": "no", "pic": "cross-mark" } ],
-      "answerId": "no"
+      "choices": [
+        {
+          "id": "yes",
+          "pic": "check-mark"
+        },
+        {
+          "id": "no",
+          "pic": "cross-mark"
+        }
+      ],
+      "answerId": "no",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-4.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-4.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-4.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-5",
       "type": "guess-check",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "کسی می‌گوید «همه‌ی پرنده‌ها می‌توانند پرواز کنند.» آیا حتماً درست است؟ چه‌طور می‌توانیم مطمئن شویم؟",
         "en": "Someone says \"all birds can fly.\" Is that surely true? How could we make sure?",
         "de": "Jemand sagt „alle Vögel können fliegen.\" Stimmt das ganz sicher? Wie könnten wir sichergehen?"
       },
-      "answer": { "fa": "همیشه درست نیست — مرغ و پنگوئن پرنده‌اند اما پرواز نمی‌کنند. می‌توانیم در کتاب نگاه کنیم یا از کسی که می‌داند بپرسیم تا مطمئن شویم.", "en": "It is not always true — a chicken and a penguin are birds but do not fly. We can look in a book or ask someone who knows, to be sure.", "de": "Es stimmt nicht immer — ein Huhn und ein Pinguin sind Vögel, fliegen aber nicht. Wir können in einem Buch nachsehen oder jemanden fragen, der es weiß." },
+      "answer": {
+        "fa": "همیشه درست نیست — مرغ و پنگوئن پرنده‌اند اما پرواز نمی‌کنند. می‌توانیم در کتاب نگاه کنیم یا از کسی که می‌داند بپرسیم تا مطمئن شویم.",
+        "en": "It is not always true — a chicken and a penguin are birds but do not fly. We can look in a book or ask someone who knows, to be sure.",
+        "de": "Es stimmt nicht immer — ein Huhn und ein Pinguin sind Vögel, fliegen aber nicht. Wir können in einem Buch nachsehen oder jemanden fragen, der es weiß."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «همه‌ی پرنده‌ها پرواز می‌کنند — این حتماً درست است؟ آری یا نه؟» تصویر درست را لمس کند؛ بعد به مرغ و پنگوئن اشاره کن.",
         "en": "Say to the child: \"All birds fly — is that surely true, yes or no?\" Let them tap the right picture; then mention chickens and penguins.",
         "de": "Sag zum Kind: „Alle Vögel fliegen — stimmt das ganz sicher, ja oder nein?\" Lass es das richtige Bild antippen; erwähne dann Hühner und Pinguine."
       },
-      "choices": [ { "id": "yes", "pic": "check-mark" }, { "id": "no", "pic": "cross-mark" } ],
-      "answerId": "no"
+      "choices": [
+        {
+          "id": "yes",
+          "pic": "check-mark"
+        },
+        {
+          "id": "no",
+          "pic": "cross-mark"
+        }
+      ],
+      "answerId": "no",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-5.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-5.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-5.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-6",
       "type": "guess-check",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "دو راه برای فهمیدن یک چیز کدام‌ها هستند؟ به «امتحان‌ کردن» و «پرسیدن» فکر کن.",
         "en": "What are two ways to find something out? Think about \"trying it\" and \"asking\".",
         "de": "Was sind zwei Wege, etwas herauszufinden? Denk an „ausprobieren\" und „fragen\"."
       },
-      "answer": { "fa": "می‌توانیم خودمان امتحان کنیم و نگاه کنیم، یا از کسی که می‌داند بپرسیم — یا در یک کتاب خوب نگاه کنیم. همه‌ی این‌ها راه‌های خوبی برای فهمیدن‌اند.", "en": "We can try it and look ourselves, or ask someone who knows — or look in a good book. These are all good ways to find out.", "de": "Wir können es selbst ausprobieren und hinschauen, jemanden fragen, der es weiß — oder in einem guten Buch nachsehen. Das sind alles gute Wege." },
+      "answer": {
+        "fa": "می‌توانیم خودمان امتحان کنیم و نگاه کنیم، یا از کسی که می‌داند بپرسیم — یا در یک کتاب خوب نگاه کنیم. همه‌ی این‌ها راه‌های خوبی برای فهمیدن‌اند.",
+        "en": "We can try it and look ourselves, or ask someone who knows — or look in a good book. These are all good ways to find out.",
+        "de": "Wir können es selbst ausprobieren und hinschauen, jemanden fragen, der es weiß — oder in einem guten Buch nachsehen. Das sind alles gute Wege."
+      },
       "caregiver": {
         "fa": "از کودک بپرس دو راه برای فهمیدن یک چیز چیست و بگذار بلند بگوید (مثلاً امتحان کردن یا پرسیدن). بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Ask the child for two ways to find something out and let them say them out loud (e.g. trying it, or asking). Then tap \"I said it!\"",
         "de": "Frag das Kind nach zwei Wegen, etwas herauszufinden, und lass es sie laut sagen (z. B. ausprobieren oder fragen). Dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-6.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-6.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-6.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-7",
       "type": "guess-check",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "حدس بزن: فکر می‌کنی یک برگ سبک‌تر است یا یک سنگ کوچک؟ بعد اگر می‌توانی، هر دو را در دست بگیر و امتحان کن.",
         "en": "Guess: do you think a leaf is lighter, or a small stone? Then, if you can, hold both and check.",
         "de": "Rate: Was ist leichter, ein Blatt oder ein kleiner Stein? Halte dann beide, wenn möglich, und prüfe nach."
       },
-      "answer": { "fa": "بیشترِ وقت‌ها برگ سبک‌تر است. اما مهم این است که اول حدس زدی و بعد امتحان کردی — این همان راهِ خوبِ یاد گرفتن است.", "en": "Most of the time the leaf is lighter. But the important thing is you guessed first, then checked — that is the good way to learn.", "de": "Meistens ist das Blatt leichter. Wichtig ist aber, dass du erst geraten und dann geprüft hast — das ist der gute Weg zu lernen." },
+      "answer": {
+        "fa": "بیشترِ وقت‌ها برگ سبک‌تر است. اما مهم این است که اول حدس زدی و بعد امتحان کردی — این همان راهِ خوبِ یاد گرفتن است.",
+        "en": "Most of the time the leaf is lighter. But the important thing is you guessed first, then checked — that is the good way to learn.",
+        "de": "Meistens ist das Blatt leichter. Wichtig ist aber, dass du erst geraten und dann geprüft hast — das ist der gute Weg zu lernen."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «کدام سبک‌تر است، برگ یا سنگ؟» بگذار تصویر درست را لمس کند؛ اگر ممکن است، هر دو را در دست بگیرید و امتحان کنید.",
         "en": "Say to the child: \"Which is lighter, a leaf or a stone?\" Let them tap the right picture; if possible, hold both and check together.",
         "de": "Sag zum Kind: „Was ist leichter, ein Blatt oder ein Stein?\" Lass es das richtige Bild antippen; haltet beide, wenn möglich, und prüft gemeinsam nach."
       },
-      "choices": [ { "id": "leaf", "pic": "leaf" }, { "id": "stone", "pic": "stone" } ],
-      "answerId": "leaf"
+      "choices": [
+        {
+          "id": "leaf",
+          "pic": "leaf"
+        },
+        {
+          "id": "stone",
+          "pic": "stone"
+        }
+      ],
+      "answerId": "leaf",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-7.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-7.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-7.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "gc-8",
       "type": "guess-check",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "امروز یک چیز هست که نمی‌دانی درست است یا نه. آن را بگو، و بگو چه‌طور می‌توانی بفهمی.",
         "en": "There is something today you are not sure is true. Say it, and say how you could find out.",
         "de": "Es gibt heute etwas, bei dem du nicht sicher bist, ob es stimmt. Sag es und sag, wie du es herausfinden könntest."
       },
-      "answer": { "fa": "آفرین! وقتی می‌پرسی «درست است؟ چه‌طور بفهمم؟» مثل یک کاشف فکر می‌کنی. سحر هم دوست دارد حدس بزند و بعد امتحان کند.", "en": "Well done! When you ask \"is it true? how can I find out?\" you are thinking like an explorer. Sahar loves to guess and then check, too.", "de": "Gut gemacht! Wenn du fragst „Stimmt das? Wie finde ich es heraus?\", denkst du wie ein Entdecker. Auch Sahar rät gern und prüft dann nach." },
+      "answer": {
+        "fa": "آفرین! وقتی می‌پرسی «درست است؟ چه‌طور بفهمم؟» مثل یک کاشف فکر می‌کنی. سحر هم دوست دارد حدس بزند و بعد امتحان کند.",
+        "en": "Well done! When you ask \"is it true? how can I find out?\" you are thinking like an explorer. Sahar loves to guess and then check, too.",
+        "de": "Gut gemacht! Wenn du fragst „Stimmt das? Wie finde ich es heraus?\", denkst du wie ein Entdecker. Auch Sahar rät gern und prüft dann nach."
+      },
       "caregiver": {
         "fa": "از کودک بپرس چه چیزی امروز مطمئن نیست و چه‌طور می‌تواند بفهمد. بگذار بلند بگوید، بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Ask the child what they are unsure about today and how they could find out. Let them say it out loud, then tap \"I said it!\"",
         "de": "Frag das Kind, bei was es sich heute nicht sicher ist und wie es das herausfinden könnte. Lass es das laut sagen, dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.thinking.fact-vs-guess.gc-8.fa.mp3",
+        "en": "audio/t1.thinking.fact-vs-guess.gc-8.en.mp3",
+        "de": "audio/t1.thinking.fact-vs-guess.gc-8.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }

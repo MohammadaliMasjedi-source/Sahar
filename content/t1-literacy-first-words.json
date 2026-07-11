@@ -4,15 +4,19 @@
   "tier": 1,
   "ageBand": "6-7",
   "subject": "literacy — simple words built from known letter-sounds (blending)",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
-    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "از حرف‌ها به کلمه‌ها",
@@ -30,7 +34,6 @@
       "type": "first-words",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "گوش کن: «آب» (aab). کدام تصویر همین است؟",
         "en": "Listen: \"aab\" (water). Which picture is it?",
@@ -47,17 +50,28 @@
         "de": "Sag „aab\" (Wasser) laut vor und lass das Kind das richtige Bild antippen."
       },
       "choices": [
-        { "id": "water", "pic": "water" },
-        { "id": "stone", "pic": "stone" }
+        {
+          "id": "water",
+          "pic": "water"
+        },
+        {
+          "id": "stone",
+          "pic": "stone"
+        }
       ],
-      "answerId": "water"
+      "answerId": "water",
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-1.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-1.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-2",
       "type": "first-words",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "گوش کن: «باغ» (baagh). کدام تصویر همین است؟",
         "en": "Listen: \"baagh\" (garden). Which picture is it?",
@@ -74,17 +88,28 @@
         "de": "Sag „baagh\" (Garten) laut vor und lass das Kind das richtige Bild antippen."
       },
       "choices": [
-        { "id": "garden", "pic": "garden" },
-        { "id": "moon", "pic": "moon" }
+        {
+          "id": "garden",
+          "pic": "garden"
+        },
+        {
+          "id": "moon",
+          "pic": "moon"
+        }
       ],
-      "answerId": "garden"
+      "answerId": "garden",
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-2.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-2.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-3",
       "type": "first-words",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "کلمه‌ی «آب» با کدام حرف شروع می‌شود؟ اول صدایش را بگو: آ...",
         "en": "Which letter does the word \"aab\" (water) start with? Say its first sound first: aa…",
@@ -101,18 +126,32 @@
         "de": "Sag „aab\" und lass das Kind zuerst den ersten Laut sagen, dann den Buchstaben „aa\" antippen."
       },
       "choices": [
-        { "id": "aa", "glyph": "آ" },
-        { "id": "b", "glyph": "ب" },
-        { "id": "m", "glyph": "م" }
+        {
+          "id": "aa",
+          "glyph": "آ"
+        },
+        {
+          "id": "b",
+          "glyph": "ب"
+        },
+        {
+          "id": "m",
+          "glyph": "م"
+        }
       ],
-      "answerId": "aa"
+      "answerId": "aa",
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-3.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-3.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-4",
       "type": "first-words",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "گوش کن: «ماه» (maah). کدام تصویر همین است؟",
         "en": "Listen: \"maah\" (moon). Which picture is it?",
@@ -129,17 +168,28 @@
         "de": "Sag „maah\" (Mond) laut vor und lass das Kind das richtige Bild antippen."
       },
       "choices": [
-        { "id": "moon", "pic": "moon" },
-        { "id": "sun", "pic": "sun" }
+        {
+          "id": "moon",
+          "pic": "moon"
+        },
+        {
+          "id": "sun",
+          "pic": "sun"
+        }
       ],
-      "answerId": "moon"
+      "answerId": "moon",
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-4.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-4.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-4.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-5",
       "type": "first-words",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "کلمه‌ی «ستاره» (setaare) با کدام حرف شروع می‌شود؟",
         "en": "Which letter does the word \"setaare\" (star) start with?",
@@ -156,18 +206,32 @@
         "de": "Sag „setaare\" (Stern) und lass das Kind den Buchstaben „s\" antippen."
       },
       "choices": [
-        { "id": "s", "glyph": "س" },
-        { "id": "d", "glyph": "د" },
-        { "id": "aa", "glyph": "آ" }
+        {
+          "id": "s",
+          "glyph": "س"
+        },
+        {
+          "id": "d",
+          "glyph": "د"
+        },
+        {
+          "id": "aa",
+          "glyph": "آ"
+        }
       ],
-      "answerId": "s"
+      "answerId": "s",
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-5.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-5.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-5.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-6",
       "type": "first-words",
       "box": 1,
       "interaction": "match",
-      "audioPending": true,
       "prompt": {
         "fa": "دو کلمه را با تصویرشان جفت کن: «سنگ» (sang) و «درخت» (derakht).",
         "en": "Match two words to their pictures: \"sang\" (stone) and \"derakht\" (tree).",
@@ -184,16 +248,45 @@
         "de": "Sag „sang\" (Stein) und lass das Kind das richtige Bild antippen; sag dann „derakht\" (Baum) und wieder antippen."
       },
       "rounds": [
-        { "choices": [ { "id": "stone", "pic": "stone" }, { "id": "star", "pic": "star" } ], "answerId": "stone" },
-        { "choices": [ { "id": "tree", "pic": "tree" }, { "id": "garden", "pic": "garden" } ], "answerId": "tree" }
-      ]
+        {
+          "choices": [
+            {
+              "id": "stone",
+              "pic": "stone"
+            },
+            {
+              "id": "star",
+              "pic": "star"
+            }
+          ],
+          "answerId": "stone"
+        },
+        {
+          "choices": [
+            {
+              "id": "tree",
+              "pic": "tree"
+            },
+            {
+              "id": "garden",
+              "pic": "garden"
+            }
+          ],
+          "answerId": "tree"
+        }
+      ],
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-6.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-6.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-6.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-7",
       "type": "first-words",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "بیا صداها را کنار هم بگذاریم: د + ست می‌شود «دست». به دستت نگاه کن و کلمه را بلند بگو: دست!",
         "en": "Let's put sounds together: \"d\" + \"ast\" makes \"dast\" (hand). Look at your own hand and say the whole word out loud: dast!",
@@ -208,14 +301,19 @@
         "fa": "بگو «د» بعد «ست» و بگذار کودک آن‌ها را کنار هم بگذارد و «دست» را بگوید. بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Say \"d\" then \"ast\" and let the child blend them into \"dast\" out loud. Then tap \"I said it!\"",
         "de": "Sag „d\" und dann „ast\" und lass das Kind sie zu „dast\" zusammensetzen und laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-7.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-7.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-7.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fw-8",
       "type": "first-words",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "حالا خودت امتحان کن: اگر «م» و «اه» را کنار هم بگذاری، چه کلمه‌ای می‌سازی؟ بلند بگو.",
         "en": "Now you try: if you put \"m\" and \"aah\" together, what word do you make? Say it out loud.",
@@ -230,7 +328,13 @@
         "fa": "از کودک بخواه «م» و «اه» را آرام کنار هم بگذارد تا «ماه» شود. بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Ask the child to gently blend \"m\" and \"aah\" into \"maah\". Then tap \"I said it!\"",
         "de": "Bitte das Kind, „m\" und „aah\" sanft zu „maah\" zusammenzusetzen. Dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.literacy.first-words.fw-8.fa.mp3",
+        "en": "audio/t1.literacy.first-words.fw-8.en.mp3",
+        "de": "audio/t1.literacy.first-words.fw-8.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }

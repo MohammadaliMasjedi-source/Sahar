@@ -4,15 +4,19 @@
   "tier": 1,
   "ageBand": "7-9",
   "subject": "critical-thinking + numeracy (demo)",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
-    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "حقیقت یا نظر؟ و کمی شمارش",
@@ -30,100 +34,198 @@
       "type": "fact-opinion",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "«خورشید صبح بالا می‌آید.» این حقیقت است یا نظر؟",
         "en": "\"The sun rises in the morning.\" Is this a fact or an opinion?",
         "de": "„Die Sonne geht am Morgen auf.“ Ist das eine Tatsache oder eine Meinung?"
       },
-      "answer": { "fa": "حقیقت — هر روز می‌توان آن را دید و آزمود.", "en": "Fact — you can see and check it every day.", "de": "Tatsache — man kann es jeden Tag sehen und prüfen." },
+      "answer": {
+        "fa": "حقیقت — هر روز می‌توان آن را دید و آزمود.",
+        "en": "Fact — you can see and check it every day.",
+        "de": "Tatsache — man kann es jeden Tag sehen und prüfen."
+      },
       "caregiver": {
         "fa": "جمله را بلند بخوان: «خورشید صبح بالا می‌آید.» بپرس حقیقت است یا نظر و بگذار تصویر درست را لمس کند.",
         "en": "Read aloud: \"The sun rises in the morning.\" Ask fact or opinion, and let them tap the right picture.",
         "de": "Lies laut vor: „Die Sonne geht am Morgen auf.\" Frage, ob das eine Tatsache oder Meinung ist, und lass das richtige Bild antippen."
       },
-      "choices": [ { "id": "fact", "pic": "check-mark" }, { "id": "opinion", "pic": "thought-bubble" } ],
-      "answerId": "fact"
+      "choices": [
+        {
+          "id": "fact",
+          "pic": "check-mark"
+        },
+        {
+          "id": "opinion",
+          "pic": "thought-bubble"
+        }
+      ],
+      "answerId": "fact",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-opinion-counting.fo-1.fa.mp3",
+        "en": "audio/t1.thinking.fact-opinion-counting.fo-1.en.mp3",
+        "de": "audio/t1.thinking.fact-opinion-counting.fo-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fo-2",
       "type": "fact-opinion",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "«رنگ آبی قشنگ‌ترین رنگ است.» حقیقت است یا نظر؟",
         "en": "\"Blue is the prettiest colour.\" Fact or opinion?",
         "de": "„Blau ist die schönste Farbe.“ Tatsache oder Meinung?"
       },
-      "answer": { "fa": "نظر — هر کس می‌تواند نظر دیگری داشته باشد.", "en": "Opinion — different people can feel differently.", "de": "Meinung — verschiedene Menschen können anders empfinden." },
+      "answer": {
+        "fa": "نظر — هر کس می‌تواند نظر دیگری داشته باشد.",
+        "en": "Opinion — different people can feel differently.",
+        "de": "Meinung — verschiedene Menschen können anders empfinden."
+      },
       "caregiver": {
         "fa": "جمله را بلند بخوان: «رنگ آبی قشنگ‌ترین رنگ است.» بپرس حقیقت است یا نظر و بگذار تصویر درست را لمس کند.",
         "en": "Read aloud: \"Blue is the prettiest colour.\" Ask fact or opinion, and let them tap the right picture.",
         "de": "Lies laut vor: „Blau ist die schönste Farbe.\" Frage, ob das eine Tatsache oder Meinung ist, und lass das richtige Bild antippen."
       },
-      "choices": [ { "id": "fact", "pic": "check-mark" }, { "id": "opinion", "pic": "thought-bubble" } ],
-      "answerId": "opinion"
+      "choices": [
+        {
+          "id": "fact",
+          "pic": "check-mark"
+        },
+        {
+          "id": "opinion",
+          "pic": "thought-bubble"
+        }
+      ],
+      "answerId": "opinion",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-opinion-counting.fo-2.fa.mp3",
+        "en": "audio/t1.thinking.fact-opinion-counting.fo-2.en.mp3",
+        "de": "audio/t1.thinking.fact-opinion-counting.fo-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "fo-3",
       "type": "fact-opinion",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "«آب در دمای صفر یخ می‌زند.» حقیقت یا نظر؟",
         "en": "\"Water freezes at zero degrees.\" Fact or opinion?",
         "de": "„Wasser gefriert bei null Grad.“ Tatsache oder Meinung?"
       },
-      "answer": { "fa": "حقیقت — می‌توان آن را آزمایش کرد.", "en": "Fact — you can test it.", "de": "Tatsache — man kann es testen." },
+      "answer": {
+        "fa": "حقیقت — می‌توان آن را آزمایش کرد.",
+        "en": "Fact — you can test it.",
+        "de": "Tatsache — man kann es testen."
+      },
       "caregiver": {
         "fa": "جمله را بلند بخوان: «آب در دمای صفر یخ می‌زند.» بپرس حقیقت است یا نظر و بگذار تصویر درست را لمس کند.",
         "en": "Read aloud: \"Water freezes at zero degrees.\" Ask fact or opinion, and let them tap the right picture.",
         "de": "Lies laut vor: „Wasser gefriert bei null Grad.\" Frage, ob das eine Tatsache oder Meinung ist, und lass das richtige Bild antippen."
       },
-      "choices": [ { "id": "fact", "pic": "check-mark" }, { "id": "opinion", "pic": "thought-bubble" } ],
-      "answerId": "fact"
+      "choices": [
+        {
+          "id": "fact",
+          "pic": "check-mark"
+        },
+        {
+          "id": "opinion",
+          "pic": "thought-bubble"
+        }
+      ],
+      "answerId": "fact",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-opinion-counting.fo-3.fa.mp3",
+        "en": "audio/t1.thinking.fact-opinion-counting.fo-3.en.mp3",
+        "de": "audio/t1.thinking.fact-opinion-counting.fo-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "num-1",
       "type": "counting",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "۳ + ۴ چند می‌شود؟ با انگشت‌هایت بشمار.",
         "en": "What is 3 + 4? Count on your fingers.",
         "de": "Was ist 3 + 4? Zähle mit den Fingern."
       },
-      "answer": { "fa": "۷", "en": "7", "de": "7" },
+      "answer": {
+        "fa": "۷",
+        "en": "7",
+        "de": "7"
+      },
       "caregiver": {
         "fa": "با کودک ۳ و ۴ انگشت را بشمارید و جواب را پیدا کنید. بگذار عدد درست را لمس کند.",
         "en": "Count 3 and 4 fingers together and find the answer. Let them tap the right number.",
         "de": "Zählt gemeinsam 3 und 4 Finger und findet die Antwort. Lass es die richtige Zahl antippen."
       },
-      "choices": [ { "id": "6", "glyph": "۶" }, { "id": "7", "glyph": "۷" }, { "id": "8", "glyph": "۸" } ],
-      "answerId": "7"
+      "choices": [
+        {
+          "id": "6",
+          "glyph": "۶"
+        },
+        {
+          "id": "7",
+          "glyph": "۷"
+        },
+        {
+          "id": "8",
+          "glyph": "۸"
+        }
+      ],
+      "answerId": "7",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-opinion-counting.num-1.fa.mp3",
+        "en": "audio/t1.thinking.fact-opinion-counting.num-1.en.mp3",
+        "de": "audio/t1.thinking.fact-opinion-counting.num-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "num-2",
       "type": "counting",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "اگر ۵ پرنده داشته باشی و ۲ تا پرواز کنند، چند می‌ماند؟",
         "en": "If you have 5 birds and 2 fly away, how many are left?",
         "de": "Wenn du 5 Vögel hast und 2 wegfliegen, wie viele bleiben?"
       },
-      "answer": { "fa": "۳", "en": "3", "de": "3" },
+      "answer": {
+        "fa": "۳",
+        "en": "3",
+        "de": "3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «۵ پرنده بودند، ۲ تا پرواز کردند. چند تا ماندند؟» بگذار عدد درست را لمس کند.",
         "en": "Say to the child: \"5 birds, 2 fly away. How many are left?\" Let them tap the right number.",
         "de": "Sag zum Kind: „5 Vögel, 2 fliegen weg. Wie viele bleiben?\" Lass es die richtige Zahl antippen."
       },
-      "choices": [ { "id": "2", "glyph": "۲" }, { "id": "3", "glyph": "۳" }, { "id": "4", "glyph": "۴" } ],
-      "answerId": "3"
+      "choices": [
+        {
+          "id": "2",
+          "glyph": "۲"
+        },
+        {
+          "id": "3",
+          "glyph": "۳"
+        },
+        {
+          "id": "4",
+          "glyph": "۴"
+        }
+      ],
+      "answerId": "3",
+      "audio": {
+        "fa": "audio/t1.thinking.fact-opinion-counting.num-2.fa.mp3",
+        "en": "audio/t1.thinking.fact-opinion-counting.num-2.en.mp3",
+        "de": "audio/t1.thinking.fact-opinion-counting.num-2.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }

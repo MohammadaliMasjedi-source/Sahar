@@ -4,15 +4,19 @@
   "tier": 1,
   "ageBand": "6-7",
   "subject": "science — day, night, and the sky we can observe (the world is knowable)",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
-    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "روز و شب",
@@ -30,7 +34,6 @@
       "type": "day-night",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "کدام یک را در آسمانِ روز می‌بینیم: خورشید یا ماه؟",
         "en": "Which one do we see in the daytime sky: the sun or the moon?",
@@ -47,17 +50,28 @@
         "de": "Frag: „Was ist tagsüber am Himmel, die Sonne oder der Mond?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "sun", "pic": "sun" },
-        { "id": "moon", "pic": "moon" }
+        {
+          "id": "sun",
+          "pic": "sun"
+        },
+        {
+          "id": "moon",
+          "pic": "moon"
+        }
       ],
-      "answerId": "sun"
+      "answerId": "sun",
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-1.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-1.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-2",
       "type": "day-night",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "کدام یک را معمولاً در آسمانِ شب می‌بینیم: ماه یا خورشید؟",
         "en": "Which one do we usually see in the night sky: the moon or the sun?",
@@ -74,17 +88,28 @@
         "de": "Frag: „Was ist nachts am Himmel, der Mond oder die Sonne?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "moon", "pic": "moon" },
-        { "id": "sun", "pic": "sun" }
+        {
+          "id": "moon",
+          "pic": "moon"
+        },
+        {
+          "id": "sun",
+          "pic": "sun"
+        }
       ],
-      "answerId": "moon"
+      "answerId": "moon",
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-2.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-2.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-3",
       "type": "day-night",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "شب‌ها نقطه‌های کوچکِ نورانی در آسمان چشمک می‌زنند. کدام‌اند: ستاره‌ها یا درخت‌ها؟",
         "en": "At night, tiny points of light twinkle in the sky. Which are they: stars or trees?",
@@ -101,17 +126,28 @@
         "de": "Frag: „Was blinkt nachts am Himmel, ein Stern oder ein Baum?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "star", "pic": "star" },
-        { "id": "tree", "pic": "tree" }
+        {
+          "id": "star",
+          "pic": "star"
+        },
+        {
+          "id": "tree",
+          "pic": "tree"
+        }
       ],
-      "answerId": "star"
+      "answerId": "star",
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-3.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-3.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-4",
       "type": "day-night",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "آیا شب معمولاً تاریک است؟ آری یا نه؟",
         "en": "Is it usually dark at night — yes or no?",
@@ -128,17 +164,28 @@
         "de": "Frag: „Ist die Nacht dunkel — ja oder nein?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "yes", "pic": "check-mark" },
-        { "id": "no", "pic": "cross-mark" }
+        {
+          "id": "yes",
+          "pic": "check-mark"
+        },
+        {
+          "id": "no",
+          "pic": "cross-mark"
+        }
       ],
-      "answerId": "yes"
+      "answerId": "yes",
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-4.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-4.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-4.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-5",
       "type": "day-night",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "روزها معمولاً کدام گرم‌تر است: وقتی خورشید هست یا وقتی ماه هست؟",
         "en": "Which is usually warmer: when the sun is out, or when the moon is out?",
@@ -155,17 +202,28 @@
         "de": "Frag: „Wann ist es wärmer, wenn die Sonne scheint oder der Mond?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "sun", "pic": "sun" },
-        { "id": "moon", "pic": "moon" }
+        {
+          "id": "sun",
+          "pic": "sun"
+        },
+        {
+          "id": "moon",
+          "pic": "moon"
+        }
       ],
-      "answerId": "sun"
+      "answerId": "sun",
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-5.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-5.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-5.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-6",
       "type": "day-night",
       "box": 1,
       "interaction": "match",
-      "audioPending": true,
       "prompt": {
         "fa": "بیا جفت کنیم: کدام تصویر برای «روز» است و کدام برای «شب»؟",
         "en": "Let's match: which picture belongs to \"day\", and which to \"night\"?",
@@ -182,16 +240,45 @@
         "de": "Sag „Tag\" und lass das Kind das richtige Bild antippen; sag dann „Nacht\" und wieder antippen."
       },
       "rounds": [
-        { "choices": [ { "id": "sun", "pic": "sun" }, { "id": "moon", "pic": "moon" } ], "answerId": "sun" },
-        { "choices": [ { "id": "moon", "pic": "moon" }, { "id": "sun", "pic": "sun" } ], "answerId": "moon" }
-      ]
+        {
+          "choices": [
+            {
+              "id": "sun",
+              "pic": "sun"
+            },
+            {
+              "id": "moon",
+              "pic": "moon"
+            }
+          ],
+          "answerId": "sun"
+        },
+        {
+          "choices": [
+            {
+              "id": "moon",
+              "pic": "moon"
+            },
+            {
+              "id": "sun",
+              "pic": "sun"
+            }
+          ],
+          "answerId": "moon"
+        }
+      ],
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-6.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-6.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-6.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-7",
       "type": "day-night",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "الان بیرون روز است یا شب؟ نگاه کن و بلند بگو.",
         "en": "Right now, is it day or night outside? Look and say it out loud.",
@@ -206,14 +293,19 @@
         "fa": "با کودک بیرون یا از پنجره نگاه کنید. بگذار بگوید روز است یا شب، بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Look outside or through a window together. Let the child say whether it is day or night, then tap \"I said it!\"",
         "de": "Schaut gemeinsam nach draußen oder aus dem Fenster. Lass das Kind sagen, ob Tag oder Nacht ist, dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-7.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-7.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-7.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "dn-8",
       "type": "day-night",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "روز و شب هر روز دوباره می‌آیند — مثل یک آهنگ. بلند بگو: اول چه می‌آید، روز یا شب؟",
         "en": "Day and night come again every day — like a rhythm. Say out loud: which comes first, day or night?",
@@ -228,7 +320,13 @@
         "fa": "از کودک بپرس اول روز می‌آید یا شب و بگذار بلند فکرش را بگوید. بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Ask the child whether day or night comes first and let them say their thought out loud. Then tap \"I said it!\"",
         "de": "Frag das Kind, ob Tag oder Nacht zuerst kommt, und lass es seine Gedanken laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.science.day-and-night.dn-8.fa.mp3",
+        "en": "audio/t1.science.day-and-night.dn-8.en.mp3",
+        "de": "audio/t1.science.day-and-night.dn-8.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }
