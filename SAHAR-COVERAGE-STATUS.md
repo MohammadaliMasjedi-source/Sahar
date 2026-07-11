@@ -5,7 +5,9 @@
 > learners without an adult present.** No "ready to use / deployable" claim is
 > made anywhere in this file. Updated 2026-07-11 after the Amendment A
 > (audio-first bootstrap) lane, then again same day after the Tier-1
-> subject-coverage lane (2 new packs, structure only).
+> subject-coverage lane (2 new packs, structure only), then again same day
+> after the audio-generation lane (Amendment E: a real machine-draft voice,
+> honestly flagged — see §6.5 E).
 
 ## 1. Vision
 Unchanged — no technical work needed here; the vision statement in
@@ -124,14 +126,19 @@ Unchanged — still not started. Out of scope for this lane.
   Tier-1 card schema and the pre-existing language-course schema as one
   standard.
 - ✅ `teacher.html` — written this session (see §5 above).
-- ❌ **Real audio recordings — Mo-gated, explicitly not faked.** Zero `.mp3`
-  files exist in `audio/`; only `audio/README.md` (pre-existing) documents the
-  slot. Every card plays either the browser's TTS (English/German only — Dari
-  TTS is deliberately never used, per the honest policy already coded in
-  `audio.js`) or a placeholder tone. **The ask, unchanged from the contract:
-  ideally ~50 short (1-2s) recordings per pack batch, in Mo's or Neda's native
-  voice.** This is the single biggest remaining gap before any real child uses
-  this.
+- ⚠️ **Real audio recordings — still Mo/Neda-gated, still not faked** (updated
+  2026-07-11, audio-generation lane — see §6.5 E below for full detail). What
+  changed: every one of the 67 Tier-1 cards + 10 language-course words now has
+  a **real, nonzero, machine-generated draft `.mp3` file** on disk (edge-tts,
+  `tools/generate-draft-audio.py`), so the app genuinely speaks now instead of
+  falling to TTS/tone for `fa`. What did NOT change: **no human ever recorded
+  anything** — this is a computer voice, and for `fa` specifically an
+  Iranian-Persian accent standing in for Dari, honestly flagged in every
+  pack's `audioNote` and in the in-app banner. **The ask is unchanged and
+  still open: real recordings, ideally in Mo's or Neda's native Dari voice**
+  — now with an exact, ready-to-follow line-by-line list in
+  `audio/RECORDING-MANIFEST.md`. This remains the single biggest gap before
+  any real child uses this for real.
 
 ## 6.5 Amendment B — language courses from the mother tongue
 Pre-existing (built 2026-07-06, before this lane): `content/lc-fa-en-first-words.json`
@@ -175,3 +182,60 @@ above for the full detail. Not done this lane, still open: the life-skills
 pack (§3 DoD's 5th bucket), `fa-AF`/`fa-IR` split, real-device offline/PWA
 test, Duolingo-grade illustration pass, Tiers 2-4, README/curriculum-map
 refresh. No "ready to use" claim added anywhere.
+
+## 6.5 Amendment E — Sahar gets a (draft) voice (2026-07-11, audio-generation lane)
+
+**Audio-first is now REAL, not just structural — with an honestly flagged
+machine-draft voice, not a real human voice.**
+
+- ✅ **`tools/generate-draft-audio.py`** — new generator (edge-tts, Microsoft
+  Edge neural TTS), idempotent (never overwrites an existing file — a real
+  Mo/Neda recording simply wins by existing at the same path), one-command
+  voice switching (`--voice fa=fa-IR-FaridNeural --force`) for when Mo decides
+  between Dilara / Farid / his own voice (still **pending**; Dilara is today's
+  draft default).
+- ✅ **221 real `.mp3` files generated and committed**, 8.97 MB total (well
+  under the cheap-phone-sane budget; fa+en+de together, no lazy-load split
+  needed) — every one of the 67 Tier-1 cards across all 9 packs (fa+en+de),
+  plus the 10 words in the language-course pack (`fa-AF` + `en`). Verified
+  every file is nonzero on disk; `npm test` re-verified green **123 passed, 0
+  failed** with a stricter honesty gate (below).
+- ✅ **Schema honesty fix** — `audioPending:true` (nothing yet) now correctly
+  flips to `audioDraft:true` + a real `audio.{fa,en,de}` ref once files exist;
+  a card can never declare neither or both. `test/content-validator.test.js`
+  and `test/bootstrap.test.js` now assert the declared `audio.fa` file
+  **actually exists on disk and is nonzero** wherever `audioDraft`/`draft` is
+  claimed — no lying states possible without failing the suite.
+  Pack-level `audioStatus` flips `placeholder` → `draft` once every card in
+  the pack is a draft, and `audioNote` (fa/en/de, all 10 content packs) now
+  explicitly names the accent honestly: **the `fa` voice is Iranian-Persian,
+  not Dari** — flagged, not hidden.
+- ✅ **Playback wired end-to-end** — `audio.js`'s existing recording→TTS→tone
+  fallback chain needed zero logic changes (it already tries `item.audio`
+  first); only the in-app honesty banner text changed, in `app.js` and
+  `bootstrap.js`, fa/en/de, gentle wording: *"this voice is a temporary
+  machine voice for now… a real human voice (Sahar/Neda) is coming"* — never
+  claims the draft is real, never sounds alarming to a caregiver reading it
+  aloud.
+- ✅ **Offline precache updated** — `sw.js` cache bumped `sahar-v7` → `sahar-v8`;
+  install now also fetches `audio/audio-manifest.json` (written by the
+  generator, kept in sync automatically) and precaches every listed audio
+  file, wrapped so a failed/slow audio fetch never breaks the core app-shell
+  install.
+- ✅ **`audio/RECORDING-MANIFEST.md`** — the real ask, made concrete: every one
+  of the 77 Dari lines (67 Tier-1 prompts + 10 language-course words) listed
+  in order with its exact target filename, plus phone-recording instructions
+  (quiet room, m4a→mp3 note, drop-in-place, drafts auto-yield). This is what
+  actually closes the gap — the drafts are the bridge, this file is the ask.
+- ✅ Verified in-browser: served locally, opened cards across multiple packs,
+  confirmed the real `.mp3` reaches the `playing` state (not just TTS/tone),
+  zero console errors, banner text correct fa/en/de, RTL layout intact.
+- ❌ **Still not a real human voice.** No Mo/Neda recording has been made.
+  `fa` is Iranian-Persian, not Dari — an honest compromise, not the real
+  answer, and named as such everywhere the honesty contract requires it.
+- ❌ **Still not real-device tested.** Airplane-mode / installed-PWA
+  verification on an actual phone remains open (unchanged from Amendment A/D).
+- ❌ **No child pilot.** Unchanged — still needed before any "ready" claim.
+- **No "ready to use / deployable" claim is made anywhere as a result of this
+  lane.** Sahar has a voice today; it is not yet the *right* voice, and it has
+  not been tested the way a real learner would encounter it.
