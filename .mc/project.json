@@ -1,0 +1,45 @@
+{
+  "schema": "mc-project/v1",
+  "id": "Sahar",
+  "name": "Sahar",
+  "emoji": "📚",
+  "category": "Growth · Roshana umbrella",
+  "priority": "med",
+  "private": false,
+  "status": "active",
+  "tagline": "Sahar — سحر · a free, offline-first education app for children denied school (literacy/numeracy/science/critical-thinking, Dari/EN/DE, spaced repetition). Scaffold + working prototype, not yet a finished product.",
+  "confidence": "documented",
+  "progress": null,
+  "currentPhase": "p0",
+  "eta": "ongoing — lanes land continuously, no fixed ship date",
+  "gatedOn": "an adult-supervised pilot before any 'ready for real learners' claim (SAHAR-COVERAGE-STATUS.md §3 DoD)",
+  "nextAction": "See SAHAR-COVERAGE-STATUS.md for the live tick-list against SAHAR-COVERAGE.md's §7 baseline — most recent lanes: Tier-1 life-skills pack + real machine-draft audio (honestly flagged), audio-first bootstrap.",
+  "links": {
+    "github": "https://github.com/MohammadaliMasjedi-source/Sahar.git",
+    "dashboard": "index.html",
+    "board": null,
+    "obsidian": null,
+    "docs": "README.md"
+  },
+  "phases": [
+    {
+      "id": "p0",
+      "title": "Scaffold + offline-first prototype",
+      "status": "doing",
+      "subphases": [
+        { "title": "Curriculum + naming + architecture + open-source plan documented", "done": true },
+        { "title": "Working offline-first prototype (Dari/EN/DE, spaced repetition)", "done": true },
+        { "title": "Real, honestly-flagged machine-draft audio", "done": true },
+        { "title": "Adult-supervised pilot with real learners", "done": false }
+      ]
+    }
+  ],
+  "swot": {
+    "strengths": [],
+    "weaknesses": [],
+    "opportunities": [],
+    "threats": []
+  },
+  "decisions": [],
+  "_stub": "auto-stamped 2026-07-11 (WHERE+WHEN wave) — first .mc/project.json for this repo; fill in phases/swot/decisions as the tracker grows"
+}
