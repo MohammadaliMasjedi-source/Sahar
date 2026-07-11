@@ -4,15 +4,19 @@
   "tier": 1,
   "ageBand": "6-7",
   "subject": "numeracy — shapes, sizes, and patterns (see, name, and continue)",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
-    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "شکل‌ها و نقش‌ها",
@@ -30,156 +34,292 @@
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "یک توپ و یک خورشید چه شکلی هستند — گِرد یا چهارگوش؟",
         "en": "A ball and the sun — what shape are they, round or square?",
         "de": "Ein Ball und die Sonne — welche Form haben sie, rund oder viereckig?"
       },
-      "answer": { "fa": "گِرد (دایره). دایره هیچ گوشه‌ای ندارد و همه‌جایش صاف و خمیده است.", "en": "Round (a circle). A circle has no corners and curves all the way around.", "de": "Rund (ein Kreis). Ein Kreis hat keine Ecken und ist rundherum gebogen." },
+      "answer": {
+        "fa": "گِرد (دایره). دایره هیچ گوشه‌ای ندارد و همه‌جایش صاف و خمیده است.",
+        "en": "Round (a circle). A circle has no corners and curves all the way around.",
+        "de": "Rund (ein Kreis). Ein Kreis hat keine Ecken und ist rundherum gebogen."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «توپ و خورشید چه شکلی‌اند، گِرد یا چهارگوش؟ تصویر درست را لمس کن.»",
         "en": "Say to the child: \"What shape are a ball and the sun, round or square? Tap the right picture.\"",
         "de": "Sag zum Kind: „Welche Form haben ein Ball und die Sonne, rund oder viereckig? Tippe auf das richtige Bild.\""
       },
-      "choices": [ { "id": "round", "pic": "circle" }, { "id": "square", "pic": "square" } ],
-      "answerId": "round"
+      "choices": [
+        {
+          "id": "round",
+          "pic": "circle"
+        },
+        {
+          "id": "square",
+          "pic": "square"
+        }
+      ],
+      "answerId": "round",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-1.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-1.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-2",
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "یک چهارگوش (مربع) چند گوشه دارد؟ با انگشت گوشه‌ها را بشمار.",
         "en": "How many corners does a square have? Count the corners with your finger.",
         "de": "Wie viele Ecken hat ein Quadrat? Zähle die Ecken mit dem Finger."
       },
-      "answer": { "fa": "۴ گوشه و ۴ ضلع. یک پنجره یا یک در، بیشتر وقت‌ها چهارگوش‌اند.", "en": "4 corners and 4 sides. A window or a door is often a square or rectangle.", "de": "4 Ecken und 4 Seiten. Ein Fenster oder eine Tür ist oft ein Viereck." },
+      "answer": {
+        "fa": "۴ گوشه و ۴ ضلع. یک پنجره یا یک در، بیشتر وقت‌ها چهارگوش‌اند.",
+        "en": "4 corners and 4 sides. A window or a door is often a square or rectangle.",
+        "de": "4 Ecken und 4 Seiten. Ein Fenster oder eine Tür ist oft ein Viereck."
+      },
       "caregiver": {
         "fa": "با کودک گوشه‌های یک مربع را با انگشت بشمار. بپرس چند تاست و بگذار عدد درست را لمس کند.",
         "en": "Count a square's corners together with your finger. Ask how many there are and let them tap the right number.",
         "de": "Zählt gemeinsam mit dem Finger die Ecken eines Quadrats. Frage, wie viele es sind, und lass die richtige Zahl antippen."
       },
-      "choices": [ { "id": "3", "glyph": "۳" }, { "id": "4", "glyph": "۴" }, { "id": "5", "glyph": "۵" } ],
-      "answerId": "4"
+      "choices": [
+        {
+          "id": "3",
+          "glyph": "۳"
+        },
+        {
+          "id": "4",
+          "glyph": "۴"
+        },
+        {
+          "id": "5",
+          "glyph": "۵"
+        }
+      ],
+      "answerId": "4",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-2.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-2.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-3",
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-letter-shape",
-      "audioPending": true,
       "prompt": {
         "fa": "یک مثلث چند ضلع دارد؟ به شکل یک سقفِ خانه فکر کن.",
         "en": "How many sides does a triangle have? Think of the shape of a house roof.",
         "de": "Wie viele Seiten hat ein Dreieck? Denk an die Form eines Hausdachs."
       },
-      "answer": { "fa": "۳ ضلع و ۳ گوشه. «مثلث» یعنی سه‌گوشه.", "en": "3 sides and 3 corners. \"Triangle\" means three corners.", "de": "3 Seiten und 3 Ecken. „Dreieck\" bedeutet drei Ecken." },
+      "answer": {
+        "fa": "۳ ضلع و ۳ گوشه. «مثلث» یعنی سه‌گوشه.",
+        "en": "3 sides and 3 corners. \"Triangle\" means three corners.",
+        "de": "3 Seiten und 3 Ecken. „Dreieck\" bedeutet drei Ecken."
+      },
       "caregiver": {
         "fa": "به کودک شکل یک سقف خانه یا مثلث را نشان بده و ضلع‌هایش را بشمارید. بگذار عدد درست را لمس کند.",
         "en": "Show the child a roof shape or a triangle and count its sides together. Let them tap the right number.",
         "de": "Zeig dem Kind ein Dach oder ein Dreieck und zählt gemeinsam die Seiten. Lass es die richtige Zahl antippen."
       },
-      "choices": [ { "id": "2", "glyph": "۲" }, { "id": "3", "glyph": "۳" }, { "id": "4", "glyph": "۴" } ],
-      "answerId": "3"
+      "choices": [
+        {
+          "id": "2",
+          "glyph": "۲"
+        },
+        {
+          "id": "3",
+          "glyph": "۳"
+        },
+        {
+          "id": "4",
+          "glyph": "۴"
+        }
+      ],
+      "answerId": "3",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-3.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-3.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-4",
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "کدام بزرگ‌تر است: یک دایره‌ی کوچک یا یک دایره‌ی بزرگ؟ شکل‌ها می‌توانند اندازه‌های گوناگون داشته باشند.",
         "en": "Which is bigger: a small circle or a big circle? Shapes can come in different sizes.",
         "de": "Was ist größer: ein kleiner Kreis oder ein großer Kreis? Formen können verschiedene Größen haben."
       },
-      "answer": { "fa": "دایره‌ی بزرگ بزرگ‌تر است — اما هر دو باز هم دایره‌اند. اندازه فرق می‌کند، ولی شکل همان دایره می‌ماند.", "en": "The big circle is bigger — but both are still circles. The size is different, yet the shape stays a circle.", "de": "Der große Kreis ist größer — aber beide sind Kreise. Die Größe ist anders, die Form bleibt ein Kreis." },
+      "answer": {
+        "fa": "دایره‌ی بزرگ بزرگ‌تر است — اما هر دو باز هم دایره‌اند. اندازه فرق می‌کند، ولی شکل همان دایره می‌ماند.",
+        "en": "The big circle is bigger — but both are still circles. The size is different, yet the shape stays a circle.",
+        "de": "Der große Kreis ist größer — aber beide sind Kreise. Die Größe ist anders, die Form bleibt ein Kreis."
+      },
       "caregiver": {
         "fa": "به کودک بگو: «کدام دایره بزرگ‌تر است؟ آن را لمس کن.» و توضیح بده هر دو باز هم دایره‌اند.",
         "en": "Say to the child: \"Which circle is bigger? Tap it.\" Then explain that both are still circles, just different sizes.",
         "de": "Sag zum Kind: „Welcher Kreis ist größer? Tippe ihn an.\" Erkläre dann, dass beide Kreise sind, nur unterschiedlich groß."
       },
-      "choices": [ { "id": "small", "pic": "circle", "size": "small" }, { "id": "big", "pic": "circle", "size": "big" } ],
-      "answerId": "big"
+      "choices": [
+        {
+          "id": "small",
+          "pic": "circle",
+          "size": "small"
+        },
+        {
+          "id": "big",
+          "pic": "circle",
+          "size": "big"
+        }
+      ],
+      "answerId": "big",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-4.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-4.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-4.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-5",
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "این نقش را ادامه بده: گِرد، چهارگوش، گِرد، چهارگوش، … بعدش چه می‌آید؟",
         "en": "Continue this pattern: circle, square, circle, square, … what comes next?",
         "de": "Setze dieses Muster fort: Kreis, Viereck, Kreis, Viereck, … was kommt als Nächstes?"
       },
-      "answer": { "fa": "گِرد (دایره). نقش تکرار می‌شود: گِرد و چهارگوش، دوباره و دوباره.", "en": "Circle. The pattern repeats: circle and square, again and again.", "de": "Kreis. Das Muster wiederholt sich: Kreis und Viereck, immer wieder." },
+      "answer": {
+        "fa": "گِرد (دایره). نقش تکرار می‌شود: گِرد و چهارگوش، دوباره و دوباره.",
+        "en": "Circle. The pattern repeats: circle and square, again and again.",
+        "de": "Kreis. Das Muster wiederholt sich: Kreis und Viereck, immer wieder."
+      },
       "caregiver": {
         "fa": "با کودک نقش را بگو: «گِرد، چهارگوش، گِرد، چهارگوش...» و بپرس بعدش چیست. بگذار تصویر درست را لمس کند.",
         "en": "Say the pattern with the child: \"circle, square, circle, square...\" and ask what's next. Let them tap the right picture.",
         "de": "Sag das Muster mit dem Kind auf: „Kreis, Viereck, Kreis, Viereck...\" und frage, was als Nächstes kommt. Lass es das richtige Bild antippen."
       },
-      "choices": [ { "id": "circle", "pic": "circle" }, { "id": "square", "pic": "square" } ],
-      "answerId": "circle"
+      "choices": [
+        {
+          "id": "circle",
+          "pic": "circle"
+        },
+        {
+          "id": "square",
+          "pic": "square"
+        }
+      ],
+      "answerId": "circle",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-5.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-5.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-5.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-6",
       "type": "shapes",
       "box": 1,
       "interaction": "tap-the-picture",
-      "audioPending": true,
       "prompt": {
         "fa": "این نقش رنگی را ادامه بده: قرمز، قرمز، آبی، قرمز، قرمز، آبی، … بعدش چه می‌آید؟",
         "en": "Continue this colour pattern: red, red, blue, red, red, blue, … what comes next?",
         "de": "Setze dieses Farbmuster fort: rot, rot, blau, rot, rot, blau, … was kommt als Nächstes?"
       },
-      "answer": { "fa": "قرمز، بعد دوباره قرمز، بعد آبی. اول خوب نگاه کن ببین چه چیزی تکرار می‌شود — این راز نقش‌هاست.", "en": "Red, then red again, then blue. Look carefully to see what repeats — that is the secret of patterns.", "de": "Rot, dann wieder rot, dann blau. Schau genau, was sich wiederholt — das ist das Geheimnis der Muster." },
+      "answer": {
+        "fa": "قرمز، بعد دوباره قرمز، بعد آبی. اول خوب نگاه کن ببین چه چیزی تکرار می‌شود — این راز نقش‌هاست.",
+        "en": "Red, then red again, then blue. Look carefully to see what repeats — that is the secret of patterns.",
+        "de": "Rot, dann wieder rot, dann blau. Schau genau, was sich wiederholt — das ist das Geheimnis der Muster."
+      },
       "caregiver": {
         "fa": "با کودک رنگ‌ها را بگو: «قرمز، قرمز، آبی...» و بپرس بعدش چه رنگی می‌آید. بگذار رنگ درست را لمس کند.",
         "en": "Say the colours with the child: \"red, red, blue...\" and ask what colour comes next. Let them tap the right colour.",
         "de": "Sag die Farben mit dem Kind auf: „rot, rot, blau...\" und frage, welche Farbe als Nächstes kommt. Lass es die richtige Farbe antippen."
       },
-      "choices": [ { "id": "red", "pic": "swatch-red" }, { "id": "blue", "pic": "swatch-blue" } ],
-      "answerId": "red"
+      "choices": [
+        {
+          "id": "red",
+          "pic": "swatch-red"
+        },
+        {
+          "id": "blue",
+          "pic": "swatch-blue"
+        }
+      ],
+      "answerId": "red",
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-6.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-6.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-6.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-7",
       "type": "shapes",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "دور و برت را نگاه کن. یک چیزِ گِرد و یک چیزِ چهارگوش پیدا کن. چه چیزهایی دیدی؟",
         "en": "Look around you. Find one round thing and one square thing. What did you find?",
         "de": "Schau dich um. Finde etwas Rundes und etwas Viereckiges. Was hast du gefunden?"
       },
-      "answer": { "fa": "آفرین که نگاه کردی! شاید یک بشقاب گِرد و یک کتابِ چهارگوش دیدی. شکل‌ها همه‌جا هستند اگر خوب نگاه کنیم.", "en": "Well done for looking! Maybe you found a round plate and a square book. Shapes are everywhere when we look closely.", "de": "Gut gemacht, dass du geschaut hast! Vielleicht ein runder Teller und ein viereckiges Buch. Formen sind überall, wenn wir genau hinschauen." },
+      "answer": {
+        "fa": "آفرین که نگاه کردی! شاید یک بشقاب گِرد و یک کتابِ چهارگوش دیدی. شکل‌ها همه‌جا هستند اگر خوب نگاه کنیم.",
+        "en": "Well done for looking! Maybe you found a round plate and a square book. Shapes are everywhere when we look closely.",
+        "de": "Gut gemacht, dass du geschaut hast! Vielleicht ein runder Teller und ein viereckiges Buch. Formen sind überall, wenn wir genau hinschauen."
+      },
       "caregiver": {
         "fa": "با کودک دور و برتان را نگاه کنید و یک چیز گِرد و یک چیز چهارگوش پیدا کنید. بگذار بلند بگوید چه دید، بعد دکمهٔ «گفتم!» را لمس کند.",
         "en": "Look around together and find one round thing and one square thing. Let the child say out loud what they found, then tap \"I said it!\"",
         "de": "Schaut euch gemeinsam um und findet etwas Rundes und etwas Viereckiges. Lass das Kind laut sagen, was es gefunden hat, dann auf „Ich hab's gesagt!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-7.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-7.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-7.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "sp-8",
       "type": "shapes",
       "box": 1,
       "interaction": "repeat-aloud",
-      "audioPending": true,
       "prompt": {
         "fa": "حالا نوبت توست! یک نقش کوچک خودت بساز: مثلاً دست‌ زدن، پا کوبیدن، دست‌ زدن، پا کوبیدن، … آن را انجام بده.",
         "en": "Now it is your turn! Make your own little pattern: for example clap, stomp, clap, stomp, … do it out loud.",
         "de": "Jetzt bist du dran! Erfinde dein eigenes kleines Muster: zum Beispiel klatschen, stampfen, klatschen, stampfen, … mach es laut."
       },
-      "answer": { "fa": "عالی بود! نقشی که تکرار شود، یک الگوست. تو الان یک الگو ساختی — درست مثل یک ریاضی‌دانِ کوچک.", "en": "That was great! A thing that repeats is a pattern. You just made one — just like a little mathematician.", "de": "Das war toll! Etwas, das sich wiederholt, ist ein Muster. Du hast gerade eines gemacht — wie eine kleine Mathematikerin." },
+      "answer": {
+        "fa": "عالی بود! نقشی که تکرار شود، یک الگوست. تو الان یک الگو ساختی — درست مثل یک ریاضی‌دانِ کوچک.",
+        "en": "That was great! A thing that repeats is a pattern. You just made one — just like a little mathematician.",
+        "de": "Das war toll! Etwas, das sich wiederholt, ist ein Muster. Du hast gerade eines gemacht — wie eine kleine Mathematikerin."
+      },
       "caregiver": {
         "fa": "با کودک یک نقش بسازید (مثلاً دست‌زدن، پا کوبیدن) و بگذار آن را انجام دهد. بعد دکمهٔ «انجام دادم!» را لمس کند.",
         "en": "Make a pattern together (e.g. clap, stomp) and let the child perform it. Then tap \"I did it!\"",
         "de": "Erfindet gemeinsam ein Muster (z. B. klatschen, stampfen) und lass das Kind es vorführen. Dann auf „Ich hab's gemacht!\" tippen."
-      }
+      },
+      "audio": {
+        "fa": "audio/t1.numeracy.shapes-patterns.sp-8.fa.mp3",
+        "en": "audio/t1.numeracy.shapes-patterns.sp-8.en.mp3",
+        "de": "audio/t1.numeracy.shapes-patterns.sp-8.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }

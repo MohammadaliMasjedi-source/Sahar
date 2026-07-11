@@ -7,15 +7,19 @@
   "subject": "language-course — first English words, taught through Dari (audio-first, pre-literacy)",
   "l1": "fa-AF",
   "l2": "en",
-  "lang": ["fa", "en", "de"],
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content. Pictures are inline SVG (no external assets).",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "صداها هنوز واقعی نیستند. به‌جای صدای ضبط‌شده، صدای ساختگی مرورگر پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
-    "en": "Audio is NOT real yet. Instead of recorded voice, the browser's synthetic speech (or a placeholder tone) plays. Real native-speaker recordings — ideally Mo's or Neda's voice — come later.",
-    "de": "Audio ist noch NICHT echt. Statt einer Aufnahme spielt die synthetische Stimme des Browsers (oder ein Platzhalter-Ton). Echte muttersprachliche Aufnahmen folgen später."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "اولین کلمه‌های انگلیسی",
@@ -36,8 +40,16 @@
     {
       "id": "w-water",
       "pic": "water",
-      "l1": { "text": "آب", "translit": "aab", "audio": "audio/fa-AF/water.mp3" },
-      "l2": { "text": "water", "translit": "waa-ter", "audio": "audio/en/water.mp3" },
+      "l1": {
+        "text": "آب",
+        "translit": "aab",
+        "audio": "audio/fa-AF/water.mp3"
+      },
+      "l2": {
+        "text": "water",
+        "translit": "waa-ter",
+        "audio": "audio/en/water.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این آب است. به انگلیسی می‌شود water.»",
         "en": "Say to the child: \"This is water. In English it is water.\"",
@@ -47,8 +59,16 @@
     {
       "id": "w-sun",
       "pic": "sun",
-      "l1": { "text": "آفتاب", "translit": "aaftaab", "audio": "audio/fa-AF/sun.mp3" },
-      "l2": { "text": "sun", "translit": "san", "audio": "audio/en/sun.mp3" },
+      "l1": {
+        "text": "آفتاب",
+        "translit": "aaftaab",
+        "audio": "audio/fa-AF/sun.mp3"
+      },
+      "l2": {
+        "text": "sun",
+        "translit": "san",
+        "audio": "audio/en/sun.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این آفتاب است. به انگلیسی می‌شود sun.»",
         "en": "Say to the child: \"This is the sun. In English it is sun.\"",
@@ -58,8 +78,16 @@
     {
       "id": "w-bird",
       "pic": "bird",
-      "l1": { "text": "پرنده", "translit": "parinda", "audio": "audio/fa-AF/bird.mp3" },
-      "l2": { "text": "bird", "translit": "berd", "audio": "audio/en/bird.mp3" },
+      "l1": {
+        "text": "پرنده",
+        "translit": "parinda",
+        "audio": "audio/fa-AF/bird.mp3"
+      },
+      "l2": {
+        "text": "bird",
+        "translit": "berd",
+        "audio": "audio/en/bird.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این پرنده است. به انگلیسی می‌شود bird.»",
         "en": "Say to the child: \"This is a bird. In English it is bird.\"",
@@ -69,8 +97,16 @@
     {
       "id": "w-tree",
       "pic": "tree",
-      "l1": { "text": "درخت", "translit": "derakht", "audio": "audio/fa-AF/tree.mp3" },
-      "l2": { "text": "tree", "translit": "tree", "audio": "audio/en/tree.mp3" },
+      "l1": {
+        "text": "درخت",
+        "translit": "derakht",
+        "audio": "audio/fa-AF/tree.mp3"
+      },
+      "l2": {
+        "text": "tree",
+        "translit": "tree",
+        "audio": "audio/en/tree.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این درخت است. به انگلیسی می‌شود tree.»",
         "en": "Say to the child: \"This is a tree. In English it is tree.\"",
@@ -80,8 +116,16 @@
     {
       "id": "w-house",
       "pic": "house",
-      "l1": { "text": "خانه", "translit": "khaana", "audio": "audio/fa-AF/house.mp3" },
-      "l2": { "text": "house", "translit": "haus", "audio": "audio/en/house.mp3" },
+      "l1": {
+        "text": "خانه",
+        "translit": "khaana",
+        "audio": "audio/fa-AF/house.mp3"
+      },
+      "l2": {
+        "text": "house",
+        "translit": "haus",
+        "audio": "audio/en/house.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این خانه است. به انگلیسی می‌شود house.»",
         "en": "Say to the child: \"This is a house. In English it is house.\"",
@@ -91,8 +135,16 @@
     {
       "id": "w-cat",
       "pic": "cat",
-      "l1": { "text": "پشک", "translit": "pishak", "audio": "audio/fa-AF/cat.mp3" },
-      "l2": { "text": "cat", "translit": "kat", "audio": "audio/en/cat.mp3" },
+      "l1": {
+        "text": "پشک",
+        "translit": "pishak",
+        "audio": "audio/fa-AF/cat.mp3"
+      },
+      "l2": {
+        "text": "cat",
+        "translit": "kat",
+        "audio": "audio/en/cat.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این پشک است. به انگلیسی می‌شود cat.»",
         "en": "Say to the child: \"This is a cat. In English it is cat.\"",
@@ -102,8 +154,16 @@
     {
       "id": "w-hand",
       "pic": "hand",
-      "l1": { "text": "دست", "translit": "dast", "audio": "audio/fa-AF/hand.mp3" },
-      "l2": { "text": "hand", "translit": "hand", "audio": "audio/en/hand.mp3" },
+      "l1": {
+        "text": "دست",
+        "translit": "dast",
+        "audio": "audio/fa-AF/hand.mp3"
+      },
+      "l2": {
+        "text": "hand",
+        "translit": "hand",
+        "audio": "audio/en/hand.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این دست است. به انگلیسی می‌شود hand.»",
         "en": "Say to the child: \"This is a hand. In English it is hand.\"",
@@ -113,8 +173,16 @@
     {
       "id": "w-moon",
       "pic": "moon",
-      "l1": { "text": "مهتاب", "translit": "mahtaab", "audio": "audio/fa-AF/moon.mp3" },
-      "l2": { "text": "moon", "translit": "moon", "audio": "audio/en/moon.mp3" },
+      "l1": {
+        "text": "مهتاب",
+        "translit": "mahtaab",
+        "audio": "audio/fa-AF/moon.mp3"
+      },
+      "l2": {
+        "text": "moon",
+        "translit": "moon",
+        "audio": "audio/en/moon.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این مهتاب است. به انگلیسی می‌شود moon.»",
         "en": "Say to the child: \"This is the moon. In English it is moon.\"",
@@ -124,8 +192,16 @@
     {
       "id": "w-fish",
       "pic": "fish",
-      "l1": { "text": "ماهی", "translit": "maahi", "audio": "audio/fa-AF/fish.mp3" },
-      "l2": { "text": "fish", "translit": "fish", "audio": "audio/en/fish.mp3" },
+      "l1": {
+        "text": "ماهی",
+        "translit": "maahi",
+        "audio": "audio/fa-AF/fish.mp3"
+      },
+      "l2": {
+        "text": "fish",
+        "translit": "fish",
+        "audio": "audio/en/fish.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این ماهی است. به انگلیسی می‌شود fish.»",
         "en": "Say to the child: \"This is a fish. In English it is fish.\"",
@@ -135,8 +211,16 @@
     {
       "id": "w-star",
       "pic": "star",
-      "l1": { "text": "ستاره", "translit": "sitaara", "audio": "audio/fa-AF/star.mp3" },
-      "l2": { "text": "star", "translit": "staar", "audio": "audio/en/star.mp3" },
+      "l1": {
+        "text": "ستاره",
+        "translit": "sitaara",
+        "audio": "audio/fa-AF/star.mp3"
+      },
+      "l2": {
+        "text": "star",
+        "translit": "staar",
+        "audio": "audio/en/star.mp3"
+      },
       "caregiver": {
         "fa": "به کودک بگو: «این ستاره است. به انگلیسی می‌شود star.»",
         "en": "Say to the child: \"This is a star. In English it is star.\"",
