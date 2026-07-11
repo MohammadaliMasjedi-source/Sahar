@@ -43,9 +43,11 @@ const CONTENT_DIR = path.join(__dirname, '..', 'content');
 const PACK_FILES = [
   'tier1-demo.json',
   't1-literacy-first-letters.json',
+  't1-literacy-first-words.json',
   't1-numeracy-counting-0-20.json',
   't1-numeracy-shapes-patterns.json',
   't1-science-living-things.json',
+  't1-science-day-and-night.json',
   't1-thinking-what-is-a-question.json',
   't1-thinking-fact-vs-guess.json'
 ];
