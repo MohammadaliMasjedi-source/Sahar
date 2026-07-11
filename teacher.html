@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sahar — For Teachers &amp; Caregivers</title>
+  <meta name="description" content="One printable page: what each Sahar Tier-1 pack teaches, in Dari, English, and German.">
+  <meta name="theme-color" content="#f4a259">
+  <style>
+    /* Vanilla, self-contained, print-friendly. No dependency on styles.css so
+       this page still prints cleanly even opened stand-alone (e.g. mailed as
+       a single file to a caregiver with no internet). */
+    :root {
+      --ink: #1c1430; --paper: #fff6ea; --amber: #f4a259; --gold: #ffd89b;
+      --line: #e7dcc9; --muted: #6b5f52;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink);
+      font-family: "Vazirmatn", "Segoe UI", system-ui, -apple-system, sans-serif; }
+    .wrap { max-width: 820px; margin-inline: auto; padding: 28px 20px 60px; }
+    header { border-bottom: 3px solid var(--amber); padding-block-end: 14px; margin-block-end: 18px; }
+    header h1 { margin: 0 0 4px; font-size: 1.6rem; }
+    header p { margin: 0; color: var(--muted); }
+    .honest {
+      background: linear-gradient(180deg, var(--gold), var(--amber));
+      border-radius: 12px; padding: 10px 14px; font-size: .88rem; margin-block-end: 22px;
+      font-weight: 600;
+    }
+    .pack { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-block-end: 16px; break-inside: avoid; }
+    .pack h2 { margin: 0 0 2px; font-size: 1.15rem; }
+    .pack .meta { font-size: .8rem; color: var(--muted); margin: 0 0 10px; }
+    .lang-row { display: grid; grid-template-columns: 46px 1fr; gap: 10px; margin-block-end: 6px; align-items: baseline; }
+    .lang-tag { font-weight: 700; font-size: .78rem; color: var(--muted); }
+    .lang-row p { margin: 0; line-height: 1.55; }
+    [lang="fa"] { direction: rtl; font-size: 1.02rem; }
+    footer { margin-block-start: 28px; font-size: .8rem; color: var(--muted); text-align: center; }
+    a { color: #a9631f; }
+    @media print {
+      body { background: #fff; }
+      .pack { border-color: #ccc; }
+      a[href]::after { content: ""; } /* don't print raw URLs */
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Sahar — For Teachers &amp; Caregivers / برای آموزگاران و بزرگ‌ترها / Für Lehrkräfte &amp; Betreuende</h1>
+    <p>What each Tier-1 (ages 6–7) pack teaches — one page, printable, no internet needed after printing.</p>
+  </header>
+
+  <p class="honest">
+    HONEST NOTE: Sahar is a prototype, not yet ready for real learners without an
+    adult present. Every lesson today is <strong>audio-first</strong> — the child
+    listens and taps, never required to read. Where a device cannot play real
+    recorded speech yet, this page is the fallback: <strong>read the caregiver
+    line below out loud to the child.</strong> یادداشت صادقانه: سحر هنوز یک نمونهٔ
+    اولیه است. اگر صدا پخش نشد، همین برگه را برای کودک بلند بخوانید.
+    Ehrliche Notiz: Sahar ist ein Prototyp — lesen Sie im Zweifel diese Seite
+    dem Kind laut vor.
+  </p>
+
+  <div id="packs"></div>
+
+  <footer>
+    Sahar (سحر) = dawn. Free, offline-first, for out-of-school children —
+    Afghan girls first. No ideology, no politics — just curiosity and care.
+  </footer>
+</div>
+
+<script>
+/* Vanilla, no build step: fetch each pack's own title/subject/intro (already
+ * translated fa/en/de) and render one printable card per pack. Falls back to
+ * a plain message if opened via file:// where fetch of local JSON is blocked
+ * by the browser — the static HTML above still explains the honest fallback. */
+const PACKS = [
+  './content/t1-literacy-first-letters.json',
+  './content/t1-numeracy-counting-0-20.json',
+  './content/t1-numeracy-shapes-patterns.json',
+  './content/t1-science-living-things.json',
+  './content/t1-thinking-what-is-a-question.json',
+  './content/t1-thinking-fact-vs-guess.json',
+  './content/tier1-demo.json'
+];
+
+function packCard(pack) {
+  const el = document.createElement('div');
+  el.className = 'pack';
+  el.innerHTML = `
+    <h2>${pack.title.en} <span lang="fa">/ ${pack.title.fa}</span> / ${pack.title.de}</h2>
+    <p class="meta">Tier ${pack.tier} · ages ${pack.ageBand} · ${pack.subject}</p>
+    <div class="lang-row"><span class="lang-tag">EN</span><p>${pack.intro.en}</p></div>
+    <div class="lang-row"><span class="lang-tag">FA</span><p lang="fa">${pack.intro.fa}</p></div>
+    <div class="lang-row"><span class="lang-tag">DE</span><p>${pack.intro.de}</p></div>
+  `;
+  return el;
+}
+
+async function boot() {
+  const host = document.getElementById('packs');
+  for (const path of PACKS) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error('fetch failed');
+      const pack = await res.json();
+      host.appendChild(packCard(pack));
+    } catch (err) {
+      const p = document.createElement('p');
+      p.className = 'meta';
+      p.textContent = 'Could not load ' + path + ' (open this page over http:// — e.g. via the same local server as index.html — not file://).';
+      host.appendChild(p);
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>
