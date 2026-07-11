@@ -49,7 +49,8 @@ const PACK_FILES = [
   't1-science-living-things.json',
   't1-science-day-and-night.json',
   't1-thinking-what-is-a-question.json',
-  't1-thinking-fact-vs-guess.json'
+  't1-thinking-fact-vs-guess.json',
+  't1-life-healthy-and-safe.json'
 ];
 
 function nonEmpty(dict, lang, label) {

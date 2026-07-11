@@ -1,0 +1,250 @@
+{
+  "packId": "t1.life.healthy-and-safe",
+  "version": "1.0.0",
+  "tier": 1,
+  "ageBand": "6-7",
+  "subject": "life — health, safety, and naming our feelings (staying well, staying safe)",
+  "lang": [
+    "fa",
+    "en",
+    "de"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "این نمونه هنوز صدایی ندارد؛ صدا به‌زودی اضافه می‌شود.",
+    "en": "This pack has no audio yet; audio is coming soon.",
+    "de": "Dieses Paket hat noch keine Audiodateien; Audio folgt bald."
+  },
+  "title": {
+    "fa": "سالم و ایمن",
+    "en": "Healthy and Safe",
+    "de": "Gesund und sicher"
+  },
+  "intro": {
+    "fa": "بدن ما را دوست داریم و از آن مراقبت می‌کنیم. بیا با هم گوش کنیم و لمس کنیم — چه چیزهایی ما را سالم و ایمن نگه می‌دارند؟",
+    "en": "We love and take care of our bodies. Let's listen and tap together — what keeps us healthy and safe?",
+    "de": "Wir lieben unseren Körper und kümmern uns um ihn. Lass uns gemeinsam hören und tippen — was hält uns gesund und sicher?"
+  },
+  "cards": [
+    {
+      "id": "hs-1",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "قبل از غذا خوردن، آیا باید دست‌هایمان را بشوییم — بله یا نه؟",
+        "en": "Before we eat, should we wash our hands — yes or no?",
+        "de": "Sollen wir vor dem Essen unsere Hände waschen — ja oder nein?"
+      },
+      "answer": {
+        "fa": "بله! شستن دست‌ها پیش از غذا خوردن، ما را سالم نگه می‌دارد.",
+        "en": "Yes! Washing our hands before we eat keeps us healthy.",
+        "de": "Ja! Händewaschen vor dem Essen hält uns gesund."
+      },
+      "caregiver": {
+        "fa": "بپرس: «آیا پیش از غذا خوردن باید دست‌ها را شست، بله یا نه؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Should we wash our hands before we eat — yes or no?\" Let them tap the right picture.",
+        "de": "Frag: „Sollen wir vor dem Essen die Hände waschen — ja oder nein?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "yes", "pic": "check-mark" },
+        { "id": "no", "pic": "cross-mark" }
+      ],
+      "answerId": "yes",
+      "audioPending": true
+    },
+    {
+      "id": "hs-2",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "برای شستن خوبِ دست‌ها، همراه با آب از چه چیزی کمک می‌گیریم: صابون یا سنگ؟",
+        "en": "To wash our hands well, along with water, what do we use: soap, or a stone?",
+        "de": "Um unsere Hände gut zu waschen, benutzen wir zusammen mit Wasser: Seife oder einen Stein?"
+      },
+      "answer": {
+        "fa": "صابون! صابون به آب کمک می‌کند تا کثیفی و میکروب‌ها را از دست‌هایمان پاک کند.",
+        "en": "Soap! Soap helps the water clean dirt and germs off our hands.",
+        "de": "Seife! Seife hilft dem Wasser, Schmutz und Keime von unseren Händen zu waschen."
+      },
+      "caregiver": {
+        "fa": "بپرس: «همراه با آب، از چه چیزی برای شستن دست کمک می‌گیریم، صابون یا سنگ؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Along with water, what helps us wash our hands, soap or a stone?\" Let them tap the right picture.",
+        "de": "Frag: „Was hilft uns zusammen mit Wasser beim Händewaschen, Seife oder ein Stein?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "soap", "pic": "soap" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "soap",
+      "audioPending": true
+    },
+    {
+      "id": "hs-3",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "کدام آب برای نوشیدن امن است: آب پاک، یا آب کثیف؟",
+        "en": "Which water is safe to drink: clean water, or dirty water?",
+        "de": "Welches Wasser ist zum Trinken sicher: sauberes Wasser oder schmutziges Wasser?"
+      },
+      "answer": {
+        "fa": "آب پاک! نوشیدن آب پاک ما را سالم نگه می‌دارد، آب کثیف می‌تواند ما را مریض کند.",
+        "en": "Clean water! Drinking clean water keeps us healthy; dirty water can make us sick.",
+        "de": "Sauberes Wasser! Sauberes Wasser zu trinken hält uns gesund; schmutziges Wasser kann uns krank machen."
+      },
+      "caregiver": {
+        "fa": "بپرس: «کدام آب برای نوشیدن امن است، آب پاک یا آب کثیف؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Which water is safe to drink, clean water or dirty water?\" Let them tap the right picture.",
+        "de": "Frag: „Welches Wasser ist sicher zu trinken, sauberes oder schmutziges Wasser?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "water", "pic": "water" },
+        { "id": "muddy-water", "pic": "muddy-water" }
+      ],
+      "answerId": "water",
+      "audioPending": true
+    },
+    {
+      "id": "hs-4",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "دندان‌هایمان را هر روز با چه چیزی تمیز می‌کنیم: مسواک، یا سنگ؟",
+        "en": "What do we use to clean our teeth every day: a toothbrush, or a stone?",
+        "de": "Womit putzen wir jeden Tag unsere Zähne: mit einer Zahnbürste, oder mit einem Stein?"
+      },
+      "answer": {
+        "fa": "مسواک! تمیز کردن دندان‌ها با مسواک هر روز، آن‌ها را سالم نگه می‌دارد.",
+        "en": "A toothbrush! Cleaning our teeth with a toothbrush every day keeps them healthy.",
+        "de": "Eine Zahnbürste! Die Zähne jeden Tag mit einer Zahnbürste zu putzen hält sie gesund."
+      },
+      "caregiver": {
+        "fa": "بپرس: «دندان‌ها را با چه چیزی تمیز می‌کنیم، مسواک یا سنگ؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"What do we clean our teeth with, a toothbrush or a stone?\" Let them tap the right picture.",
+        "de": "Frag: „Womit putzen wir unsere Zähne, mit einer Zahnbürste oder einem Stein?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "toothbrush", "pic": "toothbrush" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "toothbrush",
+      "audioPending": true
+    },
+    {
+      "id": "hs-5",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "match",
+      "prompt": {
+        "fa": "بیا جفت کنیم: کدام برای بازیِ روز است، و کدام برای خوابِ شب؟",
+        "en": "Let's match: which is for daytime play, and which is for nighttime sleep?",
+        "de": "Lass uns zuordnen: Was gehört zum Spielen am Tag, was zum Schlafen in der Nacht?"
+      },
+      "answer": {
+        "fa": "توپ برای بازی است، بستر برای خواب. بدن ما هر شب به خواب نیاز دارد تا سالم بماند.",
+        "en": "The ball is for playing, the bed is for sleeping. Our body needs sleep every night to stay healthy.",
+        "de": "Der Ball ist zum Spielen da, das Bett zum Schlafen. Unser Körper braucht jede Nacht Schlaf, um gesund zu bleiben."
+      },
+      "caregiver": {
+        "fa": "بگو «بازی» و بگذار تصویر درست را لمس کند؛ بعد بگو «خواب» و دوباره لمس کند.",
+        "en": "Say \"play\" and let the child tap the right picture; then say \"sleep\" and tap again.",
+        "de": "Sag „Spielen\" und lass das Kind das richtige Bild antippen; sag dann „Schlafen\" und wieder antippen."
+      },
+      "rounds": [
+        {
+          "choices": [
+            { "id": "ball", "pic": "ball" },
+            { "id": "bed", "pic": "bed" }
+          ],
+          "answerId": "ball"
+        },
+        {
+          "choices": [
+            { "id": "bed", "pic": "bed" },
+            { "id": "ball", "pic": "ball" }
+          ],
+          "answerId": "bed"
+        }
+      ],
+      "audioPending": true
+    },
+    {
+      "id": "hs-6",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "لمس کن: کدام صورت خوشحال است؟",
+        "en": "Tap: which face is happy?",
+        "de": "Tippe: welches Gesicht ist glücklich?"
+      },
+      "answer": {
+        "fa": "این صورتِ خوشحال است! خوب است که بدانیم چه زمانی خوشحالیم.",
+        "en": "This is the happy face! It's good to know when we feel happy.",
+        "de": "Das ist das glückliche Gesicht! Es ist gut zu wissen, wann wir uns glücklich fühlen."
+      },
+      "caregiver": {
+        "fa": "بپرس: «کدام صورت خوشحال است؟» بگذار تصویر درست را لمس کند.",
+        "en": "Ask: \"Which face is happy?\" Let them tap the right picture.",
+        "de": "Frag: „Welches Gesicht ist glücklich?\" Lass es das richtige Bild antippen."
+      },
+      "choices": [
+        { "id": "happy-face", "pic": "happy-face" },
+        { "id": "sad-face", "pic": "sad-face" }
+      ],
+      "answerId": "happy-face",
+      "audioPending": true
+    },
+    {
+      "id": "hs-7",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "الان چه احساسی داری — خوشحال، غمگین، یا یک احساس دیگر؟ بلند بگو.",
+        "en": "How do you feel right now — happy, sad, or something else? Say it out loud.",
+        "de": "Wie fühlst du dich gerade — glücklich, traurig, oder anders? Sag es laut."
+      },
+      "answer": {
+        "fa": "آفرین که گفتی! گفتنِ احساس‌مان کار خوبی است — همه‌ی احساس‌ها طبیعی‌اند.",
+        "en": "Well done for saying it! Naming our feelings is a good thing to do — all feelings are okay.",
+        "de": "Gut gemacht, dass du es gesagt hast! Unsere Gefühle zu benennen ist gut so — alle Gefühle sind in Ordnung."
+      },
+      "caregiver": {
+        "fa": "از کودک بپرس الان چه احساسی دارد و بگذار بلند بگوید. بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Ask the child how they feel right now and let them say it out loud. Then tap \"I said it!\"",
+        "de": "Frag das Kind, wie es sich gerade fühlt, und lass es das laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
+      },
+      "audioPending": true
+    },
+    {
+      "id": "hs-8",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "اگر یک وقت ترسیدی، درد داشتی، یا احساس ناامنی کردی، به کدام بزرگ‌ترِ مورد اعتمادت می‌توانی کمک بخواهی؟ نامش را بلند بگو.",
+        "en": "If you ever feel scared, hurt, or unsafe, who is a grown-up you trust that you can ask for help? Say their name out loud.",
+        "de": "Wenn du dich einmal ängstlich, verletzt oder unsicher fühlst — welchem Erwachsenen, dem du vertraust, kannst du um Hilfe bitten? Sag den Namen laut."
+      },
+      "answer": {
+        "fa": "آفرین! داشتن یک بزرگ‌تر مورد اعتماد — مثل مادر، پدر، یا هر بزرگ‌ترِ مهربان دیگر — که بتوانیم از او کمک بخواهیم، ما را ایمن نگه می‌دارد.",
+        "en": "Well done! Having a trusted grown-up — like a mother, father, or any other caring adult — we can ask for help keeps us safe.",
+        "de": "Gut gemacht! Einen vertrauten Erwachsenen zu haben — wie Mutter, Vater oder eine andere liebevolle Bezugsperson —, den wir um Hilfe bitten können, hält uns sicher."
+      },
+      "caregiver": {
+        "fa": "از کودک بپرس چه کسی بزرگ‌ترِ مورد اعتماد اوست (مثلاً مادر، پدر، خاله، یا هر بزرگ‌ترِ مهربان در خانواده) و بگذار نامش را بلند بگوید. بعد دکمهٔ «گفتم!» را لمس کند. این یک تمرینِ ایمنی ساده و آرام است، نه یک آزمون.",
+        "en": "Ask the child who their trusted grown-up is (for example mother, father, an aunt, or any caring adult in the family) and let them say the name out loud. Then tap \"I said it!\" This is a gentle safety exercise, not a test.",
+        "de": "Frag das Kind, wer sein vertrauter Erwachsener ist (zum Beispiel Mutter, Vater, eine Tante oder ein anderer liebevoller Erwachsener in der Familie), und lass es den Namen laut sagen. Dann auf „Ich hab's gesagt!\" tippen. Das ist eine sanfte Sicherheitsübung, kein Test."
+      },
+      "audioPending": true
+    }
+  ]
+}

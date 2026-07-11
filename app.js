@@ -32,6 +32,7 @@ const STRINGS = {
     dayNight: 'روز و شب',
     guessCheck: 'حدس و امتحان',
     shapes: 'شکل و نقش',
+    healthSafety: 'سلامت و ایمنی',
     pick: 'یک درس را انتخاب کن',
     listen: 'گوش کن',
     tapPrompt: 'کدام درست است؟ لمس کن.',
@@ -63,6 +64,7 @@ const STRINGS = {
     dayNight: 'Day & night',
     guessCheck: 'Guess & check',
     shapes: 'Shapes & patterns',
+    healthSafety: 'Health & safety',
     pick: 'Pick a lesson',
     listen: 'Listen',
     tapPrompt: 'Which one is right? Tap it.',
@@ -94,6 +96,7 @@ const STRINGS = {
     dayNight: 'Tag & Nacht',
     guessCheck: 'Raten & prüfen',
     shapes: 'Formen & Muster',
+    healthSafety: 'Gesundheit & Sicherheit',
     pick: 'Wähle eine Lektion',
     listen: 'Hören',
     tapPrompt: 'Welches ist richtig? Tippe darauf.',
@@ -177,7 +180,8 @@ const KIND_KEY = {
   'science': 'science',
   'day-night': 'dayNight',
   'guess-check': 'guessCheck',
-  'shapes': 'shapes'
+  'shapes': 'shapes',
+  'health-safety': 'healthSafety'
 };
 
 /* PACKS — the bundled Tier-1 content shelf. Add a pack = add a line here
@@ -192,6 +196,7 @@ const PACKS = [
   { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json' },
   { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json' },
   { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json' },
+  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json' },
   { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json' }
 ];
 
