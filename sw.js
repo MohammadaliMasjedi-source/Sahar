@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v5';
+const CACHE = 'sahar-v6';
 
 const APP_SHELL = [
   './',
@@ -11,6 +11,7 @@ const APP_SHELL = [
   './styles.css',
   './app.js',
   './manifest.webmanifest',
+  './teacher.html',
   // audio-first bootstrap slice (SAHAR-COVERAGE §6.5)
   './bootstrap.html',
   './bootstrap.css',
