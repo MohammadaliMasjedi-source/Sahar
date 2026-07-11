@@ -39,8 +39,13 @@ content/<pack>.json
   lang          ["fa","en","de"]              UI/caregiver display languages
   license / attribution / signature           provenance (signature stays
                                                null until verification exists)
-  audioStatus   "placeholder"                 honest, until real recordings ship
-  audioNote     {fa,en,de}                    per-language honesty note (see §3)
+  audioStatus   "placeholder" | "draft"       honest: "placeholder" = no audio
+                                               anywhere yet, "draft" = every
+                                               card has a machine-voice file
+                                               (not a real recording — see §4)
+  audioNote     {fa,en,de}                    per-language honesty note (see §3);
+                                               once "draft", must name the fa
+                                               accent mismatch (Iranian, not Dari)
   title         {fa,en,de}
   intro         {fa,en,de}                    caregiver-facing framing, not
                                                shown to the child as "read this"
@@ -95,22 +100,35 @@ for shape-comparison cards). Every `pic` key must resolve in `pictures.js`
 **Never** add an interaction type outside this list for pre-literacy content —
 that reopens the "read this" hole the whole amendment exists to close.
 
-## 4. Audio field — the honest placeholder contract
+## 4. Audio field — the honest tri-state contract
 
 Every card must declare its audio status via exactly one of:
-- `"audioPending": true` — no recording exists yet; `AudioEngine.voice()` will
-  fall through TTS (where the browser can genuinely speak the language) or a
-  placeholder tone (see `audio.js` for the fallback chain, and the honest
-  policy that **fa/Dari browser TTS is never used** — browsers have no
-  reliable Dari voice, and a wrong-accent robot teaches the wrong sound).
-- `"audio": { "fa": "audio/fa-AF/<packId>.<cardId>.mp3", "en": "...", "de": "..." }`
-  — a **declared placeholder path** once a real recording is scripted for
-  batch-recording, even before the file exists on disk. `tryFile()` in
-  `audio.js` fails soft (404 → falls through the chain) so a missing file
-  never breaks the lesson.
+- `"audioPending": true` — no audio exists yet at all; `AudioEngine.voice()`
+  will fall through to TTS (where the browser can genuinely speak the
+  language) or a placeholder tone (see `audio.js` for the fallback chain, and
+  the honest policy that **fa/Dari browser TTS is never used** — browsers
+  have no reliable Dari voice, and a wrong-accent robot teaches the wrong
+  sound).
+- `"audioDraft": true` + `"audio": { "fa": "audio/<packId>.<cardId>.fa.mp3", "en": "...", "de": "..." }`
+  — a **machine-voice draft file genuinely exists on disk** at every declared
+  path (written by `tools/generate-draft-audio.py`, edge-tts). This is real
+  audio that really plays, but it is **not a human recording** — for `fa` it
+  is an Iranian-Persian accent, not Dari. Never conflate this with a real
+  recording; the pack-level `audioNote` must say so explicitly (see §6.5 /
+  `audio/RECORDING-MANIFEST.md`).
+- A future real recording needs **no schema change** — it drops into the
+  exact same `audio.<lang>` path and wins automatically (`audio.js` always
+  tries the file first; it cannot tell a draft from a real recording, so the
+  honesty banner text is what must stay accurate, not the schema).
 
-Real recordings are a **Mo-gated ask** (ideally Mo's or Neda's native voice —
-see `audio/README.md`), not something to fabricate.
+A card must never declare neither state, and never both `audioPending` and
+`audioDraft` at once — `test/content-validator.test.js` enforces this and
+additionally verifies that every `audioDraft:true` card's `audio.fa` file
+**actually exists on disk and is nonzero bytes** (no lying about audio state).
+
+Real *human* recordings are a **Mo-gated ask** (ideally Mo's or Neda's native
+voice — see `audio/RECORDING-MANIFEST.md`), not something to fabricate. The
+machine-voice draft is the honest bridge until then.
 
 ## 5. Language-course pack shape (`lc-*.json`, §6.5 B)
 
@@ -139,9 +157,17 @@ validator.
 JSON validity; unique card ids; fa/en/de completeness on title, intro,
 prompt, answer, and caregiver; an honest `audioStatus`/`audioNote`; every
 card's `interaction` being one of the four non-read-dependent types; every
-card declaring `audioPending:true` or an `audio` ref; and every choice-bearing
-card having a resolvable, non-empty, unique choice set whose `answerId` is
-actually offered, with every `pic` resolving in `pictures.js`.
+card declaring `audioPending:true` XOR `audioDraft:true` (never neither, never
+both) with the latter requiring its `audio.fa` file to actually exist on disk
+and be nonzero bytes (§4 — no lying about audio state); and every
+choice-bearing card having a resolvable, non-empty, unique choice set whose
+`answerId` is actually offered, with every `pic` resolving in `pictures.js`.
+
+`tools/generate-draft-audio.py` is the generator that produces the
+`audioDraft` state (edge-tts machine voices, child-directed rate) and keeps
+`audio/audio-manifest.json` in sync for `sw.js`'s offline precache. See its
+own `--help` and `audio/RECORDING-MANIFEST.md` for how a real recording
+replaces a draft file in place.
 
 `test/bootstrap.test.js` covers the language-course pack shape and the
 picture-first round engine equivalently.
