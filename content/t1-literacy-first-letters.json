@@ -1,6 +1,6 @@
 {
   "packId": "t1.literacy.first-letters",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "tier": 1,
   "ageBand": "6-7",
   "subject": "literacy — first letters by sound (phonics)",
@@ -8,21 +8,29 @@
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
+    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+  },
   "title": {
     "fa": "اولین حرف‌ها با صدای‌شان",
     "en": "First Letters by Their Sound",
     "de": "Erste Buchstaben nach ihrem Klang"
   },
   "intro": {
-    "fa": "هر حرف یک صدا دارد. بیا با هم چند صدا را پیدا کنیم. اول صدایش را بگو، بعد جواب را ببین.",
-    "en": "Every letter has a sound. Let's find a few together. Say the sound out loud first, then look at the answer.",
-    "de": "Jeder Buchstabe hat einen Klang. Lass uns ein paar zusammen finden. Sprich den Klang zuerst laut aus, dann schau dir die Antwort an."
+    "fa": "هر حرف یک صدا دارد. بیا با هم چند صدا را پیدا کنیم. اول صدایش را بگو، بعد حرف درست را لمس کن.",
+    "en": "Every letter has a sound. Let's find a few together. Say the sound out loud first, then tap the right letter.",
+    "de": "Jeder Buchstabe hat einen Klang. Lass uns ein paar zusammen finden. Sprich den Klang zuerst laut aus, dann tippe auf den richtigen Buchstaben."
   },
   "cards": [
     {
       "id": "fl-fa-1",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "حرف «آ» چه صدایی دارد؟ بلند بگو: آ… مثل «آب». تو هم بگو.",
         "en": "What sound does the letter for \"aa\" make in Dari? Say it: aa… as in \"aab\" (water).",
@@ -32,12 +40,25 @@
         "fa": "آ مثل «آب». آغاز کلمه‌ی آب با همین صداست.",
         "en": "aa, as in \"aab\" — the word for water begins with this sound.",
         "de": "aa, wie in „aab\" — das Wort für Wasser beginnt mit diesem Klang."
-      }
+      },
+      "caregiver": {
+        "fa": "برای کودک بلند بگو: «آ… مثل آب» و بگذار او هم بگوید. بعد بگو حرف «آ» را لمس کند.",
+        "en": "Say aloud to the child: \"aa… as in aab (water)\" and let them repeat it. Then have them tap the letter aa.",
+        "de": "Sag dem Kind laut vor: „aa… wie in aab (Wasser)\" und lass es nachsprechen. Dann soll es den Buchstaben aa antippen."
+      },
+      "choices": [
+        { "id": "aa", "glyph": "آ" },
+        { "id": "b", "glyph": "ب" },
+        { "id": "m", "glyph": "م" }
+      ],
+      "answerId": "aa"
     },
     {
       "id": "fl-fa-2",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "حرف «ب» چه صدایی دارد؟ لب‌هایت را روی هم بگذار و بگو: ب… مثل «بابا».",
         "en": "What sound does \"b\" make? Press your lips together: b… as in \"baba\" (daddy).",
@@ -47,12 +68,25 @@
         "fa": "ب مثل «بابا» و «باغ». صدای ب از لب‌ها بیرون می‌آید.",
         "en": "b, as in \"baba\" and \"baagh\" (garden). The b sound comes from your lips.",
         "de": "b, wie in „baba\" und „baagh\" (Garten). Der b-Laut kommt von den Lippen."
-      }
+      },
+      "caregiver": {
+        "fa": "برای کودک بلند بگو: «ب… مثل بابا» و بگذار او هم بگوید. بعد بگو حرف «ب» را لمس کند.",
+        "en": "Say aloud to the child: \"b… as in baba (daddy)\" and let them repeat it. Then have them tap the letter b.",
+        "de": "Sag dem Kind laut vor: „b… wie in baba (Papa)\" und lass es nachsprechen. Dann soll es den Buchstaben b antippen."
+      },
+      "choices": [
+        { "id": "b", "glyph": "ب" },
+        { "id": "aa", "glyph": "آ" },
+        { "id": "d", "glyph": "د" }
+      ],
+      "answerId": "b"
     },
     {
       "id": "fl-fa-3",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "حرف «م» چه صدایی دارد؟ لب‌ها بسته، بگو: مـ… مثل «مادر».",
         "en": "What sound does \"m\" make? Lips closed, hum: mmm… as in \"maadar\" (mother).",
@@ -62,12 +96,25 @@
         "fa": "م مثل «مادر» و «ماه». صدای م را با لب‌های بسته می‌سازی.",
         "en": "m, as in \"maadar\" and \"maah\" (moon). You make the m sound with closed lips.",
         "de": "m, wie in „maadar\" und „maah\" (Mond). Den m-Laut machst du mit geschlossenen Lippen."
-      }
+      },
+      "caregiver": {
+        "fa": "برای کودک بلند بگو: «مـ… مثل مادر» و بگذار او هم بگوید. بعد بگو حرف «م» را لمس کند.",
+        "en": "Say aloud to the child: \"mmm… as in maadar (mother)\" and let them repeat it. Then have them tap the letter m.",
+        "de": "Sag dem Kind laut vor: „mmm… wie in maadar (Mutter)\" und lass es nachsprechen. Dann soll es den Buchstaben m antippen."
+      },
+      "choices": [
+        { "id": "m", "glyph": "م" },
+        { "id": "s", "glyph": "س" },
+        { "id": "b", "glyph": "ب" }
+      ],
+      "answerId": "m"
     },
     {
       "id": "fl-fa-4",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "حرف «س» چه صدایی دارد؟ مثل صدای یک مار آرام: سـ… مثل «سحر».",
         "en": "What sound does \"s\" make? Like a gentle snake: sss… as in \"Sahar\" (dawn).",
@@ -77,12 +124,25 @@
         "fa": "س مثل «سحر» — همین نام من! و مثل «ستاره».",
         "en": "s, as in \"Sahar\" — that is my name! And in \"setaare\" (star).",
         "de": "s, wie in „Sahar\" — das ist mein Name! Und in „setaare\" (Stern)."
-      }
+      },
+      "caregiver": {
+        "fa": "برای کودک بلند بگو: «سـ… مثل سحر» و بگذار او هم بگوید. بعد بگو حرف «س» را لمس کند.",
+        "en": "Say aloud to the child: \"sss… as in Sahar\" and let them repeat it. Then have them tap the letter s.",
+        "de": "Sag dem Kind laut vor: „sss… wie in Sahar\" und lass es nachsprechen. Dann soll es den Buchstaben s antippen."
+      },
+      "choices": [
+        { "id": "s", "glyph": "س" },
+        { "id": "d", "glyph": "د" },
+        { "id": "aa", "glyph": "آ" }
+      ],
+      "answerId": "s"
     },
     {
       "id": "fl-fa-5",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "audioPending": true,
       "prompt": {
         "fa": "حرف «د» چه صدایی دارد؟ نوک زبانت پشت دندان: د… مثل «در».",
         "en": "What sound does \"d\" make? Tongue behind your teeth: d… as in \"dar\" (door).",
@@ -92,12 +152,25 @@
         "fa": "د مثل «در» و «دست». نوک زبان پشت دندان‌های بالا.",
         "en": "d, as in \"dar\" and \"dast\" (hand). Tongue tip behind your top teeth.",
         "de": "d, wie in „dar\" und „dast\" (Hand). Zungenspitze hinter den oberen Zähnen."
-      }
+      },
+      "caregiver": {
+        "fa": "برای کودک بلند بگو: «د… مثل در» و بگذار او هم بگوید. بعد بگو حرف «د» را لمس کند.",
+        "en": "Say aloud to the child: \"d… as in dar (door)\" and let them repeat it. Then have them tap the letter d.",
+        "de": "Sag dem Kind laut vor: „d… wie in dar (Tür)\" und lass es nachsprechen. Dann soll es den Buchstaben d antippen."
+      },
+      "choices": [
+        { "id": "d", "glyph": "د" },
+        { "id": "m", "glyph": "م" },
+        { "id": "s", "glyph": "س" }
+      ],
+      "answerId": "d"
     },
     {
       "id": "fl-fa-6",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
       "prompt": {
         "fa": "کدام کلمه با صدای «م» شروع می‌شود: «ماه» یا «باغ»؟ بلند بگو و بشنو.",
         "en": "Which word starts with the \"m\" sound: \"maah\" (moon) or \"baagh\" (garden)? Say them aloud and listen.",
@@ -107,12 +180,24 @@
         "fa": "«ماه». اولین صدای آن مـ است. «باغ» با صدای ب شروع می‌شود.",
         "en": "\"maah\". Its first sound is m. \"baagh\" starts with the b sound.",
         "de": "„maah\". Sein erster Laut ist m. „baagh\" beginnt mit dem b-Laut."
-      }
+      },
+      "caregiver": {
+        "fa": "به کودک بگو: «کدام یک با صدای م شروع می‌شود، ماه یا باغ؟ گوش کن و تصویر درست را لمس کن.»",
+        "en": "Say to the child: \"Which one starts with the m sound, maah or baagh? Listen and tap the right picture.\"",
+        "de": "Sag zum Kind: „Welches beginnt mit dem m-Laut, maah oder baagh? Höre zu und tippe auf das richtige Bild.\""
+      },
+      "choices": [
+        { "id": "maah", "pic": "moon" },
+        { "id": "baagh", "pic": "garden" }
+      ],
+      "answerId": "maah"
     },
     {
       "id": "fl-fa-7",
       "type": "letter-sound",
       "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
       "prompt": {
         "fa": "نام تو با کدام صدا شروع می‌شود؟ اولین صدای نامت را بلند بگو.",
         "en": "What sound does your own name start with? Say the first sound of your name out loud.",
@@ -122,6 +207,11 @@
         "fa": "آفرین! هر نامی یک صدای اول دارد. نام تو هم همین‌طور — حالا حرفش را می‌شناسی.",
         "en": "Well done! Every name has a first sound. Yours does too — now you know its letter.",
         "de": "Gut gemacht! Jeder Name hat einen ersten Laut. Deiner auch — jetzt kennst du seinen Buchstaben."
+      },
+      "caregiver": {
+        "fa": "از کودک بپرس نامش با چه صدایی شروع می‌شود و بگذار بلند بگوید. بعد دکمهٔ «گفتم!» را برایش لمس کن یا بگذار خودش لمس کند.",
+        "en": "Ask the child what sound their name starts with and let them say it out loud. Then tap (or let them tap) the \"I said it!\" button.",
+        "de": "Frag das Kind, mit welchem Laut sein Name beginnt, und lass es ihn laut sagen. Dann tippt (oder lasst das Kind tippen) auf „Ich hab's gesagt!\"."
       }
     }
   ]

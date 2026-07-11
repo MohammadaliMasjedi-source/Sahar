@@ -1,6 +1,6 @@
 {
   "packId": "t1.thinking.what-is-a-question",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "tier": 1,
   "ageBand": "6-7",
   "subject": "critical thinking (seed) — what is a question?",
@@ -8,120 +8,155 @@
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "صداها هنوز واقعی نیستند. صدای ساختگی مرورگر (فقط برای انگلیسی/آلمانی) یا یک زنگ ساده پخش می‌شود. صدای واقعی سحر یا ندا بعداً اضافه می‌شود.",
+    "en": "Audio is NOT real yet. Where the browser cannot speak the language honestly (Dari), a placeholder tone plays instead. Real native-speaker recordings come later.",
+    "de": "Audio ist noch NICHT echt. Wo der Browser die Sprache nicht ehrlich sprechen kann (Dari), spielt stattdessen ein Platzhalter-Ton. Echte muttersprachliche Aufnahmen folgen später."
+  },
   "title": {
     "fa": "سؤال چیست؟",
     "en": "What Is a Question?",
     "de": "Was ist eine Frage?"
   },
   "intro": {
-    "fa": "پرسیدن یک کار خوب است. وقتی چیزی را نمی‌دانیم، می‌پرسیم. بیا با هم یاد بگیریم پرسیدن چه شکلی است.",
-    "en": "Asking is a good thing to do. When we do not know something, we ask. Let's learn together what asking looks like.",
-    "de": "Fragen ist etwas Gutes. Wenn wir etwas nicht wissen, fragen wir. Lass uns zusammen lernen, wie Fragen aussieht."
+    "fa": "پرسیدن یک کار خوب است. وقتی چیزی را نمی‌دانیم، می‌پرسیم. بیا با هم گوش کنیم و لمس کنیم — پرسیدن چه شکلی است.",
+    "en": "Asking is a good thing to do. When we do not know something, we ask. Let's listen and tap together to learn what asking looks like.",
+    "de": "Fragen ist etwas Gutes. Wenn wir etwas nicht wissen, fragen wir. Lass uns zusammen zuhören und tippen, um zu lernen, wie Fragen aussieht."
   },
   "cards": [
     {
       "id": "q-1",
       "type": "thinking",
       "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
       "prompt": {
         "fa": "کدام یک سؤال است؟ «آسمان آبی است.» یا «چرا آسمان آبی است؟»",
         "en": "Which one is a question? \"The sky is blue.\" or \"Why is the sky blue?\"",
         "de": "Welches ist eine Frage? „Der Himmel ist blau.\" oder „Warum ist der Himmel blau?\""
       },
-      "answer": {
-        "fa": "«چرا آسمان آبی است؟» یک سؤال است — چیزی می‌پرسد. جمله‌ی اول فقط چیزی را می‌گوید.",
-        "en": "\"Why is the sky blue?\" is a question — it asks something. The first sentence just tells something.",
-        "de": "„Warum ist der Himmel blau?\" ist eine Frage — sie fragt etwas. Der erste Satz erzählt nur etwas."
-      }
+      "answer": { "fa": "«چرا آسمان آبی است؟» یک سؤال است — چیزی می‌پرسد. جمله‌ی اول فقط چیزی را می‌گوید.", "en": "\"Why is the sky blue?\" is a question — it asks something. The first sentence just tells something.", "de": "„Warum ist der Himmel blau?\" ist eine Frage — sie fragt etwas. Der erste Satz erzählt nur etwas." },
+      "caregiver": {
+        "fa": "برای کودک هر دو جمله را بلند بخوان: «آسمان آبی است» و «چرا آسمان آبی است؟» بگذار تصویری را که سؤال است لمس کند.",
+        "en": "Read both sentences aloud to the child: \"The sky is blue\" and \"Why is the sky blue?\" Let them tap the picture for the question.",
+        "de": "Lies dem Kind beide Sätze laut vor: „Der Himmel ist blau\" und „Warum ist der Himmel blau?\" Lass es das Bild für die Frage antippen."
+      },
+      "choices": [ { "id": "stmt", "pic": "statement" }, { "id": "question", "pic": "question-mark" } ],
+      "answerId": "question"
     },
     {
       "id": "q-2",
       "type": "thinking",
       "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
       "prompt": {
         "fa": "وقتی چیزی را نمی‌دانی، کار خوب چیست: ساکت بمانی یا بپرسی؟",
         "en": "When you don't know something, what is the good thing to do: stay quiet, or ask?",
         "de": "Wenn du etwas nicht weißt, was ist das Richtige: still bleiben oder fragen?"
       },
-      "answer": {
-        "fa": "بپرسی! پرسیدن خجالت ندارد. هر کس از پرسیدن یاد می‌گیرد — حتی بزرگ‌ترها.",
-        "en": "Ask! There is no shame in asking. Everyone learns by asking — even grown-ups.",
-        "de": "Fragen! Fragen ist nichts, wofür man sich schämen muss. Alle lernen durchs Fragen — auch Erwachsene."
-      }
+      "answer": { "fa": "بپرسی! پرسیدن خجالت ندارد. هر کس از پرسیدن یاد می‌گیرد — حتی بزرگ‌ترها.", "en": "Ask! There is no shame in asking. Everyone learns by asking — even grown-ups.", "de": "Fragen! Fragen ist nichts, wofür man sich schämen muss. Alle lernen durchs Fragen — auch Erwachsene." },
+      "caregiver": {
+        "fa": "به کودک بگو: «اگر چیزی را ندانی، ساکت می‌مانی یا می‌پرسی؟» بگذار تصویر درست را لمس کند و بگو پرسیدن همیشه خوب است.",
+        "en": "Say to the child: \"If you don't know something, do you stay quiet or ask?\" Let them tap the right picture, and tell them asking is always good.",
+        "de": "Sag zum Kind: „Wenn du etwas nicht weißt, bleibst du still oder fragst du?\" Lass es das richtige Bild antippen und sag ihm, dass Fragen immer gut ist."
+      },
+      "choices": [ { "id": "quiet", "pic": "quiet-icon" }, { "id": "ask", "pic": "question-mark" } ],
+      "answerId": "ask"
     },
     {
       "id": "q-3",
       "type": "thinking",
       "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
       "prompt": {
         "fa": "این یک گفتن است یا یک پرسیدن؟ «گربه‌ام را دوست دارم.»",
         "en": "Is this telling or asking? \"I love my cat.\"",
         "de": "Ist das Erzählen oder Fragen? „Ich liebe meine Katze.\""
       },
-      "answer": {
-        "fa": "گفتن است. داری چیزی را می‌گویی، نه می‌پرسی. سؤال‌ها معمولاً با چه، چرا، کجا، چه‌طور شروع می‌شوند.",
-        "en": "It is telling. You are saying something, not asking. Questions often begin with what, why, where, or how.",
-        "de": "Es ist Erzählen. Du sagst etwas, du fragst nicht. Fragen beginnen oft mit was, warum, wo oder wie."
-      }
+      "answer": { "fa": "گفتن است. داری چیزی را می‌گویی، نه می‌پرسی. سؤال‌ها معمولاً با چه، چرا، کجا، چه‌طور شروع می‌شوند.", "en": "It is telling. You are saying something, not asking. Questions often begin with what, why, where, or how.", "de": "Es ist Erzählen. Du sagst etwas, du fragst nicht. Fragen beginnen oft mit was, warum, wo oder wie." },
+      "caregiver": {
+        "fa": "جمله‌ی «گربه‌ام را دوست دارم» را بلند بخوان و بپرس آیا گفتن است یا پرسیدن. بگذار تصویر درست را لمس کند.",
+        "en": "Read \"I love my cat\" aloud and ask if it is telling or asking. Let them tap the right picture.",
+        "de": "Lies „Ich liebe meine Katze\" laut vor und frage, ob das Erzählen oder Fragen ist. Lass es das richtige Bild antippen."
+      },
+      "choices": [ { "id": "telling", "pic": "statement" }, { "id": "asking", "pic": "question-mark" } ],
+      "answerId": "telling"
     },
     {
       "id": "q-4",
       "type": "thinking",
       "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
       "prompt": {
         "fa": "می‌خواهی بدانی پرنده چه می‌خورد. یک سؤال خوب بساز که با «چه» شروع شود.",
         "en": "You want to know what a bird eats. Make a good question that starts with \"what\".",
         "de": "Du möchtest wissen, was ein Vogel frisst. Stelle eine gute Frage, die mit „was\" beginnt."
       },
-      "answer": {
-        "fa": "مثلاً: «پرنده چه می‌خورد؟» این یک سؤال خوب است، چون چیزی می‌پرسد که می‌توانیم بفهمیم.",
-        "en": "For example: \"What does a bird eat?\" That is a good question, because it asks something we can find out.",
-        "de": "Zum Beispiel: „Was frisst ein Vogel?\" Das ist eine gute Frage, weil sie etwas fragt, das wir herausfinden können."
+      "answer": { "fa": "مثلاً: «پرنده چه می‌خورد؟» این یک سؤال خوب است، چون چیزی می‌پرسد که می‌توانیم بفهمیم.", "en": "For example: \"What does a bird eat?\" That is a good question, because it asks something we can find out.", "de": "Zum Beispiel: „Was frisst ein Vogel?\" Das ist eine gute Frage, weil sie etwas fragt, das wir herausfinden können." },
+      "caregiver": {
+        "fa": "به کودک بگو یک سؤال با «چه» بسازد، مثلاً «پرنده چه می‌خورد؟» و بگذار بلند بپرسد. بعد دکمهٔ «پرسیدم!» را لمس کند.",
+        "en": "Ask the child to make a question starting with \"what\", like \"What does a bird eat?\" and say it aloud. Then tap \"I asked it!\"",
+        "de": "Bitte das Kind, eine Frage mit „was\" zu bilden, z. B. „Was frisst ein Vogel?\", und sie laut zu sagen. Dann auf „Ich hab's gefragt!\" tippen."
       }
     },
     {
       "id": "q-5",
       "type": "thinking",
       "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
       "prompt": {
         "fa": "اگر کسی چیزی بگوید و تو مطمئن نباشی، چه می‌توانی بپرسی تا بهتر بفهمی؟",
         "en": "If someone says something and you are not sure, what could you ask to understand better?",
         "de": "Wenn jemand etwas sagt und du nicht sicher bist, was könntest du fragen, um es besser zu verstehen?"
       },
-      "answer": {
-        "fa": "می‌توانی بپرسی: «از کجا می‌دانیم؟» یا «می‌توانی نشانم بدهی؟» پرسیدن کمک می‌کند بهتر بفهمیم.",
-        "en": "You could ask: \"How do we know?\" or \"Can you show me?\" Asking helps us understand better.",
-        "de": "Du könntest fragen: „Woher wissen wir das?\" oder „Kannst du es mir zeigen?\" Fragen hilft uns, besser zu verstehen."
+      "answer": { "fa": "می‌توانی بپرسی: «از کجا می‌دانیم؟» یا «می‌توانی نشانم بدهی؟» پرسیدن کمک می‌کند بهتر بفهمیم.", "en": "You could ask: \"How do we know?\" or \"Can you show me?\" Asking helps us understand better.", "de": "Du könntest fragen: „Woher wissen wir das?\" oder „Kannst du es mir zeigen?\" Fragen hilft uns, besser zu verstehen." },
+      "caregiver": {
+        "fa": "با کودک تمرین کن بگوید: «از کجا می‌دانیم؟» یا «می‌شود نشانم بدهی؟» بگذار بلند بگوید، بعد دکمهٔ «گفتم!» را لمس کند.",
+        "en": "Practise with the child saying \"How do we know?\" or \"Can you show me?\" Let them say it out loud, then tap \"I said it!\"",
+        "de": "Übt gemeinsam die Sätze „Woher wissen wir das?\" oder „Kannst du es mir zeigen?\" Lass das Kind sie laut sagen, dann auf „Ich hab's gesagt!\" tippen."
       }
     },
     {
       "id": "q-6",
       "type": "thinking",
       "box": 1,
+      "interaction": "tap-the-picture",
+      "audioPending": true,
       "prompt": {
         "fa": "آیا همه‌ی سؤال‌ها یک جواب دارند؟ بعضی سؤال‌ها جواب روشن دارند و بعضی نه. کدام سؤال جواب روشن دارد: «۲ به‌علاوه‌ی ۲ چند می‌شود؟» یا «کدام رنگ از همه قشنگ‌تر است؟»",
         "en": "Does every question have one answer? Some questions have a clear answer, and some do not. Which one has a clear answer: \"What is 2 plus 2?\" or \"Which colour is the most beautiful?\"",
         "de": "Hat jede Frage eine Antwort? Manche Fragen haben eine klare Antwort, manche nicht. Welche hat eine klare Antwort: „Was ist 2 plus 2?\" oder „Welche Farbe ist die schönste?\""
       },
-      "answer": {
-        "fa": "«۲ به‌علاوه‌ی ۲» جواب روشن دارد: ۴. اما «قشنگ‌ترین رنگ» جواب روشن ندارد — هر کس نظر خودش را دارد، و این هم خوب است.",
-        "en": "\"2 plus 2\" has a clear answer: 4. But \"the most beautiful colour\" has no single answer — everyone has their own, and that is fine too.",
-        "de": "„2 plus 2\" hat eine klare Antwort: 4. Aber „die schönste Farbe\" hat keine einzige Antwort — jeder hat seine eigene, und das ist auch in Ordnung."
-      }
+      "answer": { "fa": "«۲ به‌علاوه‌ی ۲» جواب روشن دارد: ۴. اما «قشنگ‌ترین رنگ» جواب روشن ندارد — هر کس نظر خودش را دارد، و این هم خوب است.", "en": "\"2 plus 2\" has a clear answer: 4. But \"the most beautiful colour\" has no single answer — everyone has their own, and that is fine too.", "de": "„2 plus 2\" hat eine klare Antwort: 4. Aber „die schönste Farbe\" hat keine einzige Antwort — jeder hat seine eigene, und das ist auch in Ordnung." },
+      "caregiver": {
+        "fa": "برای کودک هر دو سؤال را بخوان: «۲ به‌علاوه‌ی ۲؟» و «کدام رنگ قشنگ‌تر است؟» بگذار تصویر سؤالی را که جواب روشن دارد لمس کند.",
+        "en": "Read both questions to the child: \"2 plus 2?\" and \"which colour is prettiest?\" Let them tap the picture for the one with a clear answer.",
+        "de": "Lies dem Kind beide Fragen vor: „2 plus 2?\" und „welche Farbe ist am schönsten?\" Lass es das Bild für die Frage mit klarer Antwort antippen."
+      },
+      "choices": [ { "id": "math", "pic": "check-mark" }, { "id": "colour", "pic": "thought-bubble" } ],
+      "answerId": "math"
     },
     {
       "id": "q-7",
       "type": "thinking",
       "box": 1,
+      "interaction": "repeat-aloud",
+      "audioPending": true,
       "prompt": {
         "fa": "یک چیز هست که امروز دوست داری درباره‌اش بدانی. آن سؤال در ذهنت چیست؟ آن را بلند بپرس.",
         "en": "There is something you would like to know about today. What is that question in your mind? Ask it out loud.",
         "de": "Es gibt etwas, das du heute gern wissen möchtest. Welche Frage ist das in deinem Kopf? Stelle sie laut."
       },
-      "answer": {
-        "fa": "آفرین که پرسیدی! هر سؤال خوب، آغاز یاد گرفتن است. سحر هم هر روز یک سؤال تازه می‌پرسد.",
-        "en": "Well done for asking! Every good question is the beginning of learning. Sahar asks a new question every day too.",
-        "de": "Gut gemacht, dass du gefragt hast! Jede gute Frage ist der Anfang des Lernens. Auch Sahar stellt jeden Tag eine neue Frage."
+      "answer": { "fa": "آفرین که پرسیدی! هر سؤال خوب، آغاز یاد گرفتن است. سحر هم هر روز یک سؤال تازه می‌پرسد.", "en": "Well done for asking! Every good question is the beginning of learning. Sahar asks a new question every day too.", "de": "Gut gemacht, dass du gefragt hast! Jede gute Frage ist der Anfang des Lernens. Auch Sahar stellt jeden Tag eine neue Frage." },
+      "caregiver": {
+        "fa": "از کودک بپرس چه چیزی دوست دارد امروز بداند و بگذار سؤالش را بلند بپرسد. بعد دکمهٔ «پرسیدم!» را لمس کند.",
+        "en": "Ask the child what they would like to know today and let them ask their question out loud. Then tap \"I asked it!\"",
+        "de": "Frag das Kind, was es heute gern wissen möchte, und lass es seine Frage laut stellen. Dann auf „Ich hab's gefragt!\" tippen."
       }
     }
   ]
