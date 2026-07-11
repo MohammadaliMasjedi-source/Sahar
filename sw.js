@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v7';
+const CACHE = 'sahar-v9';
 
 const APP_SHELL = [
   './',
@@ -33,9 +33,25 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', (event) => {
-  // Precache the shell + the demo pack so the first offline open works.
+  // Precache the shell + the demo pack so the first offline open works, then
+  // best-effort precache every draft/real audio file listed in the manifest
+  // that tools/generate-draft-audio.py keeps in sync (audio/RECORDING-MANIFEST.md
+  // explains how real recordings replace these in place). Audio precache is
+  // wrapped separately so a slow/failed fetch of one clip never breaks the
+  // core app shell install.
   event.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(APP_SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(async (c) => {
+      await c.addAll(APP_SHELL);
+      try {
+        const res = await fetch('./audio/audio-manifest.json');
+        if (res && res.ok) {
+          const files = await res.json();
+          const urls = files.map((p) => './' + p);
+          await c.addAll(urls);
+        }
+      } catch (_) { /* offline-first best effort: runtime cache-on-fetch below still covers it later */ }
+      return self.skipWaiting();
+    })
   );
 });
 
