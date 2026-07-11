@@ -1,0 +1,138 @@
+# Sahar — Coverage Status (honest, ticks against `SAHAR-COVERAGE.md`)
+
+> Starts from the contract's own 2026-07-03 baseline (§7) and ticks up only
+> with real, verified work. **This is a prototype. It is not ready for real
+> learners without an adult present.** No "ready to use / deployable" claim is
+> made anywhere in this file. Updated 2026-07-11 after the Amendment A
+> (audio-first bootstrap) lane.
+
+## 1. Vision
+Unchanged — no technical work needed here; the vision statement in
+`SAHAR-COVERAGE.md` §1 stands as written.
+
+## 2. Content model
+- ✅ `{fa,en,de}` dicts, pack meta, validator-friendly — as before.
+- ✅ **NEW (2026-07-11):** the audio-first schema is now formalized in
+  `docs/CONTENT-MODEL.md` — `interaction`, `audioPending`/`audio`, `caregiver`,
+  and the four non-read-dependent interaction types are documented as the
+  standard for every future pack.
+- ❌ `fa-AF` / `fa-IR` split still not formalized (still just `fa`). Not this
+  lane's scope; still open.
+
+## 3. Age packages
+- ✅ Tier 1 still has 7 packs (literacy×1, numeracy×2, science×1, thinking×2,
+  demo×1) — same count as baseline. **No new lessons were added this session**
+  (explicitly out of scope for the audio-first lane — see "what this lane did
+  NOT do" below).
+- ❌ Tier-1 DoD from §3 ("≥2 packs per core subject + 1 life-skills pack") is
+  **still not met**: literacy has 1 pack (needs 2), science has 1 pack (needs
+  2), and there is no dedicated life-skills pack yet. This gap pre-dates this
+  session and remains open — flagged honestly, not fixed (out of Amendment A
+  scope, which was structure, not new content volume).
+- ❌ Tiers 2-4 still don't exist. Not this lane's scope.
+
+## 4. Fixed subject list
+Unchanged, already followed by every pack's `subject` field.
+
+## 5. "Ready to use" bar (§5)
+- ❌ Not claimed. Still a prototype.
+- ✅ Opening `index.html` → pick language → pick age → learning within 3 taps —
+  true, verified in-browser this session (no console errors, all 7 packs load
+  and complete, language switch mid-card works fa/en/de).
+- ⚠️ Offline/service-worker: `sw.js` precaches the full app shell + all
+  content + the new `teacher.html`, cache bumped to `sahar-v6` this session.
+  **Not verified with an actual airplane-mode test on a real device** — that
+  verification is still open.
+- ⚠️ PWA installability: manifest icons are real (inline SVG, 192/512px,
+  maskable) — not placeholder. **Not verified installed on a real Android
+  phone.** Still open.
+- ✅ Progress saved locally (`localStorage`, unchanged, pre-existing).
+- ✅ **NEW:** teacher/parent printable page (`teacher.html`) — what each
+  Tier-1 pack teaches, fa/en/de, vanilla HTML/CSS, no dependency on
+  `styles.css` so it still prints/opens standalone. Verified rendering
+  in-browser, zero console errors.
+- ✅ Zero console errors confirmed this session across: lesson picker, all 7
+  Tier-1 packs end-to-end (including the new `match` two-round card and
+  `repeat-aloud` cards), language switching, the caregiver toggle, and
+  `teacher.html`. `bootstrap.html` (pre-existing) re-verified unaffected.
+- ❌ README top structure (what-it-is → try-it-now → screenshots → contributor
+  path) not reviewed/updated this session — out of scope for this lane.
+
+## 6. Books track
+Unchanged — still not started. Out of scope for this lane.
+
+## 6.5 Amendment A — the audio-first bootstrap rule (THIS LANE'S SCOPE)
+
+- ✅ **Audio-first card schema** — every card in all 7 Tier-1 packs now carries
+  `interaction` + `audioPending: true` (declared honest placeholder; no
+  fabricated audio files) + a `caregiver` read-aloud line in fa/en/de. Schema
+  documented in `docs/CONTENT-MODEL.md`.
+- ✅ **Picture-first interaction types** — `tap-the-picture`,
+  `tap-the-letter-shape`, `match`, `repeat-aloud` are wired into `app.js`
+  (previously only implemented for the separate `bootstrap.js` first-contact
+  flow, built in an earlier session on 2026-07-06). All 51 cards across the 7
+  Tier-1 packs were migrated off the old "read the prompt, then reveal the
+  answer" pattern onto these four types — verified in-browser, choice order
+  is shuffled per card (never a memorizable fixed position), wrong taps give
+  a gentle retry with no scheduling penalty, correct taps advance the real
+  Leitner spaced-repetition box.
+- ✅ **Caregiver mode** — every card (all 7 packs + the pre-existing
+  language-course pack) carries a "read this aloud to the child" line in
+  fa/en/de, reachable via a "For grown-ups" toggle on the card.
+- ✅ **Validator green** — `npm test` runs 3 suites, **105 passed, 0 failed**,
+  exit code 0 (verified this session via Node v20.18.0):
+  - `test/core.test.js` — 28 passed (Leitner core, i18n parity, unchanged)
+  - `test/bootstrap.test.js` — 14 passed (language-course pack + round engine,
+    pre-existing, re-verified unaffected)
+  - `test/content-validator.test.js` — **63 passed (NEW this session)** —
+    checks every Tier-1 pack for JSON validity, unique ids, fa/en/de
+    completeness, honest `audioStatus`/`audioNote`, non-read-dependent
+    interaction on every card, `audioPending`/`audio` declared on every card,
+    and a resolvable/unique/answerable choice set with every `pic` key real
+    in `pictures.js`.
+- ✅ `docs/CONTENT-MODEL.md` — written this session, documents both the
+  Tier-1 card schema and the pre-existing language-course schema as one
+  standard.
+- ✅ `teacher.html` — written this session (see §5 above).
+- ❌ **Real audio recordings — Mo-gated, explicitly not faked.** Zero `.mp3`
+  files exist in `audio/`; only `audio/README.md` (pre-existing) documents the
+  slot. Every card plays either the browser's TTS (English/German only — Dari
+  TTS is deliberately never used, per the honest policy already coded in
+  `audio.js`) or a placeholder tone. **The ask, unchanged from the contract:
+  ideally ~50 short (1-2s) recordings per pack batch, in Mo's or Neda's native
+  voice.** This is the single biggest remaining gap before any real child uses
+  this.
+
+## 6.5 Amendment B — language courses from the mother tongue
+Pre-existing (built 2026-07-06, before this lane): `content/lc-fa-en-first-words.json`
++ `bootstrap.html`/`bootstrap.js`/`bootstrap-core.js`. Re-verified working and
+unaffected by this session's changes (14/14 `bootstrap.test.js` tests still
+pass; manually exercised in-browser, zero console errors). Not extended this
+session — out of Amendment A's scope.
+
+## 6.5 Amendment C — Duolingo-grade visual bar
+**Explicitly out of scope for this lane** (design/mascot work belongs to a
+separate PC/Firefly design pass). What exists today is deliberately simple:
+the dawn-bird mascot and progress path (pre-existing, `bootstrap.js`) plus a
+modest set of new placeholder SVG icons added this session to `pictures.js`
+(circle/square/triangle, check/cross marks, thought-bubble, guess-cloud,
+question-mark, statement, stone, robot, leaf, garden, sky, swatches) — plain,
+flat, functional shapes so the new interaction types have *something* to tap,
+not the final illustrated design language. No mascot work, no per-card
+professional illustration, no Duolingo screenshot-comparison was done.
+
+## 6.5 Amendment D — honest deployment status
+**Sahar is a prototype. It is not ready for real learners.** The bar the
+contract sets for "deployable" — audio-first Tier 1 complete + offline
+phone-tested + Duolingo-grade UI + a real pilot with 2-3 children with
+observed learning — is **not met**. What changed this session: the
+audio-first *structure* (schema, interaction types, migration, validator,
+docs) is now real and tested. What is still missing before any pilot: real
+recorded audio (Mo-gated), a real-device offline/PWA test, and the visual
+design pass. No "ready to use" claim is made anywhere in this repo as a
+result of this session's work.
+
+## What this lane did NOT do (by design, per its brief)
+No new lessons invented. No Tier 2-4 work started. No mascot/illustration
+design pass. No README rewrite. No books-track work. No real audio recorded
+or fabricated. No repo other than `E:/Mo Pers/Sahar` touched.
