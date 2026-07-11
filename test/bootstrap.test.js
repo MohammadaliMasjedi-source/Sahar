@@ -48,10 +48,22 @@ test('pack declares packType=language-course with l1 + l2', () => {
   assert.equal(pack.l2, 'en', 'l2 is the target language');
 });
 
-test('pack is honest: audioStatus=placeholder + an audioNote in fa/en/de', () => {
-  assert.equal(pack.audioStatus, 'placeholder', 'audio must be declared placeholder, not real');
+test('pack is honest: audioStatus is placeholder|draft (never claims real recordings) + an audioNote in fa/en/de', () => {
+  assert.ok(['placeholder', 'draft'].includes(pack.audioStatus),
+    'audioStatus must be honestly "placeholder" (no audio yet) or "draft" (machine-voice files exist, not real recordings)');
   for (const lang of ['fa', 'en', 'de']) {
     assert.ok(pack.audioNote && pack.audioNote[lang] && pack.audioNote[lang].length > 0, `audioNote.${lang}`);
+  }
+  if (pack.audioStatus === 'draft') {
+    for (const item of pack.items) {
+      for (const side of ['l1', 'l2']) {
+        const ref = item[side] && item[side].audio;
+        if (ref) {
+          const abs = path.join(__dirname, '..', ref);
+          assert.ok(fs.existsSync(abs), `item ${item.id}.${side}.audio file must actually exist on disk (${ref}) if audioStatus is "draft"`);
+        }
+      }
+    }
   }
 });
 
