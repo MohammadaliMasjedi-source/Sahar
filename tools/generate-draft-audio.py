@@ -78,6 +78,7 @@ TIER1_PACK_FILES = [
     't1-science-day-and-night.json',
     't1-thinking-what-is-a-question.json',
     't1-thinking-fact-vs-guess.json',
+    't1-life-healthy-and-safe.json',
 ]
 LC_PACK_FILES = ['lc-fa-en-first-words.json']
 

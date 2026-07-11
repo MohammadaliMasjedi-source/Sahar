@@ -220,6 +220,71 @@ const PICTURES = {
     <ellipse cx="42" cy="52" rx="22" ry="14" fill="#fff" opacity=".92"/>
     <ellipse cx="62" cy="46" rx="16" ry="11" fill="#fff" opacity=".92"/>
     <circle cx="78" cy="26" r="10" fill="#ffd89b"/>
+  </svg>`,
+
+  /* ---- added for the Tier-1 life-skills pack (health/safety/feelings,
+   * SAHAR-COVERAGE §4 "life"). Deliberately simple placeholders, same spirit
+   * as the sets above — NOT the final illustrated design pass (§6.5 C). ---- */
+
+  soap: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1b3a5b"/>
+    <rect x="24" y="38" width="52" height="30" rx="14" fill="#bfe3ff"/>
+    <circle cx="70" cy="30" r="6" fill="#eaf7ff"/>
+    <circle cx="80" cy="42" r="4" fill="#eaf7ff"/>
+    <circle cx="62" cy="24" r="4" fill="#eaf7ff"/>
+    <path d="M32 50 q6 -4 12 0" stroke="#4db6e6" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  'muddy-water': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="#3a2a1c"/>
+    <path d="M50 20 C64 44 72 56 72 66 a22 22 0 1 1 -44 0 C28 56 36 44 50 20Z" fill="#8a6a3a"/>
+    <circle cx="42" cy="60" r="3" fill="#5c4526"/>
+    <circle cx="58" cy="64" r="2.4" fill="#5c4526"/>
+    <circle cx="50" cy="70" r="2" fill="#5c4526"/>
+  </svg>`,
+
+  toothbrush: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <rect x="18" y="58" width="56" height="12" rx="6" fill="#eaf7ff" transform="rotate(-30 18 58)"/>
+    <rect x="58" y="30" width="26" height="16" rx="6" fill="#4db6e6" transform="rotate(-30 58 30)"/>
+    <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" transform="rotate(-30 58 30)">
+      <line x1="60" y1="26" x2="60" y2="36"/>
+      <line x1="68" y1="24" x2="68" y2="34"/>
+      <line x1="76" y1="22" x2="76" y2="32"/>
+    </g>
+  </svg>`,
+
+  bed: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#0b1026"/>
+    <rect x="16" y="52" width="68" height="28" rx="6" fill="#4db6e6"/>
+    <rect x="16" y="46" width="20" height="16" rx="6" fill="#eaf7ff"/>
+    <rect x="12" y="78" width="8" height="10" rx="2" fill="#8a5a2b"/>
+    <rect x="80" y="78" width="8" height="10" rx="2" fill="#8a5a2b"/>
+    <text x="68" y="34" font-size="16" fill="#ffd89b" font-weight="700">z</text>
+    <text x="78" y="24" font-size="12" fill="#ffd89b" font-weight="700">z</text>
+  </svg>`,
+
+  ball: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#173a4a"/>
+    <circle cx="50" cy="50" r="34" fill="#f4a259"/>
+    <path d="M50 16 v68 M16 50 h68" stroke="#ffd89b" stroke-width="4"/>
+    <circle cx="50" cy="50" r="34" fill="none" stroke="#e0719b" stroke-width="4"/>
+  </svg>`,
+
+  'happy-face': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#123a2c"/>
+    <circle cx="50" cy="50" r="34" fill="#ffd89b"/>
+    <circle cx="38" cy="44" r="4" fill="#1c1430"/>
+    <circle cx="62" cy="44" r="4" fill="#1c1430"/>
+    <path d="M34 60 q16 16 32 0" stroke="#1c1430" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  'sad-face': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <circle cx="50" cy="50" r="34" fill="#bcd2e0"/>
+    <circle cx="38" cy="44" r="4" fill="#1c1430"/>
+    <circle cx="62" cy="44" r="4" fill="#1c1430"/>
+    <path d="M34 66 q16 -16 32 0" stroke="#1c1430" stroke-width="4" fill="none" stroke-linecap="round"/>
   </svg>`
 };
 
