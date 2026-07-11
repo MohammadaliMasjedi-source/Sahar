@@ -90,7 +90,8 @@ for (const file of PACK_FILES) {
   });
 
   test(`${file}: pack declares an honest audioStatus + audioNote in fa/en/de`, () => {
-    assert.equal(pack.audioStatus, 'placeholder', 'audioStatus must be honestly "placeholder" (no real recordings shipped yet)');
+    assert.ok(['placeholder', 'draft'].includes(pack.audioStatus),
+      'audioStatus must be honestly "placeholder" (no audio yet) or "draft" (machine-voice files exist, not real recordings)');
     for (const lang of LANGS) nonEmpty(pack.audioNote, lang, 'audioNote');
   });
 
@@ -116,11 +117,22 @@ for (const file of PACK_FILES) {
     }
   });
 
-  test(`${file}: every card declares audioPending:true or an audio ref (never neither)`, () => {
+  test(`${file}: every card has an honest, non-lying audio state (audioPending OR a real audioDraft file)`, () => {
     for (const card of pack.cards) {
-      const hasPending = card.audioPending === true;
-      const hasAudioRef = card.audio && Object.keys(card.audio).length > 0;
-      assert.ok(hasPending || hasAudioRef, `card ${card.id} must declare audioPending:true or an audio ref`);
+      const pending = card.audioPending === true;
+      const draft = card.audioDraft === true;
+      assert.ok(pending || draft,
+        `card ${card.id} must declare audioPending:true (no audio yet) or audioDraft:true (machine-voice file exists) — never neither`);
+      assert.ok(!(pending && draft),
+        `card ${card.id} cannot be both audioPending and audioDraft at once — pick the honest one`);
+      if (draft) {
+        assert.ok(card.audio && typeof card.audio.fa === 'string' && card.audio.fa.length > 0,
+          `card ${card.id}: audioDraft:true requires a declared audio.fa ref`);
+        const absPath = path.join(CONTENT_DIR, '..', card.audio.fa);
+        assert.ok(fs.existsSync(absPath),
+          `card ${card.id}: declared audio.fa file must actually exist on disk (${card.audio.fa}) — no lying about audio state`);
+        assert.ok(fs.statSync(absPath).size > 0, `card ${card.id}: audio.fa file must be nonzero bytes`);
+      }
     }
   });
 
