@@ -12,11 +12,11 @@
   "license": "CC-BY-SA-4.0",
   "attribution": "Original Sahar content.",
   "signature": null,
-  "audioStatus": "placeholder",
+  "audioStatus": "draft",
   "audioNote": {
-    "fa": "این نمونه هنوز صدایی ندارد؛ صدا به‌زودی اضافه می‌شود.",
-    "en": "This pack has no audio yet; audio is coming soon.",
-    "de": "Dieses Paket hat noch keine Audiodateien; Audio folgt bald."
+    "fa": "این صداها یک صدای رایانه‌ای موقت هستند (گویش فارسی ایران، نه دری) — نه صدای واقعی یک انسان. صدای واقعی سحر یا ندا به زبان دری بعداً اضافه می‌شود.",
+    "en": "These voices are a temporary computer-generated (machine) voice, using an Iranian-Persian accent for fa — not Dari, and not a real human voice. Real Dari recordings, ideally in Sahar’s or Neda’s own voice, are still coming.",
+    "de": "Diese Stimmen sind vorübergehend eine computergenerierte Stimme mit iranisch-persischem Akzent (fa) — nicht Dari und keine echte menschliche Stimme. Echte Dari-Aufnahmen, idealerweise mit Sahars oder Nedas eigener Stimme, folgen noch."
   },
   "title": {
     "fa": "سالم و ایمن",
@@ -50,11 +50,22 @@
         "de": "Frag: „Sollen wir vor dem Essen die Hände waschen — ja oder nein?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "yes", "pic": "check-mark" },
-        { "id": "no", "pic": "cross-mark" }
+        {
+          "id": "yes",
+          "pic": "check-mark"
+        },
+        {
+          "id": "no",
+          "pic": "cross-mark"
+        }
       ],
       "answerId": "yes",
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-1.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-1.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-1.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-2",
@@ -77,11 +88,22 @@
         "de": "Frag: „Was hilft uns zusammen mit Wasser beim Händewaschen, Seife oder ein Stein?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "soap", "pic": "soap" },
-        { "id": "stone", "pic": "stone" }
+        {
+          "id": "soap",
+          "pic": "soap"
+        },
+        {
+          "id": "stone",
+          "pic": "stone"
+        }
       ],
       "answerId": "soap",
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-2.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-2.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-2.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-3",
@@ -104,11 +126,22 @@
         "de": "Frag: „Welches Wasser ist sicher zu trinken, sauberes oder schmutziges Wasser?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "water", "pic": "water" },
-        { "id": "muddy-water", "pic": "muddy-water" }
+        {
+          "id": "water",
+          "pic": "water"
+        },
+        {
+          "id": "muddy-water",
+          "pic": "muddy-water"
+        }
       ],
       "answerId": "water",
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-3.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-3.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-3.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-4",
@@ -131,11 +164,22 @@
         "de": "Frag: „Womit putzen wir unsere Zähne, mit einer Zahnbürste oder einem Stein?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "toothbrush", "pic": "toothbrush" },
-        { "id": "stone", "pic": "stone" }
+        {
+          "id": "toothbrush",
+          "pic": "toothbrush"
+        },
+        {
+          "id": "stone",
+          "pic": "stone"
+        }
       ],
       "answerId": "toothbrush",
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-4.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-4.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-4.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-5",
@@ -160,20 +204,37 @@
       "rounds": [
         {
           "choices": [
-            { "id": "ball", "pic": "ball" },
-            { "id": "bed", "pic": "bed" }
+            {
+              "id": "ball",
+              "pic": "ball"
+            },
+            {
+              "id": "bed",
+              "pic": "bed"
+            }
           ],
           "answerId": "ball"
         },
         {
           "choices": [
-            { "id": "bed", "pic": "bed" },
-            { "id": "ball", "pic": "ball" }
+            {
+              "id": "bed",
+              "pic": "bed"
+            },
+            {
+              "id": "ball",
+              "pic": "ball"
+            }
           ],
           "answerId": "bed"
         }
       ],
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-5.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-5.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-5.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-6",
@@ -196,11 +257,22 @@
         "de": "Frag: „Welches Gesicht ist glücklich?\" Lass es das richtige Bild antippen."
       },
       "choices": [
-        { "id": "happy-face", "pic": "happy-face" },
-        { "id": "sad-face", "pic": "sad-face" }
+        {
+          "id": "happy-face",
+          "pic": "happy-face"
+        },
+        {
+          "id": "sad-face",
+          "pic": "sad-face"
+        }
       ],
       "answerId": "happy-face",
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-6.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-6.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-6.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-7",
@@ -222,7 +294,12 @@
         "en": "Ask the child how they feel right now and let them say it out loud. Then tap \"I said it!\"",
         "de": "Frag das Kind, wie es sich gerade fühlt, und lass es das laut sagen. Dann auf „Ich hab's gesagt!\" tippen."
       },
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-7.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-7.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-7.de.mp3"
+      },
+      "audioDraft": true
     },
     {
       "id": "hs-8",
@@ -244,7 +321,12 @@
         "en": "Ask the child who their trusted grown-up is (for example mother, father, an aunt, or any caring adult in the family) and let them say the name out loud. Then tap \"I said it!\" This is a gentle safety exercise, not a test.",
         "de": "Frag das Kind, wer sein vertrauter Erwachsener ist (zum Beispiel Mutter, Vater, eine Tante oder ein anderer liebevoller Erwachsener in der Familie), und lass es den Namen laut sagen. Dann auf „Ich hab's gesagt!\" tippen. Das ist eine sanfte Sicherheitsübung, kein Test."
       },
-      "audioPending": true
+      "audio": {
+        "fa": "audio/t1.life.healthy-and-safe.hs-8.fa.mp3",
+        "en": "audio/t1.life.healthy-and-safe.hs-8.en.mp3",
+        "de": "audio/t1.life.healthy-and-safe.hs-8.de.mp3"
+      },
+      "audioDraft": true
     }
   ]
 }
