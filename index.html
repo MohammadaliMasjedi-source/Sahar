@@ -124,6 +124,13 @@
        profile. Rendered by app.js's renderGarden(). -->
   <section class="garden-view" id="gardenView"></section>
 
+  <!-- band indicator/selector (SAHAR-V3 CORE slice #2: age-band packaging):
+       a gentle icon/color strip showing which of the four charter age
+       bands the active profile is on, and letting a caregiver switch it —
+       which immediately swaps the shelf below. Rendered by app.js's
+       renderBandBar(); hidden mid-lesson and when no profile is active. -->
+  <section class="band-bar" id="bandBar" hidden></section>
+
   <!-- audio-first doorway: for a pre-literate child, start WITHOUT reading -->
   <a class="bootstrap-door" href="./bootstrap.html">
     <span class="door-ico"></span>
