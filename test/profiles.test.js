@@ -29,8 +29,8 @@ function makeMockLocalStorage() {
 globalThis.localStorage = makeMockLocalStorage();
 
 const {
-  AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND,
-  isValidAvatar, isValidAgeBand, createProfile,
+  AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND, BAND_META, LEGACY_AGE_BAND_MAP,
+  isValidAvatar, isValidAgeBand, normalizeAgeBand, createProfile,
   ProfileProvider, GardenProvider
 } = require('../profiles.js');
 
@@ -75,6 +75,46 @@ test('AGE_BANDS is a small ordered set and DEFAULT_AGE_BAND is one of them', () 
 });
 
 /* =====================================================================
+ * 1b. SAHAR-V3 CORE slice #2 (age-band packaging) — the charter's four
+ *     bands, their band-bar identity, and legacy-value normalization.
+ * ===================================================================== */
+test('AGE_BANDS is exactly the V3 charter\'s four bands, in order', () => {
+  assert.deepEqual(AGE_BANDS, ['6-8', '8-10', '10-12', '12-14']);
+});
+
+test('every AGE_BAND has a BAND_META entry with a real picture + a color token', () => {
+  const { PICTURES } = require('../pictures.js');
+  for (const b of AGE_BANDS) {
+    const meta = BAND_META[b];
+    assert.ok(meta, `BAND_META must cover band "${b}"`);
+    assert.ok(PICTURES[meta.pic], `BAND_META["${b}"].pic "${meta.pic}" must exist in the picture library`);
+    assert.ok(typeof meta.color === 'string' && meta.color.length > 0);
+  }
+});
+
+test('BAND_META colors are unique per band (color-alone selectability, same rule as AVATARS)', () => {
+  const colors = AGE_BANDS.map((b) => BAND_META[b].color);
+  assert.equal(new Set(colors).size, colors.length, 'band colors must be unique');
+});
+
+test('normalizeAgeBand passes a valid charter band through unchanged', () => {
+  for (const b of AGE_BANDS) assert.equal(normalizeAgeBand(b), b);
+});
+
+test('normalizeAgeBand maps wave-14c legacy bands to a real charter band', () => {
+  for (const [legacy, mapped] of Object.entries(LEGACY_AGE_BAND_MAP)) {
+    assert.equal(normalizeAgeBand(legacy), mapped);
+    assert.ok(isValidAgeBand(mapped), 'the mapped-to value must itself be a valid charter band');
+  }
+});
+
+test('normalizeAgeBand falls back to DEFAULT_AGE_BAND for garbage/unknown input — edge case', () => {
+  assert.equal(normalizeAgeBand('not-a-band'), DEFAULT_AGE_BAND);
+  assert.equal(normalizeAgeBand(undefined), DEFAULT_AGE_BAND);
+  assert.equal(normalizeAgeBand(null), DEFAULT_AGE_BAND);
+});
+
+/* =====================================================================
  * 2. createProfile() — pure, defensive, never throws on bad input
  * ===================================================================== */
 test('createProfile fills in a valid id/avatar/ageBand from good input', () => {
@@ -93,7 +133,7 @@ test('createProfile falls back to safe defaults on an invalid avatar/ageBand —
 });
 
 test('createProfile never requires a name — a blank/omitted name is valid (pre-literate, no typing required)', () => {
-  const p1 = createProfile({ ageBand: '3-5', avatar: 'star' }, () => 'id3');
+  const p1 = createProfile({ ageBand: '8-10', avatar: 'star' }, () => 'id3');
   assert.equal(p1.name, '');
   const p2 = createProfile(undefined, () => 'id4');
   assert.equal(p2.name, '');
@@ -101,7 +141,7 @@ test('createProfile never requires a name — a blank/omitted name is valid (pre
 });
 
 test('createProfile trims and caps an overlong name (defensive, never corrupts storage)', () => {
-  const p = createProfile({ name: '  ' + 'a'.repeat(200) + '  ', ageBand: '9+', avatar: 'moon' }, () => 'id5');
+  const p = createProfile({ name: '  ' + 'a'.repeat(200) + '  ', ageBand: '12-14', avatar: 'moon' }, () => 'id5');
   assert.ok(p.name.length <= 40, 'name must be capped');
   assert.equal(p.name[0], 'a', 'must be trimmed, not left with leading whitespace');
 });
@@ -132,13 +172,33 @@ test('ProfileProvider.add() persists a profile and makes it active', () => {
 
 test('ProfileProvider supports multiple sibling profiles independently', () => {
   globalThis.localStorage.clear();
-  const a = ProfileProvider.add({ name: 'Sibling A', ageBand: '3-5', avatar: 'star' });
-  const b = ProfileProvider.add({ name: 'Sibling B', ageBand: '9+', avatar: 'moon' });
+  const a = ProfileProvider.add({ name: 'Sibling A', ageBand: '6-8', avatar: 'star' });
+  const b = ProfileProvider.add({ name: 'Sibling B', ageBand: '10-12', avatar: 'moon' });
   assert.equal(ProfileProvider.list().length, 2);
   assert.equal(ProfileProvider.getActiveId(), b.id, 'the most-recently-added child becomes active');
   ProfileProvider.setActiveId(a.id);
   assert.equal(ProfileProvider.getActiveId(), a.id, 'switching profiles updates the active id');
   assert.notEqual(a.id, b.id);
+});
+
+/* =====================================================================
+ * 3b. ProfileProvider.setAgeBand — SAHAR-V3 CORE slice #2's band bar
+ *     switches an EXISTING profile's band (not just at creation time).
+ * ===================================================================== */
+test('setAgeBand changes an existing profile\'s band and persists it', () => {
+  globalThis.localStorage.clear();
+  const p = ProfileProvider.add({ name: 'Zahra', ageBand: '6-8', avatar: 'leaf' });
+  const updated = ProfileProvider.setAgeBand(p.id, '10-12');
+  assert.equal(updated.ageBand, '10-12');
+  assert.equal(ProfileProvider.get(p.id).ageBand, '10-12', 'the change must round-trip through storage');
+});
+
+test('setAgeBand is a no-op (never throws, never corrupts) for an unknown profile or invalid band — edge case', () => {
+  globalThis.localStorage.clear();
+  const p = ProfileProvider.add({ name: 'Zahra', ageBand: '6-8', avatar: 'leaf' });
+  assert.equal(ProfileProvider.setAgeBand('no-such-id', '8-10'), null);
+  assert.equal(ProfileProvider.setAgeBand(p.id, 'not-a-band'), null);
+  assert.equal(ProfileProvider.get(p.id).ageBand, '6-8', 'an invalid band must never overwrite the real one');
 });
 
 /* =====================================================================

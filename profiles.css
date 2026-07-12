@@ -126,3 +126,48 @@
 @media (prefers-reduced-motion: reduce) {
   .profile-tile, .avatar-pick { transition: none; }
 }
+
+/* ---- band bar (SAHAR-V3 CORE slice #2): which of the four charter age
+   bands the active profile is on; tapping a chip (caregiver action)
+   switches it and the shelf below swaps immediately. Same tile language as
+   the avatar picker above — color-alone selectable, icon-first. ---- */
+.band-bar { margin-block-end: 16px; }
+.band-bar-label {
+  text-align: center; font-size: var(--fs-xs); font-weight: 700; opacity: .8;
+  margin: 0 0 8px;
+}
+.band-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.band-chip {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  min-width: 64px; min-height: var(--tap); padding: 8px 10px;
+  border-radius: 14px; border: 2px solid transparent;
+  background: rgba(255,255,255,.06);
+  color: var(--cream); font: inherit; font-weight: 700; cursor: pointer;
+  transition: transform .12s ease, border-color .15s ease;
+}
+.band-chip:active { transform: scale(.95); }
+.band-chip.on { border-color: var(--tile-color, var(--gold)); background: rgba(255,255,255,.1); }
+.band-chip-ico {
+  width: 32px; height: 32px; border-radius: 10px; overflow: hidden;
+  background: var(--tile-color, rgba(255,255,255,.1));
+  display: flex; align-items: center; justify-content: center;
+}
+.band-chip-ico svg { width: 100%; height: 100%; display: block; }
+.band-chip-label { font-size: var(--fs-xs); }
+
+/* ---- "packs coming soon" scaffold (SAHAR-V3 CORE slice #2) — reuses the
+   `.done` card frame (styles.css) so it never becomes a parallel visual
+   system; only the band's own icon/color tile + a sunrise glyph are new. ---- */
+.band-coming-icon {
+  width: 72px; height: 72px; margin: 0 auto 8px;
+  border-radius: 20px; overflow: hidden;
+  background: var(--tile-color, rgba(255,255,255,.1));
+  display: flex; align-items: center; justify-content: center;
+}
+.band-coming-icon svg { width: 100%; height: 100%; display: block; }
+.band-coming .mascot-sunrise { display: block; margin: 0 auto 10px; }
+.band-coming .listen-btn { margin-block-end: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .band-chip { transition: none; }
+}

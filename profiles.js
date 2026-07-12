@@ -40,12 +40,44 @@ const AVATARS = [
 ];
 const DEFAULT_AVATAR = AVATARS[0].id;
 
-/** Age bands — a caregiver picks one when adding a child (not the child). */
-const AGE_BANDS = ['3-5', '6-8', '9+'];
-const DEFAULT_AGE_BAND = AGE_BANDS[1];
+/** Age bands — a caregiver picks one when adding a child (not the child).
+ *  SAHAR-V3 CORE slice #2 (age-band packaging): refines wave-14c lane G's
+ *  placeholder 3-band scheme ('3-5'/'6-8'/'9+') into the V3 charter's four
+ *  bands. This is also exactly what app.js's pack shelf keys off of, so a
+ *  profile's band and the packs it sees always agree. */
+const AGE_BANDS = ['6-8', '8-10', '10-12', '12-14'];
+const DEFAULT_AGE_BAND = AGE_BANDS[0];
+
+/** Small, secular, color+icon "growth stage" identity per band — same
+ *  color-alone-selectability spirit as AVATARS above, reusing EXISTING
+ *  pictures.js glyphs (no new art system). Consumed by app.js's band bar
+ *  and its "packs coming soon" scaffold. */
+const BAND_META = {
+  '6-8':   { pic: 'garden', color: 'var(--good)' },
+  '8-10':  { pic: 'sun',    color: 'var(--gold)' },
+  '10-12': { pic: 'tree',   color: '#4db6e6' },
+  '12-14': { pic: 'dawn',   color: 'var(--rose)' }
+};
+
+/** A profile created under wave-14c's pre-charter 3-band scheme may still
+ *  exist on a device with ageBand '3-5' or '9+' — values the charter's
+ *  4-band scheme no longer offers as a choice. Read-side ONLY (never
+ *  offered in the add/edit UI): lets an old profile keep resolving to a
+ *  sensible charter band instead of silently losing its band. */
+const LEGACY_AGE_BAND_MAP = { '3-5': '6-8', '9+': '10-12' };
 
 function isValidAvatar(id) { return AVATARS.some((a) => a.id === id); }
 function isValidAgeBand(b) { return AGE_BANDS.indexOf(b) !== -1; }
+
+/** Resolve ANY stored ageBand (current charter band, legacy wave-14c value,
+ *  or garbage) to one of the four charter bands. Never throws, never
+ *  returns an unrecognised value — every consumer (pack selection, the band
+ *  bar) can trust this always returns a real, displayable band. */
+function normalizeAgeBand(b) {
+  if (isValidAgeBand(b)) return b;
+  if (LEGACY_AGE_BAND_MAP[b]) return LEGACY_AGE_BAND_MAP[b];
+  return DEFAULT_AGE_BAND;
+}
 
 /** A reasonably unique, dependency-free id. Injectable for deterministic tests. */
 function makeProfileId() {
@@ -106,6 +138,19 @@ const ProfileProvider = {
     const data = this._read();
     data.activeId = id;
     this._write(data);
+  },
+  /** Change an EXISTING profile's age band (caregiver action, via the band
+   *  bar on the lesson shelf — SAHAR-V3 CORE slice #2). Ignored (returns
+   *  null) for an unknown profile id or an invalid band, so a malformed tap
+   *  never corrupts storage. */
+  setAgeBand(id, band) {
+    if (!isValidAgeBand(band)) return null;
+    const data = this._read();
+    const profile = data.profiles.find((p) => p.id === id);
+    if (!profile) return null;
+    profile.ageBand = band;
+    this._write(data);
+    return profile;
   }
 };
 
@@ -151,15 +196,15 @@ const GardenProvider = {
 /* Headless export (house principle #8: core testable without a DOM). */
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND,
-    isValidAvatar, isValidAgeBand, createProfile, makeProfileId,
+    AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND, BAND_META, LEGACY_AGE_BAND_MAP,
+    isValidAvatar, isValidAgeBand, normalizeAgeBand, createProfile, makeProfileId,
     ProfileProvider, GardenProvider, PROFILES_KEY, GARDEN_KEY
   };
 }
 if (typeof window !== 'undefined') {
   window.SaharProfiles = {
-    AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND,
-    isValidAvatar, isValidAgeBand, createProfile, makeProfileId,
+    AVATARS, DEFAULT_AVATAR, AGE_BANDS, DEFAULT_AGE_BAND, BAND_META, LEGACY_AGE_BAND_MAP,
+    isValidAvatar, isValidAgeBand, normalizeAgeBand, createProfile, makeProfileId,
     ProfileProvider, GardenProvider
   };
 }

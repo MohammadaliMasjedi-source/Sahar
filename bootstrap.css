@@ -191,14 +191,17 @@
 /* ---- Tier-1 interactive card wrapper (main shelf) — same visual language
  * as the bootstrap first-contact flow, on the main app's .card frame. ---- */
 .card.interactive .fc-hero { margin-block-end: 6px; }
-.card.interactive .cg-toggle { margin-block-start: 16px; font-size: var(--fs-xs); }
-.card.interactive .cg-panel { margin-block-start: 10px; }
-.card.interactive .cg-line {
+/* `.done` reuses this same caregiver toggle/panel/line (SAHAR-V3 CORE slice
+   #2's "packs coming soon" scaffold, app.js renderComingSoonBand()) instead
+   of a parallel style — one caregiver-disclosure look across the app. */
+.card.interactive .cg-toggle, .done .cg-toggle { margin-block-start: 16px; font-size: var(--fs-xs); }
+.card.interactive .cg-panel, .done .cg-panel { margin-block-start: 10px; }
+.card.interactive .cg-line, .done .cg-line {
   text-align: start; font-size: var(--fs-sm); line-height: 1.6; opacity: .92;
   background: rgba(255,255,255,.05); border: 1px dashed var(--line);
   border-radius: 12px; padding: 10px 12px; margin-block-start: 0;
 }
-.card.interactive .cg-panel .prototype-banner { margin-block-start: 10px; }
+.card.interactive .cg-panel .prototype-banner, .done .cg-panel .prototype-banner { margin-block-start: 10px; }
 
 /* the audio-first stage isn't itself position:relative, but the star burst
  * needs a positioning ancestor to anchor its px-based origin coordinates to. */

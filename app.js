@@ -224,19 +224,54 @@ const KIND_KEY = {
 
 /* PACKS — the bundled Tier-1 content shelf. Add a pack = add a line here
  * (and to APP_SHELL in sw.js so it precaches for offline). Titles are read
- * from each pack's own `title` map, so this stays a thin index of paths. */
+ * from each pack's own `title` map, so this stays a thin index of paths.
+ *
+ * `band` (SAHAR-V3 CORE slice #2: age-band packaging) tags which of the V3
+ * charter's four age bands a pack belongs to. All packs shipped today are
+ * real 6-8 content; 8-10/10-12/12-14 have no packs yet on purpose (see
+ * packsForBand()/renderComingSoonBand() below — no invented curriculum). */
 const PACKS = [
-  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json', pic: 'letters' },
-  { id: 't1.literacy.first-words',          path: './content/t1-literacy-first-words.json', pic: 'book' },
-  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json', pic: 'star' },
-  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json', pic: 'shapes-trio' },
-  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json', pic: 'leaf' },
-  { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json', pic: 'dawn' },
-  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json', pic: 'question-mark' },
-  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json', pic: 'guess-cloud' },
-  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json', pic: 'soap' },
-  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json', pic: 'statement' }
+  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json', pic: 'letters', band: '6-8' },
+  { id: 't1.literacy.first-words',          path: './content/t1-literacy-first-words.json', pic: 'book', band: '6-8' },
+  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json', pic: 'star', band: '6-8' },
+  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json', pic: 'shapes-trio', band: '6-8' },
+  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json', pic: 'leaf', band: '6-8' },
+  { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json', pic: 'dawn', band: '6-8' },
+  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json', pic: 'question-mark', band: '6-8' },
+  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json', pic: 'guess-cloud', band: '6-8' },
+  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json', pic: 'soap', band: '6-8' },
+  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json', pic: 'statement', band: '6-8' }
 ];
+
+/** All packs tagged for a given charter band (empty array for a band with no
+ *  real content yet — that emptiness is what tells renderPicker() to show
+ *  the honest "coming soon" scaffold instead of a shelf). */
+function packsForBand(band) { return PACKS.filter((p) => p.band === band); }
+
+/** The ACTIVE profile's charter band, normalized (never an invalid/legacy
+ *  value) — the one place both the shelf and the band bar read from. Falls
+ *  back to the default band when no profile is active (headless/boot edge). */
+function activeAgeBand() {
+  const P = window.SaharProfiles;
+  if (!P) return '6-8';
+  const profile = state.activeProfileId ? P.ProfileProvider.get(state.activeProfileId) : null;
+  return P.normalizeAgeBand(profile && profile.ageBand);
+}
+
+/* Honest "packs coming soon" scaffold copy (SAHAR-V3 CORE slice #2) — shown
+ * for any charter band with no real packs yet. Deliberately short and
+ * icon/audio-first, never a text wall; the longer caregiver line is explicit
+ * that nothing is invented, matching this app's other honesty banners. */
+const COMING_SOON = {
+  fa: 'درس‌های این گروه سنی به‌زودی می‌آیند',
+  en: 'Lessons for this age group are coming soon',
+  de: 'Lektionen für diese Altersgruppe kommen bald'
+};
+const COMING_SOON_CG = {
+  fa: 'این گروه سنی هنوز محتوایی ندارد. محتوای واقعی تنها پس از بررسی آموزشی و ایمنی کودکان اضافه می‌شود — چیزی اینجا ساخته یا وانمود نشده است.',
+  en: 'This age group has no real lessons yet. Real content will be added only after a pedagogy and child-safeguarding review — nothing here is invented or faked.',
+  de: 'Für diese Altersgruppe gibt es noch keine echten Lektionen. Echte Inhalte kommen erst nach einer pädagogischen und kindersicherheitsbezogenen Prüfung hinzu — hier ist nichts erfunden oder vorgetäuscht.'
+};
 
 /* =========================================================================
  * VIEWMODEL — app state (no DOM here)
@@ -392,7 +427,11 @@ function renderGarden() {
   const P = window.SaharProfiles;
   if (!state.activeProfileId || !P) { el.innerHTML = ''; return; }
   const lang = state.lang;
-  const total = PACKS.length;
+  // SAHAR-V3 CORE slice #2: the garden's "total" is THIS BAND's pack count,
+  // not the whole app's — a band with no packs yet has nothing to grow, so
+  // the garden stays hidden rather than showing a misleading 0/10.
+  const total = packsForBand(activeAgeBand()).length;
+  if (!total) { el.innerHTML = ''; return; }
   const completed = P.GardenProvider.distinctCompletedCount(state.activeProfileId);
   const scene = (window.SaharMascot && window.SaharMascot.garden(completed, total)) || '';
   el.innerHTML = `
@@ -400,6 +439,38 @@ function renderGarden() {
       ${scene}
       <p class="garden-label">${I18nProvider.t(lang, 'gardenLabel')} · ${completed} / ${total}</p>
     </div>`;
+}
+
+/** The band indicator/selector (SAHAR-V3 CORE slice #2): a gentle icon+color
+ *  strip, same tile language as the avatar picker, showing which of the
+ *  four charter age bands the ACTIVE profile is on. Tapping a chip is a
+ *  caregiver action that changes that profile's band and immediately swaps
+ *  the shelf below (DoD: "switching a profile's band switches what's
+ *  shown"). Hidden mid-lesson (only meaningful on the shelf) and when no
+ *  profile is active — same guard style as renderGarden(). */
+function renderBandBar() {
+  const el = $('bandBar');
+  if (!el) return;
+  const P = window.SaharProfiles;
+  if (!state.activeProfileId || !P || state.pack) { el.innerHTML = ''; el.hidden = true; return; }
+  const profile = P.ProfileProvider.get(state.activeProfileId);
+  if (!profile) { el.innerHTML = ''; el.hidden = true; return; }
+  el.hidden = false;
+  const lang = state.lang;
+  const current = P.normalizeAgeBand(profile.ageBand);
+  const chips = P.AGE_BANDS.map((b) => {
+    const meta = P.BAND_META[b];
+    const on = b === current ? ' on' : '';
+    const icon = (window.pictureFor && window.pictureFor(meta.pic)) || '';
+    return `<button type="button" class="band-chip${on}" data-act="pick-band" data-band="${b}"
+        style="--tile-color:${meta.color}" aria-pressed="${b === current}" aria-label="${b}">
+      <span class="band-chip-ico">${icon}</span>
+      <span class="band-chip-label">${b}</span>
+    </button>`;
+  }).join('');
+  el.innerHTML = `
+    <p class="band-bar-label">${I18nProvider.t(lang, 'ageBand')}</p>
+    <div class="band-row">${chips}</div>`;
 }
 
 /** The "who's learning" avatar grid — a pre-literate child picks THEIR
@@ -499,10 +570,15 @@ function openProfileGate() {
 }
 
 /** The lesson picker: a warm shelf of the bundled packs. Shown when no pack
- *  is open. Each tile reads its title from the pack's own title map. */
+ *  is open. Each tile reads its title from the pack's own title map.
+ *  SAHAR-V3 CORE slice #2: only the ACTIVE profile's band's packs are ever
+ *  shown; a band with none yet gets the honest scaffold instead. */
 function renderPicker() {
   const lang = state.lang;
-  const tiles = PACKS.map((p) => {
+  const band = activeAgeBand();
+  const packs = packsForBand(band);
+  if (!packs.length) { renderComingSoonBand(band); return; }
+  const tiles = packs.map((p) => {
     const title = (p.titleByLang && (p.titleByLang[lang] || p.titleByLang.en)) || p.id;
     const icon = (window.pictureFor && window.pictureFor(p.pic || 'star')) || '';
     return `<button class="lesson-tile" data-act="open" data-path="${p.path}">
@@ -512,6 +588,46 @@ function renderPicker() {
   $('stage').innerHTML = `
     <p class="lesson-title">${I18nProvider.t(lang, 'pick')}</p>
     <div class="lesson-shelf">${tiles}</div>`;
+}
+
+/** The honest "packs coming soon" scaffold for a charter band with no real
+ *  packs yet (SAHAR-V3 CORE slice #2). Reuses the `.done` card frame (same
+ *  container as the end-of-lesson / could-not-load screens) plus the band's
+ *  own icon/color identity. Never a text wall, never invented curriculum —
+ *  see COMING_SOON_CG for the explicit "nothing here is faked" note, which
+ *  lives behind the same "For grown-ups" toggle every lesson card uses. */
+function renderComingSoonBand(band) {
+  const lang = state.lang;
+  const P = window.SaharProfiles;
+  const meta = (P && P.BAND_META[band]) || { pic: 'garden', color: 'var(--good)' };
+  const icon = (window.pictureFor && window.pictureFor(meta.pic)) || '';
+  const sunrise = (window.SaharMascot && window.SaharMascot.sunrise(40)) || '';
+  const label = COMING_SOON[lang] || COMING_SOON.en;
+  const cg = COMING_SOON_CG[lang] || COMING_SOON_CG.en;
+  $('stage').innerHTML = `
+    <div class="done band-coming">
+      <div class="band-coming-icon" style="--tile-color:${meta.color}">${icon}</div>
+      ${sunrise}
+      <h2>${label}</h2>
+      <button type="button" class="listen-btn l1" data-act="listen-coming">
+        <span class="lico">🔊</span><span class="ltxt">${I18nProvider.t(lang, 'listen')}</span>
+      </button>
+      <button type="button" class="link-btn cg-toggle" data-act="caregiver">👪 ${I18nProvider.t(lang, 'caregiver')}</button>
+      <div class="cg-panel" id="cgPanel" style="display:none">
+        <p class="cg-line">${cg}</p>
+      </div>
+    </div>`;
+}
+
+/** Speak the "coming soon" band message through the same honest AudioEngine
+ *  chain every lesson card uses (real recording if one ever exists → browser
+ *  TTS where genuinely available → placeholder tone). Never blocks the
+ *  screen; a missing AudioEngine is a silent no-op like voiceCard()'s. */
+async function voiceComingSoon() {
+  if (!window.AudioEngine) return;
+  const lang = state.lang;
+  const text = COMING_SOON[lang] || COMING_SOON.en;
+  try { await window.AudioEngine.voice({ text }, lang, false); } catch (_) { /* honest no-op */ }
 }
 
 /** The visible dawn progress path (SAHAR-COVERAGE §6.5-C — Duolingo-style bar
@@ -806,6 +922,7 @@ function render() {
   applyLanguageChrome();
   renderProfileChip();
   renderGarden();
+  renderBandBar();
   renderProgressPath();
   renderStage();
 }
@@ -926,6 +1043,20 @@ function wireEvents() {
   // switch-profile chip (topbar): reopen the "who's learning" gate
   const chip = $('profileChip');
   if (chip) chip.addEventListener('click', () => openProfileGate());
+  // band bar (home screen): tapping a band chip switches the ACTIVE
+  // profile's charter band and immediately swaps the shelf below (SAHAR-V3
+  // CORE slice #2 DoD: "switching a profile's band switches what's shown").
+  const bandBar = $('bandBar');
+  if (bandBar) {
+    bandBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-act="pick-band"]');
+      if (!btn) return;
+      const band = btn.getAttribute('data-band');
+      const P = window.SaharProfiles;
+      if (P && state.activeProfileId) P.ProfileProvider.setAgeBand(state.activeProfileId, band);
+      render();
+    });
+  }
   // the profile gate: avatar picks, add-child form, its own click delegation
   // (kept separate from #stage's delegation below — different screen).
   const gate = $('profileGate');
@@ -990,6 +1121,7 @@ function wireEvents() {
       const round = (card && card.interaction === 'match' && card.rounds) ? card.rounds[state.subIdx] : card;
       if (card) voiceCard(card, round);
     }
+    else if (act === 'listen-coming') voiceComingSoon();
     else if (act === 'said-it') onAnswer(true); // repeat-aloud: ungraded, self-paced completion
     else if (act === 'caregiver') {
       const el = $('cgPanel');
