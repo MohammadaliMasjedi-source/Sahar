@@ -38,7 +38,7 @@ const PICTURES = {
     <ellipse cx="52" cy="58" rx="22" ry="18" fill="#f4a259"/>
     <circle cx="38" cy="46" r="13" fill="#f4a259"/>
     <circle cx="34" cy="44" r="2.6" fill="#1c1430"/>
-    <path d="M24 46 l-10 -3 10 -3Z" fill="#ffd89b"/>
+    <path d="M27 48.4 L14 46 L27 43.6 Z" fill="#ffd89b"/>
     <path d="M56 56 q16 -8 24 -2 q-10 10 -24 6Z" fill="#e0719b"/>
     <path d="M50 74 l-4 10 M60 72 l2 10" stroke="#ffd89b" stroke-width="3" stroke-linecap="round"/>
   </svg>`,

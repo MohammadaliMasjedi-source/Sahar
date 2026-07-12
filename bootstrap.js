@@ -86,12 +86,12 @@ async function loadPack() {
 function birdSVG(size) {
   const s = size || 34;
   return `<svg class="dawnbird" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
-    <circle cx="20" cy="20" r="19" fill="var(--amber)" opacity=".22"/>
-    <ellipse cx="21" cy="23" rx="9" ry="7.5" fill="var(--amber)"/>
-    <circle cx="14" cy="18" r="6" fill="var(--amber)"/>
-    <circle cx="12" cy="17" r="1.3" fill="var(--ink)"/>
-    <path d="M6 18 l-4 -1 4 -1Z" fill="var(--gold)"/>
-    <path d="M23 22 q7 -4 11 -1 q-5 5 -11 3Z" fill="var(--rose)"/>
+    <circle cx="20" cy="20" r="19" fill="var(--amber, #f4a259)" opacity=".22"/>
+    <ellipse cx="21" cy="23" rx="9" ry="7.5" fill="var(--amber, #f4a259)"/>
+    <circle cx="14" cy="18" r="6" fill="var(--amber, #f4a259)"/>
+    <circle cx="12" cy="17" r="1.3" fill="var(--ink, #1c1430)"/>
+    <path d="M9.5 19.6 L3.5 18 L9.5 16.4 Z" fill="var(--gold, #ffd89b)"/>
+    <path d="M23 22 q7 -4 11 -1 q-5 5 -11 3Z" fill="var(--rose, #e0719b)"/>
   </svg>`;
 }
 
@@ -99,15 +99,15 @@ function birdSVG(size) {
 function sunriseSVG(size) {
   const s = size || 24;
   return `<svg class="mascot-sunrise" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
-    <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round">
+    <g stroke="var(--gold, #ffd89b)" stroke-width="2.6" stroke-linecap="round">
       <line x1="20" y1="2" x2="20" y2="8"/>
       <line x1="5" y1="9" x2="9.5" y2="13.5"/>
       <line x1="35" y1="9" x2="30.5" y2="13.5"/>
       <line x1="1" y1="22" x2="8" y2="22"/>
       <line x1="32" y1="22" x2="39" y2="22"/>
     </g>
-    <circle cx="20" cy="24" r="10" fill="var(--amber)"/>
-    <circle cx="20" cy="24" r="10" fill="none" stroke="var(--gold)" stroke-width="2"/>
+    <circle cx="20" cy="24" r="10" fill="var(--amber, #f4a259)"/>
+    <circle cx="20" cy="24" r="10" fill="none" stroke="var(--gold, #ffd89b)" stroke-width="2"/>
   </svg>`;
 }
 
@@ -117,7 +117,7 @@ function starSVG(size) {
   const s = size || 18;
   return `<svg class="mascot-star" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
     <path d="M20 3 L24.6 15.3 L37.8 15.8 L27.2 23.9 L30.9 36.6 L20 29.2 L9.1 36.6 L12.8 23.9 L2.2 15.8 L15.4 15.3Z"
-          fill="var(--gold)" stroke="var(--amber)" stroke-width="1.4" stroke-linejoin="round"/>
+          fill="var(--gold, #ffd89b)" stroke="var(--amber, #f4a259)" stroke-width="1.4" stroke-linejoin="round"/>
   </svg>`;
 }
 

@@ -19,12 +19,12 @@ const SaharMascot = (() => {
     const s = size || 34;
     const cls = extraClass ? ('dawnbird ' + extraClass) : 'dawnbird';
     return `<svg class="${cls}" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
-      <circle cx="20" cy="20" r="19" fill="var(--amber)" opacity=".22"/>
-      <ellipse cx="21" cy="23" rx="9" ry="7.5" fill="var(--amber)"/>
-      <circle cx="14" cy="18" r="6" fill="var(--amber)"/>
-      <circle cx="12" cy="17" r="1.3" fill="var(--ink)"/>
-      <path d="M6 18 l-4 -1 4 -1Z" fill="var(--gold)"/>
-      <path d="M23 22 q7 -4 11 -1 q-5 5 -11 3Z" fill="var(--rose)"/>
+      <circle cx="20" cy="20" r="19" fill="var(--amber, #f4a259)" opacity=".22"/>
+      <ellipse cx="21" cy="23" rx="9" ry="7.5" fill="var(--amber, #f4a259)"/>
+      <circle cx="14" cy="18" r="6" fill="var(--amber, #f4a259)"/>
+      <circle cx="12" cy="17" r="1.3" fill="var(--ink, #1c1430)"/>
+      <path d="M9.5 19.6 L3.5 18 L9.5 16.4 Z" fill="var(--gold, #ffd89b)"/>
+      <path d="M23 22 q7 -4 11 -1 q-5 5 -11 3Z" fill="var(--rose, #e0719b)"/>
     </svg>`;
   }
 
@@ -34,15 +34,15 @@ const SaharMascot = (() => {
     const s = size || 28;
     const cls = extraClass ? ('mascot-sunrise ' + extraClass) : 'mascot-sunrise';
     return `<svg class="${cls}" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
-      <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round">
+      <g stroke="var(--gold, #ffd89b)" stroke-width="2.6" stroke-linecap="round">
         <line x1="20" y1="2" x2="20" y2="8"/>
         <line x1="5" y1="9" x2="9.5" y2="13.5"/>
         <line x1="35" y1="9" x2="30.5" y2="13.5"/>
         <line x1="1" y1="22" x2="8" y2="22"/>
         <line x1="32" y1="22" x2="39" y2="22"/>
       </g>
-      <circle cx="20" cy="24" r="10" fill="var(--amber)"/>
-      <circle cx="20" cy="24" r="10" fill="none" stroke="var(--gold)" stroke-width="2"/>
+      <circle cx="20" cy="24" r="10" fill="var(--amber, #f4a259)"/>
+      <circle cx="20" cy="24" r="10" fill="none" stroke="var(--gold, #ffd89b)" stroke-width="2"/>
     </svg>`;
   }
 
@@ -52,9 +52,9 @@ const SaharMascot = (() => {
     const s = size || 26;
     const cls = extraClass ? ('mascot-speaker ' + extraClass) : 'mascot-speaker';
     return `<svg class="${cls}" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
-      <path d="M6 15 H12 L21 7 V33 L12 25 H6Z" fill="var(--gold)"/>
-      <path d="M26 14 a10.5 10.5 0 0 1 0 12" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path d="M30.5 9 a17 17 0 0 1 0 22" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".65"/>
+      <path d="M6 15 H12 L21 7 V33 L12 25 H6Z" fill="var(--gold, #ffd89b)"/>
+      <path d="M26 14 a10.5 10.5 0 0 1 0 12" stroke="var(--gold, #ffd89b)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M30.5 9 a17 17 0 0 1 0 22" stroke="var(--gold, #ffd89b)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".65"/>
     </svg>`;
   }
 
@@ -65,7 +65,7 @@ const SaharMascot = (() => {
     const cls = extraClass ? ('mascot-star ' + extraClass) : 'mascot-star';
     return `<svg class="${cls}" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
       <path d="M20 3 L24.6 15.3 L37.8 15.8 L27.2 23.9 L30.9 36.6 L20 29.2 L9.1 36.6 L12.8 23.9 L2.2 15.8 L15.4 15.3Z"
-            fill="var(--gold)" stroke="var(--amber)" stroke-width="1.4" stroke-linejoin="round"/>
+            fill="var(--gold, #ffd89b)" stroke="var(--amber, #f4a259)" stroke-width="1.4" stroke-linejoin="round"/>
     </svg>`;
   }
 
@@ -77,31 +77,31 @@ const SaharMascot = (() => {
   function gardenPlant(cx, groundY, species, bloomed) {
     if (!bloomed) {
       return `<g opacity=".38">
-        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 10}" stroke="var(--good)" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="${cx}" cy="${groundY - 13}" r="3.2" fill="var(--good)"/>
+        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 10}" stroke="var(--good, #6fcf97)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="${cx}" cy="${groundY - 13}" r="3.2" fill="var(--good, #6fcf97)"/>
       </g>`;
     }
     if (species === 1) { // tulip
       return `<g>
-        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 22}" stroke="var(--good)" stroke-width="3" stroke-linecap="round"/>
-        <path d="M${cx - 8} ${groundY - 22} Q${cx} ${groundY - 40} ${cx + 8} ${groundY - 22} Q${cx} ${groundY - 27} ${cx - 8} ${groundY - 22}Z" fill="var(--amber)"/>
+        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 22}" stroke="var(--good, #6fcf97)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M${cx - 8} ${groundY - 22} Q${cx} ${groundY - 40} ${cx + 8} ${groundY - 22} Q${cx} ${groundY - 27} ${cx - 8} ${groundY - 22}Z" fill="var(--amber, #f4a259)"/>
       </g>`;
     }
     if (species === 2) { // daisy cluster
       return `<g>
-        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 16}" stroke="var(--good)" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="${cx - 6}" cy="${groundY - 22}" r="4" fill="var(--cream)"/>
-        <circle cx="${cx + 6}" cy="${groundY - 22}" r="4" fill="var(--cream)"/>
-        <circle cx="${cx}" cy="${groundY - 28}" r="4" fill="var(--cream)"/>
-        <circle cx="${cx}" cy="${groundY - 16}" r="4" fill="var(--cream)"/>
-        <circle cx="${cx}" cy="${groundY - 22}" r="3.4" fill="var(--gold)"/>
+        <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 16}" stroke="var(--good, #6fcf97)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="${cx - 6}" cy="${groundY - 22}" r="4" fill="var(--cream, #fff6ea)"/>
+        <circle cx="${cx + 6}" cy="${groundY - 22}" r="4" fill="var(--cream, #fff6ea)"/>
+        <circle cx="${cx}" cy="${groundY - 28}" r="4" fill="var(--cream, #fff6ea)"/>
+        <circle cx="${cx}" cy="${groundY - 16}" r="4" fill="var(--cream, #fff6ea)"/>
+        <circle cx="${cx}" cy="${groundY - 22}" r="3.4" fill="var(--gold, #ffd89b)"/>
       </g>`;
     }
     // species 0: round bush + blossom (default)
     return `<g>
-      <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 18}" stroke="var(--good)" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${groundY - 24}" r="9" fill="var(--good)"/>
-      <circle cx="${cx}" cy="${groundY - 30}" r="4.4" fill="var(--rose)"/>
+      <line x1="${cx}" y1="${groundY}" x2="${cx}" y2="${groundY - 18}" stroke="var(--good, #6fcf97)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="${cx}" cy="${groundY - 24}" r="9" fill="var(--good, #6fcf97)"/>
+      <circle cx="${cx}" cy="${groundY - 30}" r="4.4" fill="var(--rose, #e0719b)"/>
     </g>`;
   }
 
@@ -137,10 +137,10 @@ const SaharMascot = (() => {
     // used for `.hero-bird` / `.dawn-progress .bird` (profiles.css).
     return `<svg class="${cls}" viewBox="0 0 ${w} ${h}" role="img" aria-hidden="true">
       <defs><clipPath id="garden-clip"><rect x="0" y="0" width="${w}" height="${h}" rx="16"/></clipPath></defs>
-      <rect x="0" y="0" width="${w}" height="${h}" rx="16" fill="var(--night-2)"/>
+      <rect x="0" y="0" width="${w}" height="${h}" rx="16" fill="var(--night-2, #141a3a)"/>
       <g clip-path="url(#garden-clip)">
-        <rect x="0" y="${groundY}" width="${w}" height="${h - groundY}" fill="var(--dusk)"/>
-        <path d="M0 ${groundY + 1} Q ${w / 2} ${groundY - 7} ${w} ${groundY + 1}" fill="none" stroke="var(--good)" stroke-width="2.5" opacity=".45"/>
+        <rect x="0" y="${groundY}" width="${w}" height="${h - groundY}" fill="var(--dusk, #3b2f63)"/>
+        <path d="M0 ${groundY + 1} Q ${w / 2} ${groundY - 7} ${w} ${groundY + 1}" fill="none" stroke="var(--good, #6fcf97)" stroke-width="2.5" opacity=".45"/>
         ${plants}
         ${bird}
       </g>

@@ -31,11 +31,11 @@
  * side effect, un-clashes it from `cat`, which used to share that same
  * amber hex. `cat` moved to `--rose` so no two avatars share a color. */
 const AVATARS = [
-  { id: 'dawnbird', pic: null,   color: 'var(--dusk)' }, // SaharMascot.svg() — dark backdrop so the amber bird reads clearly
-  { id: 'leaf',     pic: 'leaf', color: 'var(--good)' },
+  { id: 'dawnbird', pic: null,   color: 'var(--dusk, #3b2f63)' }, // SaharMascot.svg() — dark backdrop so the amber bird reads clearly
+  { id: 'leaf',     pic: 'leaf', color: 'var(--good, #6fcf97)' },
   { id: 'fish',     pic: 'fish', color: '#4db6e6' },
-  { id: 'cat',      pic: 'cat',  color: 'var(--rose)' },
-  { id: 'star',     pic: 'star', color: 'var(--gold)' },
+  { id: 'cat',      pic: 'cat',  color: 'var(--rose, #e0719b)' },
+  { id: 'star',     pic: 'star', color: 'var(--gold, #ffd89b)' },
   { id: 'moon',     pic: 'moon', color: '#c9b6ff' }
 ];
 const DEFAULT_AVATAR = AVATARS[0].id;
@@ -53,10 +53,10 @@ const DEFAULT_AGE_BAND = AGE_BANDS[0];
  *  pictures.js glyphs (no new art system). Consumed by app.js's band bar
  *  and its "packs coming soon" scaffold. */
 const BAND_META = {
-  '6-8':   { pic: 'garden', color: 'var(--good)' },
-  '8-10':  { pic: 'sun',    color: 'var(--gold)' },
+  '6-8':   { pic: 'garden', color: 'var(--good, #6fcf97)' },
+  '8-10':  { pic: 'sun',    color: 'var(--gold, #ffd89b)' },
   '10-12': { pic: 'tree',   color: '#4db6e6' },
-  '12-14': { pic: 'dawn',   color: 'var(--rose)' }
+  '12-14': { pic: 'dawn',   color: 'var(--rose, #e0719b)' }
 };
 
 /** A profile created under wave-14c's pre-charter 3-band scheme may still

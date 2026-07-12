@@ -599,7 +599,7 @@ function renderPicker() {
 function renderComingSoonBand(band) {
   const lang = state.lang;
   const P = window.SaharProfiles;
-  const meta = (P && P.BAND_META[band]) || { pic: 'garden', color: 'var(--good)' };
+  const meta = (P && P.BAND_META[band]) || { pic: 'garden', color: 'var(--good, #6fcf97)' };
   const icon = (window.pictureFor && window.pictureFor(meta.pic)) || '';
   const sunrise = (window.SaharMascot && window.SaharMascot.sunrise(40)) || '';
   const label = COMING_SOON[lang] || COMING_SOON.en;
@@ -858,7 +858,7 @@ function celebrate(opts) {
   }
 
   const n = o.big ? 22 : 12;
-  const colors = ['var(--gold)', 'var(--amber)', 'var(--rose)', 'var(--good)'];
+  const colors = ['var(--gold, #ffd89b)', 'var(--amber, #f4a259)', 'var(--rose, #e0719b)', 'var(--good, #6fcf97)'];
   let bits = '';
   for (let i = 0; i < n; i++) {
     const left = Math.round(Math.random() * 100);
