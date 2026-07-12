@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v18'; // v18: hero-girl redraw + var()-fallback sweep, merged with Kanoon-skin gap fixes (folk icons, heroine, display font)
+const CACHE = 'sahar-v19'; // v19: design-critic pass on the Kanoon skin — band-chip ink fix, emoji-to-glyph swap, teacher.html now loads the skin
 
 const APP_SHELL = [
   './',

@@ -420,6 +420,115 @@
   }
 
   /* =======================================================================
+   * EMOJI → INK GLYPH SWAP (design-critic fix): app.js prints three raw OS
+   * emoji directly into markup — 🔊 in every "listen" pill's `.lico` span
+   * (renderComingSoonBand / renderInteractiveCard), 👪 prefixing the
+   * `.cg-toggle` "For grown-ups" button, and 📄 prefixing index.html's
+   * static "for teachers" link. Unlike the mascot/picture art above, these
+   * are literal characters baked into template-string HTML, not calls
+   * through a function this file can delegate — so instead this walks the
+   * live DOM and swaps them for flat ink SVGs (kanoon.css §14 sizes them).
+   * A MutationObserver re-runs the swap every time app.js redraws a card,
+   * so pills rendered well after page load (every "next card") get the
+   * same treatment. Fully reversible: leaving the skin restores the exact
+   * original text, so nothing here can go stale if a toggle happens
+   * mid-lesson. Total no-op anywhere the skin never touched (e.g. no
+   * `.lico` on the page): querySelectorAll simply finds nothing.
+   * ======================================================================= */
+  var SPEAKER_EMOJI = '🔊'; // 🔊
+  var FAMILY_EMOJI  = '👪'; // 👪
+  var DOC_EMOJI     = '📄'; // 📄
+
+  /** Adapted from mascot.js's own speaker() silhouette (same path data),
+   *  redrawn flat + ink-outlined to match the folk book-plate language
+   *  every other glyph in this file uses. */
+  function kanoonSpeakerGlyph(size) {
+    var s = size || 20;
+    return '<svg class="k-ico k-ico-speaker" width="' + s + '" height="' + s + '" viewBox="0 0 40 40" aria-hidden="true">' +
+      '<path d="M6 15 H12 L21 7 V33 L12 25 H6Z" fill="' + KI.saffron + '" stroke="' + KI.out + '" stroke-width="1.8" stroke-linejoin="round"/>' +
+      '<path d="M26 14 a10.5 10.5 0 0 1 0 12" stroke="' + KI.out + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>' +
+      '<path d="M30.5 9 a17 17 0 0 1 0 22" stroke="' + KI.out + '" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".6"/>' +
+      '</svg>';
+  }
+
+  /** A simple folk family glyph: three flat figures (two grown-ups flanking
+   *  a smaller child), same one-line ink-outline treatment as every other
+   *  redraw here. Secular by construction — plain rounded head+body blocks,
+   *  no symbol, no religious or national iconography. */
+  function kanoonFamilyGlyph(size) {
+    var s = size || 18;
+    return '<svg class="k-ico k-ico-family" width="' + s + '" height="' + s + '" viewBox="0 0 40 28" aria-hidden="true">' +
+      '<circle cx="9" cy="7" r="5" fill="' + KI.teal + '" stroke="' + KI.out + '" stroke-width="1.6"/>' +
+      '<path d="M1 27 v-6 a8 8 0 0 1 16 0 v6Z" fill="' + KI.teal + '" stroke="' + KI.out + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<circle cx="31" cy="7" r="5" fill="' + KI.terra + '" stroke="' + KI.out + '" stroke-width="1.6"/>' +
+      '<path d="M23 27 v-6 a8 8 0 0 1 16 0 v6Z" fill="' + KI.terra + '" stroke="' + KI.out + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<circle cx="20" cy="12" r="3.6" fill="' + KI.saffron + '" stroke="' + KI.out + '" stroke-width="1.4"/>' +
+      '<path d="M14.5 27 v-4.5 a5.5 5.5 0 0 1 11 0 v4.5Z" fill="' + KI.saffron + '" stroke="' + KI.out + '" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '</svg>';
+  }
+
+  /** A folded-corner page glyph for the "for teachers" printable-page link —
+   *  a flat book-plate rectangle with a saffron folded corner + three ink
+   *  rule-lines, reading as "document" without any OS emoji reference. */
+  function kanoonDocGlyph(size) {
+    var s = size || 18;
+    return '<svg class="k-ico k-ico-doc" width="' + s + '" height="' + s + '" viewBox="0 0 28 32" aria-hidden="true">' +
+      '<path d="M3 2 H17 L25 10 V30 H3Z" fill="' + KI.chip + '" stroke="' + KI.out + '" stroke-width="1.8" stroke-linejoin="round"/>' +
+      '<path d="M17 2 V10 H25Z" fill="' + KI.saffron + '" stroke="' + KI.out + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M8 16 H20 M8 21 H20 M8 26 H15" stroke="' + KI.teal + '" stroke-width="1.8" stroke-linecap="round"/>' +
+      '</svg>';
+  }
+
+  /** Swap `emoji` for `iconHtml` inside `el` while the skin is active,
+   *  remembering the exact original text (in `data-k-orig`) so leaving the
+   *  skin restores it byte-identical — same "reversible, never stale"
+   *  contract as swapArt()'s heroine/mascot swap above. No-ops on any
+   *  element that doesn't contain `emoji` and was never swapped. */
+  function swapOrRestoreEmoji(el, emoji, iconHtml) {
+    if (isKanoon()) {
+      if (el.dataset.kOrig !== undefined) return; // already swapped this node
+      var text = el.textContent;
+      var idx = text.indexOf(emoji);
+      if (idx === -1) return;
+      el.dataset.kOrig = text;
+      var rest = (text.slice(0, idx) + text.slice(idx + emoji.length)).trim();
+      el.innerHTML = iconHtml;
+      if (rest) el.appendChild(document.createTextNode(' ' + rest));
+    } else if (el.dataset.kOrig !== undefined) {
+      el.textContent = el.dataset.kOrig;
+      delete el.dataset.kOrig;
+    }
+  }
+
+  /** Find every live instance of the three emoji spots and swap/restore
+   *  them. Cheap (a handful of small querySelectorAll calls) and idempotent
+   *  — safe to call as often as needed. */
+  function swapEmojiPills() {
+    document.querySelectorAll('.lico').forEach(function (el) {
+      swapOrRestoreEmoji(el, SPEAKER_EMOJI, kanoonSpeakerGlyph(20));
+    });
+    document.querySelectorAll('.cg-toggle').forEach(function (el) {
+      swapOrRestoreEmoji(el, FAMILY_EMOJI, kanoonFamilyGlyph(18));
+    });
+    document.querySelectorAll('a.link-btn').forEach(function (el) {
+      swapOrRestoreEmoji(el, DOC_EMOJI, kanoonDocGlyph(18));
+    });
+  }
+
+  /** app.js redraws a card's whole `.lico`/`.cg-toggle` markup from scratch
+   *  on every "next card" (renderStage() -> renderInteractiveCard() etc.),
+   *  each time baking the raw emoji back in — a one-time swap at load or
+   *  toggle-time alone would only last until the next card. Observing the
+   *  app root's subtree re-runs swapEmojiPills() after every such redraw. */
+  function observeEmojiSwap() {
+    var root = document.getElementById('app') || document.body;
+    if (!root || root.__kanoonEmojiObserved) return;
+    new MutationObserver(function () { swapEmojiPills(); })
+      .observe(root, { childList: true, subtree: true });
+    root.__kanoonEmojiObserved = true;
+  }
+
+  /* =======================================================================
    * The heroine — a Kanoon-variant of the welcome girl, swapped in the same
    * way as the bird/bloom/sun (the original static markup in index.html is
    * captured once, then either art is re-printed on toggle).
@@ -599,6 +708,7 @@
       apply(choice);
       swapArt();
       reprintAppRenders();
+      swapEmojiPills();
       renderPicker();
     });
     // relabel the picker when the app's language switch changes html[lang]
@@ -622,5 +732,11 @@
     // every pictureFor() call app.js/bootstrap.js make from here on) renders
     // through the patched generators automatically, no re-print needed.
     if (isKanoon()) swapArt();
+    // emoji glyph swap: works on every page (index.html, bootstrap.html,
+    // teacher.html), even ones with no SaharMascot/pictureFor at all — an
+    // initial pass for whatever's already in the DOM, then keep watching
+    // for app.js's own re-renders (see observeEmojiSwap()'s doc comment).
+    swapEmojiPills();
+    observeEmojiSwap();
   });
 })();
