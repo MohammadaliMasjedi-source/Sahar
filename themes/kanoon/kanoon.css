@@ -20,10 +20,65 @@
  *  5. Secular, kind, rooted  — audited: no crescent+star, no geometric
  *     8-point star, no sun-face, no winged disc, no flag tricolor bands.
  *
- * Cheap-phone honest: no rasters, no new fonts (Vazirmatn already vendored,
- * OFL-1.1), grain + friezes are tiny inline-SVG data URIs. Whole layer is a
- * few KB of CSS + JS.
+ * Cheap-phone honest: no rasters, grain + friezes are tiny inline-SVG data
+ * URIs. Body text stays Vazirmatn (already vendored, OFL-1.1, zero added
+ * bytes). ONE addition: a display face for headings only (§3 below) —
+ * Estedad at a heavy static weight, subsetted to arabic+latin, ~38 KB total,
+ * self-hosted, precached by the service worker like every other font here.
  */
+
+/* =========================================================================
+ * 0 · DISPLAY FACE — headings only (charter §3: "a display face for
+ * headings that echoes hand-lettered Kanoon titles"). Evaluated live against
+ * the canonical google/fonts repo (2026-07-12):
+ *   - Estedad   — OFL-1.1 (Copyright The Estedad Project Authors), variable
+ *     100-900. CHOSEN: a heavy (800) static instance, subset to arabic+latin
+ *     only, is ~38 KB (27 KB arabic + 11 KB latin) — lighter than Lalezar
+ *     below and a confident, modernist-geometric weight for a headline.
+ *   - Lalezar   — OFL-1.1 (Copyright The Lalezar Project Authors), single
+ *     weight, already bold/display by design. NOT chosen: its arabic+latin
+ *     subset (~69 KB) is ~1.8x Estedad's for the same "one bold heading
+ *     face" job, and its rounder, more novelty/poster-ish letterforms read
+ *     closer to a party invite than the calm modernist confidence the
+ *     charter asks for.
+ *   - Markazi Text — OFL-1.1 (Copyright The Markazi Text Project Authors),
+ *     but it's a SERIF *text* face (Google's own category), not a bold
+ *     display face — wrong job for a heading.
+ * HONEST: none of these is the actual hand-lettered 60s-70s Kanoon cover
+ * style (proprietary/hand-drawn, never shipped here per the charter's hard
+ * rail) — Estedad's heavy geometric sans is the closest free, payload-light
+ * approximation of that confidence, disclosed as such.
+ * ========================================================================= */
+@font-face {
+  font-family: "Estedad";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../../fonts/estedad-arabic-800-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Estedad";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../../fonts/estedad-latin-800-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC;
+}
+html[data-theme="kanoon"] {
+  --k-font-display: "Estedad", var(--font);
+}
+html[data-theme="kanoon"] .brand h1,
+html[data-theme="kanoon"] .hero .say h2,
+html[data-theme="kanoon"] .done h2,
+html[data-theme="kanoon"] .gate-title,
+html[data-theme="kanoon"] #bs-title {
+  font-family: var(--k-font-display, var(--font));
+  font-weight: 800;
+  /* NOT letter-spaced: INSPIRATION.md's typography rule ("Persian text is
+     never letter-spaced — it would break letterforms") applies to this
+     display face too; fa/fa-AF headings are the common case here. */
+}
 
 /* =========================================================================
  * 1 · TOKENS — light ("storybook") variant: ink on cream paper
@@ -180,9 +235,14 @@ html[data-theme="kanoon"] .hero {
   border: 1.5px solid var(--k-line);
   box-shadow: 0 3px 0 var(--k-shadow);
 }
-/* flatten the dawn-gradient halo into two concentric print discs */
+/* flatten the dawn-gradient halo into two concentric print discs. (This only
+   ever matters for the ORIGINAL dawn-theme heroine markup momentarily on
+   first paint before kanoon.js's swap runs — the kanoon-redrawn heroine
+   already paints her own flat halo directly, no gradient to flatten. Kept
+   an explicit fallback anyway: an undefined custom property renders BLACK,
+   not transparent, and this rule must never be the one that does that.) */
 html[data-theme="kanoon"] .hero .sahar circle:first-of-type {
-  fill: var(--k-halo);
+  fill: var(--k-halo, var(--gold));
   opacity: 1;
 }
 
