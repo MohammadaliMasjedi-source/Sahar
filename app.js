@@ -39,7 +39,17 @@ const STRINGS = {
     tryAgain: 'دوباره امتحان کن',
     great: 'آفرین!',
     iSaidIt: 'گفتم!',
-    caregiver: 'برای بزرگ‌ترها'
+    caregiver: 'برای بزرگ‌ترها',
+    whoIsLearning: 'کی می‌خواهد یاد بگیرد؟',
+    addChild: 'افزودن کودک',
+    addChildHint: '(این بخش برای بزرگ‌ترهاست)',
+    childName: 'نام',
+    optional: 'اختیاری',
+    ageBand: 'گروه سنی',
+    chooseAvatar: 'یک شکل را انتخاب کن',
+    saveChild: 'ذخیره',
+    gardenLabel: 'باغچه‌ی تو',
+    switchProfile: 'تغییر کاربر'
   },
   en: {
     dir: 'ltr',
@@ -71,7 +81,17 @@ const STRINGS = {
     tryAgain: 'Try again',
     great: 'Great!',
     iSaidIt: 'I said it!',
-    caregiver: 'For grown-ups'
+    caregiver: 'For grown-ups',
+    whoIsLearning: "Who's learning today?",
+    addChild: 'Add a child',
+    addChildHint: '(this part is for grown-ups)',
+    childName: 'Name',
+    optional: 'optional',
+    ageBand: 'Age group',
+    chooseAvatar: 'Pick a character',
+    saveChild: 'Save',
+    gardenLabel: 'Your garden',
+    switchProfile: 'Switch profile'
   },
   de: {
     dir: 'ltr',
@@ -103,7 +123,17 @@ const STRINGS = {
     tryAgain: 'Nochmal versuchen',
     great: 'Super!',
     iSaidIt: 'Ich hab\'s gesagt!',
-    caregiver: 'Für Erwachsene'
+    caregiver: 'Für Erwachsene',
+    whoIsLearning: 'Wer lernt heute?',
+    addChild: 'Kind hinzufügen',
+    addChildHint: '(dieser Teil ist für Erwachsene)',
+    childName: 'Name',
+    optional: 'optional',
+    ageBand: 'Altersgruppe',
+    chooseAvatar: 'Wähle einen Charakter',
+    saveChild: 'Speichern',
+    gardenLabel: 'Dein Garten',
+    switchProfile: 'Profil wechseln'
   }
 };
 
@@ -154,14 +184,22 @@ const ContentProvider = {
 };
 
 // ProgressProvider: load/save Leitner state. Prototype = localStorage (on device only).
-const PROGRESS_KEY = 'sahar.progress.v1';
+// Namespaced per CHILD PROFILE (SAHAR-V3 CORE slice #1) so siblings sharing one
+// device never see or overwrite each other's spaced-repetition progress. Falls
+// back to the original un-namespaced key when no profile is active yet (e.g.
+// headless tests, or a page load before the profile gate resolves) so this
+// stays backward-compatible with the pre-profiles single-learner shape.
+const PROGRESS_KEY_BASE = 'sahar.progress.v1';
 const ProgressProvider = {
+  _key() {
+    return state.activeProfileId ? (PROGRESS_KEY_BASE + '.' + state.activeProfileId) : PROGRESS_KEY_BASE;
+  },
   load() {
-    try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); }
+    try { return JSON.parse(localStorage.getItem(this._key()) || '{}'); }
     catch (_) { return {}; }
   },
   save(map) {
-    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(map)); } catch (_) {}
+    try { localStorage.setItem(this._key(), JSON.stringify(map)); } catch (_) {}
   }
 };
 
@@ -212,8 +250,29 @@ const state = {
   revealed: false,   // is the answer showing? (legacy read-based cards only)
   subIdx: 0,          // sub-round index, for "match" interaction cards
   shuffledChoices: null, // tap choices for the current card/round, order randomised at prepareCard()
-  audioModes: {}      // which audio modes actually played this card (honesty banner)
+  audioModes: {},     // which audio modes actually played this card (honesty banner)
+  activeProfileId: null, // SAHAR-V3 CORE: the currently active child profile (localStorage-backed)
+  gardenRecorded: false  // guards against double-counting a garden "bloom" on re-render of the done screen
 };
+
+/* =========================================================================
+ * PROFILE-GATE view-state (SAHAR-V3 CORE slice #1, feature 1). Kept as plain
+ * module-level variables, same spirit as `state` above — this is the small
+ * bit of UI-only state for the "who's learning" screen (which sub-view is
+ * showing, the in-progress add-child draft). Never persisted directly; only
+ * ProfileProvider.add() at the end persists anything.
+ * ========================================================================= */
+let gateMode = 'pick'; // 'pick' (avatar grid) | 'add' (caregiver add-child form)
+let addDraft = { name: '', ageBand: '', avatar: '' };
+
+function resetAddDraft() {
+  const P = window.SaharProfiles;
+  addDraft = {
+    name: '',
+    ageBand: (P && P.DEFAULT_AGE_BAND) || '6-8',
+    avatar: (P && P.DEFAULT_AVATAR) || 'dawnbird'
+  };
+}
 
 /** Fisher-Yates shuffle (reuses bootstrap-core.js's implementation when present,
  *  so the tap-choice position is never predictable — never a memorised "always
@@ -276,6 +335,167 @@ function applyLanguageChrome() {
   document.querySelectorAll('#langs button').forEach((b) => {
     b.classList.toggle('on', b.getAttribute('data-lang') === lang);
   });
+}
+
+/* =========================================================================
+ * PROFILES view (SAHAR-V3 CORE slice #1, feature 1) — the "who's learning"
+ * gate, the topbar switch-profile chip, and the caregiver add-child form.
+ * All read/write goes through ProfileProvider (profiles.js); this section is
+ * purely state -> DOM, same discipline as the rest of the view layer.
+ * ========================================================================= */
+
+/** Minimal HTML-escape for the one bit of free-text a caregiver can type
+ *  (a child's name) before it's interpolated into innerHTML. */
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+/** The SVG for one avatar id — reuses the dawn-bird mascot or a pictures.js
+ *  glyph (SAHAR-V3 CORE: "reuse/extend the existing dawn-bird + simple
+ *  friendly shapes", no new art system, secular by construction). */
+function avatarSVG(avatarId, size) {
+  const P = window.SaharProfiles;
+  const list = (P && P.AVATARS) || [];
+  const a = list.find((x) => x.id === avatarId) || list[0];
+  if (!a) return '';
+  if (a.id === 'dawnbird') return (window.SaharMascot && window.SaharMascot.svg(size || 64)) || '';
+  return (window.pictureFor && window.pictureFor(a.pic)) || '';
+}
+
+/** Update the topbar switch-profile chip to show the ACTIVE profile's own
+ *  avatar (icon-only affordance — a child recognizes "my page" without
+ *  reading, and can tap it to switch to a sibling's profile). Hidden until a
+ *  profile is active. */
+function renderProfileChip() {
+  const chip = $('profileChip');
+  if (!chip) return;
+  const P = window.SaharProfiles;
+  if (!state.activeProfileId || !P) { chip.classList.remove('on'); chip.innerHTML = ''; return; }
+  const profile = P.ProfileProvider.get(state.activeProfileId);
+  if (!profile) { chip.classList.remove('on'); chip.innerHTML = ''; return; }
+  const avatar = (P.AVATARS.find((a) => a.id === profile.avatar)) || P.AVATARS[0];
+  chip.style.setProperty('--tile-color', avatar.color);
+  chip.innerHTML = avatarSVG(profile.avatar, 40);
+  chip.setAttribute('aria-label', I18nProvider.t(state.lang, 'switchProfile'));
+  chip.classList.add('on');
+}
+
+/** The child-visible GARDEN (SAHAR-V3 CORE slice #1, feature 2): rendered on
+ *  the home/lesson-shelf screen for the ACTIVE profile only. Purely a read
+ *  of GardenProvider — never mutates it (house principle #3: content/state
+ *  reads stay one-way; only onAnswer()/renderDone()'s completion hook write). */
+function renderGarden() {
+  const el = $('gardenView');
+  if (!el) return;
+  const P = window.SaharProfiles;
+  if (!state.activeProfileId || !P) { el.innerHTML = ''; return; }
+  const lang = state.lang;
+  const total = PACKS.length;
+  const completed = P.GardenProvider.distinctCompletedCount(state.activeProfileId);
+  const scene = (window.SaharMascot && window.SaharMascot.garden(completed, total)) || '';
+  el.innerHTML = `
+    <div class="garden-card">
+      ${scene}
+      <p class="garden-label">${I18nProvider.t(lang, 'gardenLabel')} · ${completed} / ${total}</p>
+    </div>`;
+}
+
+/** The "who's learning" avatar grid — a pre-literate child picks THEIR
+ *  profile by avatar + color alone; no name needs to be read. A dashed
+ *  "add a child" tile is always last (a caregiver step, explicitly hinted
+ *  as such below the grid). */
+function renderProfileGate() {
+  if (gateMode === 'add') { renderAddChildForm(); return; }
+  const el = $('profileGate');
+  if (!el) return;
+  const lang = state.lang;
+  const P = window.SaharProfiles;
+  const profiles = (P && P.ProfileProvider.list()) || [];
+  const tiles = profiles.map((p) => {
+    const avatar = (P.AVATARS.find((a) => a.id === p.avatar)) || P.AVATARS[0];
+    return `<button type="button" class="profile-tile" data-act="pick-profile" data-id="${p.id}"
+        style="--tile-color:${avatar.color}" aria-label="${escapeHtml(p.name) || 'profile'}">
+      <span class="profile-avatar">${avatarSVG(p.avatar, 76)}</span>
+      ${p.name ? `<span class="profile-name">${escapeHtml(p.name)}</span>` : ''}
+    </button>`;
+  }).join('');
+  const addTile = `<button type="button" class="profile-tile add-tile" data-act="add-child" aria-label="${I18nProvider.t(lang, 'addChild')}">
+      <span class="profile-avatar"><span class="add-plus">+</span></span>
+      <span class="profile-name">${I18nProvider.t(lang, 'addChild')}</span>
+    </button>`;
+  const closeBtn = profiles.length
+    ? `<button type="button" class="link-btn back" data-act="gate-close" aria-label="${I18nProvider.t(lang, 'pick')}">✕</button>`
+    : '';
+  el.innerHTML = `
+    <div class="gate-inner">
+      ${closeBtn}
+      <h2 class="gate-title">${I18nProvider.t(lang, 'whoIsLearning')}</h2>
+      <div class="profile-grid">${tiles}${addTile}</div>
+    </div>`;
+}
+
+/** The caregiver add-child form: name (optional, typed by a grown-up), age
+ *  band, and an avatar picked from the same secular set the child later
+ *  chooses from on the gate above. */
+function renderAddChildForm() {
+  const el = $('profileGate');
+  if (!el) return;
+  const lang = state.lang;
+  const P = window.SaharProfiles;
+  const avatars = (P && P.AVATARS) || [];
+  const ageBands = (P && P.AGE_BANDS) || [];
+  const avatarTiles = avatars.map((a) => `
+    <button type="button" class="avatar-pick${addDraft.avatar === a.id ? ' on' : ''}"
+      data-act="pick-avatar" data-avatar="${a.id}" style="--tile-color:${a.color}" aria-label="${a.id}">
+      ${avatarSVG(a.id, 56)}
+    </button>`).join('');
+  const ageTiles = ageBands.map((b) => `
+    <button type="button" class="age-pick${addDraft.ageBand === b ? ' on' : ''}" data-act="pick-age" data-age="${b}">${b}</button>`).join('');
+  el.innerHTML = `
+    <div class="gate-inner">
+      <button type="button" class="link-btn back" data-act="gate-back" aria-label="${I18nProvider.t(lang, 'whoIsLearning')}">↩</button>
+      <h2 class="gate-title">${I18nProvider.t(lang, 'addChild')}</h2>
+      <p class="gate-hint">${I18nProvider.t(lang, 'addChildHint')}</p>
+      <label class="gate-label" for="childName">${I18nProvider.t(lang, 'childName')}</label>
+      <input type="text" id="childName" class="gate-input" value="${escapeHtml(addDraft.name)}"
+        placeholder="${I18nProvider.t(lang, 'optional')}" maxlength="40">
+      <p class="gate-label">${I18nProvider.t(lang, 'ageBand')}</p>
+      <div class="age-row">${ageTiles}</div>
+      <p class="gate-label">${I18nProvider.t(lang, 'chooseAvatar')}</p>
+      <div class="avatar-row">${avatarTiles}</div>
+      <button type="button" class="fc-btn gate-save" data-act="save-child">${I18nProvider.t(lang, 'saveChild')}</button>
+    </div>`;
+}
+
+/** Enter the app for the active profile: hide the gate, show #app, and make
+ *  sure we always land on the lesson shelf (never mid-lesson leftover state
+ *  from a previous profile). */
+function openApp() {
+  const gate = $('profileGate');
+  const app = $('app');
+  if (gate) gate.hidden = true;
+  if (app) app.hidden = false;
+  state.pack = null;
+  state.packPath = null;
+  state.idx = 0;
+  state.revealed = false;
+  state.gardenRecorded = false;
+  document.body.classList.remove('lesson-open');
+  render();
+}
+
+/** Show the "who's learning" gate (initial boot with no active profile, or
+ *  the topbar switch-profile chip tapped mid-session). */
+function openProfileGate() {
+  gateMode = 'pick';
+  const gate = $('profileGate');
+  const app = $('app');
+  if (app) app.hidden = true;
+  if (gate) gate.hidden = false;
+  applyLanguageChrome(); // keep dir/lang correct even while #app is hidden
+  renderProfileGate();
 }
 
 /** The lesson picker: a warm shelf of the bundled packs. Shown when no pack
@@ -477,6 +697,23 @@ function renderDone() {
       <button type="button" class="link-btn" data-act="lessons">${I18nProvider.t(lang, 'pick')}</button>
     </div>`;
   celebrate({ big: true, bubble: false });
+  recordGardenCompletion();
+}
+
+/** Record one "bloom" in the active profile's garden the FIRST time a pack
+ *  reaches the done screen for this open (guarded by state.gardenRecorded so
+ *  a language switch or any other re-render of the done screen never double-
+ *  counts). Reset alongside opening/restarting a pack (SAHAR-V3 CORE feature
+ *  2 — completing a lesson grows the garden, once per completion). */
+function recordGardenCompletion() {
+  if (state.gardenRecorded) return;
+  state.gardenRecorded = true;
+  const P = window.SaharProfiles;
+  if (!P || !state.activeProfileId || !state.packPath) return;
+  const packMeta = PACKS.find((p) => p.path === state.packPath);
+  const packId = (packMeta && packMeta.id) || state.packPath;
+  P.GardenProvider.recordCompletion(state.activeProfileId, packId);
+  renderGarden();
 }
 
 /** Celebration on a correct answer / pack completion (SAHAR-COVERAGE §6.5-C):
@@ -567,6 +804,8 @@ function hopBird(containerId) {
 
 function render() {
   applyLanguageChrome();
+  renderProfileChip();
+  renderGarden();
   renderProgressPath();
   renderStage();
 }
@@ -629,6 +868,7 @@ function onRestart() {
   state.queue = buildQueue(state.pack, ProgressProvider.load());
   state.idx = 0;
   state.revealed = false;
+  state.gardenRecorded = false; // a fresh run can bloom the garden again
   prepareCard();
   render();
 }
@@ -641,6 +881,7 @@ async function openPack(path) {
     state.queue = buildQueue(state.pack, ProgressProvider.load());
     state.idx = 0;
     state.revealed = false;
+    state.gardenRecorded = false;
     prepareCard();
   } catch (err) {
     state.pack = null;
@@ -682,6 +923,54 @@ function wireEvents() {
     const b = e.target.closest('button[data-lang]');
     if (b) setLang(b.getAttribute('data-lang'));
   });
+  // switch-profile chip (topbar): reopen the "who's learning" gate
+  const chip = $('profileChip');
+  if (chip) chip.addEventListener('click', () => openProfileGate());
+  // the profile gate: avatar picks, add-child form, its own click delegation
+  // (kept separate from #stage's delegation below — different screen).
+  const gate = $('profileGate');
+  if (gate) {
+    gate.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-act]');
+      if (!btn) return;
+      const act = btn.getAttribute('data-act');
+      const P = window.SaharProfiles;
+      if (act === 'pick-profile') {
+        const id = btn.getAttribute('data-id');
+        if (P) P.ProfileProvider.setActiveId(id);
+        state.activeProfileId = id;
+        openApp();
+      } else if (act === 'add-child') {
+        resetAddDraft();
+        gateMode = 'add';
+        renderProfileGate();
+      } else if (act === 'gate-back') {
+        gateMode = 'pick';
+        renderProfileGate();
+      } else if (act === 'gate-close') {
+        openApp();
+      } else if (act === 'pick-avatar') {
+        addDraft.avatar = btn.getAttribute('data-avatar');
+        renderProfileGate();
+      } else if (act === 'pick-age') {
+        addDraft.ageBand = btn.getAttribute('data-age');
+        renderProfileGate();
+      } else if (act === 'save-child') {
+        const nameEl = $('childName');
+        if (nameEl) addDraft.name = nameEl.value;
+        if (P) {
+          const profile = P.ProfileProvider.add({ name: addDraft.name, ageBand: addDraft.ageBand, avatar: addDraft.avatar });
+          state.activeProfileId = profile.id;
+        }
+        openApp();
+      }
+    });
+    // the name field is free text; re-rendering on every keystroke (like the
+    // click handler above does) would fight the caret, so track it directly.
+    gate.addEventListener('input', (e) => {
+      if (e.target && e.target.id === 'childName') addDraft.name = e.target.value;
+    });
+  }
   // stage actions (delegated so re-renders keep working)
   $('stage').addEventListener('click', (e) => {
     if (window.AudioEngine) window.AudioEngine.unlock(); // prime audio on first tap (browser gesture rule)
@@ -723,8 +1012,19 @@ async function boot() {
     try { p.titleByLang = (await ContentProvider.getPack(p.path)).title; }
     catch (_) { p.titleByLang = null; }
   }));
-  // Start on the lesson shelf; the learner chooses where to begin.
-  render();
+
+  // SAHAR-V3 CORE slice #1: resume the last-active child profile if one is
+  // set and still exists on this device; otherwise show the "who's
+  // learning" gate so a caregiver can add the first child (or a returning
+  // sibling can pick their own avatar) before any lesson content shows.
+  const P = window.SaharProfiles;
+  const activeId = P && P.ProfileProvider.getActiveId();
+  if (P && activeId && P.ProfileProvider.get(activeId)) {
+    state.activeProfileId = activeId;
+    openApp();
+  } else {
+    openProfileGate();
+  }
 
   // Register the service worker for offline use (no-op when opened via file://).
   if ('serviceWorker' in navigator) {

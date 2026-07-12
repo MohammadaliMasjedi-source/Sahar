@@ -12,6 +12,9 @@
        progress path, etc.) so the main Tier-1 shelf and the first-contact flow
        share one visual system (SAHAR-COVERAGE §6.5 A). -->
   <link rel="stylesheet" href="./bootstrap.css">
+  <!-- SAHAR-V3 CORE slice #1: local-first child profiles + the child-visible
+       garden (profiles.js/profiles.css) — layers on the same token system. -->
+  <link rel="stylesheet" href="./profiles.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%230b1026'/%3E%3Cstop offset='1' stop-color='%23f4a259'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Ccircle cx='24' cy='32' r='11' fill='%23ffd89b'/%3E%3C/svg%3E">
   <!-- real PNG icon set (generated from the dawn-bird mascot, see icons/README
        via git history / INSTALL.md) -- iOS ignores the manifest for A2HS and
@@ -23,6 +26,14 @@
   <meta name="apple-mobile-web-app-title" content="Sahar">
 </head>
 <body>
+
+<!-- SAHAR-V3 CORE slice #1, feature 1: the "who's learning" gate. A
+     pre-literate child picks THEIR profile by avatar + color alone, no
+     reading required. A caregiver can add a sibling from the same screen
+     (explicitly labelled as a grown-up step). Shown instead of #app until a
+     profile is active; toggled by app.js's openApp()/openProfileGate(). -->
+<div class="wrap" id="profileGate" hidden></div>
+
 <div class="wrap" id="app">
 
   <!-- top bar: brand + language switcher -->
@@ -49,6 +60,10 @@
       <button data-lang="en" type="button">EN</button>
       <button data-lang="de" type="button">DE</button>
     </nav>
+    <!-- switch-profile chip: shows the active child's own avatar; tapping it
+         reopens the "who's learning" picker (icon-only, no reading needed
+         to find "my page again" or to hand the phone to a sibling). -->
+    <button type="button" class="profile-chip" id="profileChip" aria-label="Switch profile"></button>
   </header>
 
   <!-- Sahar the heroine + her greeting -->
@@ -103,6 +118,12 @@
     </div>
   </section>
 
+  <!-- the child-visible GARDEN (SAHAR-V3 CORE slice #1, feature 2): one
+       plant per lesson pack, blooming as THIS profile completes lessons.
+       Per-profile, persists across reloads, switches with the active
+       profile. Rendered by app.js's renderGarden(). -->
+  <section class="garden-view" id="gardenView"></section>
+
   <!-- audio-first doorway: for a pre-literate child, start WITHOUT reading -->
   <a class="bootstrap-door" href="./bootstrap.html">
     <span class="door-ico"></span>
@@ -135,6 +156,7 @@
 <script src="./mascot.js"></script>
 <script src="./audio.js"></script>
 <script src="./bootstrap-core.js"></script>
+<script src="./profiles.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>

@@ -1,0 +1,128 @@
+/* Sahar — profiles.css
+ * SAHAR-V3 CORE slice #1: local-first child profiles + the child-visible
+ * GARDEN. Layers on top of styles.css tokens (house principle #5), same
+ * spirit as bootstrap.css — warm, icon-first, big touch targets, no reading
+ * required to use the parts a pre-literate child touches.
+ */
+
+/* ---- topbar profile chip (switch profile) ---- */
+.profile-chip {
+  display: none; /* shown by JS once a profile is active */
+  align-items: center; justify-content: center;
+  /* design-critic fix: this is tapped directly by a child, so it must meet
+     the same --tap floor every other child-facing control does, not the
+     smaller adult-chrome size it started at. */
+  width: var(--tap); height: var(--tap); flex: 0 0 auto;
+  border-radius: 14px; padding: 3px;
+  border: 2px solid var(--tile-color, var(--line));
+  background: rgba(255,255,255,.06);
+  cursor: pointer;
+}
+.profile-chip.on { display: inline-flex; }
+.profile-chip svg { width: 100%; height: 100%; display: block; border-radius: 10px; }
+
+/* ---- the "who's learning" gate: a full first screen, not a buried menu ---- */
+.gate-inner { padding-block: 6px 24px; }
+.gate-title {
+  font-size: var(--fs-xl); text-align: center; margin: 6px 0 18px;
+}
+.gate-sub { text-align: center; font-size: var(--fs-sm); opacity: .85; margin: -10px 0 18px; }
+/* design-critic fix: the gate's close (✕) / back (↩) buttons reused
+   .link-btn.back's 36px sizing, below the 44px a11y floor and well under
+   this app's own --tap:60px child touch-target rule. A child (not just a
+   caregiver) can land on either screen, so both get the full --tap size. */
+.gate-inner > .link-btn.back {
+  min-width: var(--tap); min-height: var(--tap);
+  font-size: 1.3rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.profile-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  min-height: 140px; padding: 16px 10px;
+  border-radius: var(--radius);
+  border: 3px solid var(--tile-color, var(--line));
+  background: rgba(255,255,255,.06);
+  color: var(--cream); font: inherit; font-weight: 700; cursor: pointer;
+  box-shadow: 0 18px 40px -30px rgba(0,0,0,.9);
+  transition: transform .12s ease;
+}
+.profile-tile:active { transform: scale(.96); }
+.profile-tile .profile-avatar {
+  width: 76px; height: 76px; border-radius: 20px; overflow: hidden;
+  background: var(--tile-color, rgba(255,255,255,.1));
+  display: flex; align-items: center; justify-content: center;
+}
+.profile-tile .profile-avatar svg { width: 100%; height: 100%; display: block; }
+.profile-tile .profile-name { font-size: var(--fs-sm); line-height: 1.3; text-align: center; }
+.profile-tile.add-tile { border-style: dashed; background: rgba(255,255,255,.03); }
+.profile-tile.add-tile .profile-avatar { background: rgba(255,255,255,.08); }
+.profile-tile .add-plus {
+  font-size: 2.4rem; font-weight: 800; line-height: 1; color: var(--gold);
+}
+
+/* ---- add-a-child form (explicitly a caregiver step) ---- */
+.gate-hint { text-align: center; font-size: var(--fs-xs); opacity: .75; margin: -12px 0 18px; }
+.gate-label { font-size: var(--fs-sm); font-weight: 700; margin: 18px 0 8px; opacity: .92; }
+.gate-input {
+  width: 100%; min-height: var(--tap); border-radius: 14px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.08);
+  color: var(--cream); font: inherit; font-size: var(--fs-base);
+  padding: 0 16px;
+}
+.gate-input::placeholder { color: rgba(255,246,234,.5); }
+
+.age-row { display: flex; gap: 10px; }
+.age-pick {
+  flex: 1; min-height: var(--tap); border-radius: 14px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.07);
+  color: var(--cream); font: inherit; font-weight: 700; cursor: pointer;
+}
+.age-pick.on {
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+  color: var(--ink); border-color: transparent;
+}
+
+.avatar-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 12px;
+}
+.avatar-pick {
+  aspect-ratio: 1 / 1; min-height: 64px; border-radius: 16px;
+  border: 3px solid transparent; padding: 6px;
+  background: var(--tile-color, rgba(255,255,255,.08));
+  cursor: pointer; transition: transform .12s ease, border-color .15s ease;
+}
+.avatar-pick svg { width: 100%; height: 100%; display: block; border-radius: 10px; }
+.avatar-pick:active { transform: scale(.95); }
+.avatar-pick.on { border-color: var(--cream); }
+
+.gate-save {
+  display: block; width: 100%; margin-block-start: 22px;
+}
+
+/* ---- the child-visible GARDEN (home screen, per-profile, persists) ---- */
+.garden-view { margin-block-end: 16px; }
+.garden-card {
+  background: rgba(255,255,255,.05); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px 14px 14px;
+}
+.garden-scene { width: 100%; height: auto; display: block; border-radius: 16px; }
+/* design-critic fix: the garden was hardcoded to bloom left-to-right, but
+   Dari reads right-to-left — the dawn progress bar above already mirrors
+   for RTL (bootstrap.css `.dawn-progress .bird`), so the garden should too,
+   growing from the reading-start toward the reading-end either way. Same
+   `scaleX(-1)` pattern already used for `.hero-bird` / `.dawn-progress .bird`. */
+[dir="rtl"] .garden-scene { transform: scaleX(-1); }
+.garden-label {
+  text-align: center; font-size: var(--fs-xs); opacity: .8;
+  margin: 8px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-tile, .avatar-pick { transition: none; }
+}
