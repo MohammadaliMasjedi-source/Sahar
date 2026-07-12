@@ -293,6 +293,27 @@ function renderPicker() {
     <div class="lesson-shelf">${tiles}</div>`;
 }
 
+/** The visible dawn progress path (SAHAR-COVERAGE §6.5-C — Duolingo-style bar
+ *  + the mascot bird flying toward the sunrise), shown above the lesson stage
+ *  while a pack is open. Reuses bootstrap.css's `.dawn-progress` styling
+ *  (already loaded by index.html) so both flows share one visual system and
+ *  the RTL bird-flip / flutter animation defined there apply here for free. */
+function renderProgressPath() {
+  const el = $('progressPath');
+  if (!el) return;
+  if (!state.pack) { el.innerHTML = ''; return; }
+  const total = state.queue.length || 1;
+  const doneCount = Math.min(state.idx, total);
+  const pct = Math.round((doneCount / total) * 100);
+  const bird = (window.SaharMascot && window.SaharMascot.svg(30)) || '';
+  el.innerHTML = `
+    <div class="path" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
+      <div class="fill" style="inline-size:${pct}%"></div>
+      <div class="bird" style="inset-inline-start:calc(${pct}% - 15px)">${bird}</div>
+      <div class="goal">🌅</div>
+    </div>`;
+}
+
 function renderStage() {
   if (!state.pack) { renderPicker(); return; }
   if (state.idx >= state.queue.length) { renderDone(); return; }
@@ -313,10 +334,6 @@ function renderLegacyCard(card) {
   const kindLabel = I18nProvider.t(lang, KIND_KEY[card.type] || 'factOpinion');
   const prompt = card.prompt[lang] || card.prompt.en;
   const answer = card.answer[lang] || card.answer.en;
-  const total = state.queue.length;
-
-  let pips = '';
-  for (let i = 0; i < total; i++) pips += `<i class="${i < state.idx ? 'fill' : ''}"></i>`;
 
   const title = (state.pack.title && (state.pack.title[lang] || state.pack.title.en)) || '';
 
@@ -326,7 +343,6 @@ function renderLegacyCard(card) {
       ${title}
     </p>
     <div class="card">
-      <div class="pips">${pips}</div>
       <div class="kind">${kindLabel}</div>
       <p class="prompt">${prompt}</p>
       <p class="answer ${state.revealed ? '' : 'hidden'}">${answer}</p>
@@ -349,9 +365,6 @@ function renderLegacyCard(card) {
 function renderInteractiveCard(card) {
   const lang = state.lang;
   const stage = $('stage');
-  const total = state.queue.length;
-  let pips = '';
-  for (let i = 0; i < total; i++) pips += `<i class="${i < state.idx ? 'fill' : ''}"></i>`;
   const title = (state.pack.title && (state.pack.title[lang] || state.pack.title.en)) || '';
   const kindLabel = I18nProvider.t(lang, KIND_KEY[card.type] || 'factOpinion');
   const isMatch = card.interaction === 'match' && Array.isArray(card.rounds);
@@ -393,7 +406,6 @@ function renderInteractiveCard(card) {
       <button type="button" class="link-btn back" data-act="lessons" aria-label="${I18nProvider.t(lang, 'pick')}">↩</button>
       ${title}
     </p>
-    <div class="pips">${pips}</div>
     <div class="card interactive">
       <div class="kind">${kindLabel}</div>
       ${body}
@@ -446,20 +458,64 @@ function renderBanner() {
 
 function renderDone() {
   const lang = state.lang;
+  const bird = (window.SaharMascot && window.SaharMascot.svg(72, 'done-bird')) || '';
   $('stage').innerHTML = `
     <div class="done">
       <div class="big">🌅</div>
+      ${bird}
       <h2>${I18nProvider.t(lang, 'doneTitle')}</h2>
       <p>${I18nProvider.t(lang, 'doneSub')}</p>
       <button type="button" data-act="restart">${I18nProvider.t(lang, 'restart')}</button>
       <button type="button" class="link-btn" data-act="lessons">${I18nProvider.t(lang, 'pick')}</button>
     </div>`;
+  celebrate({ big: true, bubble: false });
+}
+
+/** Celebration on a correct answer / pack completion (SAHAR-COVERAGE §6.5-C):
+ *  a gentle scale-pop on the card, a brief CSS confetti burst, and (unless
+ *  suppressed) the mascot popping up with a short praise line. Purely
+ *  cosmetic — never touches Leitner scheduling or the audio-honesty chain.
+ *  The gentle success SOUND is `AudioEngine.cheer()` (WebAudio chime),
+ *  called by the caller alongside this, not duplicated here. Respects
+ *  prefers-reduced-motion via CSS (see styles.css). */
+function celebrate(opts) {
+  const o = opts || {};
+  const host = document.querySelector('#stage .card, #stage .done');
+  if (!host) return;
+
+  host.classList.remove('pop'); void host.offsetWidth; host.classList.add('pop');
+  setTimeout(() => host.classList.remove('pop'), 550);
+
+  if (o.bubble !== false) {
+    const bird = (window.SaharMascot && window.SaharMascot.svg(30)) || '';
+    const bubble = document.createElement('div');
+    bubble.className = 'praise-bubble';
+    bubble.innerHTML = `${bird}<span>🌟 ${I18nProvider.t(state.lang, 'great')}</span>`;
+    host.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 1100);
+  }
+
+  const n = o.big ? 22 : 12;
+  const colors = ['var(--gold)', 'var(--amber)', 'var(--rose)', 'var(--good)'];
+  let bits = '';
+  for (let i = 0; i < n; i++) {
+    const left = Math.round(Math.random() * 100);
+    const delay = (Math.random() * 0.18).toFixed(2);
+    const color = colors[i % colors.length];
+    bits += `<i style="left:${left}%; animation-delay:${delay}s; background:${color}"></i>`;
+  }
+  const confetti = document.createElement('div');
+  confetti.className = 'confetti-burst';
+  confetti.innerHTML = bits;
+  host.appendChild(confetti);
+  setTimeout(() => confetti.remove(), 950);
 }
 
 function render() {
   applyLanguageChrome();
   const banner = $('banner');
   if (banner && !(state.pack && state.idx < state.queue.length)) banner.textContent = '';
+  renderProgressPath();
   renderStage();
 }
 
@@ -503,6 +559,7 @@ function onTapChoice(tappedId) {
   if (window.AudioEngine) window.AudioEngine.cheer();
   const fb = $('fb');
   if (fb) fb.textContent = '🌟 ' + I18nProvider.t(state.lang, 'great');
+  celebrate();
 
   if (isMatch && state.subIdx < card.rounds.length - 1) {
     state.subIdx += 1;

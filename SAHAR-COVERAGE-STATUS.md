@@ -8,7 +8,10 @@
 > subject-coverage lane (2 new packs, structure only), then again same day
 > after the audio-generation lane (Amendment E: a real machine-draft voice,
 > honestly flagged — see §6.5 E), then again same day after the life-skills
-> lane (§3 DoD's last missing bucket — see the updated §3 entry below).
+> lane (§3 DoD's last missing bucket — see the updated §3 entry below), then
+> again 2026-07-12 after the kid-visual-identity lane (mascot + celebration +
+> bigger touch targets + a visible progress path on the MAIN app — see the
+> updated §6.5 Amendment C below).
 
 ## 1. Vision
 Unchanged — no technical work needed here; the vision statement in
@@ -201,15 +204,68 @@ pass; manually exercised in-browser, zero console errors). Not extended this
 session — out of Amendment A's scope.
 
 ## 6.5 Amendment C — Duolingo-grade visual bar
-**Explicitly out of scope for this lane** (design/mascot work belongs to a
-separate PC/Firefly design pass). What exists today is deliberately simple:
-the dawn-bird mascot and progress path (pre-existing, `bootstrap.js`) plus a
-modest set of new placeholder SVG icons added this session to `pictures.js`
-(circle/square/triangle, check/cross marks, thought-bubble, guess-cloud,
-question-mark, statement, stone, robot, leaf, garden, sky, swatches) — plain,
-flat, functional shapes so the new interaction types have *something* to tap,
-not the final illustrated design language. No mascot work, no per-card
-professional illustration, no Duolingo screenshot-comparison was done.
+Originally out of scope (design/mascot work was deferred to a separate
+PC/Firefly design pass). What existed before this session: the dawn-bird
+mascot and progress path only in `bootstrap.js`'s private first-contact flow,
+plus a modest set of placeholder SVG icons in `pictures.js` — plain, flat,
+functional shapes so the interaction types have *something* to tap, not the
+final illustrated design language. No mascot, no celebration, and no visible
+progress path existed in the MAIN app (`index.html`/`app.js`, the shelf used
+by all 10 Tier-1 packs) — that was the honestly-flagged gap.
+
+- ✅ **NEW (2026-07-12, kid-visual-identity lane):** the MAIN app now has the
+  same four pieces Duolingo-grade kid apps use, vanilla/no-deps, cheap-phone
+  safe:
+  - **Dawn-bird mascot** — factored into a new shared `mascot.js`
+    (`SaharMascot.svg(size)`, the exact same bird bootstrap.js already drew
+    privately, now reusable). Appears as a fluttering flourish on the welcome
+    screen (`index.html` `.hero-bird`), on the pack-complete "Well done!"
+    screen, and pops up with a short praise line when the child taps a
+    correct answer. `bootstrap.js`/`bootstrap.html` were left untouched (they
+    already had their own working mascot) — zero risk to that already-tested
+    flow.
+  - **Celebration** — `app.js`'s new `celebrate()`: a gentle CSS scale-pop on
+    the card, a ~1s CSS confetti burst (12-22 pieces, no images/canvas), and
+    the mascot praise bubble, fired on every correct tap and (bigger) on pack
+    completion. The gentle success **sound** was already real
+    (`AudioEngine.cheer()`, a 4-note WebAudio arpeggio in `audio.js`, no mp3)
+    — wired in already, just newly paired with the visual. All new animation
+    respects `prefers-reduced-motion` (styles.css).
+  - **Bigger, warmer touch targets** — `--tap` raised 52px → 60px; the shared
+    `.pic-choice` tap grid (`bootstrap.css`, used by both the main shelf and
+    the first-contact flow) raised its minimum size 96px → 112px with a
+    bigger border-radius; language buttons enlarged too.
+  - **Visible progress path** — the main lesson screen's small dot "pips"
+    were replaced with the same Duolingo-style bar + flying mascot bird used
+    in `bootstrap.js` (`.dawn-progress`, reused directly from `bootstrap.css`
+    — zero new CSS needed, RTL bird-flip included for free), now driven by
+    `app.js`'s new `renderProgressPath()`.
+  - RTL kept correct throughout (fa mirrors properly, mascot flips to face
+    the reading direction); the honest machine-voice banner text/logic was
+    not touched; no pack content or safety-gated strings were touched.
+  - `sw.js` cache bumped `sahar-v10` → `sahar-v11`, `mascot.js` added to
+    `APP_SHELL`.
+  - Validator green: **132 passed, 0 failed** (28 core + 14 bootstrap + 90
+    content — unchanged counts, confirming no content/logic regression),
+    exit code 0, same Node runtime as every prior lane (`v20.18.0`, via the
+    Adobe-bundled `node.exe`, `node` still not on this machine's PATH).
+  - Verified in-browser (local static server): mascot visible on the welcome
+    screen and on the done screen (screenshots); a scripted correct tap
+    confirmed (via DOM inspection, not just visual) that `.confetti-burst`
+    (12 pieces) and `.praise-bubble` (mascot + "🌟 Great!") both fire only on
+    the correct answer, never on a wrong one; zero console errors across
+    `index.html` (desktop + mobile viewport) and `bootstrap.html` (confirmed
+    still working unaffected by the shared `bootstrap.css` touch-target
+    bump).
+  - ❌ **Still not phone-tested.** `docs/PHONE-TEST.md` (new this lane) is the
+    exact, honest checklist for the one gate this session could not close
+    itself: a real Android phone, installed as a PWA, in airplane mode. Not
+    run yet — still open.
+  - ❌ No per-card professional illustration pass, no Firefly/design-tool
+    involvement, no Duolingo screenshot-by-screenshot comparison. The mascot
+    and interaction icons remain hand-drawn inline SVG placeholders, now
+    animated and reused consistently — a real visual-identity step, not the
+    final illustrated design language.
 
 ## 6.5 Amendment D — honest deployment status
 **Sahar is a prototype. It is not ready for real learners.** The bar the

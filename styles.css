@@ -16,7 +16,7 @@
   --line:    rgba(255,255,255,.12);
 
   --radius: 18px;
-  --tap: 52px;                 /* min touch target (a11y §7) */
+  --tap: 60px;                 /* min touch target (a11y §7) — warm & big for small hands */
   --font: "Vazirmatn", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -60,11 +60,11 @@ html, body {
 
 .langs { display: flex; gap: 6px; }
 .langs button {
-  min-width: 44px; min-height: 40px;
+  min-width: 48px; min-height: 46px;
   border: 1px solid var(--line);
   background: rgba(255,255,255,.06);
   color: var(--cream);
-  border-radius: 12px;
+  border-radius: 14px;
   font: inherit; font-weight: 600;
   cursor: pointer;
 }
@@ -76,6 +76,7 @@ html, body {
 
 /* ---- hero: Sahar + greeting ---- */
 .hero {
+  position: relative;
   display: flex; align-items: center; gap: 14px;
   background: rgba(255,255,255,.05);
   border: 1px solid var(--line);
@@ -87,10 +88,60 @@ html, body {
 .hero .say h2 { margin: 0 0 4px; font-size: 1.05rem; }
 .hero .say p { margin: 0; font-size: .9rem; opacity: .9; line-height: 1.5; }
 
+/* the dawn-bird mascot on the welcome screen (SAHAR-COVERAGE §6.5-C) — a
+ * small, friendly flourish perched at the card's trailing corner. Reuses the
+ * `flutter`/`flutter-rtl` keyframes already defined in bootstrap.css (always
+ * loaded alongside this file — see index.html/bootstrap.html <head>). */
+.hero-bird {
+  position: absolute; inset-block-start: 10px; inset-inline-end: 14px;
+  animation: flutter 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+[dir="rtl"] .hero-bird { transform: scaleX(-1); animation-name: flutter-rtl; }
+
+/* ---- celebration: gentle scale-pop + confetti burst + mascot praise bubble
+ * on a correct answer / pack completion (SAHAR-COVERAGE §6.5-C). Cosmetic
+ * only — never gates scheduling or the audio chain. The success SOUND is a
+ * WebAudio chime (AudioEngine.cheer(), audio.js) — no mp3 asset needed.
+ * Reduced-motion users get the state change with no animation (below). ---- */
+.card.pop, .done.pop { animation: pop .5s ease; }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.045); } 100% { transform: scale(1); } }
+
+.praise-bubble {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 6px;
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+  color: var(--ink); font-weight: 700; font-size: .92rem; white-space: nowrap;
+  padding: 6px 14px; border-radius: 999px;
+  box-shadow: 0 10px 24px -14px rgba(0,0,0,.9);
+  animation: bubble-pop .9s ease forwards;
+  pointer-events: none; z-index: 5;
+}
+.praise-bubble .dawnbird { width: 26px; height: 26px; flex: 0 0 auto; }
+@keyframes bubble-pop {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(6px) scale(.7); }
+  18%  { opacity: 1; transform: translateX(-50%) translateY(-6px) scale(1.05); }
+  30%  { transform: translateX(-50%) translateY(0) scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px) scale(.96); }
+}
+
+.confetti-burst { position: absolute; inset: 0; overflow: visible; pointer-events: none; z-index: 4; }
+.confetti-burst i {
+  position: absolute; top: -6px;
+  width: 8px; height: 13px; border-radius: 3px;
+  opacity: .95; animation: confetti-fall .85s ease-in forwards;
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(150px) rotate(340deg); opacity: 0; }
+}
+
 /* ---- lesson + card ---- */
 .lesson-title { font-size: 1rem; opacity: .9; margin: 0 0 10px; }
 
 .card {
+  position: relative;
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -111,14 +162,6 @@ html, body {
   margin-block-start: 16px; min-height: 1.4em;
 }
 .card .answer.hidden { visibility: hidden; }
-
-/* progress pips */
-.pips { display: flex; gap: 6px; justify-content: center; margin-block-end: 14px; }
-.pips i {
-  width: 9px; height: 9px; border-radius: 50%;
-  border: 1px solid var(--line); background: transparent; display: inline-block;
-}
-.pips i.fill { background: var(--gold); border-color: var(--gold); }
 
 /* ---- audio-first doorway (to bootstrap.html) ---- */
 .bootstrap-door {
@@ -152,11 +195,14 @@ html, body {
 
 /* ---- done state ---- */
 .done {
+  position: relative;
   text-align: center; padding: 30px 20px;
   background: rgba(255,255,255,.05); border: 1px solid var(--line);
   border-radius: var(--radius); animation: cardin .4s ease;
 }
 .done .big { font-size: 2.4rem; }
+.done .dawnbird.done-bird { display: block; margin: 6px auto 0; animation: flutter 1.6s ease-in-out infinite; }
+[dir="rtl"] .done .dawnbird.done-bird { transform: scaleX(-1); }
 .done h2 { margin: 10px 0 6px; }
 .done p { opacity: .9; margin: 0 0 16px; line-height: 1.5; }
 .done button {
@@ -207,4 +253,8 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .card, .done, .lesson-tile { animation: none; }
   .btn, .lesson-tile { transition: none; }
+  .card.pop, .done.pop, .hero-bird, .done .dawnbird.done-bird,
+  .praise-bubble, .confetti-burst i { animation: none; }
+  .praise-bubble { opacity: 1; }
+  .confetti-burst { display: none; }
 }
