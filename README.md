@@ -98,6 +98,7 @@ Sahar/
 │  ├─ NAME.md                 ← name shortlist + the Sahar-as-heroine idea
 │  ├─ CURRICULUM-MAP.md       ← the UN "educated person" body of knowledge mapped to 4 tiers + companion books
 │  └─ OSS-REUSE.md            ← concrete open-source to reuse, with licenses
+├─ funding/                   ← funding/sponsorship strategy, the startsocial application draft, outreach tracker
 ├─ learning/
 │  └─ PROJECT-EXPLAINED.md    ← the project explained in four layers (child → architect)
 ├─ handbook/                  ← maintainer handbook: overview, setup, standards, diagrams, task guides
