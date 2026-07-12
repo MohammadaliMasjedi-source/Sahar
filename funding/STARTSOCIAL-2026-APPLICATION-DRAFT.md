@@ -67,6 +67,39 @@ draft, per Mo's "site wins over draft" rule:
 individual.** Per Mo's instruction, this application has therefore been
 finalized to signature-ready below, not blocked.
 
+### Funder-refuter red-team pass (2026-07-12)
+
+A separate adversarial pass asked "why would the startsocial jury reject
+this?" and hardened the draft against the highest-probability rejection
+reasons — without inflating a single claim (draft audio is still draft, the
+prototype is still not deployed, no volunteers are invented). Changes made:
+
+- **§5 Ehrenamt restructured.** The volunteer requirement is startsocial's
+  hard eligibility gate; the section previously led with the deficit ("no
+  active volunteer community"). It now leads with the volunteer-powered
+  open-source structure and the six prepared roles, then states the honest
+  gap as the central coaching leverage, tied explicitly to startsocial's
+  "Ehrenamt anstoßen" (motivate volunteering) criterion.
+- **§6 solo-founder risk named.** Added an honest "Von der Einzelperson zur
+  Struktur" paragraph so the single-founder reality is framed as a
+  coaching goal, not hidden; the AI-tools line was tightened so it reads as
+  a development aid under Mo's full human responsibility, not as an
+  "AI-generated project."
+- **§7 income realism.** Flagged the partner-dependent income side as
+  contingent on the very legal/partner decision the coaching resolves, so
+  it reads as planning, not wishful thinking.
+- **§2 Engagement.** Strengthened the optional personal-motivation prompt to
+  signal its value to the jury, while keeping it a fully optional `[MO:]`
+  slot.
+
+All factual claims were re-checked against the local checkout: 245 draft
+machine-audio files, 10 Tier-1 packs plus one language-course unit, an
+85-line Dari recording manifest, and three test files present. The "132
+passing checks" figure is retained as a *documented* state (last recorded at
+commit f30aa31); it was not independently re-run in this pass because Node is
+not available in the red-team environment — the wording "letzter
+dokumentierter Stand" already reflects that honestly.
+
 ## 0. Mo-only fields
 
 - Responsible adult: Mohammad Ali Masjedi — `[MO: confirm exact legal name spelling matches your ID/passport]`
@@ -118,7 +151,7 @@ Sahar beginnt bewusst mit einer kleinen Tier-1-Stufe für Grundkompetenzen. Es w
 
 Sahar entstand aus der Überzeugung, dass elementare Bildung nicht an Internetzugang, Werbemodellen oder Datenerfassung gebunden sein darf. Die technische Erfahrung des Gründers mit Software, Offline-Systemen und mehrsprachigen Anwendungen wird mit dem Ziel verbunden, ein frei nutzbares Bildungswerkzeug zu schaffen, das von Pädagog:innen und lokalen Organisationen geprüft, verbessert und weitergegeben werden kann.
 
-Persönliche Motivation/biografischer Bezug nur ergänzen, wenn Mo ihn ausdrücklich freigibt: `[MO: add only if you want to, and only in words you choose]`.
+Persönlicher Bezug — für die Jury erfahrungsgemäß ein starkes Signal echten Engagements, aber vollständig freiwillig: `[MO: add only if you want to, in your own words — even one or two honest sentences on why this cause matters to you noticeably strengthens the "Engagement" the jury looks for; leave blank if you prefer not to disclose]`.
 
 ## 3. Ansatz
 
@@ -185,20 +218,24 @@ Die Software- und Inhaltsstruktur ist so angelegt, dass weitere Sprachen oder lo
 
 ## 5. Ehrenamt
 
-### Geplantes Modell
+### Warum Ehrenamt für Sahar zentral ist
 
-Sahar soll nicht als Ein-Personen-Projekt skalieren. Es werden kleine, klar definierte Ehrenamtsrollen vorbereitet:
+startsocial fördert Initiativen, die Ehrenamt einbinden **oder** freiwilliges Engagement anstoßen. Sahar ist von Grund auf als quelloffenes, von Freiwilligen tragbares Projekt angelegt: Der öffentliche Code, die offenen Lizenzen, die dokumentierten Aufgabenlisten und die klar abgegrenzten Arbeitspakete existieren genau deshalb, damit qualifizierte Freiwillige mitwirken können, ohne das Projekt erst neu erschließen zu müssen. Sahar soll ausdrücklich nicht als Ein-Personen-Projekt bestehen bleiben.
 
-- Dari-Pädagogik und Inhaltsprüfung;
-- Stimme und Audio-QA;
-- Übersetzung/Redaktion;
-- Barrierefreiheit und Gerätetest;
-- Open-Source-Entwicklung und Test;
-- Pilotbegleitung ausschließlich über qualifizierte Organisationen.
+### Vorbereitete Ehrenamtsrollen
 
-### Aktueller ehrlicher Stand
+Sechs kleine, klar umrissene Rollen sind fachlich definiert und liegen als Aufgabenbeschreibungen vor:
 
-Aktuell gibt es noch keine belastbare aktive Ehrenamtsgemeinschaft. Die technische Grundlage und Aufgabenlisten existieren; Rekrutierung, Onboarding, Schutzregeln, Qualitätssicherung und Bindung der Mitwirkenden sind offen. Genau dabei soll startsocial helfen.
+1. Dari-Pädagogik und Inhaltsprüfung;
+2. Dari-Stimme und Audio-QA (ein 85-zeiliges Aufnahme-Manuskript liegt aufnahmebereit vor);
+3. Übersetzung und Redaktion;
+4. Barrierefreiheit und Gerätetest;
+5. Open-Source-Entwicklung und Test;
+6. Pilotbegleitung ausschließlich über qualifizierte Organisationen.
+
+### Aktueller ehrlicher Stand und Beratungshebel
+
+Ehrlich benannt: Aktuell gibt es noch keine aktive Ehrenamtsgemeinschaft. Die technische und inhaltliche Grundlage sowie die Rollenbeschreibungen stehen, aber Gewinnung, Onboarding, Schutzregeln, Qualitätssicherung und Bindung der Mitwirkenden sind offen. Genau der Aufbau dieses Freiwilligenmodells ist einer der wichtigsten Gründe für die Bewerbung: Die vier Coaching-Monate sollen aus vorbereiteten Rollen eine reale, sichere und dauerhafte Mitmach-Struktur machen. Sahar bringt also weniger einen fertigen Ehrenamtsbestand mit als vielmehr eine konkrete, überprüfbare Infrastruktur und Absicht, Ehrenamt anzustoßen und aufzubauen.
 
 Tatsächliche weitere Mitwirkende nur mit Zustimmung ergänzen: `[MO: name only with their consent, else leave blank]`.
 
@@ -216,7 +253,11 @@ Mohammad Ali Masjedi `[MO: verify legal name spelling]` — Informatikstudent/So
 - dokumentierte Aufgaben und Qualitätsgrenzen;
 - offene Lizenzen;
 - keine externen Aktionen, Partnerschaften oder Wirkungsbehauptungen ohne menschliche Entscheidung;
-- KI-Werkzeuge wurden zur Recherche, Dokumentation und Entwicklungshilfe eingesetzt; Mo trägt die Verantwortung für veröffentlichte Inhalte und Entscheidungen.
+- KI-Werkzeuge wurden — wie in heutiger Softwareentwicklung üblich — als Hilfsmittel für Recherche, Dokumentation und Programmierung genutzt; sämtliche inhaltlichen Entscheidungen, Veröffentlichungen und die Gesamtverantwortung liegen bei Mo als verantwortlichem Menschen.
+
+### Von der Einzelperson zur tragfähigen Struktur
+
+Sahar wird derzeit im Kern von einer Person getragen. Das ist eine bewusst benannte Verwundbarkeit, kein gewünschter Endzustand: Die offene Lizenzierung, das öffentliche Repository und die vorbereiteten Ehrenamtsrollen sind darauf ausgelegt, Verantwortung schrittweise zu verteilen. Der Übergang von der Einzelperson zu einem kleinen, belastbaren Team mit klarer Governance ist eines der wichtigsten Ziele der startsocial-Beratung.
 
 ### Fehlende Kompetenzen
 
@@ -241,6 +282,8 @@ Mohammad Ali Masjedi `[MO: verify legal name spelling]` — Informatikstudent/So
 | Community-/Diaspora-Spenden über Partner | €800 |
 | Eigenmittel | €500 |
 | **Summe** | **€9,800** |
+
+Die Einnahmenseite ist bewusst partnerabhängig dargestellt: Sie setzt genau die Träger-, Partner- und Fördermittelentscheidung voraus, die im Coaching geklärt werden soll (siehe §9). Ohne diese Struktur ist derzeit keine dieser Quellen zugesagt oder abrufbar — die Zahlen sind Planungs-, keine Zusagewerte.
 
 ### Geplante Ausgaben
 
