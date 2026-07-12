@@ -188,16 +188,16 @@ const KIND_KEY = {
  * (and to APP_SHELL in sw.js so it precaches for offline). Titles are read
  * from each pack's own `title` map, so this stays a thin index of paths. */
 const PACKS = [
-  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json' },
-  { id: 't1.literacy.first-words',          path: './content/t1-literacy-first-words.json' },
-  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json' },
-  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json' },
-  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json' },
-  { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json' },
-  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json' },
-  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json' },
-  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json' },
-  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json' }
+  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json', pic: 'letters' },
+  { id: 't1.literacy.first-words',          path: './content/t1-literacy-first-words.json', pic: 'book' },
+  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json', pic: 'star' },
+  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json', pic: 'shapes-trio' },
+  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json', pic: 'leaf' },
+  { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json', pic: 'dawn' },
+  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json', pic: 'question-mark' },
+  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json', pic: 'guess-cloud' },
+  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json', pic: 'soap' },
+  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json', pic: 'statement' }
 ];
 
 /* =========================================================================
@@ -284,8 +284,9 @@ function renderPicker() {
   const lang = state.lang;
   const tiles = PACKS.map((p) => {
     const title = (p.titleByLang && (p.titleByLang[lang] || p.titleByLang.en)) || p.id;
+    const icon = (window.pictureFor && window.pictureFor(p.pic || 'star')) || '';
     return `<button class="lesson-tile" data-act="open" data-path="${p.path}">
-        <span class="tile-sun">🌅</span><span class="tile-title">${title}</span>
+        <span class="tile-sun">${icon}</span><span class="tile-title">${title}</span>
       </button>`;
   }).join('');
   $('stage').innerHTML = `
@@ -306,11 +307,12 @@ function renderProgressPath() {
   const doneCount = Math.min(state.idx, total);
   const pct = Math.round((doneCount / total) * 100);
   const bird = (window.SaharMascot && window.SaharMascot.svg(30)) || '';
+  const goal = (window.SaharMascot && window.SaharMascot.sunrise(26)) || '';
   el.innerHTML = `
     <div class="path" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
       <div class="fill" style="inline-size:${pct}%"></div>
-      <div class="bird" style="inset-inline-start:calc(${pct}% - 15px)">${bird}</div>
-      <div class="goal">🌅</div>
+      <div class="bird" style="inset-inline-start:clamp(4px, calc(${pct}% - 15px), calc(100% - 34px))">${bird}</div>
+      <div class="goal">${goal}</div>
     </div>`;
 }
 
@@ -410,9 +412,13 @@ function renderInteractiveCard(card) {
       <div class="kind">${kindLabel}</div>
       ${body}
       <button type="button" class="link-btn cg-toggle" data-act="caregiver">👪 ${I18nProvider.t(lang, 'caregiver')}</button>
-      <p class="cg-line" id="cgLine" style="display:none">${cgLine}</p>
+      <div class="cg-panel" id="cgPanel" style="display:none">
+        <p class="cg-line">${cgLine}</p>
+        <p class="prototype-banner" id="cgHonesty"></p>
+      </div>
     </div>`;
 
+  updateCgHonesty();
   voiceCard(card, round);
 }
 
@@ -427,12 +433,14 @@ async function voiceCard(card, round) {
   try {
     const r = await window.AudioEngine.voice(label, lang, false);
     state.audioModes[r.mode] = true;
-    renderBanner();
+    updateCgHonesty();
   } catch (_) { /* honest no-op: audio is optional, never blocks the lesson */ }
 }
 
-/** The prototype-honesty banner (SAHAR-COVERAGE §6.5 D): what's declared vs
- *  what actually played this card. Never claims real audio that isn't real. */
+/** The prototype-honesty note (SAHAR-COVERAGE §6.5 D): what's declared vs
+ *  what actually played this card. Never claims real audio that isn't real.
+ *  Design fix: lives ONLY inside the "For grown-ups" caregiver panel now —
+ *  it used to be a banner shown on every child-facing card. */
 const AUDIO_MODE_LABELS = {
   fa: { recording: 'صدای رایانه‌ای موقت', tts: 'صدای مرورگر', tone: 'زنگ جایگزین' },
   en: { recording: 'temporary machine voice', tts: 'browser voice', tone: 'placeholder tone' },
@@ -440,8 +448,8 @@ const AUDIO_MODE_LABELS = {
 };
 const NOT_PLAYED_YET = { fa: 'هنوز پخش نشده', en: 'not played yet', de: 'noch nicht abgespielt' };
 
-function renderBanner() {
-  const el = $('banner');
+function updateCgHonesty() {
+  const el = $('cgHonesty');
   if (!el) return;
   const lang = state.lang;
   const modes = Object.keys(state.audioModes);
@@ -488,9 +496,10 @@ function celebrate(opts) {
 
   if (o.bubble !== false) {
     const bird = (window.SaharMascot && window.SaharMascot.svg(30)) || '';
+    const star = (window.SaharMascot && window.SaharMascot.star(16)) || '';
     const bubble = document.createElement('div');
     bubble.className = 'praise-bubble';
-    bubble.innerHTML = `${bird}<span>🌟 ${I18nProvider.t(state.lang, 'great')}</span>`;
+    bubble.innerHTML = `${bird}<span>${star} ${I18nProvider.t(state.lang, 'great')}</span>`;
     host.appendChild(bubble);
     setTimeout(() => bubble.remove(), 1100);
   }
@@ -511,10 +520,53 @@ function celebrate(opts) {
   setTimeout(() => confetti.remove(), 950);
 }
 
+/** Correct-tap TILE feedback (design fix, SAHAR-COVERAGE §6.5-C): the tapped
+ *  picture itself gets a brief scale + gold-glow (~200ms) and an 8-12 SVG-star
+ *  burst from its own position — the celebration used to be card-wide only,
+ *  so the tile the child actually touched showed no state at all. */
+function celebrateTile(tileEl) {
+  if (!tileEl) return;
+  tileEl.classList.remove('correct'); void tileEl.offsetWidth; tileEl.classList.add('correct');
+  setTimeout(() => tileEl.classList.remove('correct'), 220);
+
+  const host = tileEl.closest('.card') || tileEl.parentElement;
+  if (!host) return;
+  const hostRect = host.getBoundingClientRect();
+  const tileRect = tileEl.getBoundingClientRect();
+  const cx = tileRect.left - hostRect.left + tileRect.width / 2;
+  const cy = tileRect.top - hostRect.top + tileRect.height / 2;
+  const n = 8 + Math.floor(Math.random() * 5); // 8..12
+  let bits = '';
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 * i) / n + (Math.random() * 0.5 - 0.25);
+    const dist = 40 + Math.random() * 30;
+    const dx = Math.round(Math.cos(angle) * dist);
+    const dy = Math.round(Math.sin(angle) * dist);
+    const size = 12 + Math.round(Math.random() * 8);
+    const delay = (Math.random() * 0.08).toFixed(2);
+    const s = (window.SaharMascot && window.SaharMascot.star(size)) || '';
+    bits += `<i style="left:${cx}px; top:${cy}px; --dx:${dx}px; --dy:${dy}px; animation-delay:${delay}s;">${s}</i>`;
+  }
+  const burst = document.createElement('div');
+  burst.className = 'star-burst';
+  burst.innerHTML = bits;
+  host.appendChild(burst);
+  setTimeout(() => burst.remove(), 900);
+}
+
+/** Hop the mascot bird one step on the dawn progress path immediately on a
+ *  correct tap (design fix: the bar used to sit frozen for the whole 700ms
+ *  wait before the card advanced). Purely a cosmetic bounce — the real % is
+ *  still owned entirely by renderProgressPath(). */
+function hopBird(containerId) {
+  const el = document.querySelector(`#${containerId} .bird`);
+  if (!el) return;
+  el.classList.remove('hop'); void el.offsetWidth; el.classList.add('hop');
+  setTimeout(() => el.classList.remove('hop'), 500);
+}
+
 function render() {
   applyLanguageChrome();
-  const banner = $('banner');
-  if (banner && !(state.pack && state.idx < state.queue.length)) banner.textContent = '';
   renderProgressPath();
   renderStage();
 }
@@ -558,7 +610,10 @@ function onTapChoice(tappedId) {
 
   if (window.AudioEngine) window.AudioEngine.cheer();
   const fb = $('fb');
-  if (fb) fb.textContent = '🌟 ' + I18nProvider.t(state.lang, 'great');
+  const star = (window.SaharMascot && window.SaharMascot.star(18)) || '';
+  if (fb) fb.innerHTML = `${star} ${I18nProvider.t(state.lang, 'great')}`;
+  celebrateTile(document.querySelector(`.pic-choice[data-tap="${tappedId}"]`));
+  hopBird('progressPath');
   celebrate();
 
   if (isMatch && state.subIdx < card.rounds.length - 1) {
@@ -594,6 +649,10 @@ async function openPack(path) {
       <button type="button" data-act="lessons">${I18nProvider.t(state.lang, 'pick')}</button></div>`;
     return;
   }
+  // Design fix (SAHAR-COVERAGE §6.5-C): opening a lesson slides the exercise
+  // in full-screen under a slim progress-path bar, instead of sitting inline
+  // below the header/hero/CTA. See styles.css `body.lesson-open`.
+  document.body.classList.add('lesson-open');
   render();
 }
 
@@ -603,6 +662,7 @@ function openLessons() {
   state.packPath = null;
   state.idx = 0;
   state.revealed = false;
+  document.body.classList.remove('lesson-open');
   render();
 }
 
@@ -643,7 +703,7 @@ function wireEvents() {
     }
     else if (act === 'said-it') onAnswer(true); // repeat-aloud: ungraded, self-paced completion
     else if (act === 'caregiver') {
-      const el = $('cgLine');
+      const el = $('cgPanel');
       if (el) el.style.display = (el.style.display === 'none') ? '' : 'none';
     }
   });
@@ -651,6 +711,12 @@ function wireEvents() {
 
 async function boot() {
   wireEvents();
+  // Audio-first CTA icon (design fix): house SVGs from mascot.js, replacing
+  // the raw 🔊🐦 emoji pair that used to live directly in index.html markup.
+  const doorIco = document.querySelector('.door-ico');
+  if (doorIco && window.SaharMascot) {
+    doorIco.innerHTML = window.SaharMascot.speaker(24) + window.SaharMascot.svg(24);
+  }
   // Read each pack's title (cheap JSON) so the picker can label the shelf.
   // Offline-safe: the service worker has these precached after first visit.
   await Promise.all(PACKS.map(async (p) => {

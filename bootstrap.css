@@ -47,7 +47,25 @@
 @keyframes flutter-rtl { 0%,100% { transform: translateY(0) scaleX(-1); } 50% { transform: translateY(-3px) scaleX(-1); } }
 .dawn-progress .goal {
   position: absolute; inset-block-start: 2px; inset-inline-end: 4px;
-  font-size: 1.5rem; line-height: 1;
+  line-height: 1; display: flex; align-items: center;
+}
+
+/* ---- bird "hop" on a correct tap (design fix): a cosmetic bounce that fires
+ * immediately, ahead of the real 700ms card-advance re-render, so the path
+ * doesn't sit frozen after the child gets one right. ---- */
+.dawn-progress .bird.hop { animation: flutter 1.6s ease-in-out infinite, bird-hop .45s ease; }
+@keyframes bird-hop {
+  0%   { transform: translateY(0) translateX(0); }
+  35%  { transform: translateY(-13px) translateX(10px); }
+  60%  { transform: translateY(-3px) translateX(16px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+[dir="rtl"] .dawn-progress .bird.hop { animation-name: flutter-rtl, bird-hop-rtl; }
+@keyframes bird-hop-rtl {
+  0%   { transform: translateY(0) translateX(0) scaleX(-1); }
+  35%  { transform: translateY(-13px) translateX(-10px) scaleX(-1); }
+  60%  { transform: translateY(-3px) translateX(-16px) scaleX(-1); }
+  100% { transform: translateY(0) translateX(0) scaleX(-1); }
 }
 
 /* ---- first-contact hero: the big picture being named ---- */
@@ -96,12 +114,40 @@
 .pic-choice.wrong { border-color: var(--again); animation: shake .4s; }
 @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
 
-.fc-feedback { text-align: center; min-height: 1.6em; margin-block-start: 14px; font-weight: 700; color: var(--gold); font-size: 1.15rem; }
+/* ---- correct-tap tile feedback (design fix): the chosen tile itself used to
+ * show no state at all. Scale + gold-glow for ~200ms, paired with the star
+ * burst below (celebrateTile() in app.js/bootstrap.js). ---- */
+.pic-choice.correct { animation: tile-correct .2s ease forwards; border-color: var(--gold); }
+@keyframes tile-correct {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,216,155,0); }
+  40%  { transform: scale(1.14); box-shadow: 0 0 22px 6px rgba(255,216,155,.9); }
+  100% { transform: scale(1.05); box-shadow: 0 0 14px 3px rgba(255,216,155,.55); }
+}
+
+/* ---- 8-12 SVG stars bursting from the tapped tile (design fix — replaces
+ * the raw 🌟 feedback emoji with a house-drawn particle, mascot.js `star()`
+ * / bootstrap.js `starSVG()`). Positioned in px relative to the nearest
+ * `position:relative` ancestor (`.card` in app.js, `#bs-stage` here). ---- */
+.star-burst { position: absolute; inset: 0; overflow: visible; pointer-events: none; z-index: 6; }
+.star-burst i {
+  position: absolute; display: block; margin: 0; padding: 0;
+  transform: translate(-50%, -50%);
+  animation: star-burst-fly .8s ease-out forwards;
+}
+.star-burst i svg { display: block; }
+@keyframes star-burst-fly {
+  0%   { transform: translate(-50%, -50%) translate(0, 0) scale(.4) rotate(0deg); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(1) rotate(160deg); opacity: 0; }
+}
+
+.fc-feedback { text-align: center; min-height: 1.6em; margin-block-start: 14px; font-weight: 700; color: var(--gold); font-size: var(--fs-lg); }
+.fc-feedback .mascot-star { vertical-align: -3px; }
 
 /* ---- done / celebration ---- */
 .fc-done { text-align: center; padding: 20px 10px; animation: cardin .35s ease; }
 .fc-bird-big { display: inline-block; animation: flutter 1.6s ease-in-out infinite; }
-.fc-done h2 { margin: 12px 0 6px; }
+.fc-done h2 { margin: 12px 0 6px; font-size: var(--fs-2xl); }
 .fc-done p { opacity: .9; margin: 0 0 18px; }
 .fc-btn {
   min-height: var(--tap); padding: 0 26px;
@@ -121,7 +167,7 @@
 }
 .cg-pic { flex: 0 0 auto; width: 44px; height: 44px; }
 .cg-pic svg { width: 100%; height: 100%; }
-.cg-rec { font-size: .82rem; opacity: .85; background: rgba(255,255,255,.05); border: 1px dashed var(--line); border-radius: 12px; padding: 10px 12px; margin-block-end: 16px; }
+.cg-rec { font-size: var(--fs-xs); opacity: .85; background: rgba(255,255,255,.05); border: 1px dashed var(--line); border-radius: 12px; padding: 10px 12px; margin-block-end: 16px; }
 
 .link-btn {
   background: none; border: none; color: var(--gold);
@@ -145,9 +191,20 @@
 /* ---- Tier-1 interactive card wrapper (main shelf) — same visual language
  * as the bootstrap first-contact flow, on the main app's .card frame. ---- */
 .card.interactive .fc-hero { margin-block-end: 6px; }
-.card.interactive .cg-toggle { margin-block-start: 16px; font-size: .85rem; }
+.card.interactive .cg-toggle { margin-block-start: 16px; font-size: var(--fs-xs); }
+.card.interactive .cg-panel { margin-block-start: 10px; }
 .card.interactive .cg-line {
-  text-align: start; font-size: .88rem; line-height: 1.6; opacity: .92;
+  text-align: start; font-size: var(--fs-sm); line-height: 1.6; opacity: .92;
   background: rgba(255,255,255,.05); border: 1px dashed var(--line);
-  border-radius: 12px; padding: 10px 12px; margin-block-start: 10px;
+  border-radius: 12px; padding: 10px 12px; margin-block-start: 0;
+}
+.card.interactive .cg-panel .prototype-banner { margin-block-start: 10px; }
+
+/* the audio-first stage isn't itself position:relative, but the star burst
+ * needs a positioning ancestor to anchor its px-based origin coordinates to. */
+#bs-stage { position: relative; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pic-choice.correct, .star-burst i, .dawn-progress .bird.hop { animation: none; }
+  .star-burst { display: none; }
 }

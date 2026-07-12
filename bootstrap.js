@@ -80,7 +80,9 @@ async function loadPack() {
   return res.json();
 }
 
-/* ---- the dawn-bird mascot (Sahar's kid mascot: a small sunrise bird 🐦) ---- */
+/* ---- the dawn-bird mascot (Sahar's kid mascot: a small sunrise bird) ----
+ * Kept as private local SVG generators (not mascot.js) — this page deliberately
+ * doesn't load mascot.js, see mascot.js's own header comment. */
 function birdSVG(size) {
   const s = size || 34;
   return `<svg class="dawnbird" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
@@ -93,6 +95,32 @@ function birdSVG(size) {
   </svg>`;
 }
 
+/** A small flat sunrise glyph — replaces the raw 🌅 goal-marker emoji. */
+function sunriseSVG(size) {
+  const s = size || 24;
+  return `<svg class="mascot-sunrise" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+    <g stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round">
+      <line x1="20" y1="2" x2="20" y2="8"/>
+      <line x1="5" y1="9" x2="9.5" y2="13.5"/>
+      <line x1="35" y1="9" x2="30.5" y2="13.5"/>
+      <line x1="1" y1="22" x2="8" y2="22"/>
+      <line x1="32" y1="22" x2="39" y2="22"/>
+    </g>
+    <circle cx="20" cy="24" r="10" fill="var(--amber)"/>
+    <circle cx="20" cy="24" r="10" fill="none" stroke="var(--gold)" stroke-width="2"/>
+  </svg>`;
+}
+
+/** A small flat star glyph — replaces the raw 🌟 feedback emoji, and doubles
+ *  as the correct-tap celebration burst particle. */
+function starSVG(size) {
+  const s = size || 18;
+  return `<svg class="mascot-star" width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+    <path d="M20 3 L24.6 15.3 L37.8 15.8 L27.2 23.9 L30.9 36.6 L20 29.2 L9.1 36.6 L12.8 23.9 L2.2 15.8 L15.4 15.3Z"
+          fill="var(--gold)" stroke="var(--amber)" stroke-width="1.4" stroke-linejoin="round"/>
+  </svg>`;
+}
+
 /* ---- language chrome ---- */
 function applyChrome() {
   document.documentElement.lang = bs.lang;
@@ -102,8 +130,10 @@ function applyChrome() {
   $$('bs-title').textContent = t('title');
 }
 
-/* ---- the honest "what's real vs placeholder" banner ------------------------
- * Reads the pack's declared audioStatus AND what actually played this session. */
+/* ---- the honest "what's real vs placeholder" note --------------------------
+ * Reads the pack's declared audioStatus AND what actually played this session.
+ * Design fix: lives ONLY inside the caregiver sheet now (showCaregiver()) —
+ * it used to be a banner shown above every child-facing round. */
 const BS_AUDIO_MODE_LABELS = {
   fa: { recording: 'صدای رایانه‌ای موقت', tts: 'صدای مرورگر', tone: 'زنگ جایگزین' },
   en: { recording: 'temporary machine voice', tts: 'browser voice', tone: 'placeholder tone' },
@@ -121,14 +151,13 @@ function honestyLine() {
   return { declared, played };
 }
 
-function renderBanner() {
+function honestyMessage() {
   const h = honestyLine();
-  const msg = {
+  return {
     fa: `نمونهٔ اولیه · این صدا فعلاً یک صدای رایانه‌ای موقت است (اکنون: ${h.played}) · صدای واقعی انسان (سحر/ندا) به‌زودی می‌آید · نیاز به آزمایش با ۲–۳ کودک`,
     en: `PROTOTYPE · this voice is a temporary machine voice for now (now playing: ${h.played}) · a real human voice (Sahar/Neda) is coming · needs a 2–3 child pilot`,
     de: `PROTOTYP · diese Stimme ist vorübergehend eine Computerstimme (jetzt: ${h.played}) · eine echte menschliche Stimme (Sahar/Neda) folgt · braucht Pilot mit 2–3 Kindern`
-  }[bs.lang];
-  $$('bs-banner').textContent = msg;
+  }[bs.lang] || '';
 }
 
 /* ---- the dawn progress path (Duolingo-style bar + bird moving to the sun) --- */
@@ -139,8 +168,8 @@ function renderProgress() {
   el.innerHTML = `
     <div class="path">
       <div class="fill" style="inline-size:${pct}%"></div>
-      <div class="bird" style="inset-inline-start:calc(${pct}% - 17px)">${birdSVG(34)}</div>
-      <div class="goal">🌅</div>
+      <div class="bird" style="inset-inline-start:clamp(4px, calc(${pct}% - 17px), calc(100% - 38px))">${birdSVG(34)}</div>
+      <div class="goal">${sunriseSVG(24)}</div>
     </div>`;
 }
 
@@ -148,7 +177,6 @@ function renderProgress() {
 async function playLabel(label, lang, isL2) {
   const r = await window.AudioEngine.voice(label, lang, isL2);
   bs.audioModes[r.mode] = true;
-  renderBanner();
   return r;
 }
 
@@ -215,10 +243,51 @@ function renderDone() {
 
 function render() {
   applyChrome();
-  renderBanner();
   if (!bs.session) return;
   if (bs.session.done) renderDone();
   else renderRound();
+}
+
+/** Correct-tap TILE feedback (design fix): the tapped picture itself gets a
+ *  brief scale + gold-glow (~200ms) and an 8-12 SVG-star burst from its own
+ *  position, instead of the tile showing no state at all. */
+function celebrateTile(tileEl) {
+  if (!tileEl) return;
+  tileEl.classList.remove('correct'); void tileEl.offsetWidth; tileEl.classList.add('correct');
+  setTimeout(() => tileEl.classList.remove('correct'), 220);
+
+  const host = $$('bs-stage');
+  if (!host) return;
+  const hostRect = host.getBoundingClientRect();
+  const tileRect = tileEl.getBoundingClientRect();
+  const cx = tileRect.left - hostRect.left + tileRect.width / 2;
+  const cy = tileRect.top - hostRect.top + tileRect.height / 2;
+  const n = 8 + Math.floor(Math.random() * 5); // 8..12
+  let bits = '';
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 * i) / n + (Math.random() * 0.5 - 0.25);
+    const dist = 40 + Math.random() * 30;
+    const dx = Math.round(Math.cos(angle) * dist);
+    const dy = Math.round(Math.sin(angle) * dist);
+    const size = 12 + Math.round(Math.random() * 8);
+    const delay = (Math.random() * 0.08).toFixed(2);
+    bits += `<i style="left:${cx}px; top:${cy}px; --dx:${dx}px; --dy:${dy}px; animation-delay:${delay}s;">${starSVG(size)}</i>`;
+  }
+  const burst = document.createElement('div');
+  burst.className = 'star-burst';
+  burst.innerHTML = bits;
+  host.appendChild(burst);
+  setTimeout(() => burst.remove(), 900);
+}
+
+/** Hop the mascot bird one step on the dawn progress path immediately on a
+ *  correct tap — a cosmetic bounce layered on top of renderProgress(), which
+ *  still owns the real percentage. */
+function hopBird(containerId) {
+  const el = document.querySelector(`#${containerId} .bird`);
+  if (!el) return;
+  el.classList.remove('hop'); void el.offsetWidth; el.classList.add('hop');
+  setTimeout(() => el.classList.remove('hop'), 500);
 }
 
 /* ---- taps ---- */
@@ -229,9 +298,14 @@ function onTapChoice(tappedId) {
   if (window.BootstrapCore.isCorrect(round, tappedId)) {
     bs.session = window.BootstrapCore.applyTap(bs.session, tappedId);
     window.AudioEngine.cheer();
-    if (fb) fb.textContent = '🌟 ' + t('great');
-    // brief celebration, then next round
+    if (fb) fb.innerHTML = `${starSVG(18)} ${t('great')}`;
+    const tile = document.querySelector(`.pic-choice[data-tap="${tappedId}"]`);
+    celebrateTile(tile);
+    // renderProgress() rebuilds the bar's innerHTML (new %), which would
+    // wipe out a `.hop` class added beforehand — so hop AFTER re-rendering,
+    // onto the freshly-built bird element.
     renderProgress();
+    hopBird('bs-progress');
     setTimeout(render, 700);
   } else {
     // gentle: mark the wrong pic, invite another try, re-voice the word
@@ -267,6 +341,7 @@ function showCaregiver() {
     : { fa: 'حالت ضبط صدا در این دستگاه پشتیبانی نمی‌شود.', en: 'Record mode is not supported on this device.', de: 'Aufnahmemodus wird auf diesem Gerät nicht unterstützt.' }[bs.lang];
   $$('bs-stage').innerHTML = `
     <div class="caregiver">
+      <p class="prototype-banner">${honestyMessage()}</p>
       <p class="cg-note">${(bs.pack.caregiverIntro && (bs.pack.caregiverIntro[bs.lang] || bs.pack.caregiverIntro.en)) || ''}</p>
       <ul class="cg-list">${rows}</ul>
       <p class="cg-rec">🎙 ${rec}</p>
