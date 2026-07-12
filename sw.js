@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v12';
+const CACHE = 'sahar-v13';
 
 const APP_SHELL = [
   './',
@@ -13,6 +13,13 @@ const APP_SHELL = [
   './mascot.js',
   './manifest.webmanifest',
   './teacher.html',
+  // real PNG icon set (installability: manifest + apple-touch-icon need these
+  // to actually be fetchable offline, not just declared)
+  './icons/icon-192-any.png',
+  './icons/icon-192-maskable.png',
+  './icons/icon-512-any.png',
+  './icons/icon-512-maskable.png',
+  './icons/apple-touch-icon.png',
   // Vazirmatn, self-hosted (design fix: was declared in styles.css with no
   // file behind it, so offline reloads silently fell back to Segoe UI).
   './fonts/vazirmatn-arabic-400-normal.woff2',
