@@ -424,6 +424,17 @@ html[data-theme="kanoon"] .age-pick {
 }
 html[data-theme="kanoon"] .avatar-pick.on { border-color: var(--k-outline); }
 
+/* the age-band chip strip (profiles.css .band-chip/.band-chip-label):
+   .band-chip sets `color: var(--cream)` for the dawn theme's dark chrome,
+   which in the LIGHT kanoon variant remaps --cream to a near-white cream
+   (#faf3e1) — nearly invisible on the cream paper chip background behind
+   it (design-critic fix: illegible label text). --k-text already carries
+   the correct ink for BOTH kanoon variants (warm dark ink on light paper,
+   pale cream on dark indigo — which is byte-identical to what --cream
+   already resolved to in the dark variant), so this one rule fixes light
+   without touching dark. */
+html[data-theme="kanoon"] .band-chip-label { color: var(--k-text); }
+
 /* =========================================================================
  * 11 · FOOTER — colophon rule + readable accents
  * ========================================================================= */
@@ -480,4 +491,18 @@ html[data-theme="kanoon"] .btn,
 html[data-theme="kanoon"] .lesson-tile,
 html[data-theme="kanoon"] .pic-choice {
   transition-timing-function: cubic-bezier(.34, 1.3, .5, 1);
+}
+
+/* =========================================================================
+ * 14 · EMOJI → INK-GLYPH SWAP (design-critic fix: raw system emoji — 🔊 on
+ * every "listen" pill, 👪 on the caregiver toggle, 📄 on the "for teachers"
+ * link — read as an OS sticker on top of a silkscreened book plate. The
+ * glyphs themselves are drawn/swapped live by kanoon.js (they replace a
+ * literal character app.js/index.html print into markup this file can't
+ * intercept the way the mascot/picture art above is intercepted); this rule
+ * only sizes/aligns the swapped-in <svg> next to its neighboring label text.
+ * ========================================================================= */
+html[data-theme="kanoon"] .k-ico {
+  display: inline-block;
+  vertical-align: -4px;
 }
