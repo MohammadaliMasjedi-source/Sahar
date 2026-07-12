@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v17'; // v17: hero-girl redraw + var()-fallback sweep (art can never render black/stale)
+const CACHE = 'sahar-v18'; // v18: hero-girl redraw + var()-fallback sweep, merged with Kanoon-skin gap fixes (folk icons, heroine, display font)
 
 const APP_SHELL = [
   './',
@@ -36,6 +36,11 @@ const APP_SHELL = [
   './fonts/vazirmatn-latin-700-normal.woff2',
   './fonts/vazirmatn-latin-ext-400-normal.woff2',
   './fonts/vazirmatn-latin-ext-700-normal.woff2',
+  // Estedad, self-hosted (the kanoon skin's heading-only display face —
+  // themes/kanoon/INSPIRATION.md/kanoon.css §0), heavy weight, arabic+latin
+  // subset only (~38 KB total)
+  './fonts/estedad-arabic-800-normal.woff2',
+  './fonts/estedad-latin-800-normal.woff2',
   // audio-first bootstrap slice (SAHAR-COVERAGE §6.5)
   './bootstrap.html',
   './bootstrap.css',

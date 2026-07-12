@@ -51,25 +51,42 @@ the skin's acceptance gate.
 
 ## Typography — evaluated and chosen honestly
 
-Candidates evaluated (all open licences): **Vazirmatn** (OFL-1.1), **Estedad**
-(OFL-1.1), **Sahel**, **Shabnam**, **Gandom** (Rastikerdar faces, OFL/SIL).
-
-**Chosen: Vazirmatn** (by Saber Rastikerdar and contributors, SIL Open Font
+**Body text: Vazirmatn** (by Saber Rastikerdar and contributors, SIL Open Font
 License 1.1 — the licence text is vendored at `fonts/LICENSE-OFL.txt`).
-Reasons, in order:
+Unchanged from the first build of this skin. Reasons, in order:
 
 1. It is **already vendored** in this repo (six subset woff2 files, < 100 KB
    total, precached offline) — choosing it adds **zero bytes** to the
-   cheap-phone payload. The other candidates would each add 80–300 KB.
+   cheap-phone payload.
 2. Excellent Dari/Farsi legibility with generous counters — the calm,
    slightly geometric warmth the charter asks for.
 3. Latin coverage harmonizes for EN/DE without a second family.
 
+**Display face (headings only): Estedad**, heavy (800) weight — added in
+this pass after re-evaluating the charter's §3 ask for "a display face for
+headings that echoes hand-lettered Kanoon titles" with real, LIVE licence
+verification (2026-07-12, against the canonical `google/fonts` GitHub repo,
+same method as Vazirmatn above):
+
+| Candidate | Licence (verified live) | Category / weights | Verdict |
+|---|---|---|---|
+| **Estedad** | OFL-1.1, "Copyright 2022/2026 The Estedad Project Authors" | Sans-serif, variable 100–900 | **Chosen.** A heavy (800) static instance, subset to arabic+latin only, is **~38 KB** (27 KB arabic + 11 KB latin) — confident, modernist-geometric, and the lightest of the three for one bold heading job. |
+| **Lalezar** | OFL-1.1, "Copyright 2015 The Lalezar Project Authors" | Sans-serif, single (already-bold) weight | Not chosen: its arabic+latin subset is **~69 KB** (~1.8x Estedad's) for the same job, and its rounder, more novelty/poster letterforms read closer to a party invite than the calm modernist confidence the charter asks for. |
+| **Markazi Text** | OFL-1.1, "Copyright 2017 The Markazi Text Project Authors" | **Serif**, variable 400–700 | Not chosen: Google's own category calls it a serif *text* face, not a display face — the wrong job for a bold heading regardless of payload. |
+
+Applied ONLY to actual headings (`.brand h1`, the hero greeting `h2`, the
+done-screen celebration `h2`, the profile-gate title, bootstrap's page title)
+— never to body copy, buttons, or small labels, which all stay Vazirmatn.
+Self-hosted the same way as Vazirmatn (no Google Fonts CDN call at runtime;
+the woff2 files were fetched once to vendor them, then committed), precached
+by the service worker, licence text at `fonts/LICENSE-OFL-ESTEDAD.txt`.
+
 **Honest limitation:** the hand-lettered display feel of 1970s Kanoon covers
-is *approximated* with Vazirmatn's bold weight, tighter plate-like layout, and
-the frieze/rosette ornaments — not with a new display face. Exact historical
-Kanoon lettering is proprietary/hand-drawn and is not shipped, per the rails
-above. Persian text is never letter-spaced (it would break letterforms).
+is still *approximated*, now with a heavy geometric sans instead of a true
+hand-lettered face — exact historical Kanoon lettering is proprietary/hand-
+drawn and is not shipped, per the rails above. Persian text is never letter-
+spaced in either face (it would break letterforms) — the display-face CSS
+rule deliberately omits `letter-spacing`.
 
 ## Secular audit (every asset, per Sahar's hard rule)
 
@@ -86,21 +103,39 @@ against known misread risks:
 | Frieze band | religious geometric patterning | textile diamond + dot-blossom only |
 | Rosette medallion | mandala/religious rose-window read | 12 scalloped petals reading as marigold/sunflower; purely botanical |
 | Palette | flag tricolor (green-white-red banding) | no tricolor adjacency; earths + teal on cream |
+| Heroine redraw (kanoon.js `kanoonHeroine()`) | headscarf/veil silhouette | short tousled crop stops at the temple, above the ear/jaw line — same rule the dawn original was fixed to (index.html, commit d822812), re-verified not re-broken |
+| Lesson-icon redraws (`KANOON_PICTURES`, 28 keys) | crescent+star (caught twice today in the *default* theme's own `pictures.js` 'dawn' glyph, see main's d10859a) | `moon` is a lone crescent, `star` a plain 5-point star, never drawn together in one glyph or one screen slot |
+| Lesson-icon `hand` | Hamsa/Khamsa amulet (symmetric stylized-palm) silhouette | drawn deliberately ASYMMETRIC — four fingers of different lengths + one offset thumb, same construction as the pre-existing dawn `hand` glyph |
+| Lesson-icon `cross-mark` | Latin/Christian cross | a diagonal X ("wrong answer" mark), never an upright cross |
 
-The pre-existing dawn theme's assets (heroine, avatars, glyphs) are unchanged
+The dawn theme's own original assets (heroine, avatars, glyphs) are unchanged
 and were audited separately (see `docs/ARCHITECTURE.md` §10 and the V3
-religion/culture audit notes in `index.html`).
+religion/culture audit notes in `index.html`); the *default* theme's `dawn`
+picture glyph was itself re-audited and fixed today for a crescent+star
+combo (main's d10859a) — the kanoon-redrawn `dawn` glyph in this file was
+built crescent/star-free from the start (see table above).
 
 ## What ships, technically (cheap-phone honesty)
 
-- `themes/kanoon/kanoon.css` (~13 KB) — design tokens (light + warm-dark
-  variants), flat-surface overrides, SVG-data-URI frieze/rosette/grain. No
-  raster images, no external requests.
-- `themes/kanoon/kanoon.js` (~12 KB) — theme loader + folk-redrawn mascot
-  variants (bird, bloom, sun, garden) + the footer theme picker. The default
-  dawn theme stays the default and renders byte-identical original art.
-- Fonts: **zero new font files** (reuses the vendored Vazirmatn subsets).
-- Both files are precached by the service worker for offline use.
+- `themes/kanoon/kanoon.css` — design tokens (light + warm-dark variants),
+  flat-surface overrides, SVG-data-URI frieze/rosette/grain, the Estedad
+  `@font-face` + heading rule. No raster images, no external requests.
+- `themes/kanoon/kanoon.js` — theme loader + folk-redrawn mascot variants
+  (bird, bloom, sun, garden), the folk-print heroine redraw, the
+  `KANOON_PICTURES` lesson-icon restyle (28 of ~38 keys — the most-visible
+  tier: every shelf/pack icon, every band icon, every avatar icon, every
+  in-lesson icon used 2+ times in shipped content; the honest remainder —
+  house, robot, triangle, swatch-red/blue, toothbrush, happy/sad-face,
+  quiet-icon, muddy-water — keeps the dawn-theme original art for now, each
+  used 0-1 times in shipped content today), and the footer theme picker.
+  The default dawn theme stays the default and renders byte-identical
+  original art throughout.
+- Fonts: Vazirmatn (body, reused, zero added bytes) + **Estedad 800**, new
+  in this pass, self-hosted, arabic+latin subset only, ~38 KB total —
+  `fonts/estedad-arabic-800-normal.woff2`, `fonts/estedad-latin-800-normal.
+  woff2`, licence at `fonts/LICENSE-OFL-ESTEDAD.txt`.
+- All of the above are precached by the service worker (`sw.js`, cache
+  version bumped) for offline use.
 
 *Filed as the honest homage/credits page required by the Sahar–Kanoon visual
 charter (§6). Inspiration, not reproduction.*
