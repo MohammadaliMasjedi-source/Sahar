@@ -93,31 +93,54 @@ Sahar/
 ├─ LICENSE                    ← MIT (the code)
 ├─ LICENSE-CONTENT.md         ← CC-BY-SA 4.0 (the original learning packs)
 ├─ LICENSE-NOTE.md            ← how the dual license was decided
+├─ SAHAR-COVERAGE-STATUS.md   ← honest, dated ticks of what is really done vs. still open
+├─ package.json               ← defines `npm test` (the three suites below); no runtime dependencies
 ├─ docs/
 │  ├─ ARCHITECTURE.md         ← offline-first PWA, Clean-Arch + MVVM, signed packs, i18n, Leitner, a11y, child-safety
 │  ├─ NAME.md                 ← name shortlist + the Sahar-as-heroine idea
 │  ├─ CURRICULUM-MAP.md       ← the UN "educated person" body of knowledge mapped to 4 tiers + companion books
+│  ├─ CONTENT-MODEL.md        ← the audio-first card schema every pack follows (interaction, audio, caregiver line)
+│  ├─ PHONE-TEST.md           ← the honest real-device / airplane-mode PWA checklist (not yet run)
 │  └─ OSS-REUSE.md            ← concrete open-source to reuse, with licenses
 ├─ funding/                   ← funding/sponsorship strategy, the startsocial application draft, outreach tracker
 ├─ learning/
 │  └─ PROJECT-EXPLAINED.md    ← the project explained in four layers (child → architect)
 ├─ handbook/                  ← maintainer handbook: overview, setup, standards, diagrams, task guides
-├─ test/
-│  └─ core.test.js            ← 28 headless tests for the UI-free core (node:assert, no framework)
-├─ content/                   ← versioned Tier-1 learning packs (fa/en/de), JSON
+├─ test/                      ← pure-Node headless suites (node:assert, no framework): 132 checks, 0 failed
+│  ├─ core.test.js            ← 28 — Leitner core, queue building, i18n parity, localStorage round-trip
+│  ├─ bootstrap.test.js       ← 14 — language-course pack + the pre-literacy tap-round engine
+│  └─ content-validator.test.js  ← 90 — every pack: fa/en/de completeness, honest audio state, resolvable choices
+├─ content/                   ← versioned learning packs (fa/en/de), JSON — 10 Tier-1 + 1 language-course
 │  ├─ t1-literacy-first-letters.json
+│  ├─ t1-literacy-first-words.json
 │  ├─ t1-numeracy-counting-0-20.json
 │  ├─ t1-numeracy-shapes-patterns.json
 │  ├─ t1-science-living-things.json
+│  ├─ t1-science-day-and-night.json
 │  ├─ t1-thinking-what-is-a-question.json
 │  ├─ t1-thinking-fact-vs-guess.json
-│  └─ tier1-demo.json
+│  ├─ t1-life-healthy-and-safe.json    ← 9 curriculum packs: literacy ×2, numeracy ×2, science ×2, thinking ×2, life ×1
+│  ├─ tier1-demo.json                  ← + one mixed demo pack = 10 Tier-1 packs
+│  └─ lc-fa-en-first-words.json        ← separate language-course pack: first English words taught through Dari
+├─ audio/                     ← 245 machine-generated draft .mp3 clips + audio-manifest.json + RECORDING-MANIFEST.md — a temporary computer voice (fa is Iranian-Persian standing in for Dari), not real recordings
+├─ fonts/                     ← Vazirmatn woff2 (Dari/Arabic + Latin), under the SIL Open Font License
+├─ tools/
+│  └─ generate-draft-audio.py ← edge-tts draft-audio generator (idempotent; never overwrites a real recording)
 └─ (prototype — runnable, offline)
-   ├─ index.html
-   ├─ manifest.webmanifest
-   ├─ sw.js                   ← cache-first service worker
+   ├─ index.html              ← the main app shell
+   ├─ manifest.webmanifest    ← PWA manifest (inline-SVG icons, 192/512, maskable)
+   ├─ sw.js                   ← cache-first service worker (precaches app shell + content + audio)
    ├─ app.js                  ← state + render + Leitner flow (logic separated from view)
-   └─ styles.css              ← dawn palette, RTL-aware, design tokens
+   ├─ audio.js                ← playback chain: real recording → draft mp3 → TTS → tone
+   ├─ mascot.js               ← the shared dawn-bird "Sahar" character (inline SVG)
+   ├─ pictures.js             ← placeholder inline-SVG icons for the tap-the-picture cards
+   ├─ styles.css              ← dawn palette, RTL-aware, design tokens
+   ├─ bootstrap.html          ← pre-literacy first-contact language-course flow (its own entry point)
+   ├─ bootstrap.js            ← that flow's view/glue …
+   ├─ bootstrap-core.js       ← … and its pure, tested round engine
+   ├─ bootstrap.css           ← shared tap-grid + progress-path styles (used by the main app too)
+   ├─ teacher.html            ← printable teacher/parent sheet: what each Tier-1 pack teaches, fa/en/de
+   └─ Start-Sahar.cmd         ← one-click Windows launcher (serve the folder, open the browser)
 ```
 
 ### The working prototype
@@ -127,14 +150,20 @@ behaviour serve the folder over `http://`). With **zero internet** you can:
 
 - meet **Sahar**, the girl-at-dawn character (inline SVG, secular — no religious symbols);
 - switch language **fa (RTL) / en / de** and watch every lesson re-render in all three;
-- pick from a shelf of **seven real Tier-1 packs** — first letters, counting 0–20, shapes &
-  patterns, living things, "what is a question?", "guess first, then check", and fact vs. opinion;
+- pick from a shelf of **ten Tier-1 packs** — first letters, first words, counting 0–20, shapes &
+  patterns, living things, day & night, "what is a question?", "guess first, then check", and
+  staying healthy & safe (nine curriculum packs across five subjects), plus a mixed demo pack — and
+  a separate **language-course pack** (first English words taught through Dari);
 - run a real **spaced-repetition card flow** (show → reveal → *got it / again*);
 - see review progress **persist** in `localStorage` using a classic **Leitner box model**
   (`1 → 2 → 4 → 9 → 21` day intervals; *got it* climbs a box, *again* falls to box 1).
 
-It is a **prototype**: seven Tier-1 packs, three languages, the engine real and tested. The full
-curriculum, the pack signing pipeline, audio, and the higher tiers are documented but **not yet built**.
+It is a **prototype**: ten Tier-1 packs plus a language-course pack, three languages, the engine
+real and tested (**132 headless checks across three suites, 0 failing** — 28 core + 14 bootstrap +
+90 content). Every card now has **draft machine-voice audio** (fa/en/de), flagged in-app as a
+temporary computer voice — the Dari voice is Iranian-Persian standing in for real recordings, not
+the finished thing. The full curriculum, the pack-signing pipeline, **real human Dari audio**, and
+the higher tiers (T2–T4) are documented but **not yet built**.
 
 ---
 
