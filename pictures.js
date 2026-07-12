@@ -285,6 +285,39 @@ const PICTURES = {
     <circle cx="38" cy="44" r="4" fill="#1c1430"/>
     <circle cx="62" cy="44" r="4" fill="#1c1430"/>
     <path d="M34 66 q16 -16 32 0" stroke="#1c1430" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </svg>`,
+
+  /* ---- added so each lesson-tile on the shelf gets its own distinct house
+   * icon instead of 10 identical 🌅 emoji (design fix — SAHAR-COVERAGE §6.5 C).
+   * Same deliberately-simple placeholder spirit as the sets above. ---- */
+
+  letters: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#241d44"/>
+    <text x="32" y="68" text-anchor="middle" font-size="48" font-weight="800" fill="#ffd89b" font-family="sans-serif">A</text>
+    <text x="70" y="66" text-anchor="middle" font-size="30" font-weight="800" fill="#f4a259" font-family="sans-serif">b</text>
+  </svg>`,
+
+  book: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#1c3350"/>
+    <path d="M50 32 C42 26 28 24 18 28 V72 C28 68 42 70 50 76 C58 70 72 68 82 72 V28 C72 24 58 26 50 32Z" fill="#bfe3ff"/>
+    <path d="M50 32 V76" stroke="#1c3350" stroke-width="2"/>
+    <path d="M24 38 H40 M24 46 H40 M60 38 H76 M60 46 H76" stroke="#1c3350" stroke-width="2.4" stroke-linecap="round"/>
+  </svg>`,
+
+  dawn: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#171436"/>
+    <path d="M50 12 a38 38 0 0 1 0 76Z" fill="#3b2f63"/>
+    <path d="M50 12 a38 38 0 0 0 0 76Z" fill="#f4a259"/>
+    <circle cx="62" cy="34" r="1.6" fill="#ffd89b"/>
+    <circle cx="72" cy="48" r="1.2" fill="#ffd89b"/>
+    <path d="M67 38 a13 13 0 1 0 0 24 a10 10 0 1 1 0 -24Z" fill="#ffd89b"/>
+  </svg>`,
+
+  'shapes-trio': `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+    <rect width="100" height="100" rx="12" fill="#20304a"/>
+    <circle cx="32" cy="66" r="16" fill="#4db6e6"/>
+    <rect x="54" y="52" width="28" height="28" rx="5" fill="#f4a259"/>
+    <path d="M50 18 L66 46 L34 46Z" fill="#e0719b"/>
   </svg>`
 };
 

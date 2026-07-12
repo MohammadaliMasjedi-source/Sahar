@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v11';
+const CACHE = 'sahar-v12';
 
 const APP_SHELL = [
   './',
@@ -13,6 +13,14 @@ const APP_SHELL = [
   './mascot.js',
   './manifest.webmanifest',
   './teacher.html',
+  // Vazirmatn, self-hosted (design fix: was declared in styles.css with no
+  // file behind it, so offline reloads silently fell back to Segoe UI).
+  './fonts/vazirmatn-arabic-400-normal.woff2',
+  './fonts/vazirmatn-arabic-700-normal.woff2',
+  './fonts/vazirmatn-latin-400-normal.woff2',
+  './fonts/vazirmatn-latin-700-normal.woff2',
+  './fonts/vazirmatn-latin-ext-400-normal.woff2',
+  './fonts/vazirmatn-latin-ext-700-normal.woff2',
   // audio-first bootstrap slice (SAHAR-COVERAGE §6.5)
   './bootstrap.html',
   './bootstrap.css',

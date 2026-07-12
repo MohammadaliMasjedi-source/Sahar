@@ -18,6 +18,71 @@
   --radius: 18px;
   --tap: 60px;                 /* min touch target (a11y §7) — warm & big for small hands */
   --font: "Vazirmatn", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* --- type scale (design fix: was ad-hoc one-off rem values scattered
+     across styles.css/bootstrap.css; tightened into one rhythm) --- */
+  --fs-2xs: .72rem;   /* micro-labels: kind tag, footer rule, small print */
+  --fs-xs:  .8rem;    /* secondary/meta: motto, door subtitle, honesty note */
+  --fs-sm:  .92rem;   /* supporting body: hero sub-line, caregiver text */
+  --fs-base: 1rem;    /* default body: buttons, lesson-title, tap prompt */
+  --fs-md:  1.05rem;  /* emphasized body: tile title, door headline */
+  --fs-lg:  1.2rem;   /* sub-headings: hero greeting, answer, feedback */
+  --fs-xl:  1.4rem;   /* h1 brand, card prompt */
+  --fs-2xl: 1.8rem;   /* done-screen headings */
+}
+
+/* --- Vazirmatn, self-hosted (OSS-REUSE.md §3: OFL-1.1, vendored not CDN) ---
+   Design fix: --font declared "Vazirmatn" above but no file ever backed it,
+   so every device silently fell back to Segoe UI. Two weights x three Unicode
+   subsets (Arabic covers Dari/fa; Latin + Latin-Extended cover en/de incl.
+   German umlauts) keeps the whole set under 100KB, precached by sw.js. */
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-arabic-700-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+20AC;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+20AC;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+0304, U+0308;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/vazirmatn-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+0304, U+0308;
 }
 
 * { box-sizing: border-box; }
@@ -55,8 +120,8 @@ html, body {
 }
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand .logo { width: 40px; height: 40px; }
-.brand h1 { font-size: 1.35rem; margin: 0; letter-spacing: .5px; }
-.brand .motto { font-size: .72rem; opacity: .8; margin: 0; }
+.brand h1 { font-size: var(--fs-xl); margin: 0; letter-spacing: .5px; }
+.brand .motto { font-size: var(--fs-2xs); opacity: .8; margin: 0; }
 
 .langs { display: flex; gap: 6px; }
 .langs button {
@@ -85,8 +150,8 @@ html, body {
   margin-block: 8px 18px;
 }
 .hero .sahar { width: 96px; height: 110px; flex: 0 0 auto; }
-.hero .say h2 { margin: 0 0 4px; font-size: 1.05rem; }
-.hero .say p { margin: 0; font-size: .9rem; opacity: .9; line-height: 1.5; }
+.hero .say h2 { margin: 0 0 4px; font-size: var(--fs-lg); }
+.hero .say p { margin: 0; font-size: var(--fs-sm); opacity: .9; line-height: 1.5; }
 
 /* the dawn-bird mascot on the welcome screen (SAHAR-COVERAGE §6.5-C) — a
  * small, friendly flourish perched at the card's trailing corner. Reuses the
@@ -138,7 +203,7 @@ html, body {
 }
 
 /* ---- lesson + card ---- */
-.lesson-title { font-size: 1rem; opacity: .9; margin: 0 0 10px; }
+.lesson-title { font-size: var(--fs-base); opacity: .9; margin: 0 0 10px; }
 
 .card {
   position: relative;
@@ -153,12 +218,12 @@ html, body {
 @keyframes cardin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 .card .kind {
-  font-size: .72rem; text-transform: uppercase; letter-spacing: 1px;
+  font-size: var(--fs-2xs); text-transform: uppercase; letter-spacing: 1px;
   opacity: .7; margin-block-end: 12px;
 }
-.card .prompt { font-size: 1.3rem; line-height: 1.6; margin: 0 0 8px; }
+.card .prompt { font-size: var(--fs-xl); line-height: 1.6; margin: 0 0 8px; }
 .card .answer {
-  font-size: 1.15rem; color: var(--gold); font-weight: 600;
+  font-size: var(--fs-lg); color: var(--gold); font-weight: 600;
   margin-block-start: 16px; min-height: 1.4em;
 }
 .card .answer.hidden { visibility: hidden; }
@@ -172,17 +237,17 @@ html, body {
   margin-block-end: 16px;
   box-shadow: 0 14px 30px -22px rgba(0,0,0,.9);
 }
-.bootstrap-door .door-ico { font-size: 1.6rem; flex: 0 0 auto; }
+.bootstrap-door .door-ico { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
 .bootstrap-door .door-txt { display: flex; flex-direction: column; line-height: 1.4; }
-.bootstrap-door .door-txt b { font-size: 1.05rem; }
-.bootstrap-door .door-txt small { opacity: .85; font-size: .78rem; }
+.bootstrap-door .door-txt b { font-size: var(--fs-md); }
+.bootstrap-door .door-txt small { opacity: .85; font-size: var(--fs-xs); }
 
 /* ---- buttons ---- */
 .actions { display: flex; gap: 10px; margin-block-start: 20px; }
 .btn {
   flex: 1; min-height: var(--tap);
   border: 1px solid var(--line); border-radius: 14px;
-  font: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+  font: inherit; font-size: var(--fs-base); font-weight: 700; cursor: pointer;
   color: var(--cream); background: rgba(255,255,255,.07);
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   transition: transform .12s ease, box-shadow .2s ease;
@@ -203,7 +268,7 @@ html, body {
 .done .big { font-size: 2.4rem; }
 .done .dawnbird.done-bird { display: block; margin: 6px auto 0; animation: flutter 1.6s ease-in-out infinite; }
 [dir="rtl"] .done .dawnbird.done-bird { transform: scaleX(-1); }
-.done h2 { margin: 10px 0 6px; }
+.done h2 { margin: 10px 0 6px; font-size: var(--fs-2xl); }
 .done p { opacity: .9; margin: 0 0 16px; line-height: 1.5; }
 .done button {
   min-height: var(--tap); padding-inline: 22px;
@@ -226,8 +291,12 @@ html, body {
 }
 .lesson-tile:active { transform: translateY(1px); }
 .lesson-tile:hover { border-color: var(--amber); }
-.lesson-tile .tile-sun { font-size: 1.6rem; line-height: 1; flex: 0 0 auto; }
-.lesson-tile .tile-title { font-size: 1.05rem; line-height: 1.4; }
+.lesson-tile .tile-sun {
+  width: 40px; height: 40px; flex: 0 0 auto;
+  border-radius: 10px; overflow: hidden;
+}
+.lesson-tile .tile-sun svg { width: 100%; height: 100%; display: block; }
+.lesson-tile .tile-title { font-size: var(--fs-md); line-height: 1.4; }
 
 /* the small back-to-lessons link (in the lesson title row + done screen) */
 .link-btn {
@@ -244,11 +313,39 @@ html, body {
 /* ---- footer rule (Leitner explained, not just used) ---- */
 .foot {
   margin-block-start: auto; padding-block-start: 22px;
-  font-size: .78rem; opacity: .75; line-height: 1.6; text-align: center;
+  font-size: var(--fs-xs); opacity: .75; line-height: 1.6; text-align: center;
 }
 .foot .ladder { font-weight: 700; color: var(--gold); }
 .foot .status { display: inline-block; margin-block-start: 6px; padding: 3px 10px;
   border: 1px solid var(--line); border-radius: 100px; }
+
+/* ---- opening a lesson: slide the exercise in full-screen (design fix,
+ * SAHAR-COVERAGE §6.5-C) — under a slim bar holding just the progress path,
+ * instead of sitting inline below the header/hero/CTA. Toggled by app.js
+ * adding/removing `.lesson-open` on <body> exactly at open/close (not on
+ * every per-card render, so the slide-in plays once per lesson opened). ---- */
+@keyframes lesson-slide-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+body.lesson-open #progressPath {
+  position: fixed; inset-block-start: 0; inset-inline: 0;
+  z-index: 100; margin: 0; box-sizing: border-box;
+  block-size: 60px;
+  padding: 10px max(16px, calc(50% - 280px)) 8px;
+  background: var(--night);
+  box-shadow: 0 10px 24px -18px rgba(0,0,0,.9);
+  animation: lesson-slide-in .2s ease;
+}
+body.lesson-open #stage {
+  position: fixed; inset-inline: 0; inset-block: 60px 0;
+  z-index: 99; overflow-y: auto;
+  padding: 18px max(16px, calc(50% - 280px)) 40px;
+  background:
+    radial-gradient(120% 80% at 50% 105%, var(--amber) 0%, var(--rose) 18%, var(--dusk) 45%, var(--night-2) 72%, var(--night) 100%)
+    fixed;
+  animation: lesson-slide-in .2s ease;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .card, .done, .lesson-tile { animation: none; }
@@ -257,4 +354,5 @@ html, body {
   .praise-bubble, .confetti-burst i { animation: none; }
   .praise-bubble { opacity: 1; }
   .confetti-burst { display: none; }
+  body.lesson-open #progressPath, body.lesson-open #stage { animation: none; }
 }
