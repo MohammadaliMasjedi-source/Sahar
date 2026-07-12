@@ -109,6 +109,13 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+/* Bug fix (found during the Storybook-skin verification, affects BOTH themes):
+   `display: flex` above silently defeats the `hidden` attribute (any author
+   display rule beats the UA stylesheet's `[hidden]{display:none}`), so the
+   profile gate / #app kept occupying a full blank viewport of space while
+   "hidden" — pushing the visible screen one viewport down after a profile
+   was picked. Restore the attribute's contract explicitly. */
+.wrap[hidden] { display: none; }
 
 /* ---- top bar ---- */
 .topbar {

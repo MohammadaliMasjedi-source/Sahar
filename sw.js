@@ -17,6 +17,10 @@ const APP_SHELL = [
   // garden (profiles.js/profiles.css).
   './profiles.js',
   './profiles.css',
+  // the selectable "Storybook" skin (Kanoon-inspired theme layer) — precached
+  // so the chosen look also works fully offline (themes/kanoon/INSPIRATION.md)
+  './themes/kanoon/kanoon.css',
+  './themes/kanoon/kanoon.js',
   // real PNG icon set (installability: manifest + apple-touch-icon need these
   // to actually be fetchable offline, not just declared)
   './icons/icon-192-any.png',
