@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v13';
+const CACHE = 'sahar-v15';
 
 const APP_SHELL = [
   './',
@@ -13,6 +13,10 @@ const APP_SHELL = [
   './mascot.js',
   './manifest.webmanifest',
   './teacher.html',
+  // SAHAR-V3 CORE slice #1: local-first child profiles + the child-visible
+  // garden (profiles.js/profiles.css).
+  './profiles.js',
+  './profiles.css',
   // real PNG icon set (installability: manifest + apple-touch-icon need these
   // to actually be fetchable offline, not just declared)
   './icons/icon-192-any.png',

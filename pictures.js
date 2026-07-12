@@ -83,9 +83,6 @@ const PICTURES = {
 
   moon: `<svg viewBox="0 0 100 100" role="img" aria-hidden="true">
     <rect width="100" height="100" rx="12" fill="#0b1026"/>
-    <circle cx="72" cy="24" r="2" fill="#ffd89b"/>
-    <circle cx="24" cy="70" r="2" fill="#ffd89b"/>
-    <circle cx="80" cy="60" r="1.6" fill="#ffd89b"/>
     <path d="M62 20 a34 34 0 1 0 0 60 a26 26 0 1 1 0 -60Z" fill="#ffd89b"/>
   </svg>`,
 
