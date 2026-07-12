@@ -305,8 +305,6 @@ const PICTURES = {
     <rect width="100" height="100" rx="12" fill="#171436"/>
     <path d="M50 12 a38 38 0 0 1 0 76Z" fill="#3b2f63"/>
     <path d="M50 12 a38 38 0 0 0 0 76Z" fill="#f4a259"/>
-    <circle cx="62" cy="34" r="1.6" fill="#ffd89b"/>
-    <circle cx="72" cy="48" r="1.2" fill="#ffd89b"/>
     <path d="M67 38 a13 13 0 1 0 0 24 a10 10 0 1 1 0 -24Z" fill="#ffd89b"/>
   </svg>`,
 
