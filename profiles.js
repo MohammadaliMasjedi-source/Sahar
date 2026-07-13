@@ -30,12 +30,18 @@
  * (a dark indigo, unique among this set) both fixes the contrast AND, as a
  * side effect, un-clashes it from `cat`, which used to share that same
  * amber hex. `cat` moved to `--rose` so no two avatars share a color. */
+/* Red-team fix (F-1, 2026-07-13): `star` and `moon` used to sit last-two in
+ * this list, which is also visual grid order — on narrow/phone widths that
+ * puts the crescent tile directly beside the star tile. Neither is an
+ * emblem alone, but adjacency can still misread as star-and-crescent to a
+ * wary eye, so `star` is reordered here (swapped with `cat`) to put two
+ * other tiles between them in the grid at every realistic column count. */
 const AVATARS = [
   { id: 'dawnbird', pic: null,   color: 'var(--dusk, #3b2f63)' }, // SaharMascot.svg() — dark backdrop so the amber bird reads clearly
   { id: 'leaf',     pic: 'leaf', color: 'var(--good, #6fcf97)' },
   { id: 'fish',     pic: 'fish', color: '#4db6e6' },
-  { id: 'cat',      pic: 'cat',  color: 'var(--rose, #e0719b)' },
   { id: 'star',     pic: 'star', color: 'var(--gold, #ffd89b)' },
+  { id: 'cat',      pic: 'cat',  color: 'var(--rose, #e0719b)' },
   { id: 'moon',     pic: 'moon', color: '#c9b6ff' }
 ];
 const DEFAULT_AVATAR = AVATARS[0].id;

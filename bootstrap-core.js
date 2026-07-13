@@ -24,6 +24,14 @@ function shuffle(arr, rnd) {
   return a;
 }
 
+/* Red-team fix (F-2, 2026-07-13): `moon` and `star` are two separate,
+ * legitimate astronomy pictures (not an emblem) — but a crescent tile and a
+ * star tile offered side-by-side as choices can still misread as
+ * star-and-crescent to a wary eye. Never let both land in the same round's
+ * choice set. Secular rule is absolute, so this is a hard filter, not a
+ * preference. */
+const MOON_STAR_PAIR = new Set(['moon', 'star']);
+
 /**
  * Build the ordered list of "rounds" for a language-course pack.
  * Each round targets one item and offers `choiceCount` picture choices
@@ -37,8 +45,22 @@ function buildRounds(pack, choiceCount, rnd) {
   const items = (pack && pack.items) || [];
   const n = Math.max(2, Math.min(choiceCount || 3, items.length || 2));
   return items.map((item) => {
-    const others = items.filter((x) => x.id !== item.id);
-    const distractors = shuffle(others, rnd).slice(0, n - 1).map((x) => x.id);
+    let others = shuffle(items.filter((x) => x.id !== item.id), rnd);
+    if (MOON_STAR_PAIR.has(item.pic)) {
+      // the round's own item is moon (or star) — never offer its partner
+      const partner = item.pic === 'moon' ? 'star' : 'moon';
+      others = others.filter((x) => x.pic !== partner);
+    } else {
+      // keep at most one of {moon, star} among the distractors shown
+      let sawPairMember = false;
+      others = others.filter((x) => {
+        if (!MOON_STAR_PAIR.has(x.pic)) return true;
+        if (sawPairMember) return false;
+        sawPairMember = true;
+        return true;
+      });
+    }
+    const distractors = others.slice(0, n - 1).map((x) => x.id);
     const choices = shuffle([item.id].concat(distractors), rnd);
     return { itemId: item.id, item, choices, answer: item.id };
   });

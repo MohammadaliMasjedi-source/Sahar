@@ -7,8 +7,12 @@ child-safeguarding, both mandatory) and the new secular-audit gate (§Gates).
 **Verdicts:** Pedagogy PASS · Child-safeguarding PASS · Secular audit CLEAN (no
 star-crescent or other emblem in the current tree). Fixes applied this pass: **0**
 (the tree is clean; nothing concrete/safe/small was outstanding). Findings logged
-for a gated follow-up: **3** (all low severity). Node validator: **green**
-(157/157 across content-validator + core + bootstrap + profiles).
+for a gated follow-up: **3** (all low severity).
+
+**Update 2026-07-13 (later same day):** all 3 low-severity findings closed —
+see "Findings logged for a gated follow-up" below for what changed in each.
+Node validator: **green** (157/157 across content-validator + core + bootstrap
++ profiles) — before and after the fixes.
 
 ---
 
@@ -137,25 +141,39 @@ flag banding anywhere.
 
 ## Findings logged for a gated follow-up (all LOW severity — not forced)
 
-- **F-1 (safeguarding, low):** The avatar picker (`profiles.js` `AVATARS`) shows
-  all six avatars at once, so the `star` tile and the `moon` (crescent) tile are
-  always on screen together. They are two separate bordered picture tiles, each a
-  legitimate astronomy glyph — NOT a composited star-crescent emblem — so this is
-  not treated as a secular breach. Flagged only because the project's own kanoon
-  note aspires to avoid moon+star in "the same screen slot." If the safeguarding
-  reviewer wants zero adjacency, swap one avatar (one-line change) — a product
-  call, so not forced here.
-- **F-2 (safeguarding, low):** Same pattern in the bootstrap language pack:
-  `bootstrap-core.js buildRounds` can randomly offer `moon` and `star` as two
-  choice tiles in the same round (both are pack items). Same reasoning as F-1 —
-  separate tiles, not an emblem. If desired, constrain distractor selection so
-  those two are never co-offered; logic change, gated.
-- **F-3 (pedagogy, low):** `tier1-demo.json` declares `ageBand "7-9"` but is
-  shelved at band `6-8` (PACKS), mixes two subjects (fact/opinion + counting),
-  and fact-vs-opinion is the most abstract concept in the Tier-1 set for a 6yo.
-  It is labelled "demo." Consider retiring it from the 6–8 shelf or re-pitching /
-  re-banding it once the real per-subject packs fully cover the slot. Content
-  decision → gated.
+- **F-1 (safeguarding, low) — CLOSED 2026-07-13.** The avatar picker
+  (`profiles.js` `AVATARS`) shows all six avatars at once; `star` and `moon`
+  used to sit last-two in the array, which is also grid render order, putting
+  the crescent tile directly beside the star tile on narrow/phone widths
+  (`.avatar-row` is `grid-template-columns: repeat(auto-fit, minmax(64px,
+  1fr))`, so consecutive array entries are the ones most likely to land
+  side-by-side). Still not a composited emblem, but per the absolute secular
+  rule this was closed rather than left open: `star` was swapped with `cat` in
+  the array (`dawnbird, leaf, fish, star, cat, moon`), putting two tiles
+  between `star` and `moon` at every realistic column count (verified 3/4/5/6
+  columns — only the unrealistic 2-column case, needing a ~150–200px
+  container, still lands them adjacent). One-line reorder, `profiles.js`.
+- **F-2 (safeguarding, low) — CLOSED 2026-07-13.** Same pattern in the
+  bootstrap language pack: `bootstrap-core.js buildRounds` could randomly offer
+  `moon` and `star` as two choice tiles in the same round. Fixed with a hard
+  filter: a round for `moon` (or `star`) now excludes its partner from
+  distractors, and any other round keeps at most one of `{moon, star}` among
+  its distractors. Verified with 500 seeded RNG runs (5000 rounds total) — zero
+  moon+star co-occurrences after the fix (was possible before).
+- **F-3 (pedagogy, low) — CLOSED 2026-07-13.** `tier1-demo.json` declared
+  `ageBand "7-9"` while shelved at band `6-8` (PACKS) and every sibling Tier-1
+  pack declares `ageBand "6-7"` per `CONTENT-MODEL.md`'s documented standard —
+  an honesty mismatch, not just an internal-vs-shelf quirk. Corrected the
+  declared `ageBand` to `"6-7"` to match the documented standard and its actual
+  shelf placement. The subject-mix and "demo" labelling were already disclosed
+  in `subject: "critical-thinking + numeracy (demo)"`, so no further content
+  change was made (retiring/re-pitching the pack remains a product call, still
+  gated).
+
+Re-run after fixes: `content-validator 90/90 · core 28/28 · bootstrap 14/14 ·
+profiles 25/25 — 157 passed, 0 failed. GREEN.` (unchanged — none of these
+fields/behaviors are asserted by name in the current test suite, so the fixes
+are additive-safe.)
 
 ## Validator
 
