@@ -222,26 +222,47 @@ const KIND_KEY = {
   'health-safety': 'healthSafety'
 };
 
-/* PACKS — the bundled Tier-1 content shelf. Add a pack = add a line here
- * (and to APP_SHELL in sw.js so it precaches for offline). Titles are read
- * from each pack's own `title` map, so this stays a thin index of paths.
+/* PACKS — the bundled content shelf, built AT BOOT from the single-source
+ * age-band manifest (content/packs.manifest.json), never hardcoded here.
+ * Adding a band's content is therefore a pure-data edit of that one manifest
+ * file (+ authoring the pack JSON) — no code change in this file, in the
+ * validator, or in the service worker, which all read the same manifest.
  *
- * `band` (SAHAR-V3 CORE slice #2: age-band packaging) tags which of the V3
- * charter's four age bands a pack belongs to. All packs shipped today are
- * real 6-8 content; 8-10/10-12/12-14 have no packs yet on purpose (see
- * packsForBand()/renderComingSoonBand() below — no invented curriculum). */
-const PACKS = [
-  { id: 't1.literacy.first-letters',        path: './content/t1-literacy-first-letters.json', pic: 'letters', band: '6-8' },
-  { id: 't1.literacy.first-words',          path: './content/t1-literacy-first-words.json', pic: 'book', band: '6-8' },
-  { id: 't1.numeracy.counting-0-20',        path: './content/t1-numeracy-counting-0-20.json', pic: 'star', band: '6-8' },
-  { id: 't1.numeracy.shapes-patterns',      path: './content/t1-numeracy-shapes-patterns.json', pic: 'shapes-trio', band: '6-8' },
-  { id: 't1.science.living-things',         path: './content/t1-science-living-things.json', pic: 'leaf', band: '6-8' },
-  { id: 't1.science.day-and-night',         path: './content/t1-science-day-and-night.json', pic: 'dawn', band: '6-8' },
-  { id: 't1.thinking.what-is-a-question',   path: './content/t1-thinking-what-is-a-question.json', pic: 'question-mark', band: '6-8' },
-  { id: 't1.thinking.fact-vs-guess',        path: './content/t1-thinking-fact-vs-guess.json', pic: 'guess-cloud', band: '6-8' },
-  { id: 't1.life.healthy-and-safe',         path: './content/t1-life-healthy-and-safe.json', pic: 'soap', band: '6-8' },
-  { id: 't1.thinking.fact-opinion-counting', path: './content/tier1-demo.json', pic: 'statement', band: '6-8' }
-];
+ * Each entry: { id, path, pic, band }. `band` (SAHAR-V3 CORE slice #2:
+ * age-band packaging) is which of the charter's four bands the pack belongs
+ * to; `path` is derived from the manifest's per-pack `file`. Stays empty
+ * until loadPackManifest() runs (boot); headless core tests never touch it. */
+const MANIFEST_PATH = './content/packs.manifest.json';
+let PACKS = [];
+
+/** Load the age-band pack manifest and (re)build PACKS from it. The one place
+ *  the shelf's contents are defined for the running app; the validator and
+ *  service worker read the same JSON so the three can never silently drift.
+ *  On failure returns false and leaves PACKS empty — the app then shows the
+ *  honest "coming soon" scaffold rather than crashing (the manifest is part
+ *  of the precached app shell, so this only degrades if the very first,
+ *  online visit could not fetch it). */
+async function loadPackManifest() {
+  try {
+    const res = await fetch(MANIFEST_PATH);
+    if (!res.ok) throw new Error('manifest load failed: ' + res.status);
+    const manifest = await res.json();
+    const bands = Array.isArray(manifest.bands) ? manifest.bands : [];
+    PACKS = bands.flatMap((b) => (b.packs || []).map((p) => ({
+      id: p.id,
+      path: './content/' + p.file,
+      pic: p.pic,
+      band: b.band
+    })));
+    return true;
+  } catch (err) {
+    // Offline-first: this should never happen after the first visit (the
+    // manifest is precached with the app shell). Fail loud but non-fatally.
+    console.error('Sahar: could not load pack manifest —', err);
+    PACKS = [];
+    return false;
+  }
+}
 
 /** All packs tagged for a given charter band (empty array for a band with no
  *  real content yet — that emptiness is what tells renderPicker() to show
@@ -1138,6 +1159,10 @@ async function boot() {
   if (doorIco && window.SaharMascot) {
     doorIco.innerHTML = window.SaharMascot.speaker(24) + window.SaharMascot.svg(24);
   }
+  // Build the shelf from the single-source age-band manifest FIRST (this is
+  // what populates PACKS); the validator and sw.js read the same file.
+  await loadPackManifest();
+
   // Read each pack's title (cheap JSON) so the picker can label the shelf.
   // Offline-safe: the service worker has these precached after first visit.
   await Promise.all(PACKS.map(async (p) => {

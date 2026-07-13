@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v19'; // v19: design-critic pass on the Kanoon skin — band-chip ink fix, emoji-to-glyph swap, teacher.html now loads the skin
+const CACHE = 'sahar-v20'; // v20: age-band pack manifest is the single source of truth — packs precached from content/packs.manifest.json (no hardcoded pack list)
 
 const APP_SHELL = [
   './',
@@ -48,18 +48,13 @@ const APP_SHELL = [
   './bootstrap-core.js',
   './pictures.js',
   './audio.js',
+  // the language-course pack (bootstrap.js flow — deliberately not in the
+  // age-band manifest, so it is precached explicitly here)
   './content/lc-fa-en-first-words.json',
-  // tier-1 Leitner packs
-  './content/tier1-demo.json',
-  './content/t1-literacy-first-letters.json',
-  './content/t1-literacy-first-words.json',
-  './content/t1-numeracy-counting-0-20.json',
-  './content/t1-numeracy-shapes-patterns.json',
-  './content/t1-science-living-things.json',
-  './content/t1-science-day-and-night.json',
-  './content/t1-thinking-what-is-a-question.json',
-  './content/t1-thinking-fact-vs-guess.json',
-  './content/t1-life-healthy-and-safe.json'
+  // the single-source age-band pack manifest itself; every band's tier-1
+  // Leitner pack is precached from it at install (see below) rather than
+  // being duplicated in this list — add a pack = edit the manifest only.
+  './content/packs.manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
@@ -72,6 +67,20 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE).then(async (c) => {
       await c.addAll(APP_SHELL);
+      // Content packs: derived from the single-source age-band manifest (no
+      // hardcoded pack list here). Required for offline use, so this is part
+      // of waitUntil — a failure fails the install and the browser retries,
+      // exactly like any APP_SHELL entry. The manifest was just precached
+      // above, so read it back from the open cache.
+      try {
+        const manRes = await c.match('./content/packs.manifest.json');
+        if (manRes) {
+          const manifest = await manRes.json();
+          const packUrls = (manifest.bands || [])
+            .flatMap((b) => (b.packs || []).map((p) => './content/' + p.file));
+          if (packUrls.length) await c.addAll(packUrls);
+        }
+      } catch (_) { /* runtime cache-on-fetch (below) still covers packs later */ }
       try {
         const res = await fetch('./audio/audio-manifest.json');
         if (res && res.ok) {

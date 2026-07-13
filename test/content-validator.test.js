@@ -26,6 +26,7 @@ const path = require('node:path');
 
 globalThis.window = globalThis.window || {}; // harmless target for pictures.js's browser-global assignment
 const { PICTURES } = require('../pictures.js');
+const { AGE_BANDS } = require('../profiles.js'); // the four charter bands — the manifest must cover exactly these
 
 let passed = 0, failed = 0;
 const failures = [];
@@ -40,18 +41,76 @@ const NON_READ_INTERACTIONS = ['tap-the-picture', 'tap-the-letter-shape', 'match
 const LANGS = ['fa', 'en', 'de'];
 
 const CONTENT_DIR = path.join(__dirname, '..', 'content');
-const PACK_FILES = [
-  'tier1-demo.json',
-  't1-literacy-first-letters.json',
-  't1-literacy-first-words.json',
-  't1-numeracy-counting-0-20.json',
-  't1-numeracy-shapes-patterns.json',
-  't1-science-living-things.json',
-  't1-science-day-and-night.json',
-  't1-thinking-what-is-a-question.json',
-  't1-thinking-fact-vs-guess.json',
-  't1-life-healthy-and-safe.json'
-];
+
+/* =====================================================================
+ * MANIFEST — the single source of truth for which packs exist and which
+ * charter age band each belongs to (content/packs.manifest.json). app.js
+ * (shelf) and sw.js (offline precache) read the same file, so validating it
+ * here is what keeps all three from silently drifting. The per-pack content
+ * checks below run over the pack list DERIVED from this manifest — never a
+ * second hardcoded list.
+ * ===================================================================== */
+const MANIFEST_PATH = path.join(CONTENT_DIR, 'packs.manifest.json');
+const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+
+test('packs.manifest.json: parses and declares a schemaVersion + bands[]', () => {
+  assert.equal(typeof manifest.schemaVersion, 'number', 'schemaVersion is a number');
+  assert.ok(Array.isArray(manifest.bands) && manifest.bands.length > 0, 'bands is a non-empty array');
+});
+
+test('packs.manifest.json: bands are EXACTLY the four charter age bands (profiles.js AGE_BANDS), in order', () => {
+  const bandIds = manifest.bands.map((b) => b.band);
+  assert.deepEqual(bandIds, AGE_BANDS,
+    `manifest bands ${JSON.stringify(bandIds)} must match profiles.js AGE_BANDS ${JSON.stringify(AGE_BANDS)} exactly (every band has a slot, even empty ones)`);
+});
+
+test('packs.manifest.json: the priority band 6-8 has real content (charter: 6-8 ships first)', () => {
+  const b68 = manifest.bands.find((b) => b.band === '6-8');
+  assert.ok(b68 && Array.isArray(b68.packs) && b68.packs.length > 0, 'band 6-8 must have at least one pack');
+});
+
+test('packs.manifest.json: every band declares a valid curriculumTier (1-4) and a packs[] array', () => {
+  for (const b of manifest.bands) {
+    assert.ok(Number.isInteger(b.curriculumTier) && b.curriculumTier >= 1 && b.curriculumTier <= 4,
+      `band ${b.band} curriculumTier must be an integer 1-4`);
+    assert.ok(Array.isArray(b.packs), `band ${b.band} must declare a packs[] array (empty is allowed)`);
+  }
+});
+
+/* Every pack entry the manifest lists, flattened, with its band tag. */
+const MANIFEST_PACKS = manifest.bands.flatMap((b) => (b.packs || []).map((p) => ({ ...p, band: b.band })));
+
+test('packs.manifest.json: every pack entry has id/file/pic, a resolvable pic, and an on-disk file whose packId matches', () => {
+  for (const p of MANIFEST_PACKS) {
+    assert.ok(p.id && p.file && p.pic, `manifest pack ${JSON.stringify(p)} needs id, file and pic`);
+    assert.ok(PICTURES[p.pic], `manifest pack "${p.id}" shelf pic "${p.pic}" must exist in the picture library`);
+    const full = path.join(CONTENT_DIR, p.file);
+    assert.ok(fs.existsSync(full), `manifest pack "${p.id}" file "${p.file}" must exist on disk`);
+    const packJson = JSON.parse(fs.readFileSync(full, 'utf8'));
+    assert.equal(packJson.packId, p.id, `pack file "${p.file}" packId "${packJson.packId}" must match its manifest id "${p.id}"`);
+  }
+});
+
+test('packs.manifest.json: pack ids and files are unique across ALL bands', () => {
+  const ids = MANIFEST_PACKS.map((p) => p.id);
+  const files = MANIFEST_PACKS.map((p) => p.file);
+  assert.equal(new Set(ids).size, ids.length, 'no duplicate pack id across bands');
+  assert.equal(new Set(files).size, files.length, 'no duplicate pack file across bands');
+});
+
+test('packs.manifest.json: no ORPHAN packs — every card pack file in content/ is listed in the manifest', () => {
+  // Card packs are t1-*.json + tier1-demo.json; language-course lc-*.json is a
+  // different pedagogy and is deliberately outside the band manifest.
+  const onDisk = fs.readdirSync(CONTENT_DIR)
+    .filter((f) => f.endsWith('.json') && f !== 'packs.manifest.json' && !f.startsWith('lc-'));
+  const listed = new Set(MANIFEST_PACKS.map((p) => p.file));
+  for (const f of onDisk) {
+    assert.ok(listed.has(f), `content/${f} is a card pack but is NOT listed in packs.manifest.json (orphan — add it to a band or move/remove it)`);
+  }
+});
+
+/* The per-pack content checks below run over exactly what the manifest ships. */
+const PACK_FILES = MANIFEST_PACKS.map((p) => p.file);
 
 function nonEmpty(dict, lang, label) {
   assert.ok(dict && typeof dict[lang] === 'string' && dict[lang].trim().length > 0, `${label}.${lang} present and non-empty`);

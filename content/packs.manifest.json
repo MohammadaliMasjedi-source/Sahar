@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "_comment": [
+    "SINGLE SOURCE OF TRUTH for which content packs exist and which of the four",
+    "SAHAR-V3 charter age bands (6-8 / 8-10 / 10-12 / 12-14) each belongs to.",
+    "Adding a band's content is a PURE-DATA operation: author the pack JSON in",
+    "content/, then add one { id, file, pic } line to that band's packs[] here.",
+    "No code changes anywhere. Three consumers read THIS file and nothing else:",
+    "  - app.js            builds the lesson shelf (packsForBand) from it",
+    "  - sw.js             precaches every listed pack for offline use from it",
+    "  - test/content-validator.test.js  gates every listed pack from it",
+    "The four bands must always be present and must match profiles.js AGE_BANDS",
+    "(a band with no authored content yet keeps an empty packs[] — the app shows",
+    "an honest 'coming soon' scaffold for it; nothing is ever invented or faked).",
+    "The language-course pack (content/lc-*.json) is intentionally NOT listed here",
+    "— it is a different pedagogy driven by bootstrap.js, not the band shelf.",
+    "curriculumTier points at the matching tier in docs/CURRICULUM-MAP.md so each",
+    "empty band is a 'defined shell with its curriculum map', per the V3 charter."
+  ],
+  "bands": [
+    {
+      "band": "6-8",
+      "curriculumTier": 1,
+      "packs": [
+        { "id": "t1.literacy.first-letters",        "file": "t1-literacy-first-letters.json",   "pic": "letters" },
+        { "id": "t1.literacy.first-words",          "file": "t1-literacy-first-words.json",      "pic": "book" },
+        { "id": "t1.numeracy.counting-0-20",        "file": "t1-numeracy-counting-0-20.json",    "pic": "star" },
+        { "id": "t1.numeracy.shapes-patterns",      "file": "t1-numeracy-shapes-patterns.json",  "pic": "shapes-trio" },
+        { "id": "t1.science.living-things",         "file": "t1-science-living-things.json",     "pic": "leaf" },
+        { "id": "t1.science.day-and-night",         "file": "t1-science-day-and-night.json",     "pic": "dawn" },
+        { "id": "t1.thinking.what-is-a-question",   "file": "t1-thinking-what-is-a-question.json", "pic": "question-mark" },
+        { "id": "t1.thinking.fact-vs-guess",        "file": "t1-thinking-fact-vs-guess.json",    "pic": "guess-cloud" },
+        { "id": "t1.life.healthy-and-safe",         "file": "t1-life-healthy-and-safe.json",     "pic": "soap" },
+        { "id": "t1.thinking.fact-opinion-counting", "file": "tier1-demo.json",                  "pic": "statement" }
+      ]
+    },
+    {
+      "band": "8-10",
+      "curriculumTier": 2,
+      "packs": []
+    },
+    {
+      "band": "10-12",
+      "curriculumTier": 3,
+      "packs": []
+    },
+    {
+      "band": "12-14",
+      "curriculumTier": 4,
+      "packs": []
+    }
+  ]
+}
