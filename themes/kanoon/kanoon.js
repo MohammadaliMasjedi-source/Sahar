@@ -507,7 +507,11 @@
     document.querySelectorAll('.lico').forEach(function (el) {
       swapOrRestoreEmoji(el, SPEAKER_EMOJI, kanoonSpeakerGlyph(20));
     });
-    document.querySelectorAll('.cg-toggle').forEach(function (el) {
+    // '.cg-toggle' is app.js's caregiver toggle; '#bs-caregiver' is the
+    // bootstrap first-contact flow's caregiver button (a <button class=
+    // "link-btn">, which the a.link-btn selector below deliberately does NOT
+    // match) — both print the raw 👪 (design-critic fix: it was unswapped).
+    document.querySelectorAll('.cg-toggle, #bs-caregiver').forEach(function (el) {
       swapOrRestoreEmoji(el, FAMILY_EMOJI, kanoonFamilyGlyph(18));
     });
     document.querySelectorAll('a.link-btn').forEach(function (el) {
@@ -515,15 +519,47 @@
     });
   }
 
+  /* =======================================================================
+   * OFF-PALETTE TILE-COLOR REMAP (design-critic fix). Two avatar/band
+   * identity colors in profiles.js are literal hexes (not house tokens), so
+   * they bypass the token remap: fish/band-10-12 #4db6e6 (bright sky blue)
+   * and moon #c9b6ff (lavender). app.js injects them as inline
+   * `style="--tile-color:<hex>"` on the profile tiles / band chips / avatar
+   * picks — off the charter's warm-earths+teal+indigo palette, on the
+   * child's first screen. Map JUST those two literals onto charter tokens
+   * while the skin is active (kept distinct from the other four avatar
+   * colors: teal + ochre are otherwise unused here). Reversible with zero
+   * stored state — leaving the skin triggers app.js's own re-render, which
+   * rewrites the original inline hex. Idempotent: once remapped the inline
+   * value is a var(), no longer a hex key, so re-running is a no-op. Only
+   * touches inline style, never core files.
+   * ======================================================================= */
+  var TILE_COLOR_REMAP = { '#4db6e6': 'var(--k-teal)', '#c9b6ff': 'var(--k-ochre)' };
+
+  function remapTileColors() {
+    if (!isKanoon()) return; // dawn restores originals via app.js's re-render
+    document.querySelectorAll('[style*="--tile-color"]').forEach(function (el) {
+      var v = (el.style.getPropertyValue('--tile-color') || '').trim().toLowerCase();
+      if (TILE_COLOR_REMAP[v]) el.style.setProperty('--tile-color', TILE_COLOR_REMAP[v]);
+    });
+  }
+
+  /** Run every skin DOM-swap that must survive app.js's own re-renders:
+   *  the emoji->ink-glyph pills and the off-palette tile-color remap. */
+  function applySkinSwaps() { swapEmojiPills(); remapTileColors(); }
+
   /** app.js redraws a card's whole `.lico`/`.cg-toggle` markup from scratch
    *  on every "next card" (renderStage() -> renderInteractiveCard() etc.),
-   *  each time baking the raw emoji back in — a one-time swap at load or
-   *  toggle-time alone would only last until the next card. Observing the
-   *  app root's subtree re-runs swapEmojiPills() after every such redraw. */
+   *  and re-renders the band bar / profile gate on band/profile changes, each
+   *  time baking the raw emoji and inline hex colors back in — a one-time
+   *  swap at load or toggle-time alone would only last until the next redraw.
+   *  Observing the document body's subtree (so the profile gate, which lives
+   *  OUTSIDE #app, is covered too) re-runs the swaps after every such redraw.
+   *  Cheap + idempotent; childList observation ignores our own style writes. */
   function observeEmojiSwap() {
-    var root = document.getElementById('app') || document.body;
+    var root = document.body;
     if (!root || root.__kanoonEmojiObserved) return;
-    new MutationObserver(function () { swapEmojiPills(); })
+    new MutationObserver(function () { applySkinSwaps(); })
       .observe(root, { childList: true, subtree: true });
     root.__kanoonEmojiObserved = true;
   }
@@ -708,7 +744,7 @@
       apply(choice);
       swapArt();
       reprintAppRenders();
-      swapEmojiPills();
+      applySkinSwaps();
       renderPicker();
     });
     // relabel the picker when the app's language switch changes html[lang]
@@ -732,11 +768,12 @@
     // every pictureFor() call app.js/bootstrap.js make from here on) renders
     // through the patched generators automatically, no re-print needed.
     if (isKanoon()) swapArt();
-    // emoji glyph swap: works on every page (index.html, bootstrap.html,
-    // teacher.html), even ones with no SaharMascot/pictureFor at all — an
-    // initial pass for whatever's already in the DOM, then keep watching
-    // for app.js's own re-renders (see observeEmojiSwap()'s doc comment).
-    swapEmojiPills();
+    // emoji glyph swap + off-palette tile-color remap: works on every page
+    // (index.html, bootstrap.html, teacher.html), even ones with no
+    // SaharMascot/pictureFor at all — an initial pass for whatever's already
+    // in the DOM, then keep watching for app.js's own re-renders (see
+    // observeEmojiSwap()'s doc comment).
+    applySkinSwaps();
     observeEmojiSwap();
   });
 })();
