@@ -72,7 +72,8 @@ html[data-theme="kanoon"] .brand h1,
 html[data-theme="kanoon"] .hero .say h2,
 html[data-theme="kanoon"] .done h2,
 html[data-theme="kanoon"] .gate-title,
-html[data-theme="kanoon"] #bs-title {
+html[data-theme="kanoon"] #bs-title,
+html[data-theme="kanoon"] header:not(.topbar) h1 { /* the teacher/caregiver page title (its own <header>, no .topbar) */
   font-family: var(--k-font-display, var(--font));
   font-weight: 800;
   /* NOT letter-spaced: INSPIRATION.md's typography rule ("Persian text is
@@ -257,7 +258,12 @@ html[data-theme="kanoon"] .garden-card {
   box-shadow: 0 3px 0 var(--k-shadow);
 }
 html[data-theme="kanoon"] .card .answer { color: var(--k-terra); }
-html[data-theme="kanoon"] .card .kind { color: var(--k-teal); opacity: 1; letter-spacing: 1.5px; }
+html[data-theme="kanoon"] .card .kind { color: var(--k-teal); opacity: 1; }
+/* Tracking is a LATIN typographic device; applying it to fa/fa-AF (the
+   first-class language) breaks joined Persian letterforms — the exact rule
+   INSPIRATION.md's typography section states. So it is scoped to the Latin
+   UI languages only (design-critic fix). */
+html[data-theme="kanoon"] .card .kind:is(:lang(en), :lang(de)) { letter-spacing: 1.5px; }
 html[data-theme="kanoon"][data-kvariant="dark"] .card .kind { color: var(--k-saffron); }
 
 html[data-theme="kanoon"] .lesson-tile {
@@ -267,6 +273,19 @@ html[data-theme="kanoon"] .lesson-tile {
   box-shadow: 0 3px 0 var(--k-shadow);
 }
 html[data-theme="kanoon"] .lesson-tile:hover { border-color: var(--k-terra); }
+
+/* teacher.html's honest-status banner (its own stylesheet paints it with a
+   saffron->ochre GRADIENT — the one surviving gradient in the product, and
+   in the dark variant it left cream text on pale ochre, unreadable). Flatten
+   it to the same ink-on-paper-chip book-plate treatment as .prototype-banner,
+   so this skin surface is legible in BOTH variants and gradient-free per the
+   charter's "dignity over cuteness" rule (design-critic fix). */
+html[data-theme="kanoon"] .honest {
+  background: var(--k-paper-chip);
+  color: #2b241c;                 /* always ink-on-paper, both variants */
+  border: 1.5px dashed var(--k-line-strong);
+}
+html[data-theme="kanoon"] .honest strong { color: var(--k-terra); }
 
 /* =========================================================================
  * 6 · BUTTONS — flat fills + the one confident 2px line. No gradients.
