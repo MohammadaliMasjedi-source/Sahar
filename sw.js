@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v20'; // v20: age-band pack manifest is the single source of truth — packs precached from content/packs.manifest.json (no hardcoded pack list)
+const CACHE = 'sahar-v21'; // v21: first REAL 8-10 (Tier-2) pack — numeracy add & subtract
 
 const APP_SHELL = [
   './',
