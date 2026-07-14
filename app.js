@@ -33,6 +33,7 @@ const STRINGS = {
     guessCheck: 'حدس و امتحان',
     shapes: 'شکل و نقش',
     healthSafety: 'سلامت و ایمنی',
+    addSubtract: 'جمع و تفریق',
     pick: 'یک درس را انتخاب کن',
     plannedTopics: 'این گروه سنی یاد می‌گیرد:',
     listen: 'گوش کن',
@@ -76,6 +77,7 @@ const STRINGS = {
     guessCheck: 'Guess & check',
     shapes: 'Shapes & patterns',
     healthSafety: 'Health & safety',
+    addSubtract: 'Add & subtract',
     pick: 'Pick a lesson',
     plannedTopics: 'This age group will learn:',
     listen: 'Listen',
@@ -119,6 +121,7 @@ const STRINGS = {
     guessCheck: 'Raten & prüfen',
     shapes: 'Formen & Muster',
     healthSafety: 'Gesundheit & Sicherheit',
+    addSubtract: 'Plus und Minus',
     pick: 'Wähle eine Lektion',
     plannedTopics: 'Diese Altersgruppe lernt:',
     listen: 'Hören',
@@ -222,7 +225,8 @@ const KIND_KEY = {
   'day-night': 'dayNight',
   'guess-check': 'guessCheck',
   'shapes': 'shapes',
-  'health-safety': 'healthSafety'
+  'health-safety': 'healthSafety',
+  'add-subtract': 'addSubtract'
 };
 
 /* PACKS — the bundled content shelf, built AT BOOT from the single-source

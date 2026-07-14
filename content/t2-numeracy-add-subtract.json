@@ -1,0 +1,247 @@
+{
+  "packId": "t2.numeracy.add-subtract",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "numeracy — adding and subtracting, place value, and word problems",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "جمع و تفریق",
+    "en": "Adding and Subtracting",
+    "de": "Plus und Minus"
+  },
+  "intro": {
+    "fa": "حالا که تا بیست شمردی، بیا با هم جمع و تفریق کنیم. هر وقت خواستی روی انگشت‌هایت یا با سنگ‌ریزه بشمار، بعد عدد درست را لمس کن. اشتباه اشکالی ندارد — دوباره می‌شماریم.",
+    "en": "Now that you can count to twenty, let's add and subtract together. Count on your fingers or with pebbles whenever you like, then tap the right number. A mistake is fine — we just count again.",
+    "de": "Jetzt, wo du bis zwanzig zählen kannst, lass uns zusammen plus und minus rechnen. Zähle mit den Fingern oder mit Steinchen, wann immer du magst, und tippe dann die richtige Zahl an. Ein Fehler ist in Ordnung — wir zählen einfach noch einmal."
+  },
+  "cards": [
+    {
+      "id": "as-1",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "۸ + ۵ چند می‌شود؟ اول تا ۱۰ برو (۸ و ۲ می‌شود ۱۰)، بعد ۳ تای دیگر.",
+        "en": "What is 8 + 5? First go up to 10 (8 and 2 make 10), then 3 more.",
+        "de": "Was ist 8 + 5? Geh zuerst bis 10 (8 und 2 ergeben 10), dann noch 3 dazu."
+      },
+      "answer": {
+        "fa": "۱۳. ۸ و ۲ می‌شود ۱۰، و ۳ تای دیگر می‌شود ۱۳.",
+        "en": "13. 8 and 2 make 10, and 3 more makes 13.",
+        "de": "13. 8 und 2 ergeben 10, und 3 mehr ergeben 13."
+      },
+      "caregiver": {
+        "fa": "به کودک نشان بده چطور اول تا ۱۰ می‌رسیم و بعد بقیه را می‌افزاییم. بگذار عدد درست را لمس کند.",
+        "en": "Show the child how we reach 10 first, then add the rest. Let them tap the right number.",
+        "de": "Zeig dem Kind, wie wir zuerst bis 10 kommen und dann den Rest addieren. Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "12", "glyph": "۱۲" },
+        { "id": "13", "glyph": "۱۳" },
+        { "id": "14", "glyph": "۱۴" }
+      ],
+      "answerId": "13",
+      "audioPending": true
+    },
+    {
+      "id": "as-2",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "۱۵ − ۶ چند می‌شود؟ از ۱۵ رو به عقب بشمار: ۱۴، ۱۳، …",
+        "en": "What is 15 − 6? Count back from 15: 14, 13, …",
+        "de": "Was ist 15 − 6? Zähle von 15 rückwärts: 14, 13, …"
+      },
+      "answer": {
+        "fa": "۹. از ۱۵ شش قدم به عقب می‌رسی به ۹.",
+        "en": "9. Six steps back from 15 lands on 9.",
+        "de": "9. Sechs Schritte zurück von 15 landen auf 9."
+      },
+      "caregiver": {
+        "fa": "با کودک از ۱۵ رو به عقب بشمار و شش قدم بردار. بگذار عدد درست را لمس کند.",
+        "en": "Count back from 15 with the child, taking six steps. Let them tap the right number.",
+        "de": "Zähle mit dem Kind von 15 rückwärts, sechs Schritte. Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "8", "glyph": "۸" },
+        { "id": "9", "glyph": "۹" },
+        { "id": "10", "glyph": "۱۰" }
+      ],
+      "answerId": "9",
+      "audioPending": true
+    },
+    {
+      "id": "as-3",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "در عدد ۲۴، رقم دهگان چند است؟ ۲۴ یعنی ۲ ده‌تایی و ۴ یکی.",
+        "en": "In the number 24, how many tens are there? 24 means 2 tens and 4 ones.",
+        "de": "Wie viele Zehner hat die Zahl 24? 24 bedeutet 2 Zehner und 4 Einer."
+      },
+      "answer": {
+        "fa": "۲ ده‌تایی. ۲ ده‌تایی می‌شود ۲۰، و ۴ یکی می‌شود ۲۴.",
+        "en": "2 tens. 2 tens make 20, and 4 ones make 24.",
+        "de": "2 Zehner. 2 Zehner ergeben 20, und 4 Einer ergeben 24."
+      },
+      "caregiver": {
+        "fa": "با کودک ۲۴ چیز را دسته‌های ۱۰تایی کن: دو دسته کامل و ۴ تا تک. بپرس چند دسته ده‌تایی شد. بگذار عدد درست را لمس کند.",
+        "en": "Group 24 things into tens with the child: two full groups and 4 loose ones. Ask how many groups of ten. Let them tap the right number.",
+        "de": "Gruppiere mit dem Kind 24 Dinge in Zehner: zwei volle Gruppen und 4 einzelne. Frage, wie viele Zehnergruppen es sind. Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "2", "glyph": "۲" },
+        { "id": "4", "glyph": "۴" },
+        { "id": "6", "glyph": "۶" }
+      ],
+      "answerId": "2",
+      "audioPending": true
+    },
+    {
+      "id": "as-4",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "۲۳ + ۱۴ چند می‌شود؟ اول ده‌تایی‌ها (۲۰ و ۱۰)، بعد یکی‌ها (۳ و ۴).",
+        "en": "What is 23 + 14? Add the tens first (20 and 10), then the ones (3 and 4).",
+        "de": "Was ist 23 + 14? Addiere zuerst die Zehner (20 und 10), dann die Einer (3 und 4)."
+      },
+      "answer": {
+        "fa": "۳۷. ۲۰ و ۱۰ می‌شود ۳۰، و ۳ و ۴ می‌شود ۷ — روی هم ۳۷.",
+        "en": "37. 20 and 10 make 30, and 3 and 4 make 7 — 37 altogether.",
+        "de": "37. 20 und 10 ergeben 30, und 3 und 4 ergeben 7 — zusammen 37."
+      },
+      "caregiver": {
+        "fa": "نشان بده که ده‌تایی‌ها با هم و یکی‌ها با هم جمع می‌شوند. بگذار عدد درست را لمس کند.",
+        "en": "Show that tens add with tens and ones add with ones. Let them tap the right number.",
+        "de": "Zeig, dass Zehner mit Zehnern und Einer mit Einern addiert werden. Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "36", "glyph": "۳۶" },
+        { "id": "37", "glyph": "۳۷" },
+        { "id": "47", "glyph": "۴۷" }
+      ],
+      "answerId": "37",
+      "audioPending": true
+    },
+    {
+      "id": "as-5",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "۱۲ سیب داری و یک دوست ۷ سیب دیگر به تو می‌دهد. حالا چند سیب داری؟",
+        "en": "You have 12 apples and a friend gives you 7 more. How many apples now?",
+        "de": "Du hast 12 Äpfel und eine Freundin gibt dir 7 weitere. Wie viele Äpfel jetzt?"
+      },
+      "answer": {
+        "fa": "۱۹ سیب. ۱۲ و ۷ می‌شود ۱۹.",
+        "en": "19 apples. 12 and 7 make 19.",
+        "de": "19 Äpfel. 12 und 7 ergeben 19."
+      },
+      "caregiver": {
+        "fa": "داستان را با کودک بگو و با هم بشمارید: «۱۲ سیب، و ۷ تای دیگر.» بگذار عدد درست را لمس کند.",
+        "en": "Tell the story with the child and count together: \"12 apples, and 7 more.\" Let them tap the right number.",
+        "de": "Erzähl die Geschichte mit dem Kind und zählt zusammen: „12 Äpfel und 7 weitere.“ Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "18", "glyph": "۱۸" },
+        { "id": "19", "glyph": "۱۹" },
+        { "id": "20", "glyph": "۲۰" }
+      ],
+      "answerId": "19",
+      "audioPending": true
+    },
+    {
+      "id": "as-6",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "۲۰ پرنده روی درخت نشسته‌اند و ۸ تا پرواز می‌کنند. چند پرنده می‌ماند؟",
+        "en": "20 birds sit in a tree and 8 fly away. How many birds are left?",
+        "de": "20 Vögel sitzen in einem Baum und 8 fliegen weg. Wie viele Vögel bleiben?"
+      },
+      "answer": {
+        "fa": "۱۲ پرنده. ۲۰ منهای ۸ می‌شود ۱۲.",
+        "en": "12 birds. 20 take away 8 leaves 12.",
+        "de": "12 Vögel. 20 weniger 8 ergibt 12."
+      },
+      "caregiver": {
+        "fa": "داستان را بگو و با هم رو به عقب بشمارید یا از ۸ تا ۲۰ بالا بروید. بگذار عدد درست را لمس کند.",
+        "en": "Tell the story and count back together, or count up from 8 to 20. Let them tap the right number.",
+        "de": "Erzähl die Geschichte und zählt gemeinsam zurück, oder zählt von 8 bis 20 hoch. Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "11", "glyph": "۱۱" },
+        { "id": "12", "glyph": "۱۲" },
+        { "id": "13", "glyph": "۱۳" }
+      ],
+      "answerId": "12",
+      "audioPending": true
+    },
+    {
+      "id": "as-7",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "یک نان ۵ سکه است. تو ۱۰ سکه می‌دهی. چند سکه باید پس بگیری؟",
+        "en": "One loaf of bread costs 5 coins. You pay with 10 coins. How many coins should you get back?",
+        "de": "Ein Brot kostet 5 Münzen. Du zahlst mit 10 Münzen. Wie viele Münzen bekommst du zurück?"
+      },
+      "answer": {
+        "fa": "۵ سکه. ۱۰ منهای ۵ می‌شود ۵ — این «پول پس» است.",
+        "en": "5 coins. 10 take away 5 makes 5 — this is your change.",
+        "de": "5 Münzen. 10 weniger 5 ergibt 5 — das ist dein Wechselgeld."
+      },
+      "caregiver": {
+        "fa": "با سکه یا سنگ‌ریزه بازی خرید کن: ۱۰ می‌دهی، ۵ قیمت است، چند برمی‌گردد؟ بگذار عدد درست را لمس کند.",
+        "en": "Play shop with coins or pebbles: you give 10, the price is 5, how much comes back? Let them tap the right number.",
+        "de": "Spielt Einkaufen mit Münzen oder Steinchen: du gibst 10, der Preis ist 5, wie viel kommt zurück? Lass es die richtige Zahl antippen."
+      },
+      "choices": [
+        { "id": "4", "glyph": "۴" },
+        { "id": "5", "glyph": "۵" },
+        { "id": "6", "glyph": "۶" }
+      ],
+      "answerId": "5",
+      "audioPending": true
+    },
+    {
+      "id": "as-8",
+      "type": "add-subtract",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "به اطرافت نگاه کن. دو دسته چیز پیدا کن و آن‌ها را با هم جمع کن. بلند بگو: «… و … می‌شود ….»",
+        "en": "Look around you. Find two groups of things and add them together. Say aloud: \"… and … makes ….\"",
+        "de": "Schau dich um. Finde zwei Gruppen von Dingen und addiere sie. Sag laut: „… und … ergibt ….“"
+      },
+      "answer": {
+        "fa": "آفرین! هر بار که خودت جمع می‌کنی، ریاضی‌ات قوی‌تر می‌شود.",
+        "en": "Well done! Every time you add on your own, your maths gets stronger.",
+        "de": "Gut gemacht! Jedes Mal, wenn du selbst addierst, wird dein Rechnen stärker."
+      },
+      "caregiver": {
+        "fa": "با کودک دو دسته چیز واقعی بشمارید (مثلاً ۳ قاشق و ۲ کاسه) و با هم جمع کنید. جواب درست/غلط ندارد — هدف ساختن جمله‌ی جمع است.",
+        "en": "Count two real groups with the child (say, 3 spoons and 2 bowls) and add them. There is no right/wrong answer — the goal is to build an addition sentence.",
+        "de": "Zählt mit dem Kind zwei echte Gruppen (z. B. 3 Löffel und 2 Schüsseln) und addiert sie. Es gibt kein Richtig/Falsch — das Ziel ist, einen Additionssatz zu bilden."
+      },
+      "audioPending": true
+    }
+  ]
+}
