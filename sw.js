@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v22'; // v22: 8-10 Tier-2 critical-thinking pack — fact vs. opinion
+const CACHE = 'sahar-v23'; // v23: 8-10 Tier-2 science pack — plants & habitats
 
 const APP_SHELL = [
   './',
