@@ -274,6 +274,17 @@ html[data-theme="kanoon"] .lesson-tile {
 }
 html[data-theme="kanoon"] .lesson-tile:hover { border-color: var(--k-terra); }
 
+/* empty-band curriculum-preview chips: the ink-on-paper-chip book-plate look,
+   flat, no gradient — a defined shell's planned topics read as a printed
+   contents list, not decoration (charter "dignity over cuteness"). */
+html[data-theme="kanoon"] .band-preview-label { color: var(--k-teal); opacity: 1; }
+html[data-theme="kanoon"][data-kvariant="dark"] .band-preview-label { color: var(--k-saffron); }
+html[data-theme="kanoon"] .band-preview-chip {
+  background: var(--k-paper-chip);
+  color: #2b241c;                 /* always ink-on-paper, both variants */
+  border: 1.5px solid var(--k-line-strong);
+}
+
 /* teacher.html's honest-status banner (its own stylesheet paints it with a
    saffron->ochre GRADIENT — the one surviving gradient in the product, and
    in the dark variant it left cream text on pale ochre, unreadable). Flatten
