@@ -10,8 +10,13 @@
     "  - sw.js             precaches every listed pack for offline use from it",
     "  - test/content-validator.test.js  gates every listed pack from it",
     "The four bands must always be present and must match profiles.js AGE_BANDS",
-    "(a band with no authored content yet keeps an empty packs[] — the app shows",
-    "an honest 'coming soon' scaffold for it; nothing is ever invented or faked).",
+    "(a band with no authored content yet keeps an empty packs[] — but it is NOT",
+    "blank: it declares a 'preview' (fa/en/de arrays of the subject headings from",
+    "docs/CURRICULUM-MAP.md for its curriculumTier), so the app's 'coming soon'",
+    "scaffold shows what that age group WILL cover. That is the charter's 'defined",
+    "but empty shells WITH their curriculum maps'. The preview is planned-topic",
+    "headings only — real lessons are still authored + red-teamed before shipping;",
+    "nothing is ever invented or faked. A band WITH packs needs no preview.",
     "The language-course pack (content/lc-*.json) is intentionally NOT listed here",
     "— it is a different pedagogy driven by bootstrap.js, not the band shelf.",
     "curriculumTier points at the matching tier in docs/CURRICULUM-MAP.md so each",
@@ -37,16 +42,31 @@
     {
       "band": "8-10",
       "curriculumTier": 2,
+      "preview": {
+        "fa": ["خواندن جمله‌ها", "جمع و تفریق", "واقعیت یا نظر", "گیاهان و زیستگاه‌ها", "نقشهٔ جهان"],
+        "en": ["Reading sentences", "Adding & subtracting", "Fact vs. opinion", "Plants & habitats", "A map of the world"],
+        "de": ["Sätze lesen", "Plus und Minus", "Fakt oder Meinung", "Pflanzen & Lebensräume", "Eine Weltkarte"]
+      },
       "packs": []
     },
     {
       "band": "10-12",
       "curriculumTier": 3,
+      "preview": {
+        "fa": ["خواندن بندها", "کسر و درصد", "شاهد و ادعا", "بدن و منظومهٔ شمسی", "خط زمان و تاریخ", "کمک‌های اولیه"],
+        "en": ["Reading paragraphs", "Fractions & percentages", "Evidence vs. claim", "The body & the solar system", "Timelines & history", "First aid & safety"],
+        "de": ["Absätze lesen", "Brüche & Prozente", "Beleg gegen Behauptung", "Körper & Sonnensystem", "Zeitleisten & Geschichte", "Erste Hilfe & Sicherheit"]
+      },
       "packs": []
     },
     {
       "band": "12-14",
       "curriculumTier": 4,
+      "preview": {
+        "fa": ["نوشتن و استدلال", "جبر و آمار", "روش علمی", "سواد رسانه‌ای", "بدن و سلامت", "حق‌ها و پول"],
+        "en": ["Writing & argument", "Algebra & statistics", "The scientific method", "Media literacy", "Health & the body", "Rights & money"],
+        "de": ["Schreiben & Argumentieren", "Algebra & Statistik", "Wissenschaftliche Methode", "Medienkompetenz", "Körper & Gesundheit", "Rechte & Geld"]
+      },
       "packs": []
     }
   ]

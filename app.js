@@ -34,6 +34,7 @@ const STRINGS = {
     shapes: 'شکل و نقش',
     healthSafety: 'سلامت و ایمنی',
     pick: 'یک درس را انتخاب کن',
+    plannedTopics: 'این گروه سنی یاد می‌گیرد:',
     listen: 'گوش کن',
     tapPrompt: 'کدام درست است؟ لمس کن.',
     tryAgain: 'دوباره امتحان کن',
@@ -76,6 +77,7 @@ const STRINGS = {
     shapes: 'Shapes & patterns',
     healthSafety: 'Health & safety',
     pick: 'Pick a lesson',
+    plannedTopics: 'This age group will learn:',
     listen: 'Listen',
     tapPrompt: 'Which one is right? Tap it.',
     tryAgain: 'Try again',
@@ -118,6 +120,7 @@ const STRINGS = {
     shapes: 'Formen & Muster',
     healthSafety: 'Gesundheit & Sicherheit',
     pick: 'Wähle eine Lektion',
+    plannedTopics: 'Diese Altersgruppe lernt:',
     listen: 'Hören',
     tapPrompt: 'Welches ist richtig? Tippe darauf.',
     tryAgain: 'Nochmal versuchen',
@@ -234,6 +237,11 @@ const KIND_KEY = {
  * until loadPackManifest() runs (boot); headless core tests never touch it. */
 const MANIFEST_PATH = './content/packs.manifest.json';
 let PACKS = [];
+/* Per-band curriculum preview (fa/en/de subject headings), keyed by band, read
+ * from the same manifest. An empty band declares one so its "coming soon"
+ * scaffold shows what it WILL cover — the charter's "defined shells WITH their
+ * curriculum maps" — rather than a blank screen. Data only; no invented lessons. */
+let BAND_PREVIEWS = {};
 
 /** Load the age-band pack manifest and (re)build PACKS from it. The one place
  *  the shelf's contents are defined for the running app; the validator and
@@ -254,12 +262,15 @@ async function loadPackManifest() {
       pic: p.pic,
       band: b.band
     })));
+    BAND_PREVIEWS = {};
+    bands.forEach((b) => { if (b.preview) BAND_PREVIEWS[b.band] = b.preview; });
     return true;
   } catch (err) {
     // Offline-first: this should never happen after the first visit (the
     // manifest is precached with the app shell). Fail loud but non-fatally.
     console.error('Sahar: could not load pack manifest —', err);
     PACKS = [];
+    BAND_PREVIEWS = {};
     return false;
   }
 }
@@ -625,11 +636,20 @@ function renderComingSoonBand(band) {
   const sunrise = (window.SaharMascot && window.SaharMascot.sunrise(40)) || '';
   const label = COMING_SOON[lang] || COMING_SOON.en;
   const cg = COMING_SOON_CG[lang] || COMING_SOON_CG.en;
+  // The band's curriculum map (planned subject headings) makes this an honest
+  // "defined shell", not a blank screen — charter feature 8. Escaped; the chips
+  // are fixed manifest data, but treat them as untrusted text on principle.
+  const preview = BAND_PREVIEWS[band];
+  const chips = (preview && Array.isArray(preview[lang]) ? preview[lang] : (preview && preview.en) || [])
+    .map((topic) => `<span class="band-preview-chip">${escapeHtml(topic)}</span>`).join('');
+  const previewBlock = chips ? `
+      <p class="band-preview-label">${I18nProvider.t(lang, 'plannedTopics')}</p>
+      <div class="band-preview">${chips}</div>` : '';
   $('stage').innerHTML = `
     <div class="done band-coming">
       <div class="band-coming-icon" style="--tile-color:${meta.color}">${icon}</div>
       ${sunrise}
-      <h2>${label}</h2>
+      <h2>${label}</h2>${previewBlock}
       <button type="button" class="listen-btn l1" data-act="listen-coming">
         <span class="lico">🔊</span><span class="ltxt">${I18nProvider.t(lang, 'listen')}</span>
       </button>

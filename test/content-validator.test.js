@@ -109,6 +109,34 @@ test('packs.manifest.json: no ORPHAN packs — every card pack file in content/ 
   }
 });
 
+test('packs.manifest.json: every EMPTY band is a defined shell — declares a curriculum preview complete in fa/en/de', () => {
+  // Charter feature 8: 8-10/10-12/12-14 = "defined but empty shells WITH their
+  // curriculum maps". An empty band must therefore carry a preview so the app
+  // shows what it WILL cover, never a blank "coming soon" screen. A band that
+  // already ships packs needs no preview (it shows the real shelf).
+  for (const b of manifest.bands) {
+    const empty = !Array.isArray(b.packs) || b.packs.length === 0;
+    if (empty) {
+      assert.ok(b.preview && typeof b.preview === 'object',
+        `empty band ${b.band} must declare a "preview" (its curriculum map) so it is a defined shell, not blank`);
+    }
+    if (!b.preview) continue; // a band with packs may omit it
+    for (const lang of LANGS) {
+      assert.ok(Array.isArray(b.preview[lang]) && b.preview[lang].length > 0,
+        `band ${b.band} preview.${lang} must be a non-empty array of subject headings`);
+      for (const topic of b.preview[lang]) {
+        assert.ok(typeof topic === 'string' && topic.trim().length > 0,
+          `band ${b.band} preview.${lang} entries must be non-empty strings`);
+      }
+    }
+    // fa/en/de are parallel content — same number of topic headings each.
+    assert.equal(b.preview.fa.length, b.preview.en.length,
+      `band ${b.band} preview fa/en must have the same number of topics`);
+    assert.equal(b.preview.fa.length, b.preview.de.length,
+      `band ${b.band} preview fa/de must have the same number of topics`);
+  }
+});
+
 /* The per-pack content checks below run over exactly what the manifest ships. */
 const PACK_FILES = MANIFEST_PACKS.map((p) => p.file);
 

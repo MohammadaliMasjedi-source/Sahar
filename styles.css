@@ -305,6 +305,22 @@ html, body {
 .lesson-tile .tile-sun svg { width: 100%; height: 100%; display: block; }
 .lesson-tile .tile-title { font-size: var(--fs-md); line-height: 1.4; }
 
+/* ---- empty-band "coming soon" curriculum preview (charter feature 8:
+ * a defined shell WITH its curriculum map, never a blank screen) ---- */
+.band-preview-label {
+  margin: 4px 0 2px; font-size: var(--fs-sm, .85rem); font-weight: 600;
+  opacity: .85;
+}
+.band-preview {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin: 0 auto 4px; max-width: 30rem;
+}
+.band-preview-chip {
+  padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.06);
+  font-size: var(--fs-sm, .85rem); line-height: 1.3;
+}
+
 /* the small back-to-lessons link (in the lesson title row + done screen) */
 .link-btn {
   border: 1px solid var(--line); background: rgba(255,255,255,.06);
