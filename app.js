@@ -35,6 +35,7 @@ const STRINGS = {
     healthSafety: 'سلامت و ایمنی',
     addSubtract: 'جمع و تفریق',
     plantsHabitats: 'گیاهان و زیستگاه',
+    reading: 'خواندن و فهمیدن',
     pick: 'یک درس را انتخاب کن',
     plannedTopics: 'این گروه سنی یاد می‌گیرد:',
     listen: 'گوش کن',
@@ -80,6 +81,7 @@ const STRINGS = {
     healthSafety: 'Health & safety',
     addSubtract: 'Add & subtract',
     plantsHabitats: 'Plants & habitats',
+    reading: 'Read & understand',
     pick: 'Pick a lesson',
     plannedTopics: 'This age group will learn:',
     listen: 'Listen',
@@ -125,6 +127,7 @@ const STRINGS = {
     healthSafety: 'Gesundheit & Sicherheit',
     addSubtract: 'Plus und Minus',
     plantsHabitats: 'Pflanzen & Lebensräume',
+    reading: 'Lesen & verstehen',
     pick: 'Wähle eine Lektion',
     plannedTopics: 'Diese Altersgruppe lernt:',
     listen: 'Hören',
@@ -230,7 +233,8 @@ const KIND_KEY = {
   'shapes': 'shapes',
   'health-safety': 'healthSafety',
   'add-subtract': 'addSubtract',
-  'plants-habitats': 'plantsHabitats'
+  'plants-habitats': 'plantsHabitats',
+  'reading': 'reading'
 };
 
 /* PACKS — the bundled content shelf, built AT BOOT from the single-source
@@ -772,8 +776,16 @@ function renderInteractiveCard(card) {
   } else {
     const heroPic = round.heroPic ? `<div class="fc-pic big">${window.pictureFor(round.heroPic)}</div>` : '';
     const choiceHtml = choices.map((c) => {
-      const inner = c.glyph
-        ? `<span class="glyph">${c.glyph}</span>`
+      // `glyph` is either a single string (letters/numbers — shown as-is to every
+      // language) OR a {fa,en,de} dict (localized text, e.g. a word to READ in the
+      // learner's own script). A glyph longer than 2 chars is a word, not a single
+      // letter/number, so it gets `.glyph-word` sizing so it fits the tile.
+      const glyphText = (c.glyph && typeof c.glyph === 'object')
+        ? (c.glyph[lang] || c.glyph.en || c.glyph.fa)
+        : c.glyph;
+      const wordClass = glyphText && [...String(glyphText)].length > 2 ? ' glyph-word' : '';
+      const inner = glyphText
+        ? `<span class="glyph${wordClass}">${escapeHtml(String(glyphText))}</span>`
         : window.pictureFor(c.pic);
       const sizeClass = c.size ? (' ' + c.size) : '';
       return `<button type="button" class="pic-choice${sizeClass}" data-tap="${c.id}" aria-label="choice">${inner}</button>`;

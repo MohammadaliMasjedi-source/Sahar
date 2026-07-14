@@ -1,0 +1,250 @@
+{
+  "packId": "t2.literacy.reading-sentences",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "literacy — reading words, finishing sentences, and question vs. statement",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "خواندن و فهمیدن",
+    "en": "Reading and Understanding",
+    "de": "Lesen und Verstehen"
+  },
+  "intro": {
+    "fa": "حروف را که یاد گرفتی، حالا کلمه‌ها را می‌خوانیم و می‌فهمیم. به هر کلمه نگاه کن، بخوانش، و کلمهٔ درست را لمس کن. اگر لازم شد، بزرگ‌ترها کمک می‌کنند.",
+    "en": "Now that you know the letters, let's read whole words and understand them. Look at each word, read it, and tap the right one. A grown-up can help if you need it.",
+    "de": "Jetzt, wo du die Buchstaben kennst, lesen wir ganze Wörter und verstehen sie. Schau jedes Wort an, lies es und tippe das richtige an. Erwachsene können helfen, wenn du es brauchst."
+  },
+  "cards": [
+    {
+      "id": "rs-1",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "به تصویر نگاه کن. کدام کلمه «آب» است؟ کلمه‌ها را بخوان و کلمهٔ درست را لمس کن.",
+        "en": "Look at the picture. Which word says \"water\"? Read the words and tap the right one.",
+        "de": "Schau das Bild an. Welches Wort heißt „Wasser“? Lies die Wörter und tippe das richtige an."
+      },
+      "answer": {
+        "fa": "کلمهٔ «آب». آفرین — تو کلمه را خواندی!",
+        "en": "The word \"water\". Well done — you read the word!",
+        "de": "Das Wort „Wasser“. Gut gemacht — du hast das Wort gelesen!"
+      },
+      "caregiver": {
+        "fa": "تصویر آب را نشان بده. به هر کلمه اشاره کن و بگذار کودک خودش بخواند. بگذار کلمهٔ «آب» را لمس کند.",
+        "en": "Point to the water picture. Point to each word and let the child read it. Let them tap the word \"water\".",
+        "de": "Zeig auf das Wasserbild. Zeig auf jedes Wort und lass das Kind es lesen. Lass es das Wort „Wasser“ antippen."
+      },
+      "choices": [
+        { "id": "w-water", "glyph": { "fa": "آب", "en": "water", "de": "Wasser" } },
+        { "id": "w-moon", "glyph": { "fa": "ماه", "en": "moon", "de": "Mond" } },
+        { "id": "w-flower", "glyph": { "fa": "گل", "en": "flower", "de": "Blume" } }
+      ],
+      "answerId": "w-water",
+      "heroPic": "water",
+      "audioPending": true
+    },
+    {
+      "id": "rs-2",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "به تصویر نگاه کن. کدام کلمه «آفتاب» است؟ کلمه‌ها را بخوان.",
+        "en": "Look at the picture. Which word says \"sun\"? Read the words.",
+        "de": "Schau das Bild an. Welches Wort heißt „Sonne“? Lies die Wörter."
+      },
+      "answer": {
+        "fa": "کلمهٔ «آفتاب». تصویر و کلمه با هم جور شدند.",
+        "en": "The word \"sun\". The picture and the word match.",
+        "de": "Das Wort „Sonne“. Bild und Wort passen zusammen."
+      },
+      "caregiver": {
+        "fa": "تصویر آفتاب را نشان بده و بگذار کودک هر کلمه را بخواند و کلمهٔ «آفتاب» را لمس کند.",
+        "en": "Point to the sun picture and let the child read each word and tap \"sun\".",
+        "de": "Zeig auf das Sonnenbild und lass das Kind jedes Wort lesen und „Sonne“ antippen."
+      },
+      "choices": [
+        { "id": "w-sun", "glyph": { "fa": "آفتاب", "en": "sun", "de": "Sonne" } },
+        { "id": "w-water", "glyph": { "fa": "آب", "en": "water", "de": "Wasser" } },
+        { "id": "w-book", "glyph": { "fa": "کتاب", "en": "book", "de": "Buch" } }
+      ],
+      "answerId": "w-sun",
+      "heroPic": "sun",
+      "audioPending": true
+    },
+    {
+      "id": "rs-3",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "به تصویر نگاه کن. کدام کلمه «کتاب» است؟",
+        "en": "Look at the picture. Which word says \"book\"?",
+        "de": "Schau das Bild an. Welches Wort heißt „Buch“?"
+      },
+      "answer": {
+        "fa": "کلمهٔ «کتاب». کتاب پر از کلمه‌هایی است که یاد می‌گیری بخوانی.",
+        "en": "The word \"book\". A book is full of words you are learning to read.",
+        "de": "Das Wort „Buch“. Ein Buch ist voller Wörter, die du zu lesen lernst."
+      },
+      "caregiver": {
+        "fa": "تصویر کتاب را نشان بده. بگذار کودک هر کلمه را بخواند و کلمهٔ «کتاب» را لمس کند.",
+        "en": "Point to the book picture. Let the child read each word and tap \"book\".",
+        "de": "Zeig auf das Buchbild. Lass das Kind jedes Wort lesen und „Buch“ antippen."
+      },
+      "choices": [
+        { "id": "w-book", "glyph": { "fa": "کتاب", "en": "book", "de": "Buch" } },
+        { "id": "w-house", "glyph": { "fa": "خانه", "en": "house", "de": "Haus" } },
+        { "id": "w-tree", "glyph": { "fa": "درخت", "en": "tree", "de": "Baum" } }
+      ],
+      "answerId": "w-book",
+      "heroPic": "book",
+      "audioPending": true
+    },
+    {
+      "id": "rs-4",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "جمله را بخوان: «پرنده در … پرواز می‌کند.» کدام کلمه جمله را کامل می‌کند؟",
+        "en": "Read the sentence: \"The bird flies in the ….\" Which word finishes it?",
+        "de": "Lies den Satz: „Der Vogel fliegt am ….“ Welches Wort ergänzt ihn?"
+      },
+      "answer": {
+        "fa": "«آسمان». پرنده در آسمان پرواز می‌کند — این جمله معنا دارد.",
+        "en": "\"sky\". A bird flies in the sky — that sentence makes sense.",
+        "de": "„Himmel“. Ein Vogel fliegt am Himmel — dieser Satz ergibt Sinn."
+      },
+      "caregiver": {
+        "fa": "جمله را با هم بخوانید و برای هر کلمه بپرسید: «آیا این معنا می‌دهد؟» فقط «آسمان» جور می‌شود. بگذار همان را لمس کند.",
+        "en": "Read the sentence together and for each word ask: \"Does this make sense?\" Only \"sky\" fits. Let them tap it.",
+        "de": "Lest den Satz zusammen und fragt bei jedem Wort: „Ergibt das Sinn?“ Nur „Himmel“ passt. Lass es das antippen."
+      },
+      "choices": [
+        { "id": "w-sky", "glyph": { "fa": "آسمان", "en": "sky", "de": "Himmel" } },
+        { "id": "w-water", "glyph": { "fa": "آب", "en": "water", "de": "Wasser" } },
+        { "id": "w-house", "glyph": { "fa": "خانه", "en": "house", "de": "Haus" } }
+      ],
+      "answerId": "w-sky",
+      "heroPic": "bird",
+      "audioPending": true
+    },
+    {
+      "id": "rs-5",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "گوش کن: «گربه کجاست؟» این یک پرسش است یا یک جملهٔ خبری؟",
+        "en": "Listen: \"Where is the cat?\" Is this a question or a telling sentence?",
+        "de": "Hör zu: „Wo ist die Katze?“ Ist das eine Frage oder ein Aussagesatz?"
+      },
+      "answer": {
+        "fa": "یک پرسش — چیزی می‌پرسد و منتظر پاسخ است. در نوشتار نشانِ پرسش (؟) دارد.",
+        "en": "A question — it asks something and waits for an answer. In writing it ends with a question mark (?).",
+        "de": "Eine Frage — sie fragt etwas und wartet auf eine Antwort. Geschrieben endet sie mit einem Fragezeichen (?)."
+      },
+      "caregiver": {
+        "fa": "جمله را با لحن پرسشی بخوان تا کودک بالا رفتن صدا را بشنود. بگذار تصویر نشان پرسش را لمس کند.",
+        "en": "Read the sentence with a rising, questioning tone so the child hears it. Let them tap the question-mark picture.",
+        "de": "Lies den Satz mit fragender, steigender Betonung vor, damit das Kind es hört. Lass es das Fragezeichen-Bild antippen."
+      },
+      "choices": [
+        { "id": "question", "pic": "question-mark" },
+        { "id": "statement", "pic": "statement" }
+      ],
+      "answerId": "question",
+      "audioPending": true
+    },
+    {
+      "id": "rs-6",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "گوش کن: «آفتاب گرم است.» این یک پرسش است یا یک جملهٔ خبری؟",
+        "en": "Listen: \"The sun is warm.\" Is this a question or a telling sentence?",
+        "de": "Hör zu: „Die Sonne ist warm.“ Ist das eine Frage oder ein Aussagesatz?"
+      },
+      "answer": {
+        "fa": "یک جملهٔ خبری — چیزی را به ما می‌گوید، نمی‌پرسد. در نوشتار با نقطه (.) تمام می‌شود.",
+        "en": "A telling sentence — it tells us something, it does not ask. In writing it ends with a full stop (.).",
+        "de": "Ein Aussagesatz — er sagt uns etwas, er fragt nicht. Geschrieben endet er mit einem Punkt (.)."
+      },
+      "caregiver": {
+        "fa": "جمله را با لحن آرام و خبری بخوان. بپرس: «این چیزی می‌پرسد یا می‌گوید؟» بگذار تصویر جملهٔ خبری را لمس کند.",
+        "en": "Read it in a calm, telling tone. Ask: \"Does this ask or tell?\" Let them tap the telling-sentence picture.",
+        "de": "Lies ihn in ruhigem, erzählendem Ton. Frage: „Fragt das oder sagt es etwas?“ Lass es das Aussagesatz-Bild antippen."
+      },
+      "choices": [
+        { "id": "statement", "pic": "statement" },
+        { "id": "question", "pic": "question-mark" }
+      ],
+      "answerId": "statement",
+      "audioPending": true
+    },
+    {
+      "id": "rs-7",
+      "type": "reading",
+      "box": 1,
+      "interaction": "tap-the-letter-shape",
+      "prompt": {
+        "fa": "جمله را بخوان: «ماهی در آب شنا می‌کند.» ماهی کجا زندگی می‌کند؟ کلمهٔ درست را لمس کن.",
+        "en": "Read the sentence: \"The fish swims in the water.\" Where does the fish live? Tap the right word.",
+        "de": "Lies den Satz: „Der Fisch schwimmt im Wasser.“ Wo lebt der Fisch? Tippe das richtige Wort an."
+      },
+      "answer": {
+        "fa": "«آب». جمله را خواندی و معنایش را فهمیدی — این یعنی خواندنِ واقعی.",
+        "en": "\"water\". You read the sentence and understood it — that is real reading.",
+        "de": "„Wasser“. Du hast den Satz gelesen und verstanden — das ist echtes Lesen."
+      },
+      "caregiver": {
+        "fa": "جمله را با هم بخوانید و بپرسید ماهی کجا شنا می‌کند. بگذار کودک کلمهٔ «آب» را در میان کلمه‌ها پیدا و لمس کند.",
+        "en": "Read the sentence together and ask where the fish swims. Let the child find and tap the word \"water\".",
+        "de": "Lest den Satz zusammen und fragt, wo der Fisch schwimmt. Lass das Kind das Wort „Wasser“ finden und antippen."
+      },
+      "choices": [
+        { "id": "w-water", "glyph": { "fa": "آب", "en": "water", "de": "Wasser" } },
+        { "id": "w-sky", "glyph": { "fa": "آسمان", "en": "sky", "de": "Himmel" } },
+        { "id": "w-garden", "glyph": { "fa": "باغ", "en": "garden", "de": "Garten" } }
+      ],
+      "answerId": "w-water",
+      "heroPic": "fish",
+      "audioPending": true
+    },
+    {
+      "id": "rs-8",
+      "type": "reading",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "به یک چیز نزدیک خودت نگاه کن. یک جملهٔ کامل دربارهٔ آن بگو، مثل «… … است.» بلند بگو.",
+        "en": "Look at one thing near you. Say a whole sentence about it, like \"The … is ….\" Say it aloud.",
+        "de": "Schau ein Ding in deiner Nähe an. Sag einen ganzen Satz darüber, wie „Das … ist ….“ Sag ihn laut."
+      },
+      "answer": {
+        "fa": "آفرین! ساختن جمله‌های خودت به تو کمک می‌کند بهتر بخوانی و بنویسی.",
+        "en": "Well done! Making your own sentences helps you read and write better.",
+        "de": "Gut gemacht! Eigene Sätze zu bilden hilft dir, besser zu lesen und zu schreiben."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن یک جملهٔ ساده بسازد (نام چیز + یک ویژگی). جواب درست/غلط ندارد — هدف ساختن یک جملهٔ کامل است.",
+        "en": "Help the child make a simple sentence (a thing + one quality). No right/wrong answer — the goal is a complete sentence.",
+        "de": "Hilf dem Kind, einen einfachen Satz zu bilden (ein Ding + eine Eigenschaft). Kein Richtig/Falsch — das Ziel ist ein vollständiger Satz."
+      },
+      "audioPending": true
+    }
+  ]
+}

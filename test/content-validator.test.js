@@ -151,6 +151,13 @@ function checkChoiceSet(choices, answerId, label) {
   for (const c of choices) {
     assert.ok(c.pic || c.glyph, `${label}: choice "${c.id}" has a pic or a glyph (never bare text-only)`);
     if (c.pic) assert.ok(PICTURES[c.pic], `${label}: choice "${c.id}" pic "${c.pic}" exists in the picture library`);
+    // A glyph may be a single string (letter/number, shown to every language) OR
+    // a localized {fa,en,de} dict (a word to READ in the learner's own script).
+    // If it's a dict, every declared language must be present and non-empty.
+    if (c.glyph && typeof c.glyph === 'object') {
+      for (const lang of LANGS) assert.ok(typeof c.glyph[lang] === 'string' && c.glyph[lang].trim().length > 0,
+        `${label}: choice "${c.id}" localized glyph must be non-empty in ${lang}`);
+    }
   }
   assert.ok(ids.includes(answerId), `${label}: answerId "${answerId}" is among the offered choices`);
 }
