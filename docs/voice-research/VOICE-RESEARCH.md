@@ -86,3 +86,70 @@ Concretely:
 - Re-check Azure's Dari backlog occasionally (their own staff imply it's
   planned, just undated) — if/when `fa-AF` TTS ships from Microsoft, it would
   be worth a quick re-eval, but do not block v1 on it.
+
+---
+
+## Addendum 2026-07-14 — re-verified, and extended to the 8-10 band
+
+**The 2026-07-12 finding still stands, re-verified live today.** Two things were
+re-checked because they are the only ones likely to move:
+
+- **Azure `fa-AF` / `ps-AF` TTS:** still **not available** — speech-to-text for
+  those locales exists, synthesis does not; still backlogged with no public ETA
+  (Microsoft's own Q&A, unchanged since March 2026). No other major cloud vendor
+  added Dari either.
+- **Open-source Persian TTS moved, but only for *Iranian* Persian:** newer open
+  corpora/models appeared this cycle — **ParsVoice** (2,200 h, ~1,815 speakers,
+  XTTS fine-tune, naturalness MOS ~3.6) and **ManaTTS** (~114 h single-speaker).
+  Both are **Iranian Farsi**, not Dari; the sources themselves note an
+  Iranian-Farsi voice "will lean Iranian rather than Afghan" in vowel quality and
+  some loanwords. So the *accent-honesty* gap is unchanged. These are **watch
+  items** (a Dari dataset could one day be fine-tuned on such a pipeline), not a
+  v1 path — no Dari speech data exists to train on today.
+
+**Bottom line is unchanged: there is still no real Dari (fa-AF) TTS voice at any
+price.** The recommendation below does not change; it only extends to 8-10.
+
+### What the 8-10 (Tier-2) lane adds to the audio picture
+
+This week's four Tier-2 packs (reading, numeracy add/subtract, fact-vs-opinion,
+plants & habitats) add **~32 new Dari spoken prompt lines** (4 packs × 8 cards).
+They ship with the honest **`audioPending`** state — **no audio recorded and none
+machine-generated yet**, on purpose (see sequencing below). Two Tier-2-specific
+points for Mo:
+
+1. **Sentences raise the stakes of accent.** Tier-1 was mostly single words and
+   short phrases; Tier-2 is full sentences ("read the sentence…", word problems,
+   fact/opinion statements). An 8-10 child is a fluent-enough Dari *listener* to
+   notice an Iranian accent across a whole sentence far more than across one word.
+   So for 8-10, a real Dari human voice matters **more**, not less.
+2. **Longer lines = more recording, but also more draft-TTS text.** The same
+   `tools/generate-draft-audio.py` (edge-tts Dilara) can render these drafts with
+   no new tooling — but the lines are longer, so both a draft render and a human
+   recording take proportionally more time than Tier-1's word lists.
+
+### The Mo-gate for 8-10 (recommend, do NOT decide)
+
+Two clean options for Mo to choose between:
+
+- **(A) Same hybrid as Tier-1:** generate edge-tts *drafts* for the 8-10 packs so
+  the app speaks while recording is arranged, then replace with human recordings.
+- **(B) Skip drafts for 8-10, go straight to human recording** (the drafts add
+  little for older children who hear the accent clearly).
+
+**Recommendation (unchanged in spirit from 2026-07-12): hybrid — but sequence the
+drafts *after* Mo confirms the topics.** Concretely:
+
+- **Do not machine-render 8-10 audio yet.** The packs are `audioPending` on
+  purpose: rendering ~32 lines × 3 langs of TTS for content Mo may still adjust
+  (he reviews topics) would be wasted work and premature honesty-banner churn.
+  Once Mo confirms the topics, one `generate-draft-audio.py` run produces the
+  drafts and flips `audioPending → audioDraft` with the existing honest banner.
+- **The real v1 for 8-10 is still Mo's or Neda's Dari voice** — even more so than
+  Tier-1, per point (1). When topics are confirmed, add the ~32 lines to
+  `audio/RECORDING-MANIFEST.md` in the same line-by-line format.
+- **Keep watching** Azure's Dari backlog and the ParsVoice/ManaTTS ecosystem for a
+  future Dari model, but do not block on it.
+
+*This is a recommendation for Mo to decide, not a decision. The honest state today
+is: 8-10 has no audio, by design, pending Mo's topic confirmation and voice call.*
