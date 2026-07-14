@@ -269,9 +269,13 @@
   }
 
   var KANOON_PICTURES = {
+    // fa/fa-AF is the first-class language and this is the "first letters"
+    // pack: draw the alphabet's first two Dari letters (الف / ب) in the house
+    // face — NOT a Latin serif foreign to the whole type system (was Georgia/
+    // Times "A b"; design-critic fix). Single-glyph <text>es, so no RTL join.
     letters: kPlate(KI.card,
-      '<text x="33" y="70" text-anchor="middle" font-size="46" font-weight="800" fill="' + KI.terra + '" font-family="Georgia, \'Times New Roman\', serif">A</text>' +
-      '<text x="71" y="64" text-anchor="middle" font-size="28" font-weight="800" fill="' + KI.teal + '" font-family="Georgia, \'Times New Roman\', serif">b</text>'),
+      '<text x="34" y="72" text-anchor="middle" font-size="54" font-weight="800" fill="' + KI.terra + '" font-family="Vazirmatn, \'Segoe UI\', sans-serif">آ</text>' +
+      '<text x="70" y="66" text-anchor="middle" font-size="34" font-weight="800" fill="' + KI.teal + '" font-family="Vazirmatn, \'Segoe UI\', sans-serif">ب</text>'),
 
     book: kPlate(KI.deep,
       '<path d="M50 30 C40 24 24 22 14 26 V70 C24 66 40 68 50 74 C60 68 76 66 86 70 V26 C76 22 60 24 50 30Z" fill="' + KI.chip + '" stroke="' + KI.out + '" stroke-width="2" stroke-linejoin="round"/>' +
