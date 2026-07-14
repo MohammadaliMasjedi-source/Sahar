@@ -184,6 +184,16 @@
   background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72));
   border-radius: 14px;
 }
+/* WORD glyphs (reading packs: a whole word is the tap target, e.g. Tier-2
+ * "read the word that matches this picture"). A single letter/number fills the
+ * tile at 2.6rem; a multi-character word would overflow the square, so it is
+ * sized down and allowed to sit on one line, centred, within the tile. */
+.pic-choice .glyph.glyph-word {
+  font-size: clamp(1rem, 5.5vw, 1.7rem);
+  font-weight: 800; line-height: 1.15;
+  padding: 6px; white-space: nowrap;
+  letter-spacing: 0;
+}
 /* size variants for shape-comparison cards (e.g. "which circle is bigger") */
 .pic-choice.small svg, .pic-choice.small .glyph { transform: scale(.55); }
 .pic-choice.big svg, .pic-choice.big .glyph { transform: scale(1.1); }
