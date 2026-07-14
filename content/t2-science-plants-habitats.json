@@ -1,0 +1,258 @@
+{
+  "packId": "t2.science.plants-habitats",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "science — what plants need, plant parts, and animal habitats",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "گیاهان و زیستگاه‌ها",
+    "en": "Plants and Habitats",
+    "de": "Pflanzen und Lebensräume"
+  },
+  "intro": {
+    "fa": "گیاهان موجودات زنده‌اند: رشد می‌کنند و به چیزهایی نیاز دارند. جانوران هم هرکدام خانه‌ای دارند — به آن زیستگاه می‌گوییم. بیا با هم کشف کنیم. گوش کن و لمس کن.",
+    "en": "Plants are living things: they grow and they need certain things. Animals each have a home too — we call it a habitat. Let's discover together. Listen and tap.",
+    "de": "Pflanzen sind Lebewesen: Sie wachsen und brauchen bestimmte Dinge. Auch Tiere haben ein Zuhause — wir nennen es Lebensraum. Lass uns gemeinsam entdecken. Höre zu und tippe."
+  },
+  "cards": [
+    {
+      "id": "pl-1",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "یک گیاه برای رشد به نور نیاز دارد. کدام به گیاه نور می‌دهد؟",
+        "en": "A plant needs light to grow. Which one gives the plant light?",
+        "de": "Eine Pflanze braucht Licht zum Wachsen. Was gibt der Pflanze Licht?"
+      },
+      "answer": {
+        "fa": "آفتاب. گیاه با نور آفتاب برای خودش غذا می‌سازد.",
+        "en": "The sun. A plant uses sunlight to make its own food.",
+        "de": "Die Sonne. Eine Pflanze nutzt Sonnenlicht, um sich selbst Nahrung zu machen."
+      },
+      "caregiver": {
+        "fa": "بپرس: «گل‌ها رو به کدام طرف می‌چرخند؟» به آفتاب. بگذار تصویر آفتاب را لمس کند.",
+        "en": "Ask: \"Which way do flowers turn?\" Toward the sun. Let them tap the sun.",
+        "de": "Frage: „Wohin drehen sich Blumen?“ Zur Sonne. Lass es die Sonne antippen."
+      },
+      "choices": [
+        { "id": "sun", "pic": "sun" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "sun",
+      "audioPending": true
+    },
+    {
+      "id": "pl-2",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "جز نور، گیاه به چیز دیگری هم نیاز دارد تا بنوشد. به گیاه چه می‌دهیم؟",
+        "en": "Besides light, a plant needs something to drink. What do we give a plant?",
+        "de": "Außer Licht braucht eine Pflanze etwas zu trinken. Was geben wir einer Pflanze?"
+      },
+      "answer": {
+        "fa": "آب. بدون آب گیاه پژمرده می‌شود.",
+        "en": "Water. Without water a plant wilts.",
+        "de": "Wasser. Ohne Wasser welkt eine Pflanze."
+      },
+      "caregiver": {
+        "fa": "اگر گیاهی در خانه دارید، با هم به آن کمی آب بدهید. بگذار تصویر آب را لمس کند.",
+        "en": "If you have a plant at home, water it a little together. Let them tap the water.",
+        "de": "Wenn ihr eine Pflanze zu Hause habt, gießt sie gemeinsam ein wenig. Lass es das Wasser antippen."
+      },
+      "choices": [
+        { "id": "water", "pic": "water" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "water",
+      "audioPending": true
+    },
+    {
+      "id": "pl-3",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "این بخشِ سبزِ گیاه نور آفتاب را می‌گیرد و به گیاه کمک می‌کند غذا بسازد. نامش چیست؟",
+        "en": "This green part of a plant catches the sunlight and helps make food. What is it?",
+        "de": "Dieser grüne Teil einer Pflanze fängt das Sonnenlicht ein und hilft, Nahrung zu machen. Was ist das?"
+      },
+      "answer": {
+        "fa": "برگ. برگ‌های سبز کارخانهٔ کوچک غذای گیاه‌اند.",
+        "en": "A leaf. Green leaves are the plant's little food factories.",
+        "de": "Ein Blatt. Grüne Blätter sind die kleinen Nahrungsfabriken der Pflanze."
+      },
+      "caregiver": {
+        "fa": "یک برگ واقعی را با هم نگاه کنید و رگ‌های ریزش را ببینید. بگذار تصویر برگ را لمس کند.",
+        "en": "Look at a real leaf together and see its tiny veins. Let them tap the leaf.",
+        "de": "Schaut euch gemeinsam ein echtes Blatt an und seht seine feinen Adern. Lass es das Blatt antippen."
+      },
+      "choices": [
+        { "id": "leaf", "pic": "leaf" },
+        { "id": "fish", "pic": "fish" },
+        { "id": "star", "pic": "star" }
+      ],
+      "answerId": "leaf",
+      "audioPending": true
+    },
+    {
+      "id": "pl-4",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "یک دانهٔ کوچک را در خاک می‌کاری و آب و نور می‌دهی. با زمان به چه چیزِ بزرگی تبدیل می‌شود؟",
+        "en": "You plant a tiny seed, give it water and light. Over time, what big thing does it become?",
+        "de": "Du pflanzt ein winziges Samenkorn, gibst ihm Wasser und Licht. Was Großes wird mit der Zeit daraus?"
+      },
+      "answer": {
+        "fa": "درخت (یا یک گیاه بزرگ). از یک دانهٔ خیلی کوچک، چیزی بلند و زنده رشد می‌کند.",
+        "en": "A tree (or a big plant). From a very tiny seed, something tall and living grows.",
+        "de": "Ein Baum (oder eine große Pflanze). Aus einem winzigen Samen wächst etwas Großes und Lebendiges."
+      },
+      "caregiver": {
+        "fa": "با هم فکر کنید که یک درخت بزرگ روزی دانه‌ای به کوچکی نوک انگشت بوده. بگذار تصویر درخت را لمس کند.",
+        "en": "Imagine together that a big tree was once a seed as small as a fingertip. Let them tap the tree.",
+        "de": "Stellt euch gemeinsam vor, dass ein großer Baum einst ein Samen so klein wie eine Fingerspitze war. Lass es den Baum antippen."
+      },
+      "choices": [
+        { "id": "tree", "pic": "tree" },
+        { "id": "stone", "pic": "stone" },
+        { "id": "house", "pic": "house" }
+      ],
+      "answerId": "tree",
+      "audioPending": true
+    },
+    {
+      "id": "pl-5",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "ریشهٔ گیاه باید جایی باشد که آن را نگه دارد و آب بگیرد. گیاه ریشه‌اش را کجا می‌فرستد؟",
+        "en": "A plant's roots need a place to hold on and drink. Where does a plant send its roots?",
+        "de": "Die Wurzeln einer Pflanze brauchen einen Ort zum Festhalten und Trinken. Wohin schickt eine Pflanze ihre Wurzeln?"
+      },
+      "answer": {
+        "fa": "به خاکِ باغ و زمین. ریشه‌ها در خاک گیاه را محکم نگه می‌دارند و آب می‌نوشند.",
+        "en": "Into the soil of a garden or the ground. Roots hold the plant firm and drink water from the soil.",
+        "de": "In die Erde eines Gartens oder den Boden. Wurzeln halten die Pflanze fest und trinken Wasser aus der Erde."
+      },
+      "caregiver": {
+        "fa": "بپرس ریشه‌ها کجا می‌روند — بالا به آسمان یا پایین در خاک؟ بگذار تصویر باغ (خاک) را لمس کند.",
+        "en": "Ask where roots go — up to the sky, or down into the soil? Let them tap the garden (the soil).",
+        "de": "Frage, wohin Wurzeln gehen — hinauf in den Himmel oder hinunter in die Erde? Lass es den Garten (die Erde) antippen."
+      },
+      "choices": [
+        { "id": "garden", "pic": "garden" },
+        { "id": "sky", "pic": "sky" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "garden",
+      "audioPending": true
+    },
+    {
+      "id": "pl-6",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "match",
+      "prompt": {
+        "fa": "هر جانور خانه‌ای دارد که به آن زیستگاه می‌گوییم. هر جانور را به خانه‌اش برسان.",
+        "en": "Each animal has a home we call its habitat. Send each animal to its home.",
+        "de": "Jedes Tier hat ein Zuhause, das wir Lebensraum nennen. Bring jedes Tier zu seinem Zuhause."
+      },
+      "answer": {
+        "fa": "ماهی در آب زندگی می‌کند و پرنده در آسمان پرواز می‌کند و روی درخت لانه می‌سازد.",
+        "en": "A fish lives in the water, and a bird flies in the sky and nests in trees.",
+        "de": "Ein Fisch lebt im Wasser, und ein Vogel fliegt am Himmel und nistet in Bäumen."
+      },
+      "caregiver": {
+        "fa": "برای هر دور، جانور بالای کارت را نشان بده و بپرس خانه‌اش کجاست. بگذار زیستگاه درست را لمس کند.",
+        "en": "For each round, point to the animal at the top and ask where its home is. Let them tap the right habitat.",
+        "de": "Zeig bei jeder Runde auf das Tier oben und frage, wo sein Zuhause ist. Lass es den richtigen Lebensraum antippen."
+      },
+      "rounds": [
+        {
+          "heroPic": "fish",
+          "choices": [
+            { "id": "water", "pic": "water" },
+            { "id": "sky", "pic": "sky" },
+            { "id": "tree", "pic": "tree" }
+          ],
+          "answerId": "water"
+        },
+        {
+          "heroPic": "bird",
+          "choices": [
+            { "id": "sky", "pic": "sky" },
+            { "id": "water", "pic": "water" },
+            { "id": "stone", "pic": "stone" }
+          ],
+          "answerId": "sky"
+        }
+      ],
+      "audioPending": true
+    },
+    {
+      "id": "pl-7",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "موجودات زنده رشد می‌کنند و به آب و غذا نیاز دارند. کدام یک زنده است و رشد می‌کند؟",
+        "en": "Living things grow and need water and food. Which one is living and grows?",
+        "de": "Lebewesen wachsen und brauchen Wasser und Nahrung. Welches ist lebendig und wächst?"
+      },
+      "answer": {
+        "fa": "درخت زنده است و رشد می‌کند؛ سنگ زنده نیست و رشد نمی‌کند.",
+        "en": "The tree is living and grows; a stone is not living and does not grow.",
+        "de": "Der Baum lebt und wächst; ein Stein lebt nicht und wächst nicht."
+      },
+      "caregiver": {
+        "fa": "بپرس: «کدام روزی کوچک بود و بزرگ شد؟» درخت. بگذار تصویر درخت را لمس کند.",
+        "en": "Ask: \"Which one was once small and grew bigger?\" The tree. Let them tap the tree.",
+        "de": "Frage: „Welches war einmal klein und wurde größer?“ Der Baum. Lass es den Baum antippen."
+      },
+      "choices": [
+        { "id": "tree", "pic": "tree" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "tree",
+      "audioPending": true
+    },
+    {
+      "id": "pl-8",
+      "type": "plants-habitats",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "به یک گیاه نزدیک خودت فکر کن (یا یکی را تصور کن). بلند بگو دو چیزی که آن گیاه برای رشد لازم دارد.",
+        "en": "Think of a plant near you (or imagine one). Say aloud two things that plant needs to grow.",
+        "de": "Denk an eine Pflanze in deiner Nähe (oder stell dir eine vor). Sag laut zwei Dinge, die diese Pflanze zum Wachsen braucht."
+      },
+      "answer": {
+        "fa": "آفرین! نور، آب و خاک — گیاه به این‌ها نیاز دارد. تو حالا یک کاشف کوچک هستی.",
+        "en": "Well done! Light, water and soil — a plant needs these. You are a little scientist now.",
+        "de": "Gut gemacht! Licht, Wasser und Erde — das braucht eine Pflanze. Du bist jetzt eine kleine Forscherin."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن نیازهای گیاه را به یاد بیاورد (نور، آب، خاک). جواب درست/غلط ندارد — هدف مرور با کلمات خودش است.",
+        "en": "Help the child recall a plant's needs (light, water, soil). No right/wrong answer — the goal is to review in their own words.",
+        "de": "Hilf dem Kind, die Bedürfnisse einer Pflanze zu nennen (Licht, Wasser, Erde). Kein Richtig/Falsch — das Ziel ist die Wiederholung in eigenen Worten."
+      },
+      "audioPending": true
+    }
+  ]
+}

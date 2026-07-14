@@ -34,6 +34,7 @@ const STRINGS = {
     shapes: 'شکل و نقش',
     healthSafety: 'سلامت و ایمنی',
     addSubtract: 'جمع و تفریق',
+    plantsHabitats: 'گیاهان و زیستگاه',
     pick: 'یک درس را انتخاب کن',
     plannedTopics: 'این گروه سنی یاد می‌گیرد:',
     listen: 'گوش کن',
@@ -78,6 +79,7 @@ const STRINGS = {
     shapes: 'Shapes & patterns',
     healthSafety: 'Health & safety',
     addSubtract: 'Add & subtract',
+    plantsHabitats: 'Plants & habitats',
     pick: 'Pick a lesson',
     plannedTopics: 'This age group will learn:',
     listen: 'Listen',
@@ -122,6 +124,7 @@ const STRINGS = {
     shapes: 'Formen & Muster',
     healthSafety: 'Gesundheit & Sicherheit',
     addSubtract: 'Plus und Minus',
+    plantsHabitats: 'Pflanzen & Lebensräume',
     pick: 'Wähle eine Lektion',
     plannedTopics: 'Diese Altersgruppe lernt:',
     listen: 'Hören',
@@ -226,7 +229,8 @@ const KIND_KEY = {
   'guess-check': 'guessCheck',
   'shapes': 'shapes',
   'health-safety': 'healthSafety',
-  'add-subtract': 'addSubtract'
+  'add-subtract': 'addSubtract',
+  'plants-habitats': 'plantsHabitats'
 };
 
 /* PACKS — the bundled content shelf, built AT BOOT from the single-source

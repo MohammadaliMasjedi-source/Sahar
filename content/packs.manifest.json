@@ -49,7 +49,8 @@
       },
       "packs": [
         { "id": "t2.numeracy.add-subtract",   "file": "t2-numeracy-add-subtract.json",    "pic": "hand" },
-        { "id": "t2.thinking.fact-vs-opinion", "file": "t2-thinking-fact-vs-opinion.json", "pic": "statement" }
+        { "id": "t2.thinking.fact-vs-opinion", "file": "t2-thinking-fact-vs-opinion.json", "pic": "statement" },
+        { "id": "t2.science.plants-habitats",  "file": "t2-science-plants-habitats.json",   "pic": "leaf" }
       ]
     },
     {
