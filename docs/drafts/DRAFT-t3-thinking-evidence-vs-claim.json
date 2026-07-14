@@ -1,0 +1,241 @@
+{
+  "_draft": "PENDING RED-TEAM GATE — NOT SHIPPED. This file lives in docs/drafts/ on purpose: it is NOT in content/, NOT listed in content/packs.manifest.json, and NOT precached by sw.js, so the 10-12 shelf stays an honest empty shell and the content validator (which only scans content/) stays green. See docs/PLAN-10-12-next-week.md §7. Before it may ship, next week's 10-12 lane MUST: (1) run the mandatory double red-team (pedagogy + child-safeguarding) + secular audit and write the dated red-team doc; (2) get a native-Dari review of the fa strings (standing caveat N-1); (3) move this file into content/ as t3-thinking-evidence-vs-claim.json, add its {id,file,pic} line to the 10-12 band in packs.manifest.json, bump the sw.js cache string; (4) run npm test green and verify in-browser (fa/en/de, RTL, teacher.html) with zero console errors.",
+  "packId": "t3.thinking.evidence-vs-claim",
+  "version": "2.0.0",
+  "tier": 3,
+  "ageBand": "10-11",
+  "subject": "critical-thinking — evidence vs. claim, reliable sources, and correlation is not cause (gently)",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "شاهد یا ادعا؟",
+    "en": "Evidence or Claim?",
+    "de": "Beleg oder Behauptung?"
+  },
+  "intro": {
+    "fa": "ادعا چیزی است که کسی می‌گوید درست است. شاهد چیزی است که می‌توانیم وارسی کنیم تا ببینیم آیا واقعاً درست است. در این درس دربارهٔ آنچه مردم به ما می‌گویند دو پرسش می‌کنیم: «شاهدش چیست؟» و «چطور می‌توانم وارسی‌اش کنم؟» گوش کن و لمس کن.",
+    "en": "A claim is something someone says is true. Evidence is what we can check to see if it really is. In this lesson we ask two questions about what people tell us: \"What's the evidence?\" and \"How could I check it?\" Listen and tap.",
+    "de": "Eine Behauptung ist etwas, das jemand als wahr bezeichnet. Ein Beleg ist etwas, das wir überprüfen können, um zu sehen, ob es wirklich stimmt. In dieser Lektion stellen wir zwei Fragen zu dem, was Menschen uns sagen: „Was ist der Beleg?“ und „Wie könnte ich es überprüfen?“ Höre zu und tippe."
+  },
+  "cards": [
+    {
+      "id": "ec-1",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "امیر می‌گوید: «دیشب باران بارید.» این حرفِ او یک ادعاست. چه چیزی شاهدِ درست‌بودنِ این ادعاست؟",
+        "en": "Amir says, \"It rained last night.\" His words are a claim. What would be evidence that his claim is true?",
+        "de": "Amir sagt: „Letzte Nacht hat es geregnet.“ Seine Worte sind eine Behauptung. Was wäre ein Beleg dafür, dass seine Behauptung stimmt?"
+      },
+      "answer": {
+        "fa": "شاهد چیزی است که می‌توانیم وارسی کنیم — مثلِ اینکه بیرون برویم و زمینِ خیس را ببینیم. اینکه امیر چقدر مطمئن است، شاهد نیست.",
+        "en": "Evidence is something we can check — like going outside and seeing the wet ground. How sure Amir feels is not evidence.",
+        "de": "Ein Beleg ist etwas, das wir überprüfen können — zum Beispiel nach draußen gehen und den nassen Boden sehen. Wie sicher Amir sich fühlt, ist kein Beleg."
+      },
+      "caregiver": {
+        "fa": "بپرس: «چطور بفهمیم واقعاً باران باریده؟» (بیرون را نگاه کنیم، زمین را لمس کنیم.) این شاهد است. بگذار تصویر تیک (چیزی که می‌توان وارسی کرد) را لمس کند.",
+        "en": "Ask: \"How could we find out if it really rained?\" (Look outside, feel the ground.) That is evidence. Let them tap the check-mark (something we can check).",
+        "de": "Frage: „Wie könnten wir herausfinden, ob es wirklich geregnet hat?“ (Nach draußen schauen, den Boden fühlen.) Das ist ein Beleg. Lass es das Häkchen antippen (etwas, das wir überprüfen können)."
+      },
+      "choices": [
+        { "id": "evidence", "pic": "check-mark" },
+        { "id": "feeling", "pic": "thought-bubble" }
+      ],
+      "answerId": "evidence",
+      "audioPending": true
+    },
+    {
+      "id": "ec-2",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "هر روز به گیاهت آب می‌دهی و برایش آواز می‌خوانی، و گیاه رشد می‌کند. کسی می‌گوید: «آواز باعثِ رشدش شد.» آیا این ثابت شده، یا شاید چیزِ دیگری علتش باشد؟",
+        "en": "You water your plant and sing to it every day, and it grows. Someone says, \"The singing made it grow.\" Is that proven, or could something else be the cause?",
+        "de": "Du gießt deine Pflanze jeden Tag und singst für sie, und sie wächst. Jemand sagt: „Das Singen hat sie wachsen lassen.“ Ist das bewiesen, oder könnte etwas anderes die Ursache sein?"
+      },
+      "answer": {
+        "fa": "این فقط یک حدس است — شاید آب و نورِ آفتاب علتِ واقعی باشند. وقتی دو چیز با هم اتفاق می‌افتند، همیشه یکی علتِ دیگری نیست. برای اطمینان باید یک‌بار با آواز و یک‌بار بدونِ آواز امتحان کنیم.",
+        "en": "It's just a guess — the water and sunlight could be the real cause. When two things happen together, one did not always cause the other. To be sure, we would test with singing and without.",
+        "de": "Das ist nur eine Vermutung — Wasser und Sonnenlicht könnten die wahre Ursache sein. Wenn zwei Dinge zusammen passieren, hat nicht immer das eine das andere verursacht. Um sicher zu sein, würden wir es mit und ohne Singen testen."
+      },
+      "caregiver": {
+        "fa": "این کارت بذرِ ملایمِ «هم‌زمانی علت نیست» را می‌کارد. بپرس: «وقتی گیاه رشد می‌کرد، دیگر چه چیزی هم عوض می‌شد؟» بگذار تصویر ابرِ حدس را لمس کند.",
+        "en": "This plants a gentle \"correlation isn't cause\" seed. Ask: \"What else changed while the plant grew?\" Let them tap the guess-cloud.",
+        "de": "Das sät sanft den Gedanken „zusammen passieren heißt nicht verursachen“. Frage: „Was hat sich sonst noch verändert, während die Pflanze wuchs?“ Lass es die Vermutungswolke antippen."
+      },
+      "choices": [
+        { "id": "proven", "pic": "check-mark" },
+        { "id": "guess", "pic": "guess-cloud" }
+      ],
+      "answerId": "guess",
+      "audioPending": true
+    },
+    {
+      "id": "ec-3",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "دو کودک می‌گویند دیشب برف بارید. یکی از پنجره بیرون را دید. دیگری خواب بود و فقط حدس زد. حرفِ کدام‌یک شاهدِ قوی‌تری است؟",
+        "en": "Two children say it snowed in the night. One looked out the window and saw it. One was asleep and just guessed. Whose word is stronger evidence?",
+        "de": "Zwei Kinder sagen, es habe nachts geschneit. Eines hat aus dem Fenster geschaut und es gesehen. Eines hat geschlafen und nur geraten. Wessen Aussage ist der stärkere Beleg?"
+      },
+      "answer": {
+        "fa": "کودکی که آن را دید. کسی که خودش وارسی کرده، منبعِ قابل‌اعتمادتری است تا کسی که فقط حدس زده.",
+        "en": "The child who saw it. Someone who checked for themselves is a more reliable source than someone who only guessed.",
+        "de": "Das Kind, das es gesehen hat. Wer selbst nachgeschaut hat, ist eine verlässlichere Quelle als jemand, der nur geraten hat."
+      },
+      "caregiver": {
+        "fa": "این همان ایدهٔ «منبعِ قابل‌اعتماد در برابرِ نامطمئن» است. بپرس: «کی واقعاً وارسی کرد؟» بگذار تصویر تیک (کسی که دید) را لمس کند.",
+        "en": "This is the \"reliable vs. unreliable source\" idea. Ask: \"Who actually checked?\" Let them tap the check-mark (the one who saw it).",
+        "de": "Das ist die Idee „verlässliche vs. unzuverlässige Quelle“. Frage: „Wer hat wirklich nachgeschaut?“ Lass es das Häkchen antippen (das Kind, das es gesehen hat)."
+      },
+      "choices": [
+        { "id": "saw", "pic": "check-mark" },
+        { "id": "guessed", "pic": "guess-cloud" }
+      ],
+      "answerId": "saw",
+      "audioPending": true
+    },
+    {
+      "id": "ec-4",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "این آب زلال به‌نظر می‌رسد. کسی می‌گوید: «آبِ زلال همیشه برای نوشیدن سالم است.» آیا زلال‌بودن به‌تنهایی شاهدِ کافی است که آب سالم است؟",
+        "en": "This water looks clear. Someone says, \"Clear water is always safe to drink.\" Is looking clear enough evidence that it is safe?",
+        "de": "Dieses Wasser sieht klar aus. Jemand sagt: „Klares Wasser ist immer sicher zu trinken.“ Ist klares Aussehen genug Beleg dafür, dass es sicher ist?"
+      },
+      "answer": {
+        "fa": "نه. فقط با نگاه‌کردن نمی‌توان فهمید آب سالم است یا نه — آبِ زلال هم می‌تواند میکروب‌هایی داشته باشد که دیده نمی‌شوند. برای اطمینان، یک بزرگ‌تر آن را وارسی می‌کند، یا آب را اول می‌جوشانند یا پاک می‌کنند.",
+        "en": "No. You cannot tell if water is safe just by looking — clear water can still have germs you cannot see. To be sure, a grown-up checks it, or the water is boiled or cleaned first.",
+        "de": "Nein. Man kann nicht am Aussehen erkennen, ob Wasser sicher ist — klares Wasser kann Keime enthalten, die man nicht sieht. Um sicherzugehen, prüft es ein Erwachsener, oder das Wasser wird zuerst abgekocht oder gereinigt."
+      },
+      "caregiver": {
+        "fa": "یک کارتِ فکری با نگاهِ ایمنی: ظاهر، دلیل نیست. کودک را مطمئن کن — درس این است که «فقط با نگاه نمی‌شود فهمید، پس یک بزرگ‌تر کمک می‌کند وارسی کنیم.» بگذار تصویر ضربدر (شاهدِ کافی نیست) را لمس کند.",
+        "en": "A safety-aware thinking card: looks are not proof. Reassure the child — the lesson is \"we can't tell just by looking, so a grown-up helps check.\" Let them tap the cross-mark (not enough evidence).",
+        "de": "Eine sicherheitsbewusste Denk-Karte: Aussehen ist kein Beweis. Beruhige das Kind — die Lektion ist „man kann es nicht am Aussehen erkennen, deshalb hilft ein Erwachsener beim Prüfen.“ Lass es das Kreuz antippen (nicht genug Beleg)."
+      },
+      "choices": [
+        { "id": "enough", "pic": "check-mark" },
+        { "id": "not-enough", "pic": "cross-mark" }
+      ],
+      "answerId": "not-enough",
+      "audioPending": true
+    },
+    {
+      "id": "ec-5",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "کسی ادعا می‌کند: «این درخت از خانه بلندتر است.» چطور می‌توانی این ادعا را به چیزی تبدیل کنی که واقعاً بدانی؟",
+        "en": "Someone claims, \"This tree is taller than the house.\" How could you turn that claim into something you really know?",
+        "de": "Jemand behauptet: „Dieser Baum ist höher als das Haus.“ Wie könntest du diese Behauptung in etwas verwandeln, das du wirklich weißt?"
+      },
+      "answer": {
+        "fa": "برو و وارسی کن — آن‌ها را اندازه بگیر، یا کمی دورتر بایست و با دقت نگاه کن. وقتی خودت وارسی می‌کنی، ادعا به دانستن تبدیل می‌شود.",
+        "en": "Go and check — measure them, or stand back and look carefully. Checking for yourself turns a claim into knowledge.",
+        "de": "Geh und überprüfe es — miss beide, oder tritt zurück und schau genau hin. Selbst nachzuprüfen macht aus einer Behauptung Wissen."
+      },
+      "caregiver": {
+        "fa": "این کارت مهارتِ «چطور وارسی کنیم» را تمرین می‌کند. بپرس: «چه کاری کنیم تا مطمئن شویم؟» بگذار تصویر تیک (برو و وارسی کن) را لمس کند.",
+        "en": "This practises \"how to check.\" Ask: \"What could we do to find out for sure?\" Let them tap the check-mark (go and check).",
+        "de": "Das übt „wie man überprüft“. Frage: „Was könnten wir tun, um sicherzugehen?“ Lass es das Häkchen antippen (geh und überprüfe)."
+      },
+      "choices": [
+        { "id": "just-agree", "pic": "guess-cloud" },
+        { "id": "go-check", "pic": "check-mark" }
+      ],
+      "answerId": "go-check",
+      "audioPending": true
+    },
+    {
+      "id": "ec-6",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "یکی از این‌ها را می‌توان با شاهد روشن کرد؛ دیگری یک حس است که هیچ شاهدی آن را روشن نمی‌کند. کدام‌یک را می‌توانیم وارسی کنیم — «در حوض ماهی هست» یا «آن، خوشحال‌ترین ماهیِ دنیاست»؟",
+        "en": "One of these can be settled with evidence; the other is a feeling no evidence can settle. Which can we check — \"there are fish in the pond,\" or \"that is the happiest fish in the world\"?",
+        "de": "Eines davon lässt sich mit Belegen klären; das andere ist ein Gefühl, das kein Beleg klären kann. Was können wir überprüfen — „im Teich sind Fische“ oder „das ist der glücklichste Fisch der Welt“?"
+      },
+      "answer": {
+        "fa": "«در حوض ماهی هست» — می‌توانیم برویم و نگاه کنیم. «خوشحال‌ترین ماهی» یک حس است و هیچ شاهدی نیست که بتواند آن را اندازه بگیرد.",
+        "en": "\"There are fish in the pond\" — we can go and look. \"The happiest fish\" is a feeling, and there is no evidence that could measure it.",
+        "de": "„Im Teich sind Fische“ — wir können nachschauen. „Der glücklichste Fisch“ ist ein Gefühl, und es gibt keinen Beleg, der es messen könnte."
+      },
+      "caregiver": {
+        "fa": "این کارت ادعای قابل‌وارسی را از یک حس جدا می‌کند. بپرس: «کدام را می‌توانیم نگاه کنیم و بفهمیم؟» بگذار تصویر تیک (ماهی در حوض) را لمس کند.",
+        "en": "Sorts a checkable claim from a feeling. Ask: \"Which one could we look and find out?\" Let them tap the check-mark (fish in the pond).",
+        "de": "Trennt eine überprüfbare Behauptung von einem Gefühl. Frage: „Bei welchem könnten wir nachschauen?“ Lass es das Häkchen antippen (Fische im Teich)."
+      },
+      "choices": [
+        { "id": "checkable", "pic": "check-mark" },
+        { "id": "feeling", "pic": "thought-bubble" }
+      ],
+      "answerId": "checkable",
+      "audioPending": true
+    },
+    {
+      "id": "ec-7",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "کلاهِ آبی‌ات را سر کردی، و بعد باران بارید. کسی می‌گوید: «کلاهت باران را آورد.» آیا این شاهدِ قوی است، یا فقط دو چیز که با هم اتفاق افتادند؟",
+        "en": "You wore your blue hat, and then it rained. Someone says, \"Your hat made it rain.\" Is that strong evidence, or just two things that happened together?",
+        "de": "Du hast deine blaue Mütze getragen, und dann hat es geregnet. Jemand sagt: „Deine Mütze hat den Regen gebracht.“ Ist das ein starker Beleg, oder nur zwei Dinge, die zusammen passiert sind?"
+      },
+      "answer": {
+        "fa": "فقط دو چیز که با هم اتفاق افتادند — یک هم‌زمانیِ تصادفی. کلاه نمی‌تواند باعثِ باران شود. اینکه دو چیز نزدیک به هم رخ دهند، دلیل نیست که یکی علتِ دیگری باشد.",
+        "en": "Just two things that happened together — a coincidence. A hat cannot cause rain. Two things happening close in time is not proof that one caused the other.",
+        "de": "Nur zwei Dinge, die zusammen passiert sind — ein Zufall. Eine Mütze kann keinen Regen verursachen. Dass zwei Dinge zeitlich nah passieren, ist kein Beweis, dass eines das andere verursacht hat."
+      },
+      "caregiver": {
+        "fa": "روشن‌ترین کارتِ «هم‌زمانی علت نیست». با هم به آن بخندید — آیا واقعاً یک کلاه می‌تواند آسمان را عوض کند؟ بگذار تصویر ابرِ حدس (فقط یک تصادف) را لمس کند.",
+        "en": "The clearest \"correlation isn't cause\" card. Laugh about it together — could a hat really change the sky? Let them tap the guess-cloud (just a coincidence).",
+        "de": "Die klarste „Korrelation ist keine Ursache“-Karte. Lacht gemeinsam darüber — könnte eine Mütze wirklich den Himmel verändern? Lass es die Vermutungswolke antippen (nur ein Zufall)."
+      },
+      "choices": [
+        { "id": "strong", "pic": "check-mark" },
+        { "id": "coincidence", "pic": "guess-cloud" }
+      ],
+      "answerId": "coincidence",
+      "audioPending": true
+    },
+    {
+      "id": "ec-8",
+      "type": "evidence-claim",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "حالا نوبتِ توست. به چیزی فکر کن که کسی به تو گفته درست است. بلند بگو — و بعد بگو چطور می‌توانی آن را وارسی کنی. دنبالِ چه شاهدی می‌گردی؟",
+        "en": "Now it's your turn. Think of something someone told you is true. Say it aloud — then say one way you could check it. What evidence would you look for?",
+        "de": "Jetzt bist du dran. Denk an etwas, das dir jemand als wahr gesagt hat. Sag es laut — und sag dann einen Weg, wie du es überprüfen könntest. Nach welchem Beleg würdest du suchen?"
+      },
+      "answer": {
+        "fa": "آفرین! وقتی می‌پرسی «شاهدش چیست؟» و «چطور وارسی‌اش کنم؟»، فریب‌دادنت برای هرکسی خیلی سخت‌تر می‌شود.",
+        "en": "Well done! When you ask \"what's the evidence?\" and \"how can I check it?\", it is much harder for anyone to fool you.",
+        "de": "Gut gemacht! Wenn du fragst „Was ist der Beleg?“ und „Wie kann ich das überprüfen?“, kann dich niemand mehr so leicht täuschen."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن یک ادعا را انتخاب کند و راهی برای وارسی‌اش پیدا کند. درست/غلط ندارد — هدف، عادتِ پرسیدنِ شاهد است.",
+        "en": "Help the child pick any claim and think of a way to check it. There is no right/wrong — the goal is the habit of asking for evidence.",
+        "de": "Hilf dem Kind, eine beliebige Behauptung zu wählen und einen Weg zu finden, sie zu überprüfen. Es gibt kein Richtig/Falsch — das Ziel ist die Gewohnheit, nach Belegen zu fragen."
+      },
+      "audioPending": true
+    }
+  ]
+}
