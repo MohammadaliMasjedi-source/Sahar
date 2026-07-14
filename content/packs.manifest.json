@@ -48,7 +48,8 @@
         "de": ["Sätze lesen", "Plus und Minus", "Fakt oder Meinung", "Pflanzen & Lebensräume", "Eine Weltkarte"]
       },
       "packs": [
-        { "id": "t2.numeracy.add-subtract",   "file": "t2-numeracy-add-subtract.json",    "pic": "hand" }
+        { "id": "t2.numeracy.add-subtract",   "file": "t2-numeracy-add-subtract.json",    "pic": "hand" },
+        { "id": "t2.thinking.fact-vs-opinion", "file": "t2-thinking-fact-vs-opinion.json", "pic": "statement" }
       ]
     },
     {

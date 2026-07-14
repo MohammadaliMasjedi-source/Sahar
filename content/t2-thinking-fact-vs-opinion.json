@@ -1,0 +1,240 @@
+{
+  "packId": "t2.thinking.fact-vs-opinion",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "critical-thinking — fact vs. opinion, and can it be checked?",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "حقیقت یا نظر؟",
+    "en": "Fact or Opinion?",
+    "de": "Tatsache oder Meinung?"
+  },
+  "intro": {
+    "fa": "بعضی جمله‌ها را می‌توان وارسی کرد — این‌ها حقیقت‌اند. بعضی جمله‌ها حسّ یا سلیقهٔ کسی را می‌گویند — این‌ها نظرند. هیچ‌کدام بد نیست؛ فقط فرق دارند. گوش کن و لمس کن.",
+    "en": "Some sentences can be checked — those are facts. Some sentences say what someone feels or likes — those are opinions. Neither is bad; they are just different. Listen and tap.",
+    "de": "Manche Sätze kann man überprüfen — das sind Tatsachen. Manche Sätze sagen, was jemand fühlt oder mag — das sind Meinungen. Keines ist schlecht; sie sind nur verschieden. Höre zu und tippe."
+  },
+  "cards": [
+    {
+      "id": "fo-1",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "«آب تر است.» این حقیقت است یا نظر؟",
+        "en": "\"Water is wet.\" Is this a fact or an opinion?",
+        "de": "„Wasser ist nass.“ Ist das eine Tatsache oder eine Meinung?"
+      },
+      "answer": {
+        "fa": "حقیقت — می‌توانی آن را لمس کنی و وارسی کنی. هر کس آن را امتحان کند همین را می‌بیند.",
+        "en": "Fact — you can touch it and check it. Anyone who tries it sees the same thing.",
+        "de": "Tatsache — du kannst es anfassen und überprüfen. Jeder, der es ausprobiert, sieht dasselbe."
+      },
+      "caregiver": {
+        "fa": "جمله را بلند بخوان و بپرس: «می‌توانیم این را وارسی کنیم؟» اگر بله، حقیقت است. بگذار تصویر تیک را لمس کند.",
+        "en": "Read the sentence aloud and ask: \"Can we check this?\" If yes, it is a fact. Let them tap the check-mark.",
+        "de": "Lies den Satz laut vor und frage: „Können wir das überprüfen?“ Wenn ja, ist es eine Tatsache. Lass es das Häkchen antippen."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "fact",
+      "audioPending": true
+    },
+    {
+      "id": "fo-2",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "«زمستان بهترین فصل است.» حقیقت است یا نظر؟",
+        "en": "\"Winter is the best season.\" Fact or opinion?",
+        "de": "„Der Winter ist die beste Jahreszeit.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "نظر — واژهٔ «بهترین» یک حسّ است. کسی زمستان را دوست دارد و کسی تابستان را؛ هیچ‌کدام غلط نیست.",
+        "en": "Opinion — the word \"best\" is a feeling. Some love winter, some love summer; neither is wrong.",
+        "de": "Meinung — das Wort „beste“ ist ein Gefühl. Manche lieben den Winter, manche den Sommer; keines ist falsch."
+      },
+      "caregiver": {
+        "fa": "بپرس: «آیا همه باید همین را حس کنند؟» اگر نه، نظر است. واژه‌های حسّی مثل «بهترین/قشنگ‌ترین» نشانهٔ نظرند.",
+        "en": "Ask: \"Must everyone feel the same?\" If no, it is an opinion. Feeling-words like \"best/prettiest\" signal an opinion.",
+        "de": "Frage: „Muss jeder dasselbe fühlen?“ Wenn nein, ist es eine Meinung. Gefühlswörter wie „beste/schönste“ deuten auf eine Meinung hin."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "opinion",
+      "audioPending": true
+    },
+    {
+      "id": "fo-3",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "«یک هفته هفت روز دارد.» حقیقت است یا نظر؟",
+        "en": "\"A week has seven days.\" Fact or opinion?",
+        "de": "„Eine Woche hat sieben Tage.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "حقیقت — می‌توانی روزها را بشماری و وارسی کنی: شنبه، یکشنبه … هفت روز.",
+        "en": "Fact — you can count the days and check: one, two … seven days.",
+        "de": "Tatsache — du kannst die Tage zählen und überprüfen: eins, zwei … sieben Tage."
+      },
+      "caregiver": {
+        "fa": "با کودک روزهای هفته را بشمار تا ببیند این جمله را می‌توان وارسی کرد. بگذار تصویر تیک را لمس کند.",
+        "en": "Count the days of the week with the child to see this sentence can be checked. Let them tap the check-mark.",
+        "de": "Zähle mit dem Kind die Wochentage, um zu sehen, dass dieser Satz überprüfbar ist. Lass es das Häkchen antippen."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "fact",
+      "audioPending": true
+    },
+    {
+      "id": "fo-4",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "«این سوپ از هر سوپ دیگری خوشمزه‌تر است.» حقیقت است یا نظر؟",
+        "en": "\"This soup tastes better than any other.\" Fact or opinion?",
+        "de": "„Diese Suppe schmeckt besser als jede andere.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "نظر — مزه یک حسّ است. شاید برای تو خوشمزه‌ترین باشد و برای دیگری نه.",
+        "en": "Opinion — taste is a feeling. It may be the tastiest for you and not for someone else.",
+        "de": "Meinung — Geschmack ist ein Gefühl. Für dich mag sie am besten schmecken, für jemand anderen nicht."
+      },
+      "caregiver": {
+        "fa": "بپرس: «آیا مزه را می‌توان با خط‌کش اندازه گرفت؟» نه — پس این نظر است، نه حقیقت.",
+        "en": "Ask: \"Can taste be measured with a ruler?\" No — so this is an opinion, not a fact.",
+        "de": "Frage: „Kann man Geschmack mit einem Lineal messen?“ Nein — also ist das eine Meinung, keine Tatsache."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "opinion",
+      "audioPending": true
+    },
+    {
+      "id": "fo-5",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "کسی می‌گوید «بیرون باران می‌بارد.» آیا این چیزی است که می‌توانیم وارسی کنیم، یا فقط یک حسّ است؟",
+        "en": "Someone says \"It is raining outside.\" Is this something we can check, or just a feeling?",
+        "de": "Jemand sagt „Draußen regnet es.“ Ist das etwas, das wir überprüfen können, oder nur ein Gefühl?"
+      },
+      "answer": {
+        "fa": "می‌توانیم وارسی کنیم — کافی است بیرون را نگاه کنیم. جمله‌ای که بشود وارسی کرد، حقیقت است.",
+        "en": "We can check it — we just look outside. A sentence you can check is a fact.",
+        "de": "Wir können es überprüfen — wir schauen einfach nach draußen. Ein Satz, den man überprüfen kann, ist eine Tatsache."
+      },
+      "caregiver": {
+        "fa": "این کارت مهارت «چطور وارسی کنیم» را تمرین می‌کند. بپرس: «چطور می‌توانیم مطمئن شویم؟» بگذار تصویر تیک (می‌توان وارسی کرد) را لمس کند.",
+        "en": "This card practises the \"how to check\" skill. Ask: \"How could we make sure?\" Let them tap the check-mark (we can check).",
+        "de": "Diese Karte übt die Fähigkeit „wie überprüfen“. Frage: „Wie könnten wir sichergehen?“ Lass es das Häkchen antippen (wir können prüfen)."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "fact",
+      "audioPending": true
+    },
+    {
+      "id": "fo-6",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "صبح زمین را خیس می‌بینی. کسی می‌گوید «حتماً دیشب باران باریده.» آیا این را مطمئن می‌دانی، یا یک حدسِ خوب است؟",
+        "en": "In the morning you see wet ground. Someone says \"It must have rained last night.\" Do you know this for sure, or is it a good guess?",
+        "de": "Am Morgen siehst du nassen Boden. Jemand sagt „Es hat sicher letzte Nacht geregnet.“ Weißt du das sicher, oder ist es eine gute Vermutung?"
+      },
+      "answer": {
+        "fa": "یک حدسِ خوب — شاید باران باریده، اما شاید هم آب‌پاشی یا شبنم بوده. برای دانستن، به شاهد بیشتری نیاز داریم.",
+        "en": "A good guess — maybe it rained, but maybe it was a hose or morning dew. To know, we need more evidence.",
+        "de": "Eine gute Vermutung — vielleicht hat es geregnet, vielleicht war es aber ein Schlauch oder Morgentau. Um es zu wissen, brauchen wir mehr Belege."
+      },
+      "caregiver": {
+        "fa": "این کارت فرقِ «حدس» و «دانستن» را نشان می‌دهد (بذرِ شاهد در برابر ادعا). بگذار تصویر ابرِ حدس را لمس کند و با هم فکر کنید دیگر چه چیزی می‌تواند زمین را خیس کند.",
+        "en": "This card shows the difference between guessing and knowing (an evidence-vs-claim seed). Let them tap the guess-cloud, and think together what else could wet the ground.",
+        "de": "Diese Karte zeigt den Unterschied zwischen Vermuten und Wissen (ein Beleg-gegen-Behauptung-Samen). Lass es die Vermutungswolke antippen und überlegt gemeinsam, was den Boden sonst nass machen könnte."
+      },
+      "choices": [
+        { "id": "known", "pic": "check-mark" },
+        { "id": "guess", "pic": "guess-cloud" }
+      ],
+      "answerId": "guess",
+      "audioPending": true
+    },
+    {
+      "id": "fo-7",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "«همه باید رنگ سبز را دوست داشته باشند.» حقیقت است یا نظر؟",
+        "en": "\"Everyone should like the colour green.\" Fact or opinion?",
+        "de": "„Alle sollten die Farbe Grün mögen.“ Tatsache oder Meinung?"
+      },
+      "answer": {
+        "fa": "نظر — دوست داشتن یک رنگ حسّ هرکس است. کسی نمی‌تواند حسّ همه را تعیین کند.",
+        "en": "Opinion — liking a colour is each person's own feeling. No one can decide how everyone must feel.",
+        "de": "Meinung — eine Farbe zu mögen ist das eigene Gefühl jedes Menschen. Niemand kann bestimmen, wie alle fühlen müssen."
+      },
+      "caregiver": {
+        "fa": "بپرس رنگ محبوب کودک چیست و رنگ محبوب تو چه. نشان بده که هر دو درست‌اند — این یعنی نظر. بگذار تصویر فکر را لمس کند.",
+        "en": "Ask the child's favourite colour and yours. Show both are okay — that is what an opinion means. Let them tap the thought-bubble.",
+        "de": "Frage nach der Lieblingsfarbe des Kindes und deiner. Zeig, dass beide in Ordnung sind — das bedeutet Meinung. Lass es die Gedankenblase antippen."
+      },
+      "choices": [
+        { "id": "fact", "pic": "check-mark" },
+        { "id": "opinion", "pic": "thought-bubble" }
+      ],
+      "answerId": "opinion",
+      "audioPending": true
+    },
+    {
+      "id": "fo-8",
+      "type": "fact-opinion",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "حالا نوبت توست. یک حقیقت دربارهٔ امروز بگو (چیزی که بشود وارسی کرد)، و یک نظر (چیزی که حس می‌کنی یا دوست داری). بلند بگو.",
+        "en": "Now it's your turn. Say one fact about today (something we could check), and one opinion (something you feel or like). Say them aloud.",
+        "de": "Jetzt bist du dran. Sag eine Tatsache über heute (etwas, das wir überprüfen könnten) und eine Meinung (etwas, das du fühlst oder magst). Sag sie laut."
+      },
+      "answer": {
+        "fa": "آفرین! وقتی می‌توانی حقیقت و نظر را از هم جدا کنی، کسی نمی‌تواند به‌راحتی فریبت بدهد.",
+        "en": "Well done! When you can tell fact from opinion, it is much harder for anyone to fool you.",
+        "de": "Gut gemacht! Wenn du Tatsache von Meinung unterscheiden kannst, kann dich niemand so leicht täuschen."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن دو جمله بسازد. جواب درست/غلط ندارد. اگر نظرش را گفت، بپرس «چرا این‌طور فکر می‌کنی؟» تا دلیل آوردن را تمرین کند.",
+        "en": "Help the child make two sentences. There is no right/wrong. If they give an opinion, ask \"why do you think that?\" to practise giving a reason.",
+        "de": "Hilf dem Kind, zwei Sätze zu bilden. Es gibt kein Richtig/Falsch. Bei einer Meinung frage „warum denkst du das?“, um das Begründen zu üben."
+      },
+      "audioPending": true
+    }
+  ]
+}
