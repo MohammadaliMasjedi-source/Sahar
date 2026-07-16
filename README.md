@@ -177,7 +177,12 @@ accounts required.** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ---
 
-## License
+## Ownership & License
+
+**Owner / copyright holder: Mohammadali Masjedi** — © 2026. Sahar is an independent,
+not-for-profit project; it is not owned by any company, institution, or employer. The maintainer
+holds the copyright and is the point of contact for the Digital Public Goods submission (see
+[`funding/DPG-SUBMISSION-CHECKLIST.md`](funding/DPG-SUBMISSION-CHECKLIST.md)).
 
 Dual-licensed on purpose, so the engine travels far and the lessons stay free:
 
@@ -185,7 +190,10 @@ Dual-licensed on purpose, so the engine travels far and the lessons stay free:
 - **Original learning packs → [CC-BY-SA 4.0](LICENSE-CONTENT.md).** Use and adapt them freely,
   credit the source, and keep derivatives free under the same terms.
 
-See [`LICENSE-NOTE.md`](LICENSE-NOTE.md) for the reasoning.
+See [`LICENSE-NOTE.md`](LICENSE-NOTE.md) for the reasoning, and
+[`SDG-MAPPING.md`](SDG-MAPPING.md) · [`PRIVACY.md`](PRIVACY.md) · [`DO-NO-HARM.md`](DO-NO-HARM.md) ·
+[`DATA-HANDLING.md`](DATA-HANDLING.md) · [`PLATFORM-INDEPENDENCE.md`](PLATFORM-INDEPENDENCE.md) for
+the Digital Public Goods readiness docs.
 
 ---
 
