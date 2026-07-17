@@ -8,6 +8,12 @@ passes a secular/neutral review, needs no sensitive-topic decision, and is built
 **openly licensed sources**. (The sensitive half — teen sexual-health — is deliberately **not**
 in this repo; see the separate scope note held privately for Mo.)
 
+**Status: DRAFT — red-teamed 2026-07-17, NOT gate-passed. See [`RED-TEAM.md`](RED-TEAM.md).**
+The adversarial four-expert review did **not** clear the do-no-harm gate: the repo is
+currently PUBLIC (not private), and the mandatory native Iran-Persian and child-safeguarding
+human reviews have not run. Arithmetic and answer keys all checked out; the blockers are
+governance + un-run human gates, plus one licensing-table correction. Do not ship.
+
 **Status: DRAFT — NOT SHIPPED.** This pack is *not* listed in
 [`../../content/packs.manifest.json`](../../content/packs.manifest.json) and *not* precached by
 [`../../sw.js`](../../sw.js). That is on purpose:
@@ -74,9 +80,13 @@ these sources — it is **not** a translation of any one copyrighted book.
 | **Calling Bullshit** (Bergstrom & West) | **Custom "personal educational use"** — NOT open, no redistribution/adaptation | callingbullshit.org | **Concept/ideas only** (spotting manipulated numbers). **No text copied or translated.** |
 | **UNESCO Media & Information Literacy curriculum** | Licence **not stated on the public page (UNVERIFIED for direct text reuse)** | unesco.org | Used **only as a topical scaffold** (what themes to cover). **No UNESCO text translated.** |
 
-**Deliberately excluded** (do not translate — NoDerivatives or not-open): *yourbias.is* and
-*yourlogicalfallacyis.com* (CC BY-NC-**ND**), UNESCO ITGSE (CC BY-NC-**ND**), any all-rights-reserved
-blog. Translation is a derivative work; ND forbids it.
+**Deliberately excluded** (do not reuse — NonCommercial or NoDerivatives or not-open):
+*yourbias.is* and *yourlogicalfallacyis.com* are **CC BY-NC 3.0** (NonCommercial; **no** ND) —
+re-verified by fetching 2026-07-17; the earlier "CC BY-NC-ND" note here was wrong. They are
+still excluded because **NonCommercial + share-alike is incompatible with Sahar's CC BY-SA 4.0**,
+not because of ND. UNESCO ITGSE is CC BY-NC-**ND**; any all-rights-reserved blog is excluded too.
+Translation/adaptation of an ND work is forbidden; NC content cannot be relicensed under CC BY-SA.
+(Only concepts were used from these; no text was translated regardless.)
 
 ## What must happen before this ships (the gate)
 
