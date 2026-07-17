@@ -1,0 +1,774 @@
+{
+  "packId": "t4.thinking.clear-thinking-media-literacy",
+  "version": "0.1.0",
+  "tier": 4,
+  "ageBand": "13-16",
+  "subject": "critical thinking & media literacy — spotting manipulation, checking claims, and changing your mind well",
+  "lang": ["fa", "en", "de"],
+  "packType": "teen-reader-lessons",
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content (© the Sahar teen-education team). Built on ideas and structure from openly licensed sources — see per-lesson `sources` and the folder README. No copyrighted text was translated or copied.",
+  "signature": null,
+  "status": "DRAFT — NOT SHIPPED. Pending the mandatory gate (see reviewGate). This pack is deliberately NOT listed in content/packs.manifest.json and NOT precached by sw.js, so the live 12-14 shelf stays an honest empty shell and the Tier-1 content validator stays green.",
+  "notShippedReason": "Sahar's charter (DO-NO-HARM.md) requires a double red-team (pedagogy + child-safeguarding) + a secular audit + a native-Persian review before ANY content ships. This teen pack is a new pedagogy (reader lessons, not audio-first tap cards) and a new age band; none of those gates has run on it yet. Shipping it to the shelf now would violate the project's own do-no-harm discipline.",
+  "reviewGate": [
+    "1. Pedagogy red-team: age-fit vocabulary/sentence length/cognitive load; each idea scaffolds on the one before; no shame framing; examples are fair.",
+    "2. Child-safeguarding red-team: no example could get a teen in trouble at home or with the state; nothing political/regime-adjacent; no disclosure prompts; teen stays in control.",
+    "3. Secular audit: no religious, political, or nationalist framing in any example or phrasing.",
+    "4. Native-Persian review (Iran-Persian, NOT Dari — see localizationNote): a native speaker reads and edits every fa string for naturalness and teen register.",
+    "5. Only after 1-4: decide a teen reader view in the app, add to a manifest, and re-run the full test suite green."
+  ],
+  "localizationNote": {
+    "fa": "این بسته به فارسیِ ایران نوشته شده است (نه دری). لحن برای نوجوانِ ۱۳ تا ۱۶ ساله در نظر گرفته شده. مثال‌ها عمداً غیرسیاسی‌اند و دربارهٔ فکرِ روشن‌اند، نه دربارهٔ هیچ حکومتی. متن پیش از انتشار باید توسط یک فارسی‌زبانِ بومی بازخوانی و ویرایش شود.",
+    "en": "This pack is written in Iran-Persian (not the Dari-flavored fa of Sahar's shipped Tier-1 packs). Register is aimed at a 13-16-year-old. Examples are deliberately non-political — about thinking clearly, never about any government. The fa text must be reviewed and edited by a native speaker before release.",
+    "de": "Dieses Paket ist auf Iran-Persisch verfasst (nicht das Dari-gefärbte fa der ausgelieferten Tier-1-Pakete von Sahar). Der Ton richtet sich an 13- bis 16-Jährige. Die Beispiele sind bewusst unpolitisch — es geht um klares Denken, nie um eine Regierung. Der fa-Text muss vor der Veröffentlichung von einer Person mit persischer Muttersprache geprüft und bearbeitet werden."
+  },
+  "title": {
+    "fa": "روشن فکر کردن: راهنمای نوجوان برای فریب‌نخوردن",
+    "en": "Thinking Clearly: A Teen's Guide to Not Being Fooled",
+    "de": "Klar denken: Ein Leitfaden für Jugendliche, sich nicht täuschen zu lassen"
+  },
+  "intro": {
+    "fa": "هر روز صدها ادعا به سمتِ تو می‌آید — در اینستاگرام و تلگرام، در تبلیغِ کلاسِ کنکور، از زبانِ دوستان، در تیترِ خبرها. بعضی درست‌اند، بعضی نیمه‌درست، و بعضی ساخته شده‌اند تا تو کاری بکنی یا چیزی باور کنی. این بسته به تو ابزار می‌دهد، نه جواب‌های آماده. هدف این نیست که به همه‌چیز شک کنی؛ هدف این است که بدانی کِی و چطور وارسی کنی. هشت درسِ کوتاه، هرکدام یک ایدهٔ اصلی، یک مثالِ آشنا، یک تمرینِ پنج‌دقیقه‌ای و کلیدِ پاسخ. عجله نکن — یکی در روز هم عالی است.",
+    "en": "Hundreds of claims come at you every day — on Instagram and Telegram, in an ad for an exam-prep class, from friends, in a news headline. Some are true, some half-true, and some are built to make you do something or believe something. This pack gives you tools, not ready-made answers. The goal is not to doubt everything; it is to know when and how to check. Eight short lessons, each with one big idea, a familiar example, a five-minute exercise, and an answer key. Don't rush — one a day is great.",
+    "de": "Jeden Tag kommen Hunderte von Behauptungen auf dich zu — auf Instagram und Telegram, in einer Werbung für einen Prüfungsvorbereitungskurs, von Freunden, in einer Schlagzeile. Manche sind wahr, manche halbwahr, und manche sind darauf ausgelegt, dich zu etwas zu bringen oder etwas glauben zu lassen. Dieses Paket gibt dir Werkzeuge, keine fertigen Antworten. Das Ziel ist nicht, an allem zu zweifeln; es ist, zu wissen, wann und wie man prüft. Acht kurze Lektionen, jede mit einer Kernidee, einem vertrauten Beispiel, einer Fünf-Minuten-Übung und einem Lösungsschlüssel. Überstürze nichts — eine pro Tag ist großartig."
+  },
+  "lessons": [
+    {
+      "id": "ct-1",
+      "slug": "how-a-headline-lies",
+      "title": {
+        "fa": "درس ۱ — چطور یک تیتر دروغ می‌گوید",
+        "en": "Lesson 1 — How a Headline Lies",
+        "de": "Lektion 1 — Wie eine Schlagzeile lügt"
+      },
+      "bigIdea": {
+        "fa": "یک تیتر می‌تواند تک‌تکِ کلماتش راست باشد و باز هم تصویری غلط در ذهنت بسازد. تیتر برای کلیک‌خوردن ساخته می‌شود، نه لزوماً برای رساندنِ حقیقت.",
+        "en": "A headline can be true word by word and still leave a false picture in your head. Headlines are built to get clicks, not necessarily to deliver the truth.",
+        "de": "Eine Schlagzeile kann Wort für Wort wahr sein und trotzdem ein falsches Bild in deinem Kopf hinterlassen. Schlagzeilen sind darauf ausgelegt, Klicks zu bekommen, nicht unbedingt die Wahrheit zu vermitteln."
+      },
+      "example": {
+        "fa": "یک پیج در اینستاگرام می‌نویسد: «دانش‌آموزانی که این روش را خواندند، رتبه‌شان تا ۳ برابر بهتر شد!» احساس می‌کنی جا می‌مانی اگر همین حالا ثبت‌نام نکنی. اما دقت کن: «تا ۳ برابر» یعنی حتی اگر فقط یک نفر از هزار نفر سه برابر بهتر شده باشد، این جمله باز هم فنی-درست است. تیتر نمی‌گوید چند نفر، از چه رتبه‌ای به چه رتبه‌ای، و آن بقیه چه شدند.",
+        "en": "An Instagram page writes: \"Students who used this method improved their rank by up to 3x!\" You feel you'll be left behind if you don't sign up right now. But look closely: \"up to 3x\" means that even if just one student out of a thousand tripled, the sentence is still technically true. The headline doesn't say how many people, from what rank to what rank, or what happened to everyone else.",
+        "de": "Eine Instagram-Seite schreibt: „Schüler, die diese Methode nutzten, verbesserten ihren Rang um bis zu das 3-fache!“ Du hast das Gefühl, abgehängt zu werden, wenn du dich nicht sofort anmeldest. Aber schau genau hin: „bis zu 3-fach“ bedeutet, dass der Satz selbst dann technisch wahr ist, wenn nur ein einziger von tausend Schülern sich verdreifacht hat. Die Schlagzeile sagt nicht, wie viele Leute, von welchem Rang zu welchem Rang, oder was mit allen anderen passiert ist."
+      },
+      "teaching": {
+        "fa": "تیترها با چند ترفندِ همیشگی کار می‌کنند: کلماتِ لاستیکی مثل «تا»، «ممکن است»، «می‌تواند» که به تیتر اجازه می‌دهند بزرگ‌نمایی کند بی‌آنکه دروغِ آشکار بگوید؛ حذفِ زمینه (چه کسی، چند نفر، در مقایسه با چه چیزی)؛ و بازی با ترس یا حسرت تا سریع واکنش نشان دهی. سه پرسشِ ساده تیتر را لخت می‌کند: «دقیقاً چه چیزی گفته شد و چه چیزی گفته نشد؟»، «در مقایسه با چه؟» و «چه کسی از باورِ من به این تیتر سود می‌برد؟» تیتر را هیچ‌وقت به‌جای خبر نگیر؛ تیتر فقط درِ ورودی است.",
+        "en": "Headlines run on a few standard tricks: rubbery words like \"up to,\" \"may,\" \"could,\" which let a headline exaggerate without telling an outright lie; dropped context (who, how many, compared to what); and pushing fear or FOMO so you react fast. Three simple questions strip a headline bare: \"What exactly was said, and what was left out?\", \"Compared to what?\", and \"Who benefits if I believe this?\" Never take the headline as the story; the headline is only the front door.",
+        "de": "Schlagzeilen funktionieren mit ein paar Standardtricks: Gummiwörter wie „bis zu“, „könnte“, „möglicherweise“, die es einer Schlagzeile erlauben zu übertreiben, ohne eine glatte Lüge zu erzählen; weggelassener Kontext (wer, wie viele, verglichen womit); und das Schüren von Angst oder FOMO, damit du schnell reagierst. Drei einfache Fragen entkleiden eine Schlagzeile: „Was genau wurde gesagt und was wurde weggelassen?“, „Verglichen womit?“ und „Wer profitiert, wenn ich das glaube?“ Nimm die Schlagzeile nie für die ganze Geschichte; die Schlagzeile ist nur die Eingangstür."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر تیتر بگو کدام اطلاعاتِ مهم جا افتاده که پیش از باور کردن باید بپرسی.",
+          "en": "For each headline, say which important piece of information is missing that you'd need to ask about before believing it.",
+          "de": "Sag bei jeder Schlagzeile, welche wichtige Information fehlt, nach der du fragen müsstest, bevor du sie glaubst."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "«۹۰٪ کاربران این اپلیکیشن راضی‌اند.»",
+              "en": "\"90% of this app's users are satisfied.\"",
+              "de": "„90 % der Nutzer dieser App sind zufrieden.“"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "«این خوراکی خطرِ فلان بیماری را تا ۵۰٪ کم می‌کند.»",
+              "en": "\"This food cuts the risk of a certain illness by up to 50%.\"",
+              "de": "„Dieses Lebensmittel senkt das Risiko einer bestimmten Krankheit um bis zu 50 %.“"
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "«فروشِ گوشیِ فلان برند دو برابر شد.»",
+              "en": "\"Sales of a certain phone brand doubled.\"",
+              "de": "„Der Verkauf einer bestimmten Handymarke hat sich verdoppelt.“"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "۹۰٪ از چند نفر؟ اگر فقط ۱۰ نفر نظر داده باشند، ۹۰٪ یعنی ۹ نفر. و «راضی» را چه کسی و چطور اندازه گرفته؟ آن‌هایی که ناراضی بودند و اپ را پاک کردند، اصلاً در نظرسنجی بوده‌اند؟",
+              "en": "90% of how many people? If only 10 people answered, 90% is 9 people. And who measured \"satisfied,\" and how? Were the people who were unhappy and deleted the app even in the survey?",
+              "de": "90 % von wie vielen Leuten? Wenn nur 10 geantwortet haben, sind 90 % neun Personen. Und wer hat „zufrieden“ wie gemessen? Waren die Unzufriedenen, die die App gelöscht haben, überhaupt in der Umfrage?"
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "«تا ۵۰٪» یعنی سقف، نه معمول — شاید برای اغلبِ مردم تقریباً صفر باشد. و ۵۰٪ کم‌شدنِ چه؟ اگر خطرِ اولیه ۲ در میلیون بوده، نصف‌شدنش تقریباً بی‌معناست. کاهشِ نسبی را باید کنارِ عددِ پایه دید.",
+              "en": "\"Up to 50%\" is a ceiling, not the norm — for most people it might be near zero. And 50% reduction of what? If the baseline risk was 2 in a million, halving it means almost nothing. A relative reduction only makes sense next to the base number.",
+              "de": "„Bis zu 50 %“ ist eine Obergrenze, nicht der Normalfall — für die meisten könnte es nahe null sein. Und 50 % Senkung wovon? Wenn das Ausgangsrisiko 2 zu einer Million war, bedeutet eine Halbierung fast nichts. Eine relative Senkung ergibt nur neben der Ausgangszahl Sinn."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "از چند تا به چند تا، و در چه بازهٔ زمانی؟ دو برابرِ ۱۰۰۰ تا با دو برابرِ یک میلیون خیلی فرق دارد. و در مقایسه با کدام دوره — نسبت به ماهِ قبل، یا نسبت به سالِ گذشته که فروش خیلی پایین بوده؟",
+              "en": "From how many to how many, and over what time? Doubling from 1,000 is very different from doubling from a million. And compared to which period — last month, or a bad year when sales were very low?",
+              "de": "Von wie vielen auf wie viele, und über welchen Zeitraum? Eine Verdopplung von 1.000 ist etwas ganz anderes als eine Verdopplung von einer Million. Und verglichen mit welchem Zeitraum — dem Vormonat oder einem schlechten Jahr mit sehr niedrigen Verkäufen?"
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Concept of media/claim literacy — original text; the 'compared to what / who benefits' framing is common to media-literacy pedagogy (UNESCO MIL curriculum used only as a topical scaffold; its text was not translated).",
+        "Idea of 'independent confirmation' and questioning claims — C. Sagan, The Demon-Haunted World (1995), concept only; no text reproduced."
+      ]
+    },
+    {
+      "id": "ct-2",
+      "slug": "correlation-is-not-cause",
+      "title": {
+        "fa": "درس ۲ — با هم اتفاق افتادن، علت‌بودن نیست",
+        "en": "Lesson 2 — Happening Together Is Not Causing",
+        "de": "Lektion 2 — Zusammen passieren heißt nicht verursachen"
+      },
+      "bigIdea": {
+        "fa": "اگر دو چیز با هم بالا و پایین بروند، معنایش این نیست که یکی علتِ دیگری است. شاید علتِ سومی هر دو را می‌راند، یا فقط تصادف است.",
+        "en": "If two things rise and fall together, that does not mean one causes the other. A third thing may be driving both, or it may just be coincidence.",
+        "de": "Wenn zwei Dinge zusammen steigen und fallen, heißt das nicht, dass eines das andere verursacht. Ein drittes Ding könnte beide antreiben, oder es ist einfach Zufall."
+      },
+      "example": {
+        "fa": "یک پیج ادعا می‌کند: «بچه‌هایی که این خودکارِ خاص را می‌خرند، نمرهٔ بهتری می‌گیرند.» شاید راست باشد که این دو با هم دیده می‌شوند — ولی احتمالاً علتش خودکار نیست. خانواده‌هایی که پول و وقتِ خرید چنین لوازمی دارند، معمولاً کلاس و کتابِ کمک‌آموزشی هم می‌گیرند و پیگیرِ درسِ بچه‌اند. آن «علتِ پنهان» (وضعِ خانواده) هم خریدِ خودکار را بالا می‌برد، هم نمره را. خودکار فقط همراهِ ماجراست، نه علتش.",
+        "en": "A page claims: \"Kids who buy this particular pen get better grades.\" It may be true that the two show up together — but the pen is probably not the cause. Families with the money and time to buy such supplies usually also pay for classes and study books and stay on top of schoolwork. That hidden cause (the family's situation) pushes up both pen-buying and grades. The pen is just along for the ride, not the cause.",
+        "de": "Eine Seite behauptet: „Kinder, die diesen bestimmten Stift kaufen, bekommen bessere Noten.“ Es mag stimmen, dass beide zusammen auftreten — aber der Stift ist wahrscheinlich nicht die Ursache. Familien mit dem Geld und der Zeit, solche Materialien zu kaufen, zahlen meist auch für Kurse und Lernbücher und kümmern sich um die Schularbeit. Diese versteckte Ursache (die Lage der Familie) treibt sowohl den Stiftkauf als auch die Noten nach oben. Der Stift ist nur Beifahrer, nicht die Ursache."
+      },
+      "teaching": {
+        "fa": "وقتی می‌شنوی «الف با ب رابطه دارد»، سه احتمالِ دیگر را کنارِ «الف علتِ ب است» بگذار: شاید ب علتِ الف باشد (جهت برعکس)؛ شاید یک عاملِ سوم هر دو را بسازد (علتِ پنهان)؛ یا شاید فقط تصادف باشد، مخصوصاً وقتی نمونه کوچک است. تنها راهِ مطمئنِ اثباتِ علت، آزمایشِ کنترل‌شده است: دو گروهِ مشابه که فقط در همان یک چیز فرق دارند. تبلیغ‌ها و پست‌ها تقریباً هیچ‌وقت این را ندارند؛ آن‌ها فقط دو چیزِ هم‌زمان را نشانت می‌دهند و امیدوارند خودت نتیجهٔ علت‌ومعلولی بگیری.",
+        "en": "When you hear \"A is linked to B,\" set three other possibilities beside \"A causes B\": maybe B causes A (reversed direction); maybe a third factor drives both (a hidden cause); or maybe it's just coincidence, especially with a small sample. The only reliable way to prove cause is a controlled experiment: two similar groups that differ in only that one thing. Ads and posts almost never have this; they just show you two things happening together and hope you'll draw the cause-and-effect conclusion yourself.",
+        "de": "Wenn du hörst „A hängt mit B zusammen“, stelle drei andere Möglichkeiten neben „A verursacht B“: vielleicht verursacht B das A (umgekehrte Richtung); vielleicht treibt ein dritter Faktor beide an (eine versteckte Ursache); oder es ist vielleicht nur Zufall, besonders bei einer kleinen Stichprobe. Der einzige verlässliche Weg, Ursache zu beweisen, ist ein kontrolliertes Experiment: zwei ähnliche Gruppen, die sich nur in dieser einen Sache unterscheiden. Werbung und Posts haben das fast nie; sie zeigen dir nur zwei Dinge, die zusammen passieren, und hoffen, dass du selbst die Ursache-Wirkung-Schlussfolgerung ziehst."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر ادعا بگو محتمل‌ترین توضیحِ دیگر (به‌جای علتِ ادعا شده) چیست: جهتِ برعکس، علتِ پنهان، یا تصادف.",
+          "en": "For each claim, say the most likely alternative explanation (instead of the claimed cause): reversed direction, hidden cause, or coincidence.",
+          "de": "Nenne bei jeder Behauptung die wahrscheinlichste andere Erklärung (statt der behaupteten Ursache): umgekehrte Richtung, versteckte Ursache oder Zufall."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "«هر چه بستنیِ بیشتری در شهر فروخته می‌شود، شنا کردن در استخرها هم بیشتر می‌شود؛ پس بستنی مردم را به شنا می‌کشاند.»",
+              "en": "\"The more ice cream a city sells, the more people swim in pools; so ice cream drives people to swim.\"",
+              "de": "„Je mehr Eis eine Stadt verkauft, desto mehr Menschen schwimmen in Pools; also treibt Eis die Leute zum Schwimmen.“"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "«نوجوان‌هایی که کمتر می‌خوابند نمرهٔ پایین‌تری دارند؛ پس نمرهٔ پایین باعثِ کم‌خوابی می‌شود.»",
+              "en": "\"Teens who sleep less get lower grades; so low grades cause less sleep.\"",
+              "de": "„Jugendliche, die weniger schlafen, bekommen schlechtere Noten; also verursachen schlechte Noten weniger Schlaf.“"
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "«روزی که پیراهنِ شانسم را پوشیدم، امتحان را خوب دادم؛ پس پیراهن شانس می‌آورد.»",
+              "en": "\"The day I wore my lucky shirt, I did well on the exam; so the shirt brings luck.\"",
+              "de": "„An dem Tag, an dem ich mein Glückshemd trug, lief die Prüfung gut; also bringt das Hemd Glück.“"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "علتِ پنهان: گرمای هوا. روزهای گرم هم فروشِ بستنی را بالا می‌برد، هم شنا را. هیچ‌کدام علتِ دیگری نیست.",
+              "en": "Hidden cause: hot weather. Hot days push up both ice cream sales and swimming. Neither causes the other.",
+              "de": "Versteckte Ursache: heißes Wetter. Heiße Tage treiben sowohl Eisverkauf als auch Schwimmen nach oben. Keines verursacht das andere."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "احتمالاً جهت برعکس (یا هر دو طرفه): کم‌خوابی تمرکز را پایین می‌آورد و به نمره آسیب می‌زند. ادعای «نمرهٔ پایین باعثِ کم‌خوابی» جهت را وارونه کرده؛ دستِ‌کم باید هر دو جهت را بررسی کرد.",
+              "en": "Likely reversed direction (or both ways): too little sleep lowers focus and hurts grades. The claim \"low grades cause less sleep\" flips the direction; at least both directions must be checked.",
+              "de": "Wahrscheinlich umgekehrte Richtung (oder beide): zu wenig Schlaf senkt die Konzentration und schadet den Noten. Die Behauptung „schlechte Noten verursachen weniger Schlaf“ dreht die Richtung um; zumindest müssen beide Richtungen geprüft werden."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "تصادف (و یک نمونه). یک بارِ خوب دادن ربطی به پیراهن ندارد. برای اثبات باید بارها با پیراهن و بارها بدونِ آن امتحان بدهی؛ آن‌وقت می‌بینی فرقی نمی‌کند.",
+              "en": "Coincidence (and a single case). One good result has nothing to do with the shirt. To prove it, you'd take many exams with the shirt and many without; then you'd see it makes no difference.",
+              "de": "Zufall (und ein Einzelfall). Ein gutes Ergebnis hat nichts mit dem Hemd zu tun. Um es zu beweisen, würdest du viele Prüfungen mit und viele ohne das Hemd schreiben; dann sähest du, dass es keinen Unterschied macht."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Correlation does not imply causation' — CC BY-SA 4.0 (concepts: reverse causation, confounding/third variable, coincidence). Rewritten in original words; no text copied.",
+        "M. Van Cleave, Introduction to Logic and Critical Thinking 2e — CC BY 4.0 (causal reasoning and the 'false cause' fallacy). Adapted into original teen-level text."
+      ]
+    },
+    {
+      "id": "ct-3",
+      "slug": "spotting-a-manipulated-statistic",
+      "title": {
+        "fa": "درس ۳ — یک آمارِ دست‌کاری‌شده را بشناس",
+        "en": "Lesson 3 — Spotting a Manipulated Statistic",
+        "de": "Lektion 3 — Eine manipulierte Statistik erkennen"
+      },
+      "bigIdea": {
+        "fa": "عدد بی‌طرف به‌نظر می‌رسد، ولی می‌شود آن را طوری چید که دروغ نگوید و در عینِ حال گمراه کند. درصد بدونِ عددِ پایه، و نمودارِ بریده، دو ترفندِ رایج‌اند.",
+        "en": "A number looks neutral, but it can be arranged so that it doesn't lie yet still misleads. A percentage without its base number, and a chopped graph, are two common tricks.",
+        "de": "Eine Zahl wirkt neutral, aber sie lässt sich so anordnen, dass sie nicht lügt und trotzdem in die Irre führt. Ein Prozentsatz ohne seine Ausgangszahl und ein abgeschnittenes Diagramm sind zwei gängige Tricks."
+      },
+      "example": {
+        "fa": "یک کلاسِ کنکور تبلیغ می‌کند: «امسال قبولی‌های ما ۳۰۰٪ رشد کرد!» عالی به‌نظر می‌رسد. اما اگر پارسال ۲ نفر قبول شده باشند و امسال ۸ نفر، این هم می‌شود ۳۰۰٪ رشد — از عددی خیلی کوچک. درصدِ رشد بدونِ عددِ اولیه تقریباً بی‌معناست. حالا فرض کن همان کلاس نموداری نشان دهد که ستونِ امسال سه برابرِ پارسال بلند است، ولی محورِ پایین از ۹۰ شروع شده نه از صفر؛ چشمت یک جهش می‌بیند که در واقعیت کوچک است.",
+        "en": "An exam-prep class advertises: \"Our admissions grew 300% this year!\" It sounds great. But if 2 students got in last year and 8 this year, that is also 300% growth — from a tiny number. A growth percentage without the starting number is nearly meaningless. Now imagine the same class shows a graph where this year's bar looks three times taller than last year's, but the axis starts at 90, not at zero; your eye sees a leap that is actually small.",
+        "de": "Ein Prüfungsvorbereitungskurs wirbt: „Unsere Zulassungen sind dieses Jahr um 300 % gewachsen!“ Klingt großartig. Aber wenn letztes Jahr 2 Schüler aufgenommen wurden und dieses Jahr 8, ist das auch 300 % Wachstum — von einer winzigen Zahl. Ein Wachstumsprozentsatz ohne die Ausgangszahl ist fast bedeutungslos. Stell dir nun vor, derselbe Kurs zeigt ein Diagramm, in dem der diesjährige Balken dreimal so hoch aussieht wie der letztjährige, aber die Achse beginnt bei 90, nicht bei null; dein Auge sieht einen Sprung, der in Wirklichkeit klein ist."
+      },
+      "teaching": {
+        "fa": "چهار پرسش، بیشترِ آمارهای گمراه‌کننده را لو می‌دهد. یک: عددِ پایه چیست؟ (۳۰۰٪ از ۲ نفر با ۳۰۰٪ از ۲۰۰۰ نفر زمین تا آسمان فرق دارد.) دو: درصد است یا تعداد؟ گاهی یکی را می‌گویند چون بزرگ‌تر به‌نظر می‌رسد. سه: نمونه از کجا آمده و چند تاست؟ نظرسنجی از ده نفرِ طرفدار، آمار نیست. چهار: نمودار از صفر شروع شده؟ اگر نه، بلندیِ ستون‌ها فریب می‌دهد. یادت باشد: میانگین هم می‌تواند پنهان‌کار باشد — اگر چند عددِ خیلی بزرگ باشند، «میانگین» تصویرِ واقعیِ اکثریت را نشان نمی‌دهد؛ آن‌جا «میانه» صادق‌تر است.",
+        "en": "Four questions expose most misleading statistics. One: what is the base number? (300% of 2 people is worlds apart from 300% of 2,000.) Two: is it a percentage or a count? Sometimes one is quoted because it looks bigger. Three: where did the sample come from and how big is it? A survey of ten fans is not data. Four: does the graph start at zero? If not, the bar heights deceive. And remember: an average can hide things too — if a few values are huge, the \"average\" won't show the real picture of the majority; there the \"median\" is more honest.",
+        "de": "Vier Fragen entlarven die meisten irreführenden Statistiken. Erstens: Was ist die Ausgangszahl? (300 % von 2 Personen sind Welten entfernt von 300 % von 2.000.) Zweitens: Ist es ein Prozentsatz oder eine Anzahl? Manchmal wird das eine genannt, weil es größer aussieht. Drittens: Woher stammt die Stichprobe und wie groß ist sie? Eine Umfrage unter zehn Fans sind keine Daten. Viertens: Beginnt das Diagramm bei null? Wenn nicht, täuschen die Balkenhöhen. Und denk daran: Auch ein Durchschnitt kann etwas verbergen — wenn ein paar Werte riesig sind, zeigt der „Durchschnitt“ nicht das wahre Bild der Mehrheit; dort ist der „Median“ ehrlicher."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر مورد بگو کدام ترفندِ آماری در کار است و چه چیزی باید بپرسی.",
+          "en": "For each item, say which statistical trick is at work and what you should ask.",
+          "de": "Sag bei jedem Punkt, welcher statistische Trick am Werk ist und was du fragen solltest."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "«فروشِ محصولِ ما این ماه ۵۰۰٪ رشد کرد.»",
+              "en": "\"Our product's sales grew 500% this month.\"",
+              "de": "„Der Verkauf unseres Produkts ist diesen Monat um 500 % gewachsen.“"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "«۸ نفر از هر ۱۰ نفر این خمیردندان را توصیه می‌کنند.» (زیرِ تبلیغ ریز نوشته: بر اساسِ نظرِ ۱۲ نفر.)",
+              "en": "\"8 out of 10 people recommend this toothpaste.\" (Fine print: based on 12 people asked.)",
+              "de": "„8 von 10 Personen empfehlen diese Zahnpasta.“ (Kleingedrucktes: basierend auf 12 befragten Personen.)"
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "«میانگینِ درآمدِ فارغ‌التحصیلانِ این دوره خیلی بالاست.» (چند نفرشان استثنائی پول‌دار شده‌اند.)",
+              "en": "\"The average income of this course's graduates is very high.\" (A few of them became exceptionally rich.)",
+              "de": "„Das Durchschnittseinkommen der Absolventen dieses Kurses ist sehr hoch.“ (Einige wenige wurden außergewöhnlich reich.)"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "درصد بدونِ عددِ پایه. بپرس: از چند تا به چند تا؟ ۵۰۰٪ رشد از ۱ فروش به ۶ فروش، خبری نیست.",
+              "en": "Percentage without a base number. Ask: from how many to how many? 500% growth from 1 sale to 6 sales is nothing.",
+              "de": "Prozentsatz ohne Ausgangszahl. Frage: von wie vielen auf wie viele? 500 % Wachstum von 1 auf 6 Verkäufe ist nichts."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "نمونهٔ کوچک (و شاید انتخابی). ۸ از ۱۰ فقط از ۱۲ نفر تقریباً بی‌ارزش است. بپرس: چند نفر، چطور انتخاب شدند، و آیا از قبل طرفدار بودند؟",
+              "en": "Tiny (and maybe cherry-picked) sample. 8-out-of-10 from only 12 people is nearly worthless. Ask: how many, how were they chosen, and were they already fans?",
+              "de": "Winzige (und vielleicht ausgewählte) Stichprobe. 8 von 10 aus nur 12 Personen ist fast wertlos. Frage: wie viele, wie wurden sie ausgewählt, und waren sie schon Fans?"
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "میانگینِ گمراه‌کننده. چند نفرِ خیلی پول‌دار میانگین را بالا می‌کشند، در حالی که اکثریت شاید کم درآمد داشته باشند. بپرس: میانه چقدر است، نه میانگین.",
+              "en": "A misleading average. A few very rich people pull the average up, while the majority may earn little. Ask: what is the median, not the average.",
+              "de": "Ein irreführender Durchschnitt. Ein paar sehr reiche Leute ziehen den Durchschnitt hoch, während die Mehrheit vielleicht wenig verdient. Frage: Wie hoch ist der Median, nicht der Durchschnitt."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Misleading graph' and 'Average' (mean vs. median) — CC BY-SA 4.0 (concepts: truncated axis, base-rate omission, mean skewed by outliers). Original wording.",
+        "General numeracy/statistics-literacy concepts — original text; illustrative examples are hypothetical and labeled as such (no invented figure is presented as real data)."
+      ]
+    },
+    {
+      "id": "ct-4",
+      "slug": "base-rates",
+      "title": {
+        "fa": "درس ۴ — نرخِ پایه: چرا یک چیزِ کمیاب، کمیاب می‌ماند",
+        "en": "Lesson 4 — Base Rates: Why a Rare Thing Stays Rare",
+        "de": "Lektion 4 — Grundraten: Warum etwas Seltenes selten bleibt"
+      },
+      "bigIdea": {
+        "fa": "پیش از باور کردنِ اینکه «این نشانه یعنی آن اتفاق افتاده»، اول بپرس آن اتفاق اصلاً چقدر رایج است. اگر چیزی خیلی کمیاب باشد، حتی یک نشانهٔ نسبتاً خوب هم بیشترِ وقت‌ها اشتباه از آب درمی‌آید.",
+        "en": "Before believing \"this sign means that thing happened,\" first ask how common that thing is at all. If something is very rare, even a fairly good sign will be wrong most of the time.",
+        "de": "Bevor du glaubst „dieses Zeichen bedeutet, dass jenes passiert ist“, frage zuerst, wie häufig jenes überhaupt ist. Wenn etwas sehr selten ist, wird selbst ein ziemlich gutes Zeichen die meiste Zeit falsch liegen."
+      },
+      "example": {
+        "fa": "فرض کن یک پیام در تلگرام پخش می‌شود: «یک تستِ ساده هست که با ۹۰٪ دقت می‌گوید فلان بیماریِ نادر را داری یا نه.» تو تست می‌دهی و جواب مثبت می‌شود. آیا باید بترسی؟ بیا حساب کنیم. فرض کن این بیماری فقط در ۱ نفر از هر ۱۰۰۰ نفر هست. در یک شهرِ ۱۰۰٬۰۰۰ نفری، یعنی ۱۰۰ بیمارِ واقعی و ۹۹٬۹۰۰ سالم. تستِ ۹۰٪ دقیق، از آن ۱۰۰ بیمار حدودِ ۹۰ نفر را درست می‌گیرد. ولی همان تست روی ۹۹٬۹۰۰ سالم، اگر ۱۰٪ خطای مثبتِ کاذب داشته باشد، حدودِ ۹٬۹۹۰ نفرِ سالم را هم «مثبت» نشان می‌دهد. پس از هر کسی که جوابش مثبت شده، فقط ۹۰ از ۱۰٬۰۸۰ نفر واقعاً بیمارند — کمتر از ۱٪.",
+        "en": "Suppose a message spreads on Telegram: \"There's a simple test that tells you with 90% accuracy whether you have a certain rare illness.\" You take it and get a positive result. Should you panic? Let's do the math. Suppose the illness is in only 1 person out of 1,000. In a city of 100,000, that's 100 real cases and 99,900 healthy people. A 90%-accurate test catches about 90 of the 100 real cases. But that same test, run on 99,900 healthy people, if it has a 10% false-positive rate, will also flag about 9,990 healthy people as \"positive.\" So of everyone who tested positive, only 90 out of 10,080 are actually ill — under 1%.",
+        "de": "Angenommen, eine Nachricht verbreitet sich auf Telegram: „Es gibt einen einfachen Test, der dir mit 90 % Genauigkeit sagt, ob du eine bestimmte seltene Krankheit hast.“ Du machst ihn und bekommst ein positives Ergebnis. Solltest du in Panik geraten? Rechnen wir. Angenommen, die Krankheit betrifft nur 1 von 1.000 Personen. In einer Stadt mit 100.000 sind das 100 echte Fälle und 99.900 Gesunde. Ein zu 90 % genauer Test erkennt etwa 90 der 100 echten Fälle. Aber derselbe Test, angewendet auf 99.900 Gesunde, markiert bei einer Falsch-Positiv-Rate von 10 % auch etwa 9.990 Gesunde als „positiv“. Von allen positiv Getesteten sind also nur 90 von 10.080 wirklich krank — unter 1 %."
+      },
+      "teaching": {
+        "fa": "این همان چیزی است که ذهنِ ما طبیعی نادیده می‌گیرد: وقتی چیزی نادر است، عددِ آدم‌های سالم آن‌قدر زیاد است که حتی خطای کوچکِ تست، خروارها «مثبتِ کاذب» می‌سازد. راهِ فکر کردنش این است: اول نرخِ پایه (چند نفر اصلاً این را دارند؟)، بعد دقتِ نشانه. یک نشانهٔ خوب احتمال را جابه‌جا می‌کند، ولی از یک عددِ نادر شروع می‌شود و معمولاً هنوز هم نادر می‌ماند. همین منطق پشتِ خیلی از ترس‌های ویروسیِ فضای مجازی است: «فلان نشانه یعنی حتماً فلان» تقریباً همیشه نرخِ پایه را فراموش کرده. قبل از وحشت، بپرس: این اتفاق در کلِ جمعیت چقدر رایج است؟",
+        "en": "This is exactly what our minds naturally overlook: when something is rare, the number of healthy people is so large that even a small test error produces a mountain of \"false positives.\" The way to think about it: first the base rate (how many even have this?), then the accuracy of the sign. A good sign shifts the odds, but it starts from a rare number and usually still ends up rare. This same logic is behind many viral online scares: \"this sign definitely means that\" has almost always forgotten the base rate. Before panicking, ask: how common is this thing in the whole population?",
+        "de": "Genau das übersieht unser Verstand von Natur aus: Wenn etwas selten ist, ist die Zahl der Gesunden so groß, dass selbst ein kleiner Testfehler einen Berg von „Falsch-Positiven“ erzeugt. So denkt man darüber: zuerst die Grundrate (wie viele haben das überhaupt?), dann die Genauigkeit des Zeichens. Ein gutes Zeichen verschiebt die Chancen, aber es beginnt bei einer seltenen Zahl und endet meist immer noch selten. Dieselbe Logik steckt hinter vielen viralen Online-Panikmachen: „dieses Zeichen bedeutet definitiv jenes“ hat fast immer die Grundrate vergessen. Bevor du in Panik gerätst, frage: Wie häufig ist diese Sache in der gesamten Bevölkerung?"
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر مورد بگو چرا فراموش‌کردنِ نرخِ پایه، نتیجه را گمراه می‌کند.",
+          "en": "For each item, say why forgetting the base rate makes the conclusion misleading.",
+          "de": "Sag bei jedem Punkt, warum das Vergessen der Grundrate die Schlussfolgerung irreführend macht."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "«بیشترِ کسانی که در تصادفِ رانندگی مصدوم شدند، کمربند بسته بودند؛ پس کمربند خطرناک است.»",
+              "en": "\"Most people injured in car crashes were wearing seatbelts; so seatbelts are dangerous.\"",
+              "de": "„Die meisten bei Autounfällen Verletzten trugen einen Sicherheitsgurt; also sind Gurte gefährlich.“"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "«یک اپ می‌گوید با ۹۵٪ دقت جعلی‌بودنِ عکس را تشخیص می‌دهد و این عکس را جعلی خواند؛ پس حتماً جعلی است.» (بیشترِ عکس‌هایی که مردم چک می‌کنند واقعی‌اند.)",
+              "en": "\"An app says it detects fake photos with 95% accuracy and called this photo fake; so it must be fake.\" (Most photos people check are real.)",
+              "de": "„Eine App erkennt angeblich Fälschungen mit 95 % Genauigkeit und nannte dieses Foto gefälscht; also muss es gefälscht sein.“ (Die meisten geprüften Fotos sind echt.)"
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "«همهٔ آدم‌های موفقی که می‌شناسم صبحِ زود بیدار می‌شوند؛ پس زود بیدار شدن آدم را موفق می‌کند.»",
+              "en": "\"Every successful person I know wakes up early; so waking up early makes you successful.\"",
+              "de": "„Alle erfolgreichen Menschen, die ich kenne, stehen früh auf; also macht Frühaufstehen erfolgreich.“"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "چون تقریباً همه کمربند می‌بندند، پس طبیعی است که بیشترِ مصدومان هم کمربند بسته باشند — نرخِ پایهٔ کمربندبستن بالاست. سؤالِ درست این است: از هر ۱۰۰ نفر با کمربند و ۱۰۰ نفر بی‌کمربند، کدام گروه بیشتر آسیبِ شدید دیده؟ (بی‌کمربندها.)",
+              "en": "Because almost everyone wears a seatbelt, it's natural that most of the injured also wore one — the base rate of belt-wearing is high. The right question: of 100 belted and 100 unbelted people, which group suffered more serious injury? (The unbelted.)",
+              "de": "Weil fast alle einen Gurt tragen, ist es natürlich, dass die meisten Verletzten auch einen trugen — die Grundrate des Gurttragens ist hoch. Die richtige Frage: Von 100 angeschnallten und 100 nicht angeschnallten Personen, welche Gruppe erlitt schwerere Verletzungen? (Die nicht angeschnallten.)"
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "چون بیشترِ عکس‌ها واقعی‌اند، همان ۵٪ خطای اپ روی انبوهِ عکس‌های واقعی، کلی «جعلیِ کاذب» می‌سازد. یک جوابِ مثبت، احتمال را بالا می‌برد ولی قطعی نیست؛ باید با شواهدِ دیگر (منبع، تاریخ، نسخهٔ اصلی) هم چک کنی.",
+              "en": "Because most photos are real, the app's 5% error, applied to a huge pile of real photos, creates many \"false fakes.\" A positive raises the odds but isn't certain; you must also check other evidence (source, date, the original).",
+              "de": "Weil die meisten Fotos echt sind, erzeugt der 5-%-Fehler der App, angewendet auf einen riesigen Stapel echter Fotos, viele „falsche Fälschungen“. Ein positives Ergebnis erhöht die Chance, ist aber nicht sicher; du musst auch andere Belege prüfen (Quelle, Datum, das Original)."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "این نرخِ پایه را وارونه دیده و فقط موفق‌ها را نگاه کرده (سوگیریِ انتخاب). خیلی از آدم‌هایی که زود بیدار می‌شوند هم موفق نشده‌اند — آن‌ها را نمی‌بینی. باید هر دو گروه (زودخیز و دیرخیز) را کامل مقایسه کنی.",
+              "en": "This flips the base rate and looks only at the successful (selection bias). Many early risers did not become successful — you just don't see them. You'd need to compare both whole groups (early and late risers).",
+              "de": "Das dreht die Grundrate um und betrachtet nur die Erfolgreichen (Auswahlverzerrung). Viele Frühaufsteher wurden nicht erfolgreich — die siehst du nur nicht. Man müsste beide vollständigen Gruppen vergleichen (Früh- und Spätaufsteher)."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Base rate fallacy' — CC BY-SA 4.0 (concept and the rare-disease/false-positive reasoning). Worked example rebuilt from scratch with original numbers.",
+        "M. Van Cleave, Introduction to Logic and Critical Thinking 2e — CC BY 4.0 (probabilistic reasoning; selection bias). Original teen-level adaptation."
+      ]
+    },
+    {
+      "id": "ct-5",
+      "slug": "how-to-check-a-source",
+      "title": {
+        "fa": "درس ۵ — چطور یک منبع را وارسی کنی",
+        "en": "Lesson 5 — How to Check a Source",
+        "de": "Lektion 5 — Wie man eine Quelle prüft"
+      },
+      "bigIdea": {
+        "fa": "پیش از باور کردنِ یک خبر یا اسکرین‌شات، بپرس: چه کسی این را گفته، از کجا می‌داند، آیا سودی از باورِ من می‌برد، و آیا جای دیگری هم تأیید شده؟ فوروارد شدن، تأیید نیست.",
+        "en": "Before believing a piece of news or a screenshot, ask: who said it, how do they know, do they gain if I believe it, and is it confirmed anywhere else? Being forwarded is not confirmation.",
+        "de": "Bevor du eine Nachricht oder einen Screenshot glaubst, frage: Wer hat es gesagt, woher weiß die Person es, profitiert sie, wenn ich es glaube, und wird es irgendwo anders bestätigt? Weitergeleitet zu werden ist keine Bestätigung."
+      },
+      "example": {
+        "fa": "یک ویس یا اسکرین‌شات در گروهِ کلاس دست‌به‌دست می‌شود: «شنیدم امتحانِ فردا کنسل شد!» همه ذوق می‌کنند و پخشش می‌کنند. اما هیچ‌کس نمی‌داند این حرف اولش از کجا آمده. فوروارد شدنِ صد باره، آن را راست نمی‌کند؛ فقط پرسروصداتر می‌کند. منبعِ واقعی کجاست — اطلاعیهٔ خودِ مدرسه، یا حرفِ یک نفر که «شنیده»؟",
+        "en": "A voice note or screenshot gets passed around the class group: \"I heard tomorrow's exam is cancelled!\" Everyone's thrilled and shares it. But nobody knows where the claim first came from. Being forwarded a hundred times doesn't make it true; it just makes it louder. Where is the real source — an announcement from the school itself, or one person who \"heard\"?",
+        "de": "Eine Sprachnachricht oder ein Screenshot geht in der Klassengruppe herum: „Ich habe gehört, die Prüfung morgen ist abgesagt!“ Alle sind begeistert und teilen es. Aber niemand weiß, woher die Behauptung ursprünglich stammt. Hundertfach weitergeleitet zu werden macht es nicht wahr; es macht es nur lauter. Wo ist die echte Quelle — eine Ankündigung der Schule selbst oder eine Person, die es „gehört“ hat?"
+      },
+      "teaching": {
+        "fa": "برای هر ادعا یک وارسیِ سریعِ چهار-قدمی بکن. یک — چه کسی؟ منبعِ اصلی را پیدا کن، نه فرستندهٔ آخر. دو — از کجا می‌داند؟ آیا خودش دیده/سنجیده، یا فقط نقلِ قول است؟ سه — چرا؟ آیا کسی از باورِ تو سود می‌برد (فروش، لایک، دعوا)؟ چهار — کجای دیگر؟ آیا دستِ‌کم یک منبعِ مستقلِ دیگر هم همان را می‌گوید؟ برای عکس و ویدیو یک قدمِ اضافه: تاریخ و مکانش را چک کن — خیلی وقت‌ها یک عکسِ قدیمی یا مالِ جای دیگر را به یک خبرِ تازه می‌چسبانند. «جست‌وجوی معکوسِ تصویر» همین کار را می‌کند. قانون طلایی: هرچه یک خبر تو را عصبانی‌تر یا هیجان‌زده‌تر کند، آرام‌تر باید وارسی‌اش کنی.",
+        "en": "Run a quick four-step check on any claim. One — who? Find the original source, not the last forwarder. Two — how do they know? Did they see or measure it themselves, or is it just hearsay? Three — why? Does anyone gain if you believe it (a sale, likes, a fight)? Four — where else? Does at least one other independent source say the same thing? For photos and video, add a step: check the date and place — an old photo or one from somewhere else is often glued onto a fresh story. A \"reverse image search\" does exactly that. Golden rule: the more a piece of news makes you angry or excited, the more calmly you should check it.",
+        "de": "Führe bei jeder Behauptung eine schnelle Vier-Schritte-Prüfung durch. Erstens — wer? Finde die Originalquelle, nicht den letzten Weiterleiter. Zweitens — woher weiß die Person es? Hat sie es selbst gesehen oder gemessen, oder ist es nur Hörensagen? Drittens — warum? Profitiert jemand, wenn du es glaubst (ein Verkauf, Likes, ein Streit)? Viertens — wo sonst? Sagt mindestens eine andere unabhängige Quelle dasselbe? Bei Fotos und Videos ein Schritt mehr: Prüfe Datum und Ort — ein altes Foto oder eines von woanders wird oft an eine frische Geschichte geklebt. Eine „umgekehrte Bildersuche“ tut genau das. Goldene Regel: Je wütender oder aufgeregter dich eine Nachricht macht, desto ruhiger solltest du sie prüfen."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر مورد بگو کدام قدمِ وارسی از همه مهم‌تر است و چرا.",
+          "en": "For each item, say which check-step matters most and why.",
+          "de": "Sag bei jedem Punkt, welcher Prüfschritt am wichtigsten ist und warum."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "یک پیجِ ناشناس ادعا می‌کند یک خوراکیِ معروف خطرناک است و می‌گوید «فوری برای همه بفرست».",
+              "en": "An anonymous page claims a well-known food is dangerous and says \"forward this to everyone right now.\"",
+              "de": "Eine anonyme Seite behauptet, ein bekanntes Lebensmittel sei gefährlich, und sagt „leite das sofort an alle weiter“."
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "یک اکانت عکسی از یک سیلِ بزرگ می‌گذارد و می‌گوید همین دیروز در شهرِ شما بوده.",
+              "en": "An account posts a photo of a big flood and says it happened in your city just yesterday.",
+              "de": "Ein Konto postet ein Foto einer großen Überschwemmung und sagt, sie sei gestern in deiner Stadt passiert."
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "یک اینفلوئنسر می‌گوید فلان مکملِ گران‌قیمت حافظه را قوی می‌کند و لینکِ خریدش را هم گذاشته.",
+              "en": "An influencer says a certain expensive supplement boosts memory, and drops a link to buy it.",
+              "de": "Ein Influencer sagt, ein bestimmtes teures Nahrungsergänzungsmittel stärke das Gedächtnis, und postet einen Kauflink."
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "«کجای دیگر» و «چه کسی». اگر واقعی بود، منابعِ معتبرِ مستقل هم می‌گفتند. فشارِ «فوری بفرست» خودش پرچمِ قرمز است: می‌خواهد قبل از وارسی پخشش کنی.",
+              "en": "\"Where else\" and \"who.\" If it were real, credible independent sources would report it too. The \"forward immediately\" pressure is itself a red flag: it wants you to spread it before checking.",
+              "de": "„Wo sonst“ und „wer“. Wäre es echt, würden auch glaubwürdige unabhängige Quellen darüber berichten. Der Druck „sofort weiterleiten“ ist selbst ein Warnsignal: Er will, dass du es vor dem Prüfen verbreitest."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "تاریخ و مکانِ عکس. با جست‌وجوی معکوسِ تصویر ببین آیا این عکس قدیمی یا مالِ جای دیگری است. عکس می‌تواند واقعی باشد ولی به دروغ به این‌جا و این زمان چسبانده شده باشد.",
+              "en": "The photo's date and place. Use reverse image search to see if it's old or from somewhere else. The photo can be genuine yet falsely attached to this place and time.",
+              "de": "Datum und Ort des Fotos. Nutze die umgekehrte Bildersuche, um zu sehen, ob es alt oder von woanders ist. Das Foto kann echt sein, aber fälschlich diesem Ort und dieser Zeit zugeordnet."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "«چرا» — سود. لینکِ خرید یعنی گوینده از باورِ تو پول درمی‌آورد، پس تعریفش بی‌طرف نیست. دنبالِ شواهدِ مستقل (نه فروشنده) دربارهٔ اینکه واقعاً اثر دارد بگرد.",
+              "en": "\"Why\" — the gain. A buy-link means the speaker earns money if you believe it, so their praise isn't neutral. Look for independent evidence (not the seller) that it actually works.",
+              "de": "„Warum“ — der Gewinn. Ein Kauflink bedeutet, der Sprecher verdient Geld, wenn du es glaubst, sein Lob ist also nicht neutral. Suche nach unabhängigen Belegen (nicht vom Verkäufer), dass es wirklich wirkt."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Wikipedia:Evaluating sources' and 'Wikipedia:Reliable sources' — CC BY-SA 4.0 (concepts: original vs. secondary source, independence, corroboration). Original wording, teen-level.",
+        "Concept of 'independent confirmation' — C. Sagan, The Demon-Haunted World (1995), idea only, no text reproduced."
+      ]
+    },
+    {
+      "id": "ct-6",
+      "slug": "motivated-reasoning",
+      "title": {
+        "fa": "درس ۶ — چرا آنچه را می‌خواهیم راست باشد، باور می‌کنیم",
+        "en": "Lesson 6 — Why We Believe What We Want to Be True",
+        "de": "Lektion 6 — Warum wir glauben, was wahr sein soll"
+      },
+      "bigIdea": {
+        "fa": "مغزِ ما دوست دارد چیزی را باور کند که به نفعِ خواسته‌ها یا هویتش است، و ناخودآگاه دنبالِ شواهدی می‌گردد که همان را تأیید کند. این را «سوگیریِ تأیید» و «استدلالِ انگیزه‌مند» می‌گویند.",
+        "en": "Our brain likes to believe what suits its wishes or identity, and unconsciously looks for evidence that confirms it. This is called \"confirmation bias\" and \"motivated reasoning.\"",
+        "de": "Unser Gehirn glaubt gern, was seinen Wünschen oder seiner Identität entspricht, und sucht unbewusst nach Belegen, die das bestätigen. Das nennt man „Bestätigungsfehler“ und „motiviertes Denken“."
+      },
+      "example": {
+        "fa": "چند روز مانده به امتحان، یک شایعه می‌پیچد که «سؤال‌ها امسال خیلی آسان شده». چون تو دلت می‌خواهد این راست باشد، سریع باورش می‌کنی و کمتر می‌خوانی. بعد فقط پیام‌هایی را می‌بینی که همین را می‌گویند و پیام‌های مخالف را رد می‌کنی. اینجا خواسته‌ات (کمتر بخوانم) روی داوری‌ات اثر گذاشته. همین اتفاق در اینستاگرام هم می‌افتد: چون فقط اکانت‌هایی را دنبال می‌کنی که با تو موافق‌اند، دنیا انگار با تو هم‌نظر است، در حالی که فقط آینهٔ خودت را می‌بینی.",
+        "en": "A few days before an exam, a rumor spreads that \"the questions are much easier this year.\" Because you want this to be true, you believe it fast and study less. Then you notice only the messages that agree and dismiss the ones that don't. Here your wish (to study less) has bent your judgment. The same happens on Instagram: because you follow only accounts that agree with you, the world seems to share your view, when really you're just seeing a mirror of yourself.",
+        "de": "Ein paar Tage vor einer Prüfung verbreitet sich ein Gerücht, „die Fragen seien dieses Jahr viel leichter“. Weil du willst, dass das wahr ist, glaubst du es schnell und lernst weniger. Dann bemerkst du nur die Nachrichten, die zustimmen, und weist die anderen ab. Hier hat dein Wunsch (weniger zu lernen) dein Urteil verbogen. Dasselbe passiert auf Instagram: Weil du nur Konten folgst, die dir zustimmen, scheint die Welt deine Sicht zu teilen, während du in Wirklichkeit nur einen Spiegel deiner selbst siehst."
+      },
+      "teaching": {
+        "fa": "سوگیریِ تأیید یعنی ما شواهدِ موافق را می‌بینیم و شواهدِ مخالف را نادیده می‌گیریم — نه چون احمقیم، بلکه چون این طبیعیِ ذهن است. خطرناک‌تر آن‌جاست که موضوع به هویت‌مان گره بخورد؛ آن‌وقت پذیرفتنِ اشتباه انگار حمله به خودمان است. دو دارو دارد. اول: عمداً بپرس «چه چیزی می‌تواند نشان دهد که من اشتباه می‌کنم؟» و دنبالِ همان بگرد. دوم: قوی‌ترین شکلِ حرفِ مخالف را پیدا کن، نه ضعیف‌ترینش، و ببین باز هم سرِ حرفت می‌مانی یا نه. نشانهٔ آدمِ متفکر، شک‌کردن به همه‌چیز نیست؛ این است که به چیزهایی که دوست دارد راست باشند، کمی سخت‌گیرانه‌تر نگاه کند.",
+        "en": "Confirmation bias means we see the evidence that agrees and overlook the evidence that disagrees — not because we're stupid, but because it's natural to the mind. It's most dangerous when the topic is tied to our identity; then admitting a mistake feels like an attack on ourselves. There are two cures. First: deliberately ask \"what would show that I'm wrong?\" and go look for that. Second: find the strongest version of the opposing view, not the weakest, and see whether you still hold your position. The mark of a thinking person is not doubting everything; it's looking a little more strictly at the things they want to be true.",
+        "de": "Bestätigungsfehler bedeutet, dass wir die zustimmenden Belege sehen und die widersprechenden übersehen — nicht weil wir dumm sind, sondern weil es dem Verstand natürlich ist. Am gefährlichsten ist es, wenn das Thema mit unserer Identität verknüpft ist; dann fühlt sich ein Fehler einzugestehen wie ein Angriff auf uns selbst an. Es gibt zwei Gegenmittel. Erstens: Frage bewusst „was würde zeigen, dass ich falsch liege?“ und suche danach. Zweitens: Finde die stärkste Version der Gegenansicht, nicht die schwächste, und sieh, ob du deine Position dann noch hältst. Das Kennzeichen eines denkenden Menschen ist nicht, an allem zu zweifeln; es ist, etwas strenger auf das zu schauen, was man wahr haben will."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر موقعیت بگو سوگیریِ تأیید چطور کار می‌کند و یک راهِ خنثی‌کردنش چیست.",
+          "en": "For each situation, say how confirmation bias is at work and one way to counter it.",
+          "de": "Sag bei jeder Situation, wie der Bestätigungsfehler wirkt und wie man ihm begegnen kann."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "تیمِ محبوبت باخته و تو مطمئنی داور ناعادل بوده. فقط کلیپ‌هایی را می‌بینی که اشتباهِ داور را نشان می‌دهند.",
+              "en": "Your favorite team lost and you're sure the referee was unfair. You only watch clips that show the ref's mistakes.",
+              "de": "Deine Lieblingsmannschaft hat verloren und du bist sicher, der Schiedsrichter war unfair. Du siehst nur Clips, die seine Fehler zeigen."
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "می‌خواهی گوشیِ جدیدی بخری که از قبل عاشقش شده‌ای. فقط نقدهای مثبتش را می‌خوانی.",
+              "en": "You want to buy a new phone you already love. You read only its positive reviews.",
+              "de": "Du willst ein neues Handy kaufen, das du schon liebst. Du liest nur seine positiven Rezensionen."
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "باور داری فلان روشِ مطالعه بهترین است چون یک بار برایت جواب داد؛ هر تجربهٔ مخالف را «استثنا» می‌دانی.",
+              "en": "You believe a certain study method is best because it worked for you once; you call every counter-experience an \"exception.\"",
+              "de": "Du glaubst, eine bestimmte Lernmethode sei die beste, weil sie bei dir einmal funktioniert hat; jede Gegenerfahrung nennst du eine „Ausnahme“."
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "داری فقط شواهدِ موافقِ خواسته‌ات را جمع می‌کنی. خنثی‌کردن: عمداً کلیپ‌هایی را ببین که اشتباهِ تیمِ خودت را نشان می‌دهند، و بپرس اگر تیمِ حریف برنده بود همین داوری را ناعادل می‌دانستی؟",
+              "en": "You're collecting only the evidence that suits your wish. Counter: deliberately watch clips showing your own team's mistakes, and ask whether you'd call the same refereeing unfair if the other team had won.",
+              "de": "Du sammelst nur die Belege, die deinem Wunsch entsprechen. Gegenmittel: Sieh dir bewusst Clips an, die die Fehler deiner eigenen Mannschaft zeigen, und frage, ob du dieselbe Schiedsrichterleistung unfair nennen würdest, wenn die andere Mannschaft gewonnen hätte."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "خواسته (عشقِ قبلی به گوشی) داوری را بسته. خنثی‌کردن: عمداً نقدهای منفیِ معتبر را بخوان و لیستِ عیب‌هایش را کنارِ خوبی‌ها بگذار، بعد تصمیم بگیر.",
+              "en": "The wish (already loving the phone) has closed off judgment. Counter: deliberately read credible negative reviews and list its flaws beside its strengths, then decide.",
+              "de": "Der Wunsch (das Handy schon zu lieben) hat das Urteil verschlossen. Gegenmittel: Lies bewusst glaubwürdige negative Rezensionen und stelle seine Mängel neben seine Stärken, dann entscheide."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "یک نمونهٔ موافق را نگه داشته‌ای و مخالف‌ها را «استثنا» نامیده‌ای تا باورت نلرزد. خنثی‌کردن: تعدادِ دفعاتِ موفق و ناموفق را صادقانه بشمار، نه فقط آن یک بارِ خوب را.",
+              "en": "You keep one agreeing case and label the disagreeing ones \"exceptions\" so your belief won't shake. Counter: honestly count the times it worked and didn't, not just that one good time.",
+              "de": "Du behältst einen zustimmenden Fall und nennst die widersprechenden „Ausnahmen“, damit dein Glaube nicht wackelt. Gegenmittel: Zähle ehrlich, wie oft es funktioniert hat und wie oft nicht, nicht nur das eine gute Mal."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Confirmation bias' and 'Motivated reasoning' — CC BY-SA 4.0 (concepts, plus the 'consider the opposite' / falsification remedy). Original teen-level wording.",
+        "Idea of guarding hardest against your own favored hypothesis — C. Sagan, The Demon-Haunted World (1995), concept only."
+      ]
+    },
+    {
+      "id": "ct-7",
+      "slug": "logical-fallacies-you-can-spot",
+      "title": {
+        "fa": "درس ۷ — خطاهای منطقی که می‌توانی تشخیص دهی",
+        "en": "Lesson 7 — Logical Fallacies You Can Spot",
+        "de": "Lektion 7 — Denkfehler, die du erkennen kannst"
+      },
+      "bigIdea": {
+        "fa": "خطای منطقی یعنی استدلالی که شاید قانع‌کننده به‌نظر برسد ولی از نظرِ فکری اشتباه است. شناختنِ چند مورد از پرتکرارها، تو را در بحث‌ها و تبلیغ‌ها بیدار نگه می‌دارد.",
+        "en": "A logical fallacy is an argument that may sound convincing but is broken in its reasoning. Knowing a few of the most common ones keeps you awake in arguments and ads.",
+        "de": "Ein Denkfehler ist ein Argument, das überzeugend klingen mag, aber in seiner Beweisführung fehlerhaft ist. Ein paar der häufigsten zu kennen hält dich in Diskussionen und Werbung wach."
+      },
+      "example": {
+        "fa": "زیرِ یک پستِ اینستاگرام دو نفر بحث می‌کنند. اولی می‌گوید نظرِ دومی غلط است «چون تو که هنوز بچه‌ای و چیزی نمی‌فهمی» (حمله به شخص، نه به حرف). یک تبلیغ می‌گوید «همه دارند این کفش را می‌خرند، پس تو هم بخر» (توسل به جمع). یک نفر می‌گوید «یا با منی یا دشمنِ منی» (دوراهیِ دروغین، انگار حالتِ سوم وجود ندارد). هیچ‌کدامِ این‌ها در واقع چیزی را ثابت نمی‌کنند؛ فقط احساس می‌سازند.",
+        "en": "Under an Instagram post, two people argue. The first says the second is wrong \"because you're just a kid and don't understand\" (attacking the person, not the point). An ad says \"everyone is buying this shoe, so you should too\" (appeal to the crowd). Someone says \"you're either with me or my enemy\" (false dilemma, as if there's no third option). None of these actually prove anything; they only manufacture a feeling.",
+        "de": "Unter einem Instagram-Post streiten zwei Leute. Der erste sagt, der zweite liege falsch, „weil du nur ein Kind bist und nichts verstehst“ (Angriff auf die Person, nicht auf die Sache). Eine Werbung sagt „alle kaufen diesen Schuh, also solltest du das auch“ (Berufung auf die Menge). Jemand sagt „du bist entweder mit mir oder mein Feind“ (falsches Dilemma, als gäbe es keine dritte Option). Keines davon beweist tatsächlich etwas; sie erzeugen nur ein Gefühl."
+      },
+      "teaching": {
+        "fa": "چند خطای پرتکرار که خوب است بشناسی: «حمله به شخص» (به‌جای ردِ حرف، به گویندهٔ آن حمله می‌کنند)؛ «توسل به جمع» (چون خیلی‌ها قبولش دارند، پس درست است)؛ «توسل به مرجع» (فلانی گفت، پس درست است — حتی اگر آن شخص متخصصِ آن موضوع نباشد)؛ «دوراهیِ دروغین» (فقط دو گزینه جلویت می‌گذارند، انگار راهِ سوم نیست)؛ «سراشیبیِ لغزنده» (اگر این یک قدم را برداری، حتماً به فاجعه می‌رسیم)؛ و «مردِ حصیری» (حرفِ طرف را ضعیف و مسخره بازگو می‌کنند تا راحت ردش کنند). یک نکتهٔ مهم: حتی اگر کسی خطای منطقی کند، نتیجه‌اش لزوماً غلط نیست — فقط این استدلالِ خاص آن را ثابت نمی‌کند. پرسشِ کلیدی همیشه این است: «آیا این دلیل واقعاً از آن نتیجه پشتیبانی می‌کند؟»",
+        "en": "A few common fallacies worth knowing: \"ad hominem\" (instead of rebutting the point, they attack the person making it); \"appeal to the crowd\" (many accept it, so it's right); \"appeal to authority\" (so-and-so said it, so it's true — even if that person isn't an expert on the topic); \"false dilemma\" (they offer only two options, as if there's no third path); \"slippery slope\" (if you take this one step, disaster is certain); and \"straw man\" (they restate your point in a weak, silly form so it's easy to knock down). One important note: even if someone commits a fallacy, their conclusion isn't necessarily wrong — it's just that this particular argument doesn't prove it. The key question is always: \"does this reason actually support that conclusion?\"",
+        "de": "Ein paar häufige Denkfehler, die es wert sind, gekannt zu werden: „Ad hominem“ (statt die Sache zu widerlegen, greifen sie die Person an); „Berufung auf die Menge“ (viele akzeptieren es, also stimmt es); „Berufung auf Autorität“ (die Person X hat es gesagt, also stimmt es — selbst wenn sie kein Experte für das Thema ist); „falsches Dilemma“ (sie bieten nur zwei Optionen, als gäbe es keinen dritten Weg); „Dammbruchargument“ (wenn du diesen einen Schritt gehst, ist die Katastrophe sicher); und „Strohmann“ (sie geben deine Aussage in einer schwachen, albernen Form wieder, damit sie leicht umzustoßen ist). Ein wichtiger Hinweis: Selbst wenn jemand einen Denkfehler begeht, ist seine Schlussfolgerung nicht zwangsläufig falsch — nur beweist dieses bestimmte Argument sie nicht. Die Schlüsselfrage lautet immer: „Stützt dieser Grund die Schlussfolgerung tatsächlich?“"
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "برای هر جمله بگو کدام خطای منطقی است.",
+          "en": "For each statement, name the logical fallacy.",
+          "de": "Benenne bei jeder Aussage den Denkfehler."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "«نظرش دربارهٔ تغذیه ارزشی ندارد، چون خودش هم که لاغر نیست.»",
+              "en": "\"His opinion on nutrition is worthless, because he isn't even thin himself.\"",
+              "de": "„Seine Meinung zur Ernährung ist wertlos, weil er selbst nicht mal schlank ist.“"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "«یا این گوشیِ گران را می‌خری، یا اصلاً برایت مهم نیست که عکسِ خوب بگیری.»",
+              "en": "\"Either you buy this expensive phone, or you just don't care about taking good photos at all.\"",
+              "de": "„Entweder du kaufst dieses teure Handy, oder dir sind gute Fotos einfach völlig egal.“"
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "«میلیون‌ها نفر این را دنبال می‌کنند، پس حتماً حرفش درست است.»",
+              "en": "\"Millions of people follow this person, so what they say must be true.\"",
+              "de": "„Millionen Menschen folgen dieser Person, also muss stimmen, was sie sagt.“"
+            }
+          },
+          {
+            "id": "q4",
+            "q": {
+              "fa": "«اگر امشب یک ساعت بازی کنی، دیگر هیچ‌وقت درس نمی‌خوانی و آیندهٔ کاری‌ات نابود می‌شود.»",
+              "en": "\"If you play games for one hour tonight, you'll never study again and your whole career is ruined.\"",
+              "de": "„Wenn du heute Abend eine Stunde spielst, lernst du nie wieder und deine ganze berufliche Zukunft ist ruiniert.“"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "حمله به شخص (ad hominem). لاغر یا چاق بودنِ گوینده، درستی یا نادرستیِ حرفش دربارهٔ تغذیه را تعیین نمی‌کند؛ باید خودِ استدلال را سنجید.",
+              "en": "Ad hominem. Whether the speaker is thin or not doesn't determine whether their nutrition point is right; you must weigh the argument itself.",
+              "de": "Ad hominem. Ob der Sprecher schlank ist oder nicht, entscheidet nicht, ob seine Ernährungsaussage richtig ist; man muss das Argument selbst prüfen."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "دوراهیِ دروغین. راه‌های سومِ زیادی هست (گوشیِ ارزان‌تر، دوربینِ جدا، یا اصلاً اولویتِ دیگر). فقط دو گزینه ساختگی جلویت گذاشته شده.",
+              "en": "False dilemma. There are many third paths (a cheaper phone, a separate camera, or simply other priorities). Only two made-up options are placed in front of you.",
+              "de": "Falsches Dilemma. Es gibt viele dritte Wege (ein günstigeres Handy, eine separate Kamera oder einfach andere Prioritäten). Es werden nur zwei erfundene Optionen vorgesetzt."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "توسل به جمع (و کمی توسل به مرجع). تعدادِ دنبال‌کننده، درستیِ حرف را ثابت نمی‌کند؛ خیلی‌ها می‌توانند با هم اشتباه کنند.",
+              "en": "Appeal to the crowd (with a touch of appeal to authority). The number of followers doesn't prove a claim; many people can be wrong together.",
+              "de": "Berufung auf die Menge (mit einem Hauch Berufung auf Autorität). Die Zahl der Follower beweist keine Behauptung; viele können gemeinsam falschliegen."
+            }
+          },
+          {
+            "id": "q4",
+            "a": {
+              "fa": "سراشیبیِ لغزنده. از یک قدمِ کوچک، بی‌هیچ دلیلی، مستقیم به بدترین حالت پریده — انگار هیچ حالتِ میانی‌ای وجود ندارد.",
+              "en": "Slippery slope. From one small step it jumps straight to the worst case with no reason — as if no middle ground exists.",
+              "de": "Dammbruchargument. Von einem kleinen Schritt springt es ohne Grund direkt zum schlimmsten Fall — als gäbe es keinen Mittelweg."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "M. Van Cleave, Introduction to Logic and Critical Thinking 2e — CC BY 4.0 (formal treatment of ad hominem, false dilemma, appeal to authority/popularity, slippery slope, straw man). Adapted into original teen-level examples.",
+        "Wikipedia, 'List of fallacies' — CC BY-SA 4.0 (cross-check of definitions). Original wording; no text copied."
+      ]
+    },
+    {
+      "id": "ct-8",
+      "slug": "how-to-change-your-mind",
+      "title": {
+        "fa": "درس ۸ — چطور نظرت را عوض کنی (بدونِ باختن)",
+        "en": "Lesson 8 — How to Change Your Mind (Without Losing)",
+        "de": "Lektion 8 — Wie man seine Meinung ändert (ohne zu verlieren)"
+      },
+      "bigIdea": {
+        "fa": "عوض‌کردنِ نظر وقتی شواهدِ بهتری می‌بینی، نشانهٔ ضعف نیست — قوی‌ترین مهارتِ فکری است. کسی که هیچ‌وقت نظرش را عوض نمی‌کند، در واقع دیگر فکر نمی‌کند.",
+        "en": "Changing your mind when you see better evidence is not weakness — it's the strongest thinking skill there is. Someone who never changes their mind has, in truth, stopped thinking.",
+        "de": "Seine Meinung zu ändern, wenn man bessere Belege sieht, ist keine Schwäche — es ist die stärkste Denkfähigkeit überhaupt. Wer seine Meinung nie ändert, hat in Wahrheit aufgehört zu denken."
+      },
+      "example": {
+        "fa": "در یک بحثِ آنلاین، هیچ‌کس هیچ‌وقت نمی‌گوید «حق با توست، اشتباه می‌کردم». چرا؟ چون همه احساس می‌کنند عقب‌نشینی یعنی باخت. اما فرض کن سرِ چیزی مطمئن بودی و دوستت شواهدی آورد که تو ندیده بودی. دو راه داری: یا لجبازی کنی و دنبالِ بهانه بگردی، یا بگویی «این را نمی‌دانستم؛ نظرم دارد عوض می‌شود». راهِ دوم سخت‌تر است ولی تو را دقیق‌تر و قابل‌اعتمادتر می‌کند. آدم‌هایی که می‌توانند بگویند «اشتباه کردم»، همان‌هایی‌اند که بقیه بیشتر حرفشان را جدی می‌گیرند.",
+        "en": "In an online argument, nobody ever says \"you're right, I was wrong.\" Why? Because everyone feels that backing down means losing. But suppose you were sure about something and your friend brought evidence you hadn't seen. You have two paths: dig in and hunt for excuses, or say \"I didn't know that; my view is changing.\" The second path is harder but makes you more accurate and more trustworthy. The people who can say \"I was wrong\" are the very ones others take most seriously.",
+        "de": "In einer Online-Diskussion sagt niemand je „du hast recht, ich lag falsch“. Warum? Weil alle das Gefühl haben, nachzugeben bedeute zu verlieren. Aber angenommen, du warst dir bei etwas sicher und dein Freund brachte Belege, die du nicht gesehen hattest. Du hast zwei Wege: dich eingraben und nach Ausreden suchen, oder sagen „das wusste ich nicht; meine Meinung ändert sich“. Der zweite Weg ist schwerer, macht dich aber genauer und vertrauenswürdiger. Die Menschen, die „ich lag falsch“ sagen können, sind genau die, die andere am ernstesten nehmen."
+      },
+      "teaching": {
+        "fa": "چند عادت به تو کمک می‌کند نظرت را خوب عوض کنی. یک: از قبل بگو «چه شواهدی نظرم را عوض می‌کند؟» — اگر جوابت «هیچ‌چیز» است، آن دیگر یک باور نیست، یک تعصب است. دو: حرفِ مخالف را در قوی‌ترین شکلش بازگو کن (به این می‌گویند «مردِ آهنین»، برعکسِ مردِ حصیری) و بعد جوابش را بده؛ اگر بتوانی نظرِ طرف را طوری بگویی که خودش تأیید کند، آن‌وقت واقعاً فهمیده‌ای. سه: حمله به ایده را از حمله به آدم جدا کن — می‌شود گفت «این استدلال ضعیف است» بی‌آنکه بگویی «تو احمقی». چهار: به‌جای بردنِ بحث، دنبالِ نزدیک‌شدن به حقیقت باش؛ آن‌وقت وقتی طرفِ مقابل نکتهٔ درستی می‌گوید، سودِ تو هم هست، نه ضررت. عوض‌کردنِ نظر با شواهد، تسلیم نیست؛ به‌روزرسانی است.",
+        "en": "A few habits help you change your mind well. One: decide in advance \"what evidence would change my mind?\" — if your answer is \"nothing,\" that's no longer a belief, it's a prejudice. Two: restate the opposing view in its strongest form (this is called \"steelmanning,\" the opposite of a straw man) and then answer it; if you can state the other side so well that they'd agree, then you truly understand it. Three: separate attacking the idea from attacking the person — you can say \"this argument is weak\" without saying \"you're stupid.\" Four: aim to get closer to the truth rather than to win; then when the other side makes a good point, it's a gain for you, not a loss. Changing your mind with evidence isn't surrender; it's an update.",
+        "de": "Ein paar Gewohnheiten helfen dir, deine Meinung gut zu ändern. Erstens: Lege im Voraus fest „welche Belege würden meine Meinung ändern?“ — wenn deine Antwort „nichts“ ist, ist das kein Glaube mehr, sondern ein Vorurteil. Zweitens: Gib die Gegenansicht in ihrer stärksten Form wieder (das nennt man „Steelmanning“, das Gegenteil eines Strohmanns) und beantworte sie dann; wenn du die andere Seite so gut wiedergeben kannst, dass sie zustimmen würde, dann verstehst du sie wirklich. Drittens: Trenne den Angriff auf die Idee vom Angriff auf die Person — du kannst sagen „dieses Argument ist schwach“, ohne zu sagen „du bist dumm“. Viertens: Ziele darauf ab, der Wahrheit näherzukommen, statt zu gewinnen; dann ist es ein Gewinn für dich, kein Verlust, wenn die andere Seite einen guten Punkt macht. Seine Meinung mit Belegen zu ändern ist keine Kapitulation; es ist eine Aktualisierung."
+      },
+      "exercise": {
+        "durationMin": 5,
+        "instructions": {
+          "fa": "به این پرسش‌ها صادقانه فکر کن. جوابِ درست/غلط ندارند؛ هدف تمرینِ عادت است.",
+          "en": "Think about these honestly. There are no right/wrong answers; the goal is to practice the habit.",
+          "de": "Denke ehrlich darüber nach. Es gibt keine richtigen/falschen Antworten; das Ziel ist, die Gewohnheit zu üben."
+        },
+        "items": [
+          {
+            "id": "q1",
+            "q": {
+              "fa": "به یک باورِ محکمی که داری فکر کن (دربارهٔ درس، ورزش، یا یک موضوعِ روزمره). دقیقاً چه شواهدی می‌توانست نظرت را عوض کند؟ اگر «هیچ‌چیز»، چرا؟",
+              "en": "Think of a strong belief you hold (about school, sports, or an everyday topic). What exact evidence could change your mind? If \"nothing,\" why?",
+              "de": "Denke an eine feste Überzeugung, die du hast (über Schule, Sport oder ein Alltagsthema). Welche genauen Belege könnten deine Meinung ändern? Wenn „nichts“, warum?"
+            }
+          },
+          {
+            "id": "q2",
+            "q": {
+              "fa": "یک موضوعی را انتخاب کن که با یک دوست سرش اختلاف داری. طرفِ او را در قوی‌ترین شکلش بنویس، طوری که خودش بگوید «دقیقاً همین را می‌گویم».",
+              "en": "Pick a topic you disagree with a friend about. Write their side in its strongest form, so they'd say \"yes, that's exactly what I mean.\"",
+              "de": "Wähle ein Thema, bei dem du mit einem Freund uneinig bist. Schreibe seine Seite in ihrer stärksten Form, sodass er sagen würde „ja, genau das meine ich“."
+            }
+          },
+          {
+            "id": "q3",
+            "q": {
+              "fa": "یک بار را به یاد بیاور که نظرت را عوض کردی. چه چیزی باعثش شد؟ چه حسی داشت؟",
+              "en": "Recall a time you changed your mind. What caused it? How did it feel?",
+              "de": "Erinnere dich an ein Mal, als du deine Meinung geändert hast. Was hat es ausgelöst? Wie hat es sich angefühlt?"
+            }
+          }
+        ]
+      },
+      "answerKey": {
+        "items": [
+          {
+            "id": "q1",
+            "a": {
+              "fa": "راهنما: یک باورِ سالم همیشه یک «شرطِ شکست» دارد — چیزی که اگر ببینی، باور را کنار می‌گذاری. اگر هیچ شاهدی نتواند نظرت را عوض کند، آن باور دیگر به واقعیت وصل نیست. این را با خودت صادقانه بررسی کن، بی‌آنکه سرزنشِ خودت باشد.",
+              "en": "Guide: a healthy belief always has a \"break condition\" — something that, if you saw it, you'd drop the belief. If no evidence could change your mind, the belief is no longer connected to reality. Examine this honestly, without beating yourself up.",
+              "de": "Hinweis: Eine gesunde Überzeugung hat immer eine „Bruchbedingung“ — etwas, das dich, sähest du es, die Überzeugung aufgeben ließe. Wenn kein Beleg deine Meinung ändern könnte, ist die Überzeugung nicht mehr mit der Realität verbunden. Prüfe das ehrlich, ohne dich zu verurteilen."
+            }
+          },
+          {
+            "id": "q2",
+            "a": {
+              "fa": "راهنما: اگر توانستی طرفِ مقابل را طوری بنویسی که او تأیید کند، حالا واقعاً می‌فهمی چرا فکر می‌کند حق با اوست — و جوابِ تو هم قوی‌تر می‌شود. اگر نتوانستی، یعنی هنوز حرفش را کامل نفهمیده‌ای.",
+              "en": "Guide: if you can write the other side so they'd approve, you now truly grasp why they think they're right — and your own answer gets stronger. If you can't, you haven't fully understood their point yet.",
+              "de": "Hinweis: Wenn du die andere Seite so schreiben kannst, dass sie zustimmt, verstehst du nun wirklich, warum sie sich im Recht sieht — und deine eigene Antwort wird stärker. Wenn nicht, hast du ihren Punkt noch nicht ganz verstanden."
+            }
+          },
+          {
+            "id": "q3",
+            "a": {
+              "fa": "راهنما: بیشترِ آدم‌ها بعدِ عوض‌کردنِ یک نظرِ اشتباه، حسِ سبکی و رشد دارند، نه شرمندگی. یادآوریِ این حس کمک می‌کند دفعهٔ بعد راحت‌تر به شواهدِ تازه گوش بدهی.",
+              "en": "Guide: most people, after changing a wrong view, feel lighter and grown, not ashamed. Remembering that feeling helps you listen to new evidence more easily next time.",
+              "de": "Hinweis: Die meisten fühlen sich, nachdem sie eine falsche Ansicht geändert haben, leichter und gewachsen, nicht beschämt. Sich an dieses Gefühl zu erinnern hilft, beim nächsten Mal neuen Belegen leichter zuzuhören."
+            }
+          }
+        ]
+      },
+      "sources": [
+        "Wikipedia, 'Steelmanning' and 'Falsifiability' — CC BY-SA 4.0 (concepts: strongest-form of opponent's view; what-would-change-my-mind). Original teen-level wording.",
+        "M. Van Cleave, Introduction to Logic and Critical Thinking 2e — CC BY 4.0 (charitable interpretation; distinguishing an argument from the arguer). Original adaptation."
+      ]
+    }
+  ]
+}
