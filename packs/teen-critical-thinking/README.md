@@ -1,3 +1,23 @@
+> ## ⚠️ هشدار — پیش‌نویس (DRAFT)
+>
+> **این یک پیش‌نویسِ بازبینی‌نشده است که با کمکِ ماشین (هوش مصنوعی) نوشته شده.**
+> **هنوز برای استفاده با کودکان و نوجوانان مناسب نیست — لطفاً فعلاً از آن استفاده نکنید.**
+> این بسته در انتظارِ بازبینیِ **سه داورِ انسانی** است:
+> ۱) ویراستارِ فارسی‌زبانِ بومی (فارسیِ ایران)، ۲) مشاورِ ایمنی و حمایت از کودک،
+> ۳) داورِ سکولارِ آشنا با بافتِ ایران.
+> تا پایانِ هر سه بازبینی، هیچ بخشی از این بسته نباید به دستِ نوجوانان برسد.
+>
+> ---
+>
+> ## ⚠️ WARNING — DRAFT
+>
+> **This is an UNREVIEWED, machine-assisted (AI) draft.**
+> **Do NOT use this material with children or teenagers yet.**
+> It awaits **three human reviewers** before anyone may use it:
+> (1) a native Iran-Persian editor, (2) a child-safety / safeguarding adviser,
+> (3) a secular reviewer with Iran-context expertise.
+> Until all three sign off, nothing here should reach a teen.
+
 # Sahar — Teen Critical-Thinking / Media-Literacy Pack (DRAFT)
 
 **What this is.** An original, trilingual (fa / en / de) 8-lesson pack that teaches an

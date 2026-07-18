@@ -1,4 +1,8 @@
 {
+  "DRAFT_WARNING": {
+    "fa": "⚠️ هشدار — پیش‌نویس: این یک پیش‌نویسِ بازبینی‌نشده است که با کمکِ ماشین (هوش مصنوعی) نوشته شده. هنوز برای استفاده با کودکان و نوجوانان مناسب نیست — لطفاً فعلاً از آن استفاده نکنید. در انتظارِ بازبینیِ سه داورِ انسانی: ۱) ویراستارِ فارسی‌زبانِ بومی (فارسیِ ایران)، ۲) مشاورِ ایمنی و حمایت از کودک، ۳) داورِ سکولارِ آشنا با بافتِ ایران. تا پایانِ هر سه بازبینی، هیچ بخشی از این بسته نباید به دستِ نوجوانان برسد.",
+    "en": "⚠️ WARNING — DRAFT: This is an UNREVIEWED, machine-assisted (AI) draft. Do NOT use this material with children or teenagers yet. It awaits three human reviewers: (1) a native Iran-Persian editor, (2) a child-safety / safeguarding adviser, (3) a secular reviewer with Iran-context expertise. Until all three sign off, nothing here should reach a teen."
+  },
   "packId": "t4.thinking.clear-thinking-media-literacy",
   "version": "0.1.0",
   "tier": 4,
