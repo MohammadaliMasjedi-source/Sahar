@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use or reference Sahar, please cite it as below."
+title: "Sahar — offline-first learning packs for kids (fa/en/de)"
+abstract: >-
+  Offline-first, open learning packs for children — literacy, numeracy, and thinking
+  skills in Persian, English, and German. Runs fully offline in a browser; an independent,
+  not-for-profit digital public good.
+type: software
+authors:
+  - family-names: Masjedi
+    given-names: Mohammadali
+    alias: Mo MassJedi
+url: "https://github.com/MohammadaliMasjedi-source/Sahar"
+keywords:
+  - education
+  - offline-first
+  - children
+  - literacy
+  - numeracy
+  - persian
+  - digital-public-goods
+license: MIT
