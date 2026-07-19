@@ -1,0 +1,256 @@
+{
+  "_draft": "PENDING RED-TEAM GATE — NOT SHIPPED. This file lives in docs/drafts/ on purpose: it is NOT in content/, NOT listed in content/packs.manifest.json, and NOT precached by sw.js, so the 8-10 shelf keeps its honest geography 'coming soon' preview and the content validator (which only scans content/) stays green. It fills the geography gap that docs/COVERAGE-8-10-2026-07-14.md §1 flagged as deferred. Before it may ship, a lane MUST: (1) MERGE the three new icons (globe, map, mountain) from docs/drafts/DRAFT-geography-icons.js into pictures.js AND secular-audit them (no borders, no flags, no nation, no moon+star adjacency); (2) add a KIND_KEY entry 'geography':'geography' in app.js plus a 'geography' i18n label in fa/en/de (today card.type 'geography' falls back to the 'Fact or opinion' chip — cosmetically wrong until added); (3) run the mandatory double red-team (pedagogy + child-safeguarding) + secular audit and write the dated red-team doc; (4) get a native-Dari review of the fa strings (standing caveat N-1); (5) move this file into content/ as t2-world-maps-and-places.json, add its {id,file,pic:'globe'} line to the 8-10 band in packs.manifest.json, bump the sw.js cache string; (6) run npm test green and verify in-browser (fa/en/de, RTL, teacher.html) with zero console errors. SECULAR NOTE: this pack teaches continents/oceans/land/mountains/near-vs-far and a generic map — it deliberately avoids any national map, border, or flag, so nothing reads as nationalism.",
+  "packId": "t2.world.maps-and-places",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "world — our planet: land and water, continents and oceans, mountains, maps, and near vs. far",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "نقشهٔ جهان",
+    "en": "A Map of the World",
+    "de": "Eine Weltkarte"
+  },
+  "intro": {
+    "fa": "ما همه روی یک سیّاره زندگی می‌کنیم: کرهٔ زمین. زمین آب دارد و خشکی، کوه دارد و دریا. بیا با هم دنیای خود را کشف کنیم — از خانه‌ای که در آن هستی تا آن‌سوی دور. گوش کن و لمس کن.",
+    "en": "We all live on one planet: the Earth. It has water and land, mountains and seas. Let's explore our world together — from the home you are in to the far side of the world. Listen and tap.",
+    "de": "Wir leben alle auf einem Planeten: der Erde. Sie hat Wasser und Land, Berge und Meere. Lass uns gemeinsam unsere Welt entdecken — vom Zuhause, in dem du bist, bis zur fernen Seite der Welt. Höre zu und tippe."
+  },
+  "cards": [
+    {
+      "id": "gw-1",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "کرهٔ زمین، جایی که همهٔ ما در آن زندگی می‌کنیم، مثل یک توپِ بزرگ گِرد است. کدام تصویر همهٔ جهانِ ما را نشان می‌دهد؟",
+        "en": "The Earth, where we all live, is round like a big ball. Which picture shows our whole world?",
+        "de": "Die Erde, auf der wir alle leben, ist rund wie ein großer Ball. Welches Bild zeigt unsere ganze Welt?"
+      },
+      "answer": {
+        "fa": "کرهٔ زمین. سیّاره‌ای گِرد که خانهٔ همهٔ مردم، جانوران و گیاهان است.",
+        "en": "The globe — the Earth. A round planet that is home to all people, animals and plants.",
+        "de": "Der Globus — die Erde. Ein runder Planet, der die Heimat aller Menschen, Tiere und Pflanzen ist."
+      },
+      "caregiver": {
+        "fa": "بپرس: «ما روی چه چیزی زندگی می‌کنیم؟» یک سیّارهٔ بزرگ و گِرد. بگذار تصویر کرهٔ زمین را لمس کند.",
+        "en": "Ask: \"What do we all live on?\" A big round planet. Let them tap the globe.",
+        "de": "Frage: „Worauf leben wir alle?“ Auf einem großen runden Planeten. Lass es den Globus antippen."
+      },
+      "choices": [
+        { "id": "globe", "pic": "globe" },
+        { "id": "house", "pic": "house" }
+      ],
+      "answerId": "globe",
+      "audioPending": true
+    },
+    {
+      "id": "gw-2",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "بیشترِ رویِ زمین را چیزی پوشانده که می‌توانی در آن شنا کنی و کشتی‌ها رویش می‌روند. آن را دریا یا اقیانوس می‌گویند. کدام تصویر آن را نشان می‌دهد؟",
+        "en": "Most of the Earth is covered by something you can swim in and ships sail on. We call it the sea, or the ocean. Which picture shows it?",
+        "de": "Das meiste der Erde ist von etwas bedeckt, in dem man schwimmen kann und auf dem Schiffe fahren. Wir nennen es Meer oder Ozean. Welches Bild zeigt es?"
+      },
+      "answer": {
+        "fa": "آب. بیشترِ کرهٔ زمین آب است — دریاها و اقیانوس‌های بزرگ.",
+        "en": "Water. Most of the Earth is water — the big seas and oceans.",
+        "de": "Wasser. Das meiste der Erde ist Wasser — die großen Meere und Ozeane."
+      },
+      "caregiver": {
+        "fa": "به کودک بگو اگر از فضا به زمین نگاه کنیم، بیشترش آبیِ آب است. بگذار تصویر آب را لمس کند.",
+        "en": "Tell the child that from space, most of the Earth looks blue with water. Let them tap the water.",
+        "de": "Erzähl dem Kind, dass die Erde aus dem Weltall meist blau von Wasser aussieht. Lass es das Wasser antippen."
+      },
+      "choices": [
+        { "id": "water", "pic": "water" },
+        { "id": "garden", "pic": "garden" }
+      ],
+      "answerId": "water",
+      "audioPending": true
+    },
+    {
+      "id": "gw-3",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "بخشِ خشکِ زمین، جایی که درخت‌ها و خانه‌ها و مردم هستند، خشکی نام دارد. یک تکهٔ خیلی بزرگِ خشکی را قاره می‌گویند. کدام تصویر خشکی را نشان می‌دهد؟",
+        "en": "The dry part of the Earth, where trees and houses and people are, is called land. A very big piece of land is called a continent. Which picture shows land?",
+        "de": "Der trockene Teil der Erde, wo Bäume, Häuser und Menschen sind, heißt Land. Ein sehr großes Stück Land nennt man einen Kontinent. Welches Bild zeigt Land?"
+      },
+      "answer": {
+        "fa": "خشکی (باغ و زمینِ سبز). ما روی خشکی خانه می‌سازیم و گیاه می‌کاریم.",
+        "en": "Land (green ground, a garden). We build homes and grow plants on the land.",
+        "de": "Land (grüner Boden, ein Garten). Auf dem Land bauen wir Häuser und pflanzen wir."
+      },
+      "caregiver": {
+        "fa": "فرقِ آب و خشکی را با هم بگویید: در آب شنا می‌کنیم، روی خشکی راه می‌رویم. بگذار تصویر خشکی را لمس کند.",
+        "en": "Talk about water versus land together: we swim in water, we walk on land. Let them tap the land.",
+        "de": "Sprecht über Wasser und Land: im Wasser schwimmen wir, auf dem Land gehen wir. Lass es das Land antippen."
+      },
+      "choices": [
+        { "id": "garden", "pic": "garden" },
+        { "id": "water", "pic": "water" }
+      ],
+      "answerId": "garden",
+      "audioPending": true
+    },
+    {
+      "id": "gw-4",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "بعضی جاها روی خشکی خیلی خیلی بلندند — از هر خانه‌ای بلندتر، از سنگ و گاهی با برف روی نوکشان. به این جاها کوه می‌گویند. کدام یک کوه است؟",
+        "en": "Some places on land are very, very tall — taller than any house, made of rock, sometimes with snow on top. We call these mountains. Which one is a mountain?",
+        "de": "Manche Orte auf dem Land sind sehr, sehr hoch — höher als jedes Haus, aus Fels, manchmal mit Schnee oben. Wir nennen sie Berge. Welches ist ein Berg?"
+      },
+      "answer": {
+        "fa": "کوه. کوه‌ها بلندترین جاهای خشکی‌اند و گاهی برف روی نوکشان می‌ماند.",
+        "en": "The mountain. Mountains are the tallest places on land, and snow can stay on their tops.",
+        "de": "Der Berg. Berge sind die höchsten Orte auf dem Land, und auf ihren Spitzen kann Schnee liegen."
+      },
+      "caregiver": {
+        "fa": "اگر از پنجره یا در عکسی کوهی دیده‌اید، با هم یادش کنید. بپرس کدام از خانه بلندتر است. بگذار تصویر کوه را لمس کند.",
+        "en": "If you have seen a mountain from a window or in a picture, recall it together. Ask which is taller than a house. Let them tap the mountain.",
+        "de": "Wenn ihr einen Berg aus dem Fenster oder auf einem Bild gesehen habt, erinnert euch gemeinsam. Frage, welches höher als ein Haus ist. Lass es den Berg antippen."
+      },
+      "choices": [
+        { "id": "mountain", "pic": "mountain" },
+        { "id": "house", "pic": "house" }
+      ],
+      "answerId": "mountain",
+      "audioPending": true
+    },
+    {
+      "id": "gw-5",
+      "type": "geography",
+      "box": 1,
+      "interaction": "match",
+      "prompt": {
+        "fa": "دنیای ما جاهای گوناگون دارد: آب و آسمان. هر کدام را به جای درستش در جهان برسان.",
+        "en": "Our world has different places: water and sky. Send each one to where it belongs in the world.",
+        "de": "Unsere Welt hat verschiedene Orte: Wasser und Himmel. Bring jedes an den Ort, wohin es in der Welt gehört."
+      },
+      "answer": {
+        "fa": "ماهی در آبِ دریا زندگی می‌کند و پرنده در آسمان پرواز می‌کند — دو بخشِ جهانِ ما.",
+        "en": "A fish lives in the water of the sea, and a bird flies in the sky — two parts of our world.",
+        "de": "Ein Fisch lebt im Wasser des Meeres, und ein Vogel fliegt am Himmel — zwei Teile unserer Welt."
+      },
+      "caregiver": {
+        "fa": "برای هر دور، تصویرِ بالای کارت را نشان بده و بپرس جایش در جهان کجاست. بگذار جای درست را لمس کند.",
+        "en": "For each round, point to the picture at the top and ask where its place in the world is. Let them tap the right place.",
+        "de": "Zeig bei jeder Runde auf das obere Bild und frage, wo sein Ort in der Welt ist. Lass es den richtigen Ort antippen."
+      },
+      "rounds": [
+        {
+          "heroPic": "fish",
+          "choices": [
+            { "id": "water", "pic": "water" },
+            { "id": "sky", "pic": "sky" },
+            { "id": "mountain", "pic": "mountain" }
+          ],
+          "answerId": "water"
+        },
+        {
+          "heroPic": "bird",
+          "choices": [
+            { "id": "sky", "pic": "sky" },
+            { "id": "water", "pic": "water" },
+            { "id": "garden", "pic": "garden" }
+          ],
+          "answerId": "sky"
+        }
+      ],
+      "audioPending": true
+    },
+    {
+      "id": "gw-6",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "خانه و شهرِ تو نزدیک‌ترین جاها به تو هستند. آن‌سوی دورِ جهان خیلی دور است. کدام تصویر خانهٔ تو را نشان می‌دهد — نزدیک‌ترین جا؟",
+        "en": "Your home and your town are the nearest places to you. The far side of the world is very far away. Which picture shows your home — the nearest place?",
+        "de": "Dein Zuhause und deine Stadt sind die nächsten Orte für dich. Die ferne Seite der Welt ist sehr weit weg. Welches Bild zeigt dein Zuhause — den nächsten Ort?"
+      },
+      "answer": {
+        "fa": "خانه — نزدیک‌ترین جا به توست. جهان بزرگ است، اما خانه همان‌جایی است که از همه به تو نزدیک‌تر است.",
+        "en": "Home — the nearest place to you. The world is big, but home is the place closest to you of all.",
+        "de": "Zuhause — der dir nächste Ort. Die Welt ist groß, aber das Zuhause ist der Ort, der dir am nächsten ist."
+      },
+      "caregiver": {
+        "fa": "دربارهٔ «نزدیک» و «دور» حرف بزنید: خانه نزدیک، شهرِ دیگر دورتر، آن‌سوی جهان خیلی دور. بگذار تصویر خانه (نزدیک) را لمس کند.",
+        "en": "Talk about \"near\" and \"far\": home is near, another town is farther, the other side of the world is very far. Let them tap the home (near).",
+        "de": "Sprecht über „nah“ und „fern“: das Zuhause ist nah, eine andere Stadt weiter weg, die andere Seite der Welt sehr fern. Lass es das Zuhause (nah) antippen."
+      },
+      "choices": [
+        { "id": "house", "pic": "house" },
+        { "id": "globe", "pic": "globe" }
+      ],
+      "answerId": "house",
+      "audioPending": true
+    },
+    {
+      "id": "gw-7",
+      "type": "geography",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "نقشه یک نقاشیِ کوچک از جاهاست که به ما کمک می‌کند راه را پیدا کنیم و ببینیم چه چیزی کجاست. کدام تصویر یک نقشه است؟",
+        "en": "A map is a small drawing of places that helps us find the way and see where things are. Which picture is a map?",
+        "de": "Eine Karte ist eine kleine Zeichnung von Orten, die uns hilft, den Weg zu finden und zu sehen, wo etwas ist. Welches Bild ist eine Karte?"
+      },
+      "answer": {
+        "fa": "نقشه. با نقشه می‌فهمیم هر جا کجاست و چطور به آن برسیم.",
+        "en": "The map. A map shows us where each place is and how to get there.",
+        "de": "Die Karte. Eine Karte zeigt uns, wo jeder Ort ist und wie man dorthin kommt."
+      },
+      "caregiver": {
+        "fa": "به نشانِ رویِ نقشه اشاره کن و بگو این نشان می‌گوید «اینجا». فرقِ نقشه و کتاب را با هم ببینید. بگذار تصویر نقشه را لمس کند.",
+        "en": "Point to the pin on the map and say it means \"here\". See the difference between a map and a book together. Let them tap the map.",
+        "de": "Zeig auf die Markierung auf der Karte und sag, sie bedeutet „hier“. Seht gemeinsam den Unterschied zwischen Karte und Buch. Lass es die Karte antippen."
+      },
+      "choices": [
+        { "id": "map", "pic": "map" },
+        { "id": "book", "pic": "book" }
+      ],
+      "answerId": "map",
+      "audioPending": true
+    },
+    {
+      "id": "gw-8",
+      "type": "geography",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "به جایی که در آن زندگی می‌کنی فکر کن. بلند بگو یک جای نزدیک به خودت (خانه، کوچه یا شهرت) و یک جای دور (سرزمینی آن‌سوی دریا). بلند بگو.",
+        "en": "Think about where you live. Say aloud one place near you (your home, your street, or your town) and one place far away (a land across the sea). Say them aloud.",
+        "de": "Denk daran, wo du wohnst. Sag laut einen Ort in deiner Nähe (dein Zuhause, deine Straße oder deine Stadt) und einen fernen Ort (ein Land jenseits des Meeres). Sag sie laut."
+      },
+      "answer": {
+        "fa": "آفرین! تو هم جای نزدیکت را می‌شناسی و هم می‌دانی جهان خیلی بزرگ‌تر است. این آغازِ شناختنِ دنیاست.",
+        "en": "Well done! You know your near place, and you know the world is much bigger. That is the start of knowing the world.",
+        "de": "Gut gemacht! Du kennst deinen nahen Ort und weißt, dass die Welt viel größer ist. Das ist der Anfang, die Welt zu kennen."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن یک جای نزدیک و یک جای دور نام ببرد. جواب درست/غلط ندارد — هدف حسِ «نزدیک و دور» در جهان است.",
+        "en": "Help the child name one near place and one far place. No right/wrong answer — the goal is a feel for \"near and far\" in the world.",
+        "de": "Hilf dem Kind, einen nahen und einen fernen Ort zu nennen. Kein Richtig/Falsch — das Ziel ist ein Gefühl für „nah und fern“ in der Welt."
+      },
+      "audioPending": true
+    }
+  ]
+}

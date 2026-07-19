@@ -1,0 +1,241 @@
+{
+  "_draft": "PENDING RED-TEAM GATE — NOT SHIPPED. This file lives in docs/drafts/ on purpose: it is NOT in content/, NOT listed in content/packs.manifest.json, and NOT precached by sw.js, so the 8-10 shelf is unaffected and the content validator (which only scans content/) stays green. It fills the Tier-2 life-skills/health gap that docs/COVERAGE-8-10-2026-07-14.md §2 flagged as open (healthy body: germs & washing, clean water, teeth, sleep, moving/playing, 'emotions have names'). NOTE: unlike the geography draft, this pack needs NO new code or icons — it uses only icons already in pictures.js (soap, stone, water, muddy-water, toothbrush, ball, bed, happy-face, sad-face) and reuses the existing card type 'health-safety' (already in app.js KIND_KEY -> 'healthSafety' chip), so it renders correctly with zero engine change. Before it may ship, a lane MUST: (1) run the mandatory double red-team (pedagogy + child-safeguarding) + secular audit and write the dated red-team doc — pay special attention to hb-7 (feelings/sad): it is framed as calm feeling-naming with NO disclosure prompt, in the spirit of DO-NO-HARM.md's no-minors-harm rule; (2) get a native-Dari review of the fa strings (standing caveat N-1); (3) move this file into content/ as t2-life-healthy-body.json, add its {id,file,pic:'soap'} line to the 8-10 band in packs.manifest.json, bump the sw.js cache string; (4) run npm test green and verify in-browser (fa/en/de, RTL, teacher.html) with zero console errors. OPEN SUB-TOPIC (honest): 'healthy food' is deliberately NOT covered here because no food icon (apple/bread/vegetable) exists in pictures.js yet; add it as a follow-up once a secular food-icon set is drawn (REAL 90 > FAKE 100).",
+  "packId": "t2.life.healthy-body",
+  "version": "2.0.0",
+  "tier": 2,
+  "ageBand": "8-9",
+  "subject": "life — keeping the body healthy: germs & washing, clean water, teeth, sleep, moving, and feelings have names",
+  "lang": ["fa", "en", "de"],
+  "license": "CC-BY-SA-4.0",
+  "attribution": "Original Sahar content.",
+  "signature": null,
+  "audioStatus": "placeholder",
+  "audioNote": {
+    "fa": "برای این درس هنوز صدایی ضبط نشده است. بزرگ‌ترها می‌توانند خط «برای بزرگ‌ترها» را آرام و مهربان بلند بخوانند. صدای واقعی دری — یا یک صدای موقت رایانه‌ای — پس از تأیید محتوا توسط مو اضافه می‌شود.",
+    "en": "No audio is recorded for this lesson yet. A grown-up can read the 'For grown-ups' line aloud, slowly and warmly. Real Dari audio — or a temporary machine voice — will be added once Mo confirms the content.",
+    "de": "Für diese Lektion ist noch kein Ton aufgenommen. Erwachsene können die Zeile „Für Erwachsene“ langsam und warm vorlesen. Echter Dari-Ton — oder eine vorübergehende Computerstimme — folgt, sobald Mo den Inhalt bestätigt hat."
+  },
+  "title": {
+    "fa": "بدنِ سالم",
+    "en": "A Healthy Body",
+    "de": "Ein gesunder Körper"
+  },
+  "intro": {
+    "fa": "بدنِ تو خانهٔ توست و از تو مراقبت می‌کند. تو هم می‌توانی از آن مراقبت کنی: دست‌ها را بشویی، آبِ پاک بنوشی، دندان‌ها را مسواک بزنی، خوب بخوابی و بازی کنی. و بدانی که هر احساسی یک نام دارد. گوش کن و لمس کن.",
+    "en": "Your body is your home and it takes care of you. You can care for it too: wash your hands, drink clean water, brush your teeth, sleep well and play. And know that every feeling has a name. Listen and tap.",
+    "de": "Dein Körper ist dein Zuhause und er sorgt für dich. Auch du kannst für ihn sorgen: Hände waschen, sauberes Wasser trinken, Zähne putzen, gut schlafen und spielen. Und wissen, dass jedes Gefühl einen Namen hat. Höre zu und tippe."
+  },
+  "cards": [
+    {
+      "id": "hb-1",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "پیش از خوردنِ غذا، روی دست‌های ما میکروب‌های خیلی ریز می‌نشیند که با چشم دیده نمی‌شوند. چه چیزی میکروب‌ها را از دست‌ها می‌شوید؟",
+        "en": "Before we eat, tiny germs we cannot see can be on our hands. What washes the germs off our hands?",
+        "de": "Bevor wir essen, können winzige Keime, die wir nicht sehen, auf unseren Händen sein. Was wäscht die Keime von den Händen?"
+      },
+      "answer": {
+        "fa": "صابون و آب. با صابون دست‌ها را می‌شوییم و میکروب‌ها می‌روند. یک سنگ دست‌ها را پاک نمی‌کند.",
+        "en": "Soap and water. Soap washes our hands and the germs go away. A stone does not clean our hands.",
+        "de": "Seife und Wasser. Seife wäscht unsere Hände und die Keime gehen weg. Ein Stein reinigt die Hände nicht."
+      },
+      "caregiver": {
+        "fa": "با هم شستنِ دست را نشان بده: صابون، آب، بیست شماره. بگذار تصویر صابون را لمس کند.",
+        "en": "Show handwashing together: soap, water, count to twenty. Let them tap the soap.",
+        "de": "Zeigt gemeinsam Händewaschen: Seife, Wasser, bis zwanzig zählen. Lass es die Seife antippen."
+      },
+      "choices": [
+        { "id": "soap", "pic": "soap" },
+        { "id": "stone", "pic": "stone" }
+      ],
+      "answerId": "soap",
+      "audioPending": true
+    },
+    {
+      "id": "hb-2",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "تشنه‌ای و می‌خواهی آب بنوشی. کدام آب برای نوشیدن سالم و پاک است؟",
+        "en": "You are thirsty and want a drink. Which water is clean and safe to drink?",
+        "de": "Du hast Durst und möchtest trinken. Welches Wasser ist sauber und sicher zu trinken?"
+      },
+      "answer": {
+        "fa": "آبِ پاک و زلال. آبِ گِل‌آلود می‌تواند ما را بیمار کند؛ آبِ پاک بدن را سالم نگه می‌دارد.",
+        "en": "Clean, clear water. Muddy water can make us sick; clean water keeps the body well.",
+        "de": "Sauberes, klares Wasser. Schlammiges Wasser kann uns krank machen; sauberes Wasser hält den Körper gesund."
+      },
+      "caregiver": {
+        "fa": "دربارهٔ آبِ پاک حرف بزنید. اگر آب پاک نباشد، جوشاندنش کمک می‌کند. بگذار تصویر آبِ پاک را لمس کند.",
+        "en": "Talk about clean water. If water is not clean, boiling it helps. Let them tap the clean water.",
+        "de": "Sprecht über sauberes Wasser. Ist Wasser nicht sauber, hilft Abkochen. Lass es das saubere Wasser antippen."
+      },
+      "choices": [
+        { "id": "clean", "pic": "water" },
+        { "id": "muddy", "pic": "muddy-water" }
+      ],
+      "answerId": "clean",
+      "audioPending": true
+    },
+    {
+      "id": "hb-3",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "ما دندان‌هایمان را مسواک می‌زنیم تا سالم و محکم بمانند. با چه چیزی دندان‌ها را تمیز می‌کنیم؟",
+        "en": "We brush our teeth so they stay healthy and strong. What do we use to clean our teeth?",
+        "de": "Wir putzen unsere Zähne, damit sie gesund und stark bleiben. Womit reinigen wir unsere Zähne?"
+      },
+      "answer": {
+        "fa": "مسواک. صبح و شب دندان‌ها را مسواک می‌زنیم تا خراب نشوند.",
+        "en": "A toothbrush. We brush morning and night so our teeth do not go bad.",
+        "de": "Eine Zahnbürste. Wir putzen morgens und abends, damit die Zähne nicht kaputtgehen."
+      },
+      "caregiver": {
+        "fa": "با هم حرکتِ مسواک زدن را تمرین کنید — بالا، پایین، همهٔ دندان‌ها. بگذار تصویر مسواک را لمس کند.",
+        "en": "Practise the brushing motion together — up, down, all the teeth. Let them tap the toothbrush.",
+        "de": "Übt gemeinsam die Putzbewegung — oben, unten, alle Zähne. Lass es die Zahnbürste antippen."
+      },
+      "choices": [
+        { "id": "toothbrush", "pic": "toothbrush" },
+        { "id": "ball", "pic": "ball" }
+      ],
+      "answerId": "toothbrush",
+      "audioPending": true
+    },
+    {
+      "id": "hb-4",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "شب که خسته می‌شوی، بدنت به استراحت نیاز دارد تا رشد کنی و خوب فکر کنی. شب بدنِ تو به چه چیزی نیاز دارد؟",
+        "en": "At night when you are tired, your body needs rest so you can grow and think well. What does your body need at night?",
+        "de": "Nachts, wenn du müde bist, braucht dein Körper Ruhe, damit du wachsen und gut denken kannst. Was braucht dein Körper nachts?"
+      },
+      "answer": {
+        "fa": "خواب. وقتی می‌خوابیم، بدن استراحت می‌کند و نیرو می‌گیرد. شب وقتِ بازی نیست، وقتِ خواب است.",
+        "en": "Sleep. When we sleep, the body rests and gets strong. Night is not for play, it is for sleep.",
+        "de": "Schlaf. Wenn wir schlafen, ruht der Körper und wird stark. Die Nacht ist nicht zum Spielen, sondern zum Schlafen."
+      },
+      "caregiver": {
+        "fa": "دربارهٔ خوابِ خوب حرف بزنید: هر شب در وقتِ مشخص. بگذار تصویر بستر (خواب) را لمس کند.",
+        "en": "Talk about good sleep: the same time each night. Let them tap the bed (sleep).",
+        "de": "Sprecht über guten Schlaf: jede Nacht zur gleichen Zeit. Lass es das Bett (Schlaf) antippen."
+      },
+      "choices": [
+        { "id": "bed", "pic": "bed" },
+        { "id": "ball", "pic": "ball" }
+      ],
+      "answerId": "bed",
+      "audioPending": true
+    },
+    {
+      "id": "hb-5",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "بدن در روز هم وقتی نیرومند می‌ماند که حرکت کنیم و بازی کنیم. کدام تصویر بازی‌کردن و حرکت را نشان می‌دهد؟",
+        "en": "The body also stays strong in the day when we move and play. Which picture shows moving and playing?",
+        "de": "Der Körper bleibt auch tagsüber stark, wenn wir uns bewegen und spielen. Welches Bild zeigt Bewegung und Spiel?"
+      },
+      "answer": {
+        "fa": "توپ و بازی. دویدن و بازی‌کردن بدن را سالم و شاد نگه می‌دارد. بدن هم به خواب نیاز دارد و هم به حرکت.",
+        "en": "The ball and play. Running and playing keep the body healthy and happy. The body needs both sleep and movement.",
+        "de": "Der Ball und das Spiel. Laufen und Spielen halten den Körper gesund und froh. Der Körper braucht Schlaf und Bewegung."
+      },
+      "caregiver": {
+        "fa": "دربارهٔ تعادل حرف بزنید: هم استراحت، هم بازی. بگذار تصویر توپ (بازی) را لمس کند.",
+        "en": "Talk about balance: both rest and play. Let them tap the ball (play).",
+        "de": "Sprecht über Ausgewogenheit: sowohl Ruhe als auch Spiel. Lass es den Ball (Spiel) antippen."
+      },
+      "choices": [
+        { "id": "ball", "pic": "ball" },
+        { "id": "bed", "pic": "bed" }
+      ],
+      "answerId": "ball",
+      "audioPending": true
+    },
+    {
+      "id": "hb-6",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "بدن فقط دست و دندان نیست؛ احساس‌ها هم بخشی از ماست، و هر احساس یک نام دارد. وقتی چیزِ خوبی پیش می‌آید، شاید خوشحال شویم. کدام چهره خوشحال است؟",
+        "en": "The body is not only hands and teeth; feelings are part of us too, and every feeling has a name. When something good happens, we might feel happy. Which face is happy?",
+        "de": "Der Körper ist nicht nur Hände und Zähne; auch Gefühle gehören zu uns, und jedes Gefühl hat einen Namen. Wenn etwas Gutes passiert, fühlen wir uns vielleicht froh. Welches Gesicht ist froh?"
+      },
+      "answer": {
+        "fa": "چهرهٔ خوشحال. «خوشحال» نامِ یک احساسِ خوب است. نام‌گذاریِ احساس‌ها به ما کمک می‌کند آن‌ها را بفهمیم.",
+        "en": "The happy face. \"Happy\" is the name of a good feeling. Naming our feelings helps us understand them.",
+        "de": "Das frohe Gesicht. „Froh“ ist der Name eines guten Gefühls. Gefühle zu benennen hilft uns, sie zu verstehen."
+      },
+      "caregiver": {
+        "fa": "بپرس امروز چه چیزی او را خوشحال کرد. بگذار تصویر چهرهٔ خوشحال را لمس کند.",
+        "en": "Ask what made them happy today. Let them tap the happy face.",
+        "de": "Frage, was es heute froh gemacht hat. Lass es das frohe Gesicht antippen."
+      },
+      "choices": [
+        { "id": "happy", "pic": "happy-face" },
+        { "id": "sad", "pic": "sad-face" }
+      ],
+      "answerId": "happy",
+      "audioPending": true
+    },
+    {
+      "id": "hb-7",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "tap-the-picture",
+      "prompt": {
+        "fa": "گاهی هم غمگین می‌شویم، و این هم اشکالی ندارد. هر احساسی — خوشحال یا غمگین — یک نام دارد و همه‌شان طبیعی‌اند. کدام چهره غمگین است؟",
+        "en": "Sometimes we feel sad, and that is okay too. Every feeling — happy or sad — has a name, and all of them are normal. Which face is sad?",
+        "de": "Manchmal sind wir traurig, und das ist auch in Ordnung. Jedes Gefühl — froh oder traurig — hat einen Namen, und alle sind normal. Welches Gesicht ist traurig?"
+      },
+      "answer": {
+        "fa": "چهرهٔ غمگین. «غمگین» هم نامِ یک احساس است. وقتی غمگینی، می‌توانی با یک بزرگ‌ترِ مورد‌اعتماد حرف بزنی — حرف‌زدن کمک می‌کند.",
+        "en": "The sad face. \"Sad\" is the name of a feeling too. When you feel sad, you can talk to a grown-up you trust — talking helps.",
+        "de": "Das traurige Gesicht. „Traurig“ ist auch der Name eines Gefühls. Wenn du traurig bist, kannst du mit einem Erwachsenen sprechen, dem du vertraust — Reden hilft."
+      },
+      "caregiver": {
+        "fa": "این کارت فقط نام‌گذاریِ احساس است. به کودک بگو همهٔ احساس‌ها خوب‌اند و می‌شود دربارهٔ آن‌ها حرف زد. هیچ چیزی از او نپرس که «چه اتفاقی افتاده» — فقط نام‌بردنِ احساس. بگذار تصویر چهرهٔ غمگین را لمس کند.",
+        "en": "This card is only about naming a feeling. Tell the child all feelings are okay and can be talked about. Do NOT ask them to reveal 'what happened' — only to name the feeling. Let them tap the sad face.",
+        "de": "Bei dieser Karte geht es nur ums Benennen eines Gefühls. Sag dem Kind, alle Gefühle sind in Ordnung und man kann darüber reden. Frag es NICHT, „was passiert ist“ — nur das Gefühl benennen. Lass es das traurige Gesicht antippen."
+      },
+      "choices": [
+        { "id": "sad", "pic": "sad-face" },
+        { "id": "happy", "pic": "happy-face" }
+      ],
+      "answerId": "sad",
+      "audioPending": true
+    },
+    {
+      "id": "hb-8",
+      "type": "health-safety",
+      "box": 1,
+      "interaction": "repeat-aloud",
+      "prompt": {
+        "fa": "حالا نوبت توست. بلند بگو یک کاری که برای سالم‌نگه‌داشتنِ بدنت می‌کنی (مثل شستنِ دست، مسواک زدن، خوابیدن، نوشیدنِ آبِ پاک یا بازی)، و یک احساسی که امروز داشتی نام ببر.",
+        "en": "Now it's your turn. Say aloud one thing you do to keep your body healthy (like washing hands, brushing teeth, sleeping, drinking clean water, or playing), and name one feeling you had today.",
+        "de": "Jetzt bist du dran. Sag laut eine Sache, die du tust, um deinen Körper gesund zu halten (wie Hände waschen, Zähne putzen, schlafen, sauberes Wasser trinken oder spielen), und benenne ein Gefühl, das du heute hattest."
+      },
+      "answer": {
+        "fa": "آفرین! تو هم از بدنت مراقبت می‌کنی و هم احساس‌هایت را می‌شناسی. این یعنی مراقبتِ کامل از خودت.",
+        "en": "Well done! You care for your body and you know your feelings. That is taking good care of your whole self.",
+        "de": "Gut gemacht! Du sorgst für deinen Körper und kennst deine Gefühle. Das ist gute Fürsorge für dich ganz."
+      },
+      "caregiver": {
+        "fa": "به کودک کمک کن یک عادتِ سالم و یک احساس را بگوید. جواب درست/غلط ندارد — هدف مرور با کلماتِ خودش است.",
+        "en": "Help the child say one healthy habit and one feeling. No right/wrong answer — the goal is to review in their own words.",
+        "de": "Hilf dem Kind, eine gesunde Gewohnheit und ein Gefühl zu nennen. Kein Richtig/Falsch — das Ziel ist die Wiederholung in eigenen Worten."
+      },
+      "audioPending": true
+    }
+  ]
+}
