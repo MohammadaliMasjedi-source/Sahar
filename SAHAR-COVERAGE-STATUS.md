@@ -384,3 +384,43 @@ content/interaction breakdown.
 - **What this lane did NOT do:** no Tier 2-4 work, no mascot/illustration
   pass, no README rewrite, no books-track work, no real audio recorded, no
   repo other than `E:/Mo Pers/Sahar` touched.
+
+## 2026-07-19 — Text-first decision lane (audio honesty, no new content)
+
+- **DECISION (Mo, 2026-07-19): v1 ships TEXT-FIRST.** Real human Dari audio is
+  now a **funded-phase deliverable** (next candidate grant window: Prototype
+  Fund, Oct–Nov 2026 — a candidate window, not committed money). Full decision
+  + sourcing plan: `audio/DARI-AUDIO-SOURCING-2026-07-19.md` (paid Afghan-Dari
+  VO or adult diaspora volunteer; Mo/Neda cannot record; no Dari TTS or Dari
+  speech dataset exists anywhere in 2026 — verified twice).
+- ✅ **Verified: the app is fully usable with audio missing or off.** Driven
+  in-browser with `window.AudioEngine` removed entirely: the full
+  `bootstrap.html` 10-round session completed start-to-finish, and the main
+  app opened a pack, played a card, accepted answers, and advanced the Leitner
+  queue — zero console errors in both flows. Audio never blocks a lesson.
+- ✅ **Gentle robustness fix (`bootstrap.js`):** the bootstrap flow previously
+  called `window.AudioEngine` unguarded (unlock/cheer/voice/recorder-check),
+  so a missing/failed audio layer would have broken every tap. Now guarded
+  with the same `if (window.AudioEngine)` honest-no-op idiom `app.js` already
+  used; `bs.busy` can no longer stick on an audio failure. No logic change to
+  rounds, scheduling, or content.
+- ✅ **Honesty banner updated (`app.js` + `bootstrap.js`, fa/en/de):** the old
+  line promised *"a real human voice (Sahar/Neda) is coming"* — no longer
+  true (Mo/Neda cannot record). New line states the voice is a temporary
+  machine voice **and optional — every lesson/round works without it** — and
+  that a real human Dari voice is a **funded-phase goal**. Never claims real
+  audio that isn't real; still reports what actually played.
+- ✅ Docs aligned: `README.md` (status block: v1 = text-first one-liner),
+  `DO-NO-HARM.md` (new "Audio honesty" section), `audio/README.md` (stale
+  "EMPTY on purpose" header corrected — the folder holds flagged machine
+  drafts), `.mc/project.json` (decision logged, nextAction = text-first pilot
+  prep).
+- ❌ **Still not claimed ready.** The adult-supervised pilot (now a
+  **text-first pilot**) remains the gate. No human voice, no real-device
+  offline test, no child pilot — unchanged.
+- **What this lane did NOT do:** no new packs, no content-string changes
+  beyond the honesty banner, no engine/scheduling changes, no test-suite
+  changes. `npm test` could NOT be run on this machine (no Node.js installed
+  here); the suites do not load `bootstrap.js` at all and the only `app.js`
+  change is a banner string, but the next session with Node must re-run
+  `npm test` before commit.

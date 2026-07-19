@@ -13,7 +13,7 @@
   "currentPhase": "p0",
   "eta": "ongoing — lanes land continuously, no fixed ship date",
   "gatedOn": "an adult-supervised pilot before any 'ready for real learners' claim (SAHAR-COVERAGE-STATUS.md §3 DoD)",
-  "nextAction": "See SAHAR-COVERAGE-STATUS.md for the live tick-list against SAHAR-COVERAGE.md's §7 baseline — most recent lanes: Tier-1 life-skills pack + real machine-draft audio (honestly flagged), audio-first bootstrap.",
+  "nextAction": "Prep the adult-supervised pilot as a TEXT-FIRST pilot (decision 2026-07-19: v1 = text-first; draft machine audio stays optional + flagged and never blocks a lesson; real human Dari audio = funded-phase deliverable, next candidate window Prototype Fund Oct–Nov 2026 — see audio/DARI-AUDIO-SOURCING-2026-07-19.md).",
   "links": {
     "github": "https://github.com/MohammadaliMasjedi-source/Sahar.git",
     "dashboard": "index.html",
@@ -40,6 +40,17 @@
     "opportunities": [],
     "threats": []
   },
-  "decisions": [],
+  "decisions": [
+    {
+      "date": "2026-07-19",
+      "decision": "v1 ships TEXT-FIRST; real human Dari audio is deferred to the funded phase (next candidate grant window: Prototype Fund, Oct–Nov 2026). The flagged edge-tts draft voice stays as an optional extra that never blocks a lesson.",
+      "why": "Verified twice (docs/voice-research/VOICE-RESEARCH.md + audio/DARI-AUDIO-SOURCING-2026-07-19.md): no Dari TTS voice or dataset exists anywhere in 2026, Mo/Neda cannot record, and the only honest sources (paid Afghan-Dari VO ~$150–400 or adult diaspora volunteer) cost money/time that fits the funded phase — REAL 90 > FAKE 100.",
+      "rejected": [
+        "shipping an Iranian-Persian voice as Dari (accent-dishonest, teaches wrong sounds)",
+        "waiting for a better TTS (no Dari training data exists — a stall, not a path)",
+        "blocking the pilot on audio (the app is fully usable text-first)"
+      ]
+    }
+  ],
   "_stub": "auto-stamped 2026-07-11 (WHERE+WHEN wave) — first .mc/project.json for this repo; fill in phases/swot/decisions as the tracker grows"
 }

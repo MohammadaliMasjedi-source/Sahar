@@ -154,9 +154,9 @@ function honestyLine() {
 function honestyMessage() {
   const h = honestyLine();
   return {
-    fa: `نمونهٔ اولیه · این صدا فعلاً یک صدای رایانه‌ای موقت است (اکنون: ${h.played}) · صدای واقعی انسان (سحر/ندا) به‌زودی می‌آید · نیاز به آزمایش با ۲–۳ کودک`,
-    en: `PROTOTYPE · this voice is a temporary machine voice for now (now playing: ${h.played}) · a real human voice (Sahar/Neda) is coming · needs a 2–3 child pilot`,
-    de: `PROTOTYP · diese Stimme ist vorübergehend eine Computerstimme (jetzt: ${h.played}) · eine echte menschliche Stimme (Sahar/Neda) folgt · braucht Pilot mit 2–3 Kindern`
+    fa: `نمونهٔ اولیه · این صدا یک صدای رایانه‌ای موقت و اختیاری است — هر دور بدون آن هم کار می‌کند (اکنون: ${h.played}) · صدای واقعی انسان به دری، هدف مرحلهٔ دارای بودجه است · نیاز به آزمایش با ۲–۳ کودک`,
+    en: `PROTOTYPE · this voice is a temporary machine voice and optional — every round works without it (now playing: ${h.played}) · a real human Dari voice is a funded-phase goal · needs a 2–3 child pilot`,
+    de: `PROTOTYP · diese Stimme ist eine vorübergehende Computerstimme und optional — jede Runde funktioniert auch ohne sie (jetzt: ${h.played}) · eine echte menschliche Dari-Stimme ist Ziel der geförderten Phase · braucht Pilot mit 2–3 Kindern`
   }[bs.lang] || '';
 }
 
@@ -173,11 +173,19 @@ function renderProgress() {
     </div>`;
 }
 
-/* ---- play a label and record its honest mode ---- */
+/* ---- play a label and record its honest mode ----
+ * Audio is OPTIONAL (v1 is text-first): a missing/blocked AudioEngine is a
+ * silent no-op, exactly like app.js's voiceCard() — it never blocks a round. */
 async function playLabel(label, lang, isL2) {
+  if (!window.AudioEngine) return null; // honest no-op: audio is optional
   const r = await window.AudioEngine.voice(label, lang, isL2);
   bs.audioModes[r.mode] = true;
   return r;
+}
+
+/** Prime audio on a user gesture — safe no-op when AudioEngine is absent. */
+function unlockAudio() {
+  if (window.AudioEngine) window.AudioEngine.unlock();
 }
 
 /** Voice the current item: L1 first, then (after a beat) L2. */
@@ -185,9 +193,11 @@ async function voiceCurrent() {
   const round = bs.session.rounds[bs.session.idx];
   if (!round) return;
   bs.busy = true;
-  await playLabel(round.item.l1, bs.pack.l1, false);
-  await new Promise((r) => setTimeout(r, 450));
-  await playLabel(round.item.l2, bs.pack.l2, true);
+  try {
+    await playLabel(round.item.l1, bs.pack.l1, false);
+    await new Promise((r) => setTimeout(r, 450));
+    await playLabel(round.item.l2, bs.pack.l2, true);
+  } catch (_) { /* honest no-op: audio is optional, never blocks a lesson */ }
   bs.busy = false;
 }
 
@@ -238,7 +248,7 @@ function renderDone() {
       <button class="fc-btn" data-act="restart">${t('restart')}</button>
     </div>`;
   renderProgress();
-  window.AudioEngine.cheer();
+  if (window.AudioEngine) window.AudioEngine.cheer();
 }
 
 function render() {
@@ -297,7 +307,7 @@ function onTapChoice(tappedId) {
   const fb = $$('bs-fb');
   if (window.BootstrapCore.isCorrect(round, tappedId)) {
     bs.session = window.BootstrapCore.applyTap(bs.session, tappedId);
-    window.AudioEngine.cheer();
+    if (window.AudioEngine) window.AudioEngine.cheer();
     if (fb) fb.innerHTML = `${starSVG(18)} ${t('great')}`;
     const tile = document.querySelector(`.pic-choice[data-tap="${tappedId}"]`);
     celebrateTile(tile);
@@ -334,7 +344,7 @@ function showCaregiver() {
     const line = (it.caregiver && (it.caregiver[bs.lang] || it.caregiver.en)) || '';
     return `<li><span class="cg-pic">${window.pictureFor(it.pic)}</span><span>${line}</span></li>`;
   }).join('');
-  const rec = window.AudioEngine.CaregiverRecorder.supported()
+  const rec = (window.AudioEngine && window.AudioEngine.CaregiverRecorder.supported())
     ? { fa: 'حالت ضبط صدا (به‌زودی): شما می‌توانید کلمه را با صدای خودتان ضبط کنید. هیچ صدایی از دستگاه بیرون نمی‌رود.',
         en: 'Record mode (coming soon): you can record the word in your own voice. Nothing ever leaves the device.',
         de: 'Aufnahmemodus (bald): Sie können das Wort mit Ihrer Stimme aufnehmen. Nichts verlässt das Gerät.' }[bs.lang]
@@ -355,15 +365,15 @@ function wire() {
     const b = e.target.closest('button[data-lang]');
     if (b) setLang(b.getAttribute('data-lang'));
   });
-  $$('bs-caregiver').addEventListener('click', () => { window.AudioEngine.unlock(); showCaregiver(); });
-  document.body.addEventListener('click', () => window.AudioEngine.unlock(), { once: true });
+  $$('bs-caregiver').addEventListener('click', () => { unlockAudio(); showCaregiver(); });
+  document.body.addEventListener('click', () => unlockAudio(), { once: true });
 
   $$('bs-stage').addEventListener('click', (e) => {
     const tapBtn = e.target.closest('[data-tap]');
-    if (tapBtn) { window.AudioEngine.unlock(); onTapChoice(tapBtn.getAttribute('data-tap')); return; }
+    if (tapBtn) { unlockAudio(); onTapChoice(tapBtn.getAttribute('data-tap')); return; }
     const act = e.target.closest('[data-act]');
     if (!act) return;
-    window.AudioEngine.unlock();
+    unlockAudio();
     const a = act.getAttribute('data-act');
     if (a === 'say-l1') { const r = bs.session.rounds[bs.session.idx]; playLabel(r.item.l1, bs.pack.l1, false); }
     else if (a === 'say-l2') { const r = bs.session.rounds[bs.session.idx]; playLabel(r.item.l2, bs.pack.l2, true); }

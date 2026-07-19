@@ -87,6 +87,21 @@ fix was re-verified against the automated test suite: **content-validator 90/90 
 core 28/28, bootstrap 14/14, profiles 25/25** across the two passes (201/201 passed, 0 failed, as
 of 2026-07-14).
 
+## Audio honesty (v1 is text-first — decided 2026-07-19)
+
+The voice in the prototype today is a **machine-generated draft** (an Iranian-Persian TTS voice
+standing in for Afghan Dari), and the app says so: a caregiver-panel banner labels it a temporary,
+optional machine voice on every card. It never pretends to be a real Dari recording, because a
+wrong-accent voice presented as real Dari would teach a child the wrong sounds. Verified 2026-07-19:
+the machine audio is **optional and never blocks a lesson** — every lesson and every round remains
+fully usable with audio missing, blocked, or failing (the audio layer degrades to a silent no-op).
+
+Accordingly, **v1 ships text-first**. Real human Dari audio is a **funded-phase deliverable**,
+sourced per [`audio/DARI-AUDIO-SOURCING-2026-07-19.md`](audio/DARI-AUDIO-SOURCING-2026-07-19.md)
+(a paid Afghan-Dari voice professional or an adult diaspora volunteer, with an explicit open
+licence). Standing safeguarding rule, restated there: **adult narrators only — never record a
+child's voice.**
+
 ## Honest limits of this gate
 
 - **This is a self-run internal review**, not an independent external child-safety audit. It is
