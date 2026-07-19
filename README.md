@@ -7,6 +7,10 @@ science, and critical thinking as small spaced-repetition lessons, in Dari (RTL)
 > offline-first prototype plus the architecture, curriculum, naming, and open-source plan that the
 > full app will grow from. It is **not** a finished product, and nothing here pretends to be.
 > (House rule: *REAL 90 > FAKE 100*.)
+>
+> **v1 is text-first** — every lesson works with audio off; real human Dari audio is a
+> funded-phase deliverable (next candidate grant window: Prototype Fund, Oct–Nov 2026 — see
+> [`audio/DARI-AUDIO-SOURCING-2026-07-19.md`](audio/DARI-AUDIO-SOURCING-2026-07-19.md)).
 
 ## Quickstart
 
@@ -162,8 +166,9 @@ It is a **prototype**: ten Tier-1 packs plus a language-course pack, three langu
 real and tested (**132 headless checks across three suites, 0 failing** — 28 core + 14 bootstrap +
 90 content). Every card now has **draft machine-voice audio** (fa/en/de), flagged in-app as a
 temporary computer voice — the Dari voice is Iranian-Persian standing in for real recordings, not
-the finished thing. The full curriculum, the pack-signing pipeline, **real human Dari audio**, and
-the higher tiers (T2–T4) are documented but **not yet built**.
+the finished thing, and it is optional: every lesson works with audio off (v1 is text-first). The
+full curriculum, the pack-signing pipeline, **real human Dari audio** (a funded-phase deliverable),
+and the higher tiers (T2–T4) are documented but **not yet built**.
 
 ---
 

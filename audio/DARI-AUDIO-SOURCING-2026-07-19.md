@@ -20,6 +20,29 @@ protects.
 
 ---
 
+## DECISION (Mo, 2026-07-19): v1 goes text-first — human Dari audio moves to the funded phase
+
+Mo read this doc and decided the same evening: **Sahar v1 ships text-first.**
+Real human Dari audio (Track 1 paid VO and/or Track 2 diaspora volunteer, below)
+is a **funded-phase deliverable**, not a v1 blocker. The next realistic grant
+window on the tracker is the **Prototype Fund round expected 1 Oct–30 Nov 2026**
+(`funding/FUNDING-SPONSORSHIP-MEDIA-STRATEGY-2026-07-12.md`, row 10 — a candidate
+window, not committed money), alongside the other tracks in `funding/`.
+
+What this means in practice:
+
+- The app must be — and now verifiably is — **fully usable with audio missing or
+  off**: audio never blocks a lesson (`app.js`/`bootstrap.js` degrade to a silent
+  no-op when the audio layer is absent or fails).
+- The flagged edge-tts **draft voice stays as an optional extra**, labelled
+  honestly in the in-app caregiver panel. It is never presented as real Dari.
+- The **"What NOT to do" list (§2) stays fully in force**: no Iranian voice
+  shipped *as* Dari, no waiting for a better TTS, no recording children.
+- Tracks 1 & 2 below stay written up so the funded phase can execute them
+  without re-research. The pilot ahead is a **text-first pilot**.
+
+---
+
 ## 1. Re-verified today: still no Dari TTS — with two findings the prior doc missed
 
 The 2026-07-12 verdict holds. Two things were checked **live today** because they

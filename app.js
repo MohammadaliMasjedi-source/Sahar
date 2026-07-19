@@ -855,9 +855,9 @@ function updateCgHonesty() {
     ? modes.map((m) => labels[m] || m).join(' + ')
     : (NOT_PLAYED_YET[lang] || NOT_PLAYED_YET.en);
   el.textContent = {
-    fa: `نمونهٔ اولیه · این صدا فعلاً یک صدای رایانه‌ای موقت است (اکنون: ${played}) · صدای واقعی انسان (سحر/ندا) به‌زودی می‌آید`,
-    en: `PROTOTYPE · this voice is a temporary machine voice for now (now playing: ${played}) · a real human voice (Sahar/Neda) is coming`,
-    de: `PROTOTYP · diese Stimme ist vorübergehend eine Computerstimme (jetzt: ${played}) · eine echte menschliche Stimme (Sahar/Neda) folgt bald`
+    fa: `نمونهٔ اولیه · این صدا یک صدای رایانه‌ای موقت و اختیاری است — هر درس بدون آن هم کار می‌کند (اکنون: ${played}) · صدای واقعی انسان به دری، هدف مرحلهٔ دارای بودجه است`,
+    en: `PROTOTYPE · this voice is a temporary machine voice and optional — every lesson works without it (now playing: ${played}) · a real human Dari voice is a funded-phase goal`,
+    de: `PROTOTYP · diese Stimme ist eine vorübergehende Computerstimme und optional — jede Lektion funktioniert auch ohne sie (jetzt: ${played}) · eine echte menschliche Dari-Stimme ist Ziel der geförderten Phase`
   }[lang] || '';
 }
 
