@@ -96,3 +96,40 @@ JSON with the required PWA fields.
 deliberately introduced stale-cache-list fixture, proving it actually checks something.
 **Don't:** attempt or claim the real phone-test gate (`docs/PHONE-TEST.md`) is satisfied — this task
 only automates the device-independent subset of that matrix.
+
+### T-SAHAR-06 · Fix the Leitner fallback so replays can't advance boxes same-day [phase: p0 · size: S · status: OPEN]
+**Context:** audit W-A1 (2026-07-23), finding CONFIRMED. `app.js` `buildQueue()` returns ALL
+cards when none are due ("show all so the demo always works"), and grading those replays
+advances boxes and overwrites due dates — same-day promotion through a supposedly spaced
+schedule.
+**Do:** keep the demo-friendly fallback (children should never hit an empty screen) but make
+replayed non-due cards **practice-only**: grading them must not change `box`, `reps`, or `due`.
+Mark the queue entries (e.g. `practice: true`) and guard the grade handler. A quiet "practice
+round" label in the UI is welcome if it fits existing styles.
+**DoD:** a unit test in the existing test suites proves: card due tomorrow → graded in fallback
+mode → box/due unchanged; card genuinely due → graded → advances as before. All suites green
+(`npm test`), output pasted in the PR body.
+**Don't:** change the SM-2 intervals, storage schema version, or any child-facing content.
+
+### T-SAHAR-07 · Fix audio false-success: silence is not playback [phase: p0 · size: S · status: OPEN]
+**Context:** audit W-A1 (2026-07-23), finding CONFIRMED. `audio.js` `tryFile()`'s 3s safety
+timeout resolves `true` if no error fired — even when no `playing` event ever came. A stalled
+file is then reported as successful playback and the TTS/tone fallback is skipped.
+**Do:** track whether `playing` actually fired; on timeout without it, resolve `false` (and
+mark the url missing) so the fallback chain runs. Keep the timeout itself — hanging forever is
+worse.
+**DoD:** a unit test simulating "no error, no playing event" gets `false` and the fallback
+fires; a test with `playing` fired gets `true`. All suites green, output in the PR body.
+**Don't:** touch pack content, the manifest, or recording-mode logic beyond this resolution bug.
+
+### T-SAHAR-08 · In-app "erase everything" control (child-safety privacy gap) [phase: p0 · size: M · status: OPEN]
+**Context:** audit W-A1 (2026-07-23), finding CONFIRMED. `PRIVACY.md` itself admits there is no
+in-app delete control, while the threat model includes borrowed phones and children who must
+not be seen learning. Profiles (optional name, age, avatar, progress) persist in localStorage.
+**Do:** add a clearly-worded, child-appropriate "پاک کردن همه‌چیز / erase everything" control
+(settings/profile area, existing visual language) that wipes ALL app localStorage keys and
+unregisters this app's storage in one tap, with one confirm step. Update `PRIVACY.md` and
+`DATA-HANDLING.md`'s honest-gap lines in the same PR.
+**DoD:** test (or scripted DOM check) proves every app storage key is gone after the action;
+docs updated; all suites green, output in the PR body.
+**Don't:** add any network call, analytics, or export feature here; don't touch pack content.
