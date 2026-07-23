@@ -98,7 +98,7 @@ Sahar/
 ├─ LICENSE-CONTENT.md         ← CC-BY-SA 4.0 (the original learning packs)
 ├─ LICENSE-NOTE.md            ← how the dual license was decided
 ├─ SAHAR-COVERAGE-STATUS.md   ← honest, dated ticks of what is really done vs. still open
-├─ package.json               ← defines `npm test` (the three suites below); no runtime dependencies
+├─ package.json               ← defines `npm test` (the suites below + the teen-pack gate); no runtime dependencies
 ├─ docs/
 │  ├─ ARCHITECTURE.md         ← offline-first PWA, Clean-Arch + MVVM, signed packs, i18n, Leitner, a11y, child-safety
 │  ├─ NAME.md                 ← name shortlist + the Sahar-as-heroine idea
@@ -110,10 +110,12 @@ Sahar/
 ├─ learning/
 │  └─ PROJECT-EXPLAINED.md    ← the project explained in four layers (child → architect)
 ├─ handbook/                  ← maintainer handbook: overview, setup, standards, diagrams, task guides
-├─ test/                      ← pure-Node headless suites (node:assert, no framework): 132 checks, 0 failed
-│  ├─ core.test.js            ← 28 — Leitner core, queue building, i18n parity, localStorage round-trip
+├─ test/                      ← pure-Node headless suites (node:assert, no framework): 202 checks + a 36-check
+│  │                             draft teen-pack gate = 238 via `npm test`, 0 failed
+│  ├─ core.test.js            ← 29 — Leitner core, queue building, i18n parity, localStorage round-trip
 │  ├─ bootstrap.test.js       ← 14 — language-course pack + the pre-literacy tap-round engine
-│  └─ content-validator.test.js  ← 90 — every pack: fa/en/de completeness, honest audio state, resolvable choices
+│  ├─ content-validator.test.js  ← 134 — every pack: fa/en/de completeness, honest audio state, resolvable choices
+│  └─ profiles.test.js        ← 25 — child profiles, age-band normalization, per-profile garden isolation
 ├─ content/                   ← versioned learning packs (fa/en/de), JSON — 10 Tier-1 + 1 language-course
 │  ├─ t1-literacy-first-letters.json
 │  ├─ t1-literacy-first-words.json
@@ -163,8 +165,8 @@ behaviour serve the folder over `http://`). With **zero internet** you can:
   (`1 → 2 → 4 → 9 → 21` day intervals; *got it* climbs a box, *again* falls to box 1).
 
 It is a **prototype**: ten Tier-1 packs plus a language-course pack, three languages, the engine
-real and tested (**132 headless checks across three suites, 0 failing** — 28 core + 14 bootstrap +
-90 content). Every card now has **draft machine-voice audio** (fa/en/de), flagged in-app as a
+real and tested (**238 headless checks, 0 failing** — 29 core + 14 bootstrap + 134 content +
+25 profiles, plus a 36-check draft gate for the teen pack). Every card now has **draft machine-voice audio** (fa/en/de), flagged in-app as a
 temporary computer voice — the Dari voice is Iranian-Persian standing in for real recordings, not
 the finished thing, and it is optional: every lesson works with audio off (v1 is text-first). The
 full curriculum, the pack-signing pipeline, **real human Dari audio** (a funded-phase deliverable),

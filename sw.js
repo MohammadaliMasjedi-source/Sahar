@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v24'; // v24: 8-10 Tier-2 literacy pack — reading & understanding (localized word-glyphs)
+const CACHE = 'sahar-v25'; // v25: E2E fixes — tap-advance lock (no card-skip/crash), band-scoped garden count, navigation-only offline fallback, local-date Leitner, honest audio timeout
 
 const APP_SHELL = [
   './',
@@ -114,7 +114,13 @@ self.addEventListener('fetch', (event) => {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
         return res;
-      }).catch(() => caches.match('./index.html')); // offline fallback
+      }).catch(() =>
+        // Offline fallback: only serve the app shell for a page NAVIGATION.
+        // A failed JSON/image/font/audio request must NOT receive index.html's
+        // HTML — that would break JSON.parse / decoding and mask the real
+        // error. Non-navigation misses get a clean network-error instead.
+        req.mode === 'navigate' ? caches.match('./index.html') : Response.error()
+      );
     })
   );
 });
