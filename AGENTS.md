@@ -41,3 +41,17 @@ template for the next one. Never flip Sahar's visibility to Mo-only — it break
 ## If blocked
 Note it under `## Blocked` in `.mc/INBOX.md` — especially anything that would need a content
 review you can't perform yourself (no native Dari speaker in the loop, etc).
+
+## Tasks for external contributors
+See `TASKS.md` in this repo root for the current backlog of code/structure task cards (never
+child-facing content — content changes go through the do-no-harm review above, not this file).
+
+## External contributors — PR only
+Codex, other AIs, and humans landing here via GitHub never push to `main`:
+1. Branch `task/T-xxx-short-name` → commits → PR against `main`.
+2. PR body: which task card, what was done, and the `npm test` output pasted in full.
+3. A draft PR titled `T-xxx: <title>` is how you claim a task — one task per PR. Opening it is the
+   only lock; there is no other claiming mechanism for GitHub-only contributors.
+4. Review before merge is mandatory — you never self-merge, regardless of how green your tests are.
+5. Fleet (Claude) sessions keep their existing direct-push rights — this protocol governs external
+   contributors only.
