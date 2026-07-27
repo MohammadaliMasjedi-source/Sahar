@@ -5,10 +5,11 @@
   "description": "Sahar — an offline-first Leitner-box learning companion (prototype). Pure-node headless tests for the UI-free CORE.",
   "license": "MIT",
   "scripts": {
-    "test": "node test/core.test.js && node test/bootstrap.test.js && node test/content-validator.test.js && node test/profiles.test.js",
+    "test": "node test/core.test.js && node test/bootstrap.test.js && node test/content-validator.test.js && node test/profiles.test.js && node packs/teen-critical-thinking/validate.js",
     "test:core": "node test/core.test.js",
     "test:bootstrap": "node test/bootstrap.test.js",
     "test:content": "node test/content-validator.test.js",
-    "test:profiles": "node test/profiles.test.js"
+    "test:profiles": "node test/profiles.test.js",
+    "test:teen": "node packs/teen-critical-thinking/validate.js"
   }
 }

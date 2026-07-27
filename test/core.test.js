@@ -154,6 +154,17 @@ test('addDaysISO(0) equals today; addDaysISO(1) is strictly after', () => {
   assert.ok(addDaysISO(-1) < todayISO());
 });
 
+test('todayISO uses the LOCAL calendar date, not UTC — regression, F4', () => {
+  // A late-evening moment that is still "today" locally but already "tomorrow"
+  // in UTC (e.g. Kabul UTC+4:30). todayISO must report the LOCAL day so a
+  // learner's Leitner "due"/"today" never drifts a day. Build the date from
+  // local components so the expectation is timezone-independent.
+  const d = new Date(2026, 6, 22, 23, 30, 0); // local 2026-07-22 23:30
+  assert.equal(todayISO(d), '2026-07-22');
+  // round-trip: adding then subtracting a day returns the same local day
+  assert.equal(addDaysISO(-1, addDaysISO(1, todayISO(d))), '2026-07-22');
+});
+
 /* =====================================================================
  * 6. i18n STRINGS — fa/en/de exist with matching keys (no missing translations)
  * ===================================================================== */

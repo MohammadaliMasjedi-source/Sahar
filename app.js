@@ -156,10 +156,19 @@ const STRINGS = {
 const INTERVALS = [1, 2, 4, 9, 21]; // box 1..5 → days until due again
 
 function todayISO(d) {
-  return (d || new Date()).toISOString().slice(0, 10);
+  // Use the LOCAL calendar date, not UTC. toISOString() is UTC, so in Kabul
+  // (UTC+4:30) the day boundary would fall at 19:30 local and a card's
+  // "due"/"today" could drift a day — local Y-M-D keeps the Leitner day
+  // aligned with the learner's actual day.
+  const x = d || new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  return `${x.getFullYear()}-${p(x.getMonth() + 1)}-${p(x.getDate())}`;
 }
 function addDaysISO(days, from) {
-  const d = from ? new Date(from) : new Date();
+  // Parse `from` (a YYYY-MM-DD from todayISO) as LOCAL midnight, not the UTC
+  // midnight `new Date('YYYY-MM-DD')` would give, so day math stays in the
+  // learner's local calendar (matches todayISO above).
+  const d = from ? new Date(from + 'T00:00:00') : new Date();
   d.setDate(d.getDate() + days);
   return todayISO(d);
 }
@@ -331,7 +340,9 @@ const state = {
   shuffledChoices: null, // tap choices for the current card/round, order randomised at prepareCard()
   audioModes: {},     // which audio modes actually played this card (honesty banner)
   activeProfileId: null, // SAHAR-V3 CORE: the currently active child profile (localStorage-backed)
-  gardenRecorded: false  // guards against double-counting a garden "bloom" on re-render of the done screen
+  gardenRecorded: false, // guards against double-counting a garden "bloom" on re-render of the done screen
+  advancing: false       // locks the card during the 700ms correct-answer advance so a rapid
+                         // re-tap (children mash tiles) can't queue extra advances / skip cards
 };
 
 /* =========================================================================
@@ -474,9 +485,15 @@ function renderGarden() {
   // SAHAR-V3 CORE slice #2: the garden's "total" is THIS BAND's pack count,
   // not the whole app's — a band with no packs yet has nothing to grow, so
   // the garden stays hidden rather than showing a misleading 0/10.
-  const total = packsForBand(activeAgeBand()).length;
+  const bandPacks = packsForBand(activeAgeBand());
+  const total = bandPacks.length;
   if (!total) { el.innerHTML = ''; return; }
-  const completed = P.GardenProvider.distinctCompletedCount(state.activeProfileId);
+  // Count only THIS band's completed packs, so the numerator can never exceed
+  // the band's total. A profile that finished packs in another band must not
+  // read as an impossible "6 / 4" after a caregiver switches its band.
+  const bandIds = new Set(bandPacks.map((p) => p.id));
+  const ledger = P.GardenProvider.load(state.activeProfileId).packsCompleted || {};
+  const completed = Object.keys(ledger).filter((id) => bandIds.has(id)).length;
   const scene = (window.SaharMascot && window.SaharMascot.garden(completed, total)) || '';
   el.innerHTML = `
     <div class="garden-card">
@@ -597,6 +614,7 @@ function openApp() {
   state.idx = 0;
   state.revealed = false;
   state.gardenRecorded = false;
+  state.advancing = false;
   document.body.classList.remove('lesson-open');
   render();
 }
@@ -626,7 +644,7 @@ function renderPicker() {
     const title = (p.titleByLang && (p.titleByLang[lang] || p.titleByLang.en)) || p.id;
     const icon = (window.pictureFor && window.pictureFor(p.pic || 'star')) || '';
     return `<button class="lesson-tile" data-act="open" data-path="${p.path}">
-        <span class="tile-sun">${icon}</span><span class="tile-title">${title}</span>
+        <span class="tile-sun">${icon}</span><span class="tile-title">${escapeHtml(title)}</span>
       </button>`;
   }).join('');
   $('stage').innerHTML = `
@@ -996,12 +1014,17 @@ function onShow() { state.revealed = true; render(); }
 
 function onAnswer(gotIt) {
   const card = state.queue[state.idx];
+  // Never run past the end of the queue: a rapid multi-tap on the last card
+  // could schedule extra advances, and reading `card.id` on an undefined card
+  // would throw. Just release the lock and stop.
+  if (!card) { state.advancing = false; return; }
   const updated = schedule(card, gotIt);       // CORE decides the new box/due
   const progress = ProgressProvider.load();
   progress[card.id] = { box: updated.box, due: updated.due, reps: updated.reps, lapses: updated.lapses };
   ProgressProvider.save(progress);             // persist on device
   state.idx += 1;
   state.revealed = false;
+  state.advancing = false;                     // unlock for the next card
   prepareCard();
   render();
 }
@@ -1020,7 +1043,10 @@ function onWrongTap(tappedId) {
  *  (recording a Leitner "got it"); wrong -> gentle retry, no scheduling. */
 function onTapChoice(tappedId) {
   const card = state.queue[state.idx];
-  if (!card) return;
+  // Ignore taps once a correct answer is already accepted and the card is
+  // mid-advance (the 700ms celebrate window): otherwise a child mashing the
+  // right tile queues extra advances, skipping — and falsely "passing" — cards.
+  if (!card || state.advancing) return;
   const isMatch = card.interaction === 'match' && Array.isArray(card.rounds);
   const round = isMatch ? card.rounds[state.subIdx] : card;
   if (tappedId !== round.answerId) { onWrongTap(tappedId); return; }
@@ -1033,12 +1059,13 @@ function onTapChoice(tappedId) {
   hopBird('progressPath');
   celebrate();
 
+  state.advancing = true;                        // lock until the round/card advances
   if (isMatch && state.subIdx < card.rounds.length - 1) {
     state.subIdx += 1;
     state.shuffledChoices = shuffleChoices(card.rounds[state.subIdx].choices);
-    setTimeout(render, 700);
+    setTimeout(() => { state.advancing = false; render(); }, 700); // next round: unlock + show
   } else {
-    setTimeout(() => onAnswer(true), 700);
+    setTimeout(() => onAnswer(true), 700);       // onAnswer releases the lock
   }
 }
 
@@ -1047,6 +1074,7 @@ function onRestart() {
   state.idx = 0;
   state.revealed = false;
   state.gardenRecorded = false; // a fresh run can bloom the garden again
+  state.advancing = false;
   prepareCard();
   render();
 }
@@ -1060,6 +1088,7 @@ async function openPack(path) {
     state.idx = 0;
     state.revealed = false;
     state.gardenRecorded = false;
+    state.advancing = false;
     prepareCard();
   } catch (err) {
     state.pack = null;
@@ -1081,6 +1110,7 @@ function openLessons() {
   state.packPath = null;
   state.idx = 0;
   state.revealed = false;
+  state.advancing = false;
   document.body.classList.remove('lesson-open');
   render();
 }
