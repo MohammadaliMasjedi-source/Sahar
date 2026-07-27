@@ -68,7 +68,10 @@ Four editions so the same child grows up *inside* the app:
 - Adults who never got the chance and want to start at the beginning, privately.
 
 Designed **icon-first and low-literacy-friendly** so a child who *cannot yet read the menu* can still
-start the first lesson. Designed **private by default** so using it is never evidence against anyone.
+start the first lesson. Designed **private by default** — nothing about using it is ever sent
+anywhere, so no server, company, or outsider sees it. That does not make the device itself
+invisible: like any app, Sahar leaves files on the phone or tablet until they are deleted — see
+[`PRIVACY.md`](PRIVACY.md) for exactly what stays on the device and how to clear it.
 
 ---
 

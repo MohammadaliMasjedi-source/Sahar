@@ -21,6 +21,12 @@ No field above identifies a real-world person unless a caregiver *chooses* to ty
 into the optional name field — and even then, that value never leaves the device (see
 [`PRIVACY.md`](PRIVACY.md)'s "what is stored" section for the full honesty note on that one field).
 
+Separately from the table above, the service worker's **Cache Storage** holds a copy of the app
+shell and every downloaded content pack, audio file, and manifest, so the app works offline. That
+is not user data in the same sense — it is the app's own files, not something typed in — but it is
+still readable on the device by anyone with browser storage/developer-tools access, the same as the
+table above (see [`PRIVACY.md`](PRIVACY.md)'s "On-device visibility" section).
+
 ## Format: non-proprietary, by construction
 
 Every value above is stored as **JSON** (`JSON.stringify`/`JSON.parse` throughout `profiles.js` and
@@ -55,8 +61,10 @@ small local-export TODO above.
 ## Deletion
 
 Because there is no second copy anywhere, deletion is trivial and complete: clearing the site's
-storage in the browser, or uninstalling the installed PWA, removes all of it immediately. No
-request process is needed because there is no external party holding a copy to delete.
+storage in the browser, or uninstalling the installed PWA, removes all of it immediately — both the
+`localStorage` table above and the Cache Storage files. No request process is needed because there
+is no external party holding a copy to delete. Before that step, though, the data is not hidden on
+the device itself — see [`PRIVACY.md`](PRIVACY.md)'s "On-device visibility" section.
 
 *Related: [`PRIVACY.md`](PRIVACY.md), [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) §3 (provider
 interfaces) and §8 (child safety / privacy by default).*

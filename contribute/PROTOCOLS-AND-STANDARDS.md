@@ -168,10 +168,10 @@ review; for content, the 3-reviewer gate also re-checks sourcing as part of fact
 
 ## 6. Data-minimization / privacy
 
-**Why:** "collects nothing, because there is nowhere for anything to go" (`PRIVACY.md`) is a
-structural property today. A single contribution that adds a network call, an analytics snippet, or
-an unnamed piece of PII storage would break that property for the whole app, not just its own
-feature.
+**Why:** "sends nothing off the device, because there is nowhere for anything to go" (`PRIVACY.md`)
+is a structural property today. A single contribution that adds a network call, an analytics
+snippet, or an unnamed piece of PII storage would break that property for the whole app, not just
+its own feature.
 
 **Checkable standard:**
 - [ ] No new account system, login, email/phone collection, or identifier added.
