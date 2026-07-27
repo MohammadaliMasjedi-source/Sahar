@@ -109,7 +109,10 @@ const AudioEngine = (() => {
       el.currentTime = 0;
       const p = el.play();
       if (p && p.catch) p.catch(() => fail());
-      setTimeout(() => resolve(!missing[url]), 3000); // safety
+      // Safety net: if neither 'playing' nor 'error' fired within 3s (a network
+      // stall), resolve FALSE — we can't honestly claim the recording played,
+      // so the caller falls back and the honesty banner stays truthful.
+      setTimeout(() => resolve(false), 3000);
     });
   }
 
