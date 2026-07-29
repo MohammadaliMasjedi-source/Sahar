@@ -205,6 +205,18 @@ See [`LICENSE-NOTE.md`](LICENSE-NOTE.md) for the reasoning, and
 [`DATA-HANDLING.md`](DATA-HANDLING.md) · [`PLATFORM-INDEPENDENCE.md`](PLATFORM-INDEPENDENCE.md) for
 the Digital Public Goods readiness docs.
 
+## Contributors
+
+Sahar is built in the open, and community help makes it better and safer for the children who use it.
+
+- **[Mahyar](https://github.com/mahyar9272)** — end-to-end testing and hardening
+  ([#1](https://github.com/MohammadaliMasjedi-source/Sahar/pull/1)): fixed a timezone bug that
+  drifted the Leitner "today" by a day for learners east of UTC (with a regression test), added a
+  re-tap lock so a child mashing tiles can't skip cards, corrected the garden progress count so it
+  can never exceed a band's total, and closed an HTML-escaping gap in lesson titles. Thank you. 🌱
+
+Contributions are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ---
 
 *For the girls who were told to stop. Learn to live, live to learn.*
