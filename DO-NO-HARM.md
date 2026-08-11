@@ -25,11 +25,14 @@ Both passed pedagogy, passed child-safeguarding, and came back secular-audit cle
 
 ## Child-data privacy (offline by design)
 
-Verified independently in both red-team passes, not just claimed: `profiles.js` and the progress
-ledger read and write `localStorage` only — no `fetch`, `XHR`, or beacon call touches child data
-anywhere in the codebase. The only network activity at all is the app fetching its own bundled
-files (content packs, audio manifest). "COPPA/GDPR-K clean by design" is the 2026-07-13 red-team's
-own verdict. Full detail in [`PRIVACY.md`](PRIVACY.md) and [`DATA-HANDLING.md`](DATA-HANDLING.md).
+Checked directly against the code in both red-team passes, not just claimed: `profiles.js` and the
+progress ledger read and write `localStorage` only — no `fetch`, `XHR`, or beacon call touches
+child data anywhere in the codebase. The only network activity at all is the app fetching its own
+bundled files (content packs, audio manifest), same-origin (hosting-level exposure, e.g. web-server
+access logs during that fetch, is a separate question — see `PRIVACY.md`'s "Network behavior" and
+"What is never collected" sections). "COPPA/GDPR-K clean by design" is the 2026-07-13 red-team's
+own verdict — a self-run technical assessment (see "Honest limits of this gate" below), not a legal
+opinion. Full detail in [`PRIVACY.md`](PRIVACY.md) and [`DATA-HANDLING.md`](DATA-HANDLING.md).
 
 ## Content-appropriateness (the pedagogy gate)
 
@@ -82,7 +85,9 @@ were logged and **all three closed the same day** — the avatar/distractor moon
 above, plus a data-honesty mismatch (a demo pack's declared age band didn't match where it was
 actually shelved; corrected to match the documented standard). From 2026-07-14: one note was logged
 and **left open on purpose** — native-Dari review of the newly authored `fa` strings by a native
-speaker (Mo/Neda) is flagged as a standing human-review gate, not a blocker for a prototype. Every
+speaker (Mo/Neda) is flagged as a standing human-review gate — not a blocker for shipping this
+prototype repo, but it **is** a blocker for any real pilot with Afghan children, since the shipped
+`fa` audio/text is Iranian-Persian standing in for Dari (see "Audio honesty" below). Every
 fix was re-verified against the automated test suite: **content-validator 90/90 → 134/134,
 core 28/28, bootstrap 14/14, profiles 25/25** across the two passes (201/201 passed, 0 failed, as
 of 2026-07-14).
@@ -94,7 +99,11 @@ standing in for Afghan Dari), and the app says so: a caregiver-panel banner labe
 optional machine voice on every card. It never pretends to be a real Dari recording, because a
 wrong-accent voice presented as real Dari would teach a child the wrong sounds. Verified 2026-07-19:
 the machine audio is **optional and never blocks a lesson** — every lesson and every round remains
-fully usable with audio missing, blocked, or failing (the audio layer degrades to a silent no-op).
+fully usable with audio missing or blocked entirely. One edge case is open and tracked
+(`TASKS.md` T-SAHAR-07, `E2E-TEST-REPORT.md` H5): a *stalled* (not missing) audio file can be
+reported as successful playback by a safety timeout even when no sound actually played, which
+skips the fallback rather than degrading to it. Missing/blocked audio degrades to a silent no-op as
+designed; stalled audio does not yet, reliably.
 
 Accordingly, **v1 ships text-first**. Real human Dari audio is a **funded-phase deliverable**,
 sourced per [`audio/DARI-AUDIO-SOURCING-2026-07-19.md`](audio/DARI-AUDIO-SOURCING-2026-07-19.md)

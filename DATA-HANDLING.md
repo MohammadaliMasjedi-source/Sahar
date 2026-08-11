@@ -6,8 +6,12 @@ get out again?*
 
 ## What is stored
 
-Everything is **local to the device** (browser `localStorage`), plain **JSON**, and **non-PII** by
-design — see [`PRIVACY.md`](PRIVACY.md) for the full privacy reasoning. In data-format terms:
+Everything is **local to the device** (browser `localStorage`), plain **JSON**, and **data-minimized
+and local-only** by design — see [`PRIVACY.md`](PRIVACY.md) for the full privacy reasoning. This is
+not the same as "never PII": the optional profile name is caregiver-typed freetext with no format
+check, and a stable profile id plus age band, activity, and learning history can be personal data in
+context even without a name. "Never leaves the device" is the actual guarantee; see the note below
+the table for the honest version of the non-PII framing. In data-format terms:
 
 | Key | Shape | Contents |
 |---|---|---|

@@ -2,9 +2,11 @@
 
 *Written 2026-07-14 for Digital Public Goods Alliance review and for any caregiver who wants to
 know exactly what Sahar does with a child's information. Short version: **offline-first, no
-tracking, no accounts, no PII sent anywhere — but progress, settings, and downloaded lessons do
-stay on the device itself, readable by anyone who can unlock and use it, until deleted.**
-GDPR/COPPA-aligned by design. Long version below — specific, not just a promise.*
+tracking, no accounts, no PII sent anywhere by the app itself — but progress, settings, and
+downloaded lessons do stay on the device itself, readable by anyone who can unlock and use it,
+until deleted.** GDPR/COPPA-aligned by technical design — a project self-assessment, not a legal
+certification (see "Why GDPR/COPPA alignment is structural" below). Long version below — specific,
+not just a promise.*
 
 This is a description of how Sahar is built, not a legal compliance certification. Sahar is not a
 company and processes no data on any server it operates, which is itself the reason the compliant
@@ -12,15 +14,18 @@ path and the safe path are the same path (see "Why GDPR/COPPA alignment is struc
 
 ## The one-line summary
 
-Sahar sends nothing off the device, because there is nowhere for anything to go. It is a static,
-offline PWA: no backend, no database, no account system, no analytics vendor, no advertising SDK,
-no third-party script of any kind (verified — every `<script src>` in `index.html`,
-`bootstrap.html`, and `teacher.html` points to a local, same-origin file; see
-`docs/RED-TEAM-PEDAGOGY-SAFEGUARDING-2026-07-13.md`'s independent check of the same fact). That is
-a claim about the network, not about the device — Sahar does store progress, settings, and
-downloaded lesson packs locally, and that data sits on the device, visible to anyone who can unlock
-and use it, until it is deleted. See "What is stored, and where" and "On-device visibility" below
-for the honest, specific version of both halves of that claim.
+**The app** sends nothing off the device once loaded, because there is nowhere for the app code to
+send it: it is a static, offline PWA: no backend, no database, no account system, no analytics
+vendor, no advertising SDK, no third-party script of any kind (verified — every `<script src>` in
+`index.html`, `bootstrap.html`, and `teacher.html` points to a local, same-origin file; see
+`docs/RED-TEAM-PEDAGOGY-SAFEGUARDING-2026-07-13.md`'s check of the same fact). That claim is about
+Sahar's own code, not about hosting: loading the app for the first time (or a cache miss later)
+still means a real HTTP request to wherever it is hosted, and that host or CDN may keep ordinary
+web-server access logs, including IP addresses — that is outside Sahar's code and depends on
+deployment choices not yet made. Sahar does store progress, settings, and downloaded lesson packs
+locally, and that data sits on the device, visible to anyone who can unlock and use it, until it is
+deleted. See "What is stored, and where" and "On-device visibility" below for the honest, specific
+version of both halves of that claim.
 
 ## What is stored, and where
 
@@ -52,10 +57,14 @@ removed by the same "clear site data" action described under "Deleting data" bel
 
 No accounts, no email, no phone number, no login of any kind. No analytics or telemetry — there is
 no telemetry call to turn off, because none exists. No advertising, no ad identifiers, no
-third-party SDKs. No cookies. No IP-address logging (there is no server to log to). No device
-fingerprinting. No cloud sync by default. No biometric or voice data — `audio.js`'s
-`CaregiverRecorder` (a designed local-only recording mode for caregiver-read audio) is an unwired
-stub that returns `not-implemented` when called; it captures nothing today.
+third-party SDKs. No cookies. No IP-address logging **by any code Sahar runs** — there is no
+application server to log to. This does not cover the hosting layer: whatever serves the static
+files to a phone for the first time (or on a cache miss) is a separate system, may be outside
+Sahar's control, and may log IP addresses the way any web host or CDN ordinarily does — not yet
+verified against a real deployment. No device fingerprinting. No cloud sync by default. No
+biometric or voice data — `audio.js`'s `CaregiverRecorder` (a designed local-only recording mode
+for caregiver-read audio) is an unwired stub that returns `not-implemented` when called; it
+captures nothing today.
 
 ## Network behavior
 
@@ -88,11 +97,15 @@ phone, one child's spaced-repetition history is never shown to or overwritten by
 
 ## Deleting data
 
-Because nothing is stored anywhere but the device, deleting it is immediate and complete: clearing
-the site's storage in the browser (or uninstalling the installed PWA) removes every trace — both
-the `localStorage` entries above and the Cache Storage copies of downloaded packs, audio, and app
-files. There is no remote copy to also delete, no account to close, no request to file. Until that
-step is taken, though, the data sits readable on the device — see "On-device visibility" above.
+Because nothing is stored anywhere but the device, there is no remote copy to also delete, no
+account to close, no request to file — clearing the site's storage in the browser **should** remove
+every trace, both the `localStorage` entries above and the Cache Storage copies of downloaded
+packs, audio, and app files. Whether **uninstalling the installed PWA** always clears the same data
+is platform-dependent (Android/iOS/desktop browsers differ) and has **not been verified on a real
+device** — that check is part of the still-open `docs/PHONE-TEST.md` gate. There is also no fast,
+in-app "erase everything" button yet, which matters for a child who must not be seen learning and
+cannot rely on browser settings — tracked as `TASKS.md` T-SAHAR-08. Until either step is taken, the
+data sits readable on the device — see "On-device visibility" above.
 
 ## Why GDPR/COPPA alignment is structural, not a policy promise
 

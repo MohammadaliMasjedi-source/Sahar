@@ -25,12 +25,25 @@
     {
       "id": "p0",
       "title": "Scaffold + offline-first prototype",
+      "weight": 4.0,
       "status": "doing",
       "subphases": [
-        { "title": "Curriculum + naming + architecture + open-source plan documented", "done": true },
-        { "title": "Working offline-first prototype (Dari/EN/DE, spaced repetition)", "done": true },
-        { "title": "Real, honestly-flagged machine-draft audio", "done": true },
-        { "title": "Adult-supervised pilot with real learners", "done": false }
+        {
+          "title": "Curriculum + naming + architecture + open-source plan documented",
+          "done": true
+        },
+        {
+          "title": "Working offline-first prototype (Dari/EN/DE, spaced repetition)",
+          "done": true
+        },
+        {
+          "title": "Real, honestly-flagged machine-draft audio",
+          "done": true
+        },
+        {
+          "title": "Adult-supervised pilot with real learners",
+          "done": false
+        }
       ]
     }
   ],
@@ -52,5 +65,18 @@
       ]
     }
   ],
-  "_stub": "auto-stamped 2026-07-11 (WHERE+WHEN wave) — first .mc/project.json for this repo; fill in phases/swot/decisions as the tracker grows"
+  "_stub": "auto-stamped 2026-07-11 (WHERE+WHEN wave) — first .mc/project.json for this repo; fill in phases/swot/decisions as the tracker grows",
+  "progressBaseline": {
+    "id": "B0",
+    "frozenAt": "2026-08-09",
+    "reason": "migration-b0",
+    "note": "B0 auto-migration 2026-08-09 (Divan D1): phase weights defaulted to the phase's subphase count and the denominators frozen here, so adding scope can no longer lower the percentage. See Mission-Control/docs/PROGRESS-MODEL.md",
+    "phaseWeights": {
+      "p0": 4.0
+    },
+    "stepBudget": {
+      "p0": 4.0
+    },
+    "totalWeightedUnits": 4.0
+  }
 }

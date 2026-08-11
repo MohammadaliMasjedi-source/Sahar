@@ -168,8 +168,10 @@ The first user **cannot yet read the menu.** So a11y is a launch requirement, no
   pictures before words. Sahar (the character) demonstrates each new action once.
 - **Large touch targets** (≥ 44×44 CSS px), generous spacing, single-column flows — works on a small
   cheap phone held in a child's hand.
-- **Screen-reader ready:** semantic landmarks, `aria-live` on the card reveal, language switch updates
-  `lang`/`dir` so assistive tech reads the right language. Buttons have real text labels.
+- **Screen-reader patterns in place:** semantic landmarks, `aria-live` on the card reveal, language
+  switch updates `lang`/`dir` so assistive tech reads the right language, buttons have real text
+  labels. **Not yet audited** against WCAG 2.1 AA (contrast, touch-target size, non-color-only
+  feedback) — tracked as `TASKS.md` T-SAHAR-03.
 - **Audio-first path (designed):** packs reserve an `audio` field per card so a pre-reader can *hear*
   the prompt — critical for the very first weeks of literacy. Prototype is silent (honest).
 - **Reduced-motion** respected; high color contrast in the dawn palette; no flashing.

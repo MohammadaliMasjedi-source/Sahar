@@ -7,9 +7,12 @@
 
 > ### Status — fixes applied 2026-07-22
 > **Applied & re-verified:** **F1**, **F2**, **F3**, **F4**, **H1**, **H2**, **H4**, **H5**.
-> After the fixes: `npm test` = **238/238**; the real-DOM journey = **31/31**; the three edge
+> After the fixes: `npm test` = **238/238** (this figure includes the 36-check
+> `packs/teen-critical-thinking/validate.js` gate that §1's table below doesn't list, plus one core
+> test added by a later contributor PR — see H1); the real-DOM journey = **31/31**; the three edge
 > probes that previously failed now pass — 3 rapid taps advance **1** card (was 3), the last-card
-> multi-tap **no longer throws**, and the garden reads a sane **"0 / 4"** (was "6 / 4").
+> multi-tap **no longer throws**, and the garden reads a sane **"0 / 4"** (was "6 / 4"). Re-run
+> 2026-08-11 (GOV-032 fix lane): still **238/238**, 0 failed, current.
 > **Deferred by design:** **F5** (Leitner gating is intentionally cosmetic in the prototype; the
 > report scopes the real gate to the funded phase), **H3** (a boot-time perf optimization that adds
 > a title-drift surface — left for a manifest-schema pass), **H6** (an error-path refactor of low
@@ -21,9 +24,9 @@
 
 | Layer | Tool | Result |
 |-------|------|--------|
-| Unit / core suites | `npm test` (node:assert, no framework) | **201 / 201 pass** — core 28, bootstrap 14, content-validator 134, profiles 25 |
+| Unit / core suites | `npm test` (node:assert, no framework) | **201 / 201 pass** — core 28, bootstrap 14, content-validator 134, profiles 25 (core is now 29/29 as of a later contributed fix — see H1 below; not reflected in this dated snapshot) |
 | Asset integrity | file-existence sweep | **0 missing** — 31 service-worker shell entries, 16 `index.html` refs, 245 audio-manifest clips, every pack's `audio.{fa,en,de}` |
-| **Full user journey** | **real DOM (jsdom) driving the actual `app.js`** | **31 / 31 assertions pass, 0 uncaught errors** |
+| **Full user journey** | **real DOM (jsdom) driving the actual `app.js`** | **31 / 31 assertions pass, 0 uncaught errors** — ad hoc harness, not committed to this repo or `package.json`; see the reproduction note at the end of this file |
 | Adversarial edge cases | targeted DOM probes | **2 real bugs + 3 design weaknesses found** (below) |
 
 The end-to-end run exercised the true user flow against the unmodified `app.js`: boot → "who's
@@ -212,7 +215,10 @@ the funded phase turns it on, distinguish **due-today** from **extra practice** 
 ## 3. Hygiene / lower-priority
 
 - **H1 — Doc drift.** `README.md` says "**132** headless checks"; the suites now total **201**
-  (28 + 14 + 134 + 25). Update the number.
+  (28 + 14 + 134 + 25). Update the number. *(Resolved since this report was written: `README.md`
+  now says 238 — 29 core + 14 bootstrap + 134 content + 25 profiles + the 36-check teen gate — and
+  `npm test` confirms 238/238 as of 2026-08-11. The core count moved 28→29 via a later contributor
+  PR, a timezone regression test — see `README.md`'s Contributors section.)*
 - **H2 — Un-CI'd gate.** `packs/teen-critical-thinking/validate.js` is **not** part of
   `npm test`. The pack is DRAFT and correctly kept out of the manifest, but its own validator
   never runs in CI — add it to the `test` script (even if it only guards a draft) so it can't rot.
