@@ -23,7 +23,9 @@ npm test
 ```
 
 Double-clicking `index.html` also works for a quick look; serving over `http://` enables the full
-service-worker/offline behaviour. After the first visit, the app runs with **zero internet**.
+service-worker/offline behaviour. After the first visit, the app is designed to run with **zero
+internet** — verified in desktop-browser testing; a real-device airplane-mode test has not been run
+yet (`docs/PHONE-TEST.md`, `TASKS.md` T-SAHAR-05, both still open).
 
 ---
 
@@ -119,7 +121,7 @@ Sahar/
 │  ├─ bootstrap.test.js       ← 14 — language-course pack + the pre-literacy tap-round engine
 │  ├─ content-validator.test.js  ← 134 — every pack: fa/en/de completeness, honest audio state, resolvable choices
 │  └─ profiles.test.js        ← 25 — child profiles, age-band normalization, per-profile garden isolation
-├─ content/                   ← versioned learning packs (fa/en/de), JSON — 10 Tier-1 + 1 language-course
+├─ content/                   ← versioned learning packs (fa/en/de), JSON — 10 Tier-1 + 4 Tier-2 + 1 language-course
 │  ├─ t1-literacy-first-letters.json
 │  ├─ t1-literacy-first-words.json
 │  ├─ t1-numeracy-counting-0-20.json
@@ -130,6 +132,12 @@ Sahar/
 │  ├─ t1-thinking-fact-vs-guess.json
 │  ├─ t1-life-healthy-and-safe.json    ← 9 curriculum packs: literacy ×2, numeracy ×2, science ×2, thinking ×2, life ×1
 │  ├─ tier1-demo.json                  ← + one mixed demo pack = 10 Tier-1 packs
+│  ├─ t2-literacy-reading-sentences.json
+│  ├─ t2-numeracy-add-subtract.json
+│  ├─ t2-thinking-fact-vs-opinion.json
+│  ├─ t2-science-plants-habitats.json  ← 4 Tier-2 (8–10) packs, red-teamed 2026-07-14 — geography/life-skills/digital
+│  │                                      literacy still open, tracked in `docs/COVERAGE-8-10-2026-07-14.md`
+│  ├─ packs.manifest.json              ← single source of truth for which packs exist in which age band
 │  └─ lc-fa-en-first-words.json        ← separate language-course pack: first English words taught through Dari
 ├─ audio/                     ← 245 machine-generated draft .mp3 clips + audio-manifest.json + RECORDING-MANIFEST.md — a temporary computer voice (fa is Iranian-Persian standing in for Dari), not real recordings
 ├─ fonts/                     ← Vazirmatn woff2 (Dari/Arabic + Latin), under the SIL Open Font License
@@ -161,29 +169,40 @@ behaviour serve the folder over `http://`). With **zero internet** you can:
 - switch language **fa (RTL) / en / de** and watch every lesson re-render in all three;
 - pick from a shelf of **ten Tier-1 packs** — first letters, first words, counting 0–20, shapes &
   patterns, living things, day & night, "what is a question?", "guess first, then check", and
-  staying healthy & safe (nine curriculum packs across five subjects), plus a mixed demo pack — and
-  a separate **language-course pack** (first English words taught through Dari);
+  staying healthy & safe (nine curriculum packs across five subjects), plus a mixed demo pack; the
+  **8–10 band (Tier 2)** adds **four packs** — reading sentences, adding & subtracting, fact vs.
+  opinion, plants & habitats (geography, life-skills, and digital literacy for that band are still
+  open, honest preview-only shells) — and a separate **language-course pack** (first English words
+  taught through Dari);
 - run a real **spaced-repetition card flow** (show → reveal → *got it / again*);
 - see review progress **persist** in `localStorage` using a classic **Leitner box model**
   (`1 → 2 → 4 → 9 → 21` day intervals; *got it* climbs a box, *again* falls to box 1).
 
-It is a **prototype**: ten Tier-1 packs plus a language-course pack, three languages, the engine
-real and tested (**238 headless checks, 0 failing** — 29 core + 14 bootstrap + 134 content +
-25 profiles, plus a 36-check draft gate for the teen pack). Every card now has **draft machine-voice audio** (fa/en/de), flagged in-app as a
-temporary computer voice — the Dari voice is Iranian-Persian standing in for real recordings, not
-the finished thing, and it is optional: every lesson works with audio off (v1 is text-first). The
-full curriculum, the pack-signing pipeline, **real human Dari audio** (a funded-phase deliverable),
-and the higher tiers (T2–T4) are documented but **not yet built**.
+It is a **prototype**: ten Tier-1 packs, four Tier-2 packs, and a language-course pack, three
+languages, the automated suite green (**238 headless checks, 0 failing as of 2026-08-11** — 29 core
++ 14 bootstrap + 134 content + 25 profiles, plus a 36-check draft gate for the teen pack; see
+[`E2E-TEST-REPORT.md`](E2E-TEST-REPORT.md) for what those checks do and do not cover — a known
+same-day-replay scheduling gap and an audio false-success edge case are open, tracked as
+`TASKS.md` T-SAHAR-06/07). Every card now has **draft machine-voice audio** (fa/en/de), flagged
+in-app as a temporary computer voice — the Dari voice is Iranian-Persian standing in for real
+recordings, not the finished thing, and it is optional: every lesson works with audio off (v1 is
+text-first). The full curriculum, the pack-signing pipeline, **real human Dari audio** (a
+funded-phase deliverable), and Tiers 3–4 are documented but **not yet built**; Tier 2 (8–10) has
+four content packs shipped and red-teamed (2026-07-14) — geography, life-skills, and digital
+literacy for that band remain open, see [`docs/COVERAGE-8-10-2026-07-14.md`](docs/COVERAGE-8-10-2026-07-14.md).
 
 ---
 
 ## Architecture, in one breath
 
-Offline-first **PWA** · Clean-Architecture + MVVM (logic separated from view) · content shipped as
-**versioned, signed JSON packs** downloaded per age-tier so a phone stores only what it needs ·
-**i18n from day one** (fa-RTL / en / de) · spaced repetition on a classic **Leitner box engine** ·
-accessibility and **low-literacy icon-first UX** · **privacy by default — no tracking, no ads, no
-accounts required.** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+Offline-first **PWA** · Clean-Architecture-ish + MVVM in one file (logic separated from view, see
+`app.js`'s header) · content shipped as **versioned JSON packs** downloaded per age-tier so a phone
+stores only what it needs — **pack signing is designed but not yet built** (`app.js` loads
+`"signature": null` packs today; see `docs/ARCHITECTURE.md` §4) · **i18n from day one** (fa-RTL / en
+/ de) · spaced repetition on a classic **Leitner box engine** (a known same-day-replay gap is open,
+`TASKS.md` T-SAHAR-06) · accessibility and **low-literacy icon-first UX** (a formal WCAG audit is
+still open, `TASKS.md` T-SAHAR-03) · **privacy by default — no tracking, no ads, no accounts
+required.** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ---
 

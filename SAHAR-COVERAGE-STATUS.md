@@ -117,7 +117,14 @@ Unchanged — no technical work needed here; the vision statement in
     chip label and caregiver line verified correct in fa/en/de;
     `teacher.html` re-verified rendering all 10 packs' fa/en/de text with
     zero console errors.
-- ❌ Tiers 2-4 still don't exist. Not this lane's scope.
+- ✅ **NEW (2026-07-14, Tier-2 content lane — see the dated entry below):** the **8-10 band (Tier 2)
+  now has 4 real, red-teamed packs** — reading sentences, adding & subtracting, fact vs. opinion,
+  plants & habitats. `content/packs.manifest.json` is the source of truth (`band: "8-10"` now
+  carries both `packs` and a smaller `preview` for the one topic — "a map of the world" /
+  geography — not yet authored). This line previously read "Tiers 2-4 still don't exist"; that was
+  accurate only through 2026-07-13 and was left stale here for a month after Tier 2 shipped —
+  corrected 2026-08-11 (GOV-032 fix lane).
+- ❌ Tiers 3-4 still don't exist (10-12 and 12-14 bands remain honest preview-only shells).
 
 ## 4. Fixed subject list
 Unchanged, already followed by every pack's `subject` field.
@@ -384,6 +391,30 @@ content/interaction breakdown.
 - **What this lane did NOT do:** no Tier 2-4 work, no mascot/illustration
   pass, no README rewrite, no books-track work, no real audio recorded, no
   repo other than `the Sahar repository` touched.
+
+## 2026-07-14 — Tier-2 (8-10 band) content lane, 4 packs (missing from this log until 2026-08-11)
+
+Scope: author the first real content for the 8-10 band per `docs/COVERAGE-8-10-2026-07-14.md`'s
+gap map. This lane's work happened and was documented in full at the time
+(`docs/COVERAGE-8-10-2026-07-14.md`, `docs/RED-TEAM-8-10-2026-07-14.md`), but no entry was ever
+appended to *this* file, so §3 above kept asserting "Tiers 2-4 still don't exist" for a month after
+it stopped being true — the exact kind of stale front-door claim this project's own house rule
+(REAL 90 > FAKE 100) exists to prevent. Logged retroactively here, 2026-08-11 (GOV-032 fix lane).
+
+- ✅ **4 new Tier-2 packs authored and shipped**, all wired into `content/packs.manifest.json`
+  (`band: "8-10"`), `app.js`, `sw.js` precache, and `test/content-validator.test.js`:
+  `t2-literacy-reading-sentences.json`, `t2-numeracy-add-subtract.json`,
+  `t2-thinking-fact-vs-opinion.json`, `t2-science-plants-habitats.json`.
+- ✅ Double red-team run and passed: pedagogy PASS, child-safeguarding PASS, secular audit CLEAN,
+  0 blocking findings (`docs/RED-TEAM-8-10-2026-07-14.md`). One standing human-review note logged
+  (native-Dari review), not new to this lane.
+- ✅ Validator green at the time: 201/201 (28 core + 14 bootstrap + 134 content + 25 profiles).
+  Re-verified again 2026-08-11 as part of this fix lane: **238/238**, 0 failed, current.
+- ❌ **Honest gaps, named at the time and still open:** geography ("a map of the world" — the 8-10
+  band's `preview` in `packs.manifest.json` still lists it as not-yet-authored), an 8-10 life-skills
+  pack, digital literacy, and the deeper breadth items (×/÷, place value, water cycle, etc.) within
+  the four shipped subjects. Audio for these 4 packs uses the same honest `audioPending`/draft
+  convention as Tier 1.
 
 ## 2026-07-19 — Text-first decision lane (audio honesty, no new content)
 
