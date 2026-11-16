@@ -98,21 +98,36 @@ const AudioEngine = (() => {
       if (!url || missing[url]) return resolve(false);
       let el = fileCache[url];
       if (!el) { el = new Audio(url); el.preload = 'auto'; fileCache[url] = el; }
-      const ok = () => { cleanup(); resolve(true); };
-      const fail = () => { missing[url] = true; cleanup(); resolve(false); };
+      let settled = false;
+      let timeoutId = null;
+      const ok = () => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        resolve(true);
+      };
+      const fail = () => {
+        if (settled) return;
+        settled = true;
+        missing[url] = true;
+        cleanup();
+        el.pause(); // a slow file must not start over the TTS/tone fallback later
+        resolve(false);
+      };
       const cleanup = () => {
         el.removeEventListener('playing', ok);
         el.removeEventListener('error', fail);
+        if (timeoutId !== null) clearTimeout(timeoutId);
       };
       el.addEventListener('playing', ok, { once: true });
       el.addEventListener('error', fail, { once: true });
+      // Safety net: if neither 'playing' nor 'error' fired within 3s (a network
+      // stall), use the same failure path: stop pending playback, remove its
+      // handlers, and skip this URL on later prompts in the current session.
+      timeoutId = setTimeout(fail, 3000);
       el.currentTime = 0;
       const p = el.play();
       if (p && p.catch) p.catch(() => fail());
-      // Safety net: if neither 'playing' nor 'error' fired within 3s (a network
-      // stall), resolve FALSE — we can't honestly claim the recording played,
-      // so the caller falls back and the honesty banner stays truthful.
-      setTimeout(() => resolve(false), 3000);
     });
   }
 
