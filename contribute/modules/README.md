@@ -68,7 +68,7 @@ per this project's own "verify by fetching" discipline (see the licence-table co
 
 ## How to use a skeleton
 
-1. Read [`../CONTRIBUTING.md`](../CONTRIBUTING.md) and [`../REVIEWER-GATE.md`](../REVIEWER-GATE.md)
+1. Read [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md) and [`../REVIEWER-GATE.md`](../REVIEWER-GATE.md)
    first — every skeleton assumes you already know the gate exists.
 2. Pick the age band you want to write for.
 3. Copy its `MODULE-SKELETON.md` structure into your own working pack file (following the schema
