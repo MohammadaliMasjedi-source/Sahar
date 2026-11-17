@@ -111,7 +111,6 @@ Sahar/
 │  ├─ CONTENT-MODEL.md        ← the audio-first card schema every pack follows (interaction, audio, caregiver line)
 │  ├─ PHONE-TEST.md           ← the honest real-device / airplane-mode PWA checklist (not yet run)
 │  └─ OSS-REUSE.md            ← concrete open-source to reuse, with licenses
-├─ funding/                   ← funding/sponsorship strategy, the startsocial application draft, outreach tracker
 ├─ learning/
 │  └─ PROJECT-EXPLAINED.md    ← the project explained in four layers (child → architect)
 ├─ handbook/                  ← maintainer handbook: overview, setup, standards, diagrams, task guides
@@ -210,8 +209,7 @@ required.** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 **Owner / copyright holder: Mohammadali Masjedi** — © 2026. Sahar is an independent,
 not-for-profit project; it is not owned by any company, institution, or employer. The maintainer
-holds the copyright and is the point of contact for the Digital Public Goods submission (see
-[`funding/DPG-SUBMISSION-CHECKLIST.md`](funding/DPG-SUBMISSION-CHECKLIST.md)).
+holds the copyright and is the point of contact for the Digital Public Goods submission.
 
 Dual-licensed on purpose, so the engine travels far and the lessons stay free:
 
