@@ -3,7 +3,7 @@
  * Makes NO external network calls (privacy by default — ARCHITECTURE §0/§8).
  * Bump CACHE to ship an update; old caches are retired atomically on activate.
  */
-const CACHE = 'sahar-v25'; // v25: E2E fixes — tap-advance lock (no card-skip/crash), band-scoped garden count, navigation-only offline fallback, local-date Leitner, honest audio timeout
+const CACHE = 'sahar-v26'; // v26: install succeeds only after required lesson packs are cached
 
 const APP_SHELL = [
   './',
@@ -72,15 +72,31 @@ self.addEventListener('install', (event) => {
       // of waitUntil — a failure fails the install and the browser retries,
       // exactly like any APP_SHELL entry. The manifest was just precached
       // above, so read it back from the open cache.
-      try {
-        const manRes = await c.match('./content/packs.manifest.json');
-        if (manRes) {
-          const manifest = await manRes.json();
-          const packUrls = (manifest.bands || [])
-            .flatMap((b) => (b.packs || []).map((p) => './content/' + p.file));
-          if (packUrls.length) await c.addAll(packUrls);
+      const manRes = await c.match('./content/packs.manifest.json');
+      if (!manRes) throw new Error('Sahar: required pack manifest was not cached');
+      const manifest = await manRes.json();
+      if (!manifest || !Array.isArray(manifest.bands)) {
+        throw new Error('Sahar: invalid pack manifest bands');
+      }
+      const packUrls = manifest.bands.flatMap((band) => {
+        if (!band || !Array.isArray(band.packs)) {
+          throw new Error('Sahar: invalid pack list');
         }
-      } catch (_) { /* runtime cache-on-fetch (below) still covers packs later */ }
+        return band.packs.map((pack) => {
+          // Packs are bundled JSON files in content/, never remote URLs or
+          // traversal paths. Empty later-tier bands are valid placeholders.
+          if (!pack || typeof pack.file !== 'string' ||
+              !/^[a-z0-9][a-z0-9._-]*\.json$/i.test(pack.file)) {
+            throw new Error('Sahar: invalid bundled pack filename');
+          }
+          return './content/' + pack.file;
+        });
+      });
+      if (!packUrls.length) throw new Error('Sahar: no required lesson packs');
+      // Do not swallow this failure. Rejecting the install keeps the previous
+      // worker active during an update, rather than retiring its complete cache
+      // for a candidate that is missing required lessons.
+      await c.addAll(Array.from(new Set(packUrls)));
       try {
         const res = await fetch('./audio/audio-manifest.json');
         if (res && res.ok) {

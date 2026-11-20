@@ -13,7 +13,7 @@
   "currentPhase": "p0",
   "eta": "ongoing — lanes land continuously, no fixed ship date",
   "gatedOn": "an adult-supervised pilot before any 'ready for real learners' claim (SAHAR-COVERAGE-STATUS.md §3 DoD)",
-  "nextAction": "Prep the adult-supervised pilot as a TEXT-FIRST pilot (decision 2026-07-19: v1 = text-first; draft machine audio stays optional + flagged and never blocks a lesson; real human Dari audio = funded-phase deliverable, next candidate window Prototype Fund Oct–Nov 2026 — see audio/DARI-AUDIO-SOURCING-2026-07-19.md).",
+  "nextAction": "Review the T-SAHAR-05 offline-install integrity PR, then run the real Android airplane-mode checklist in docs/PHONE-TEST.md. The adult-supervised text-first pilot and native Dari/child-safety review gates remain open; passing headless installation tests does not close them.",
   "links": {
     "github": "https://github.com/MohammadaliMasjedi-source/Sahar.git",
     "dashboard": "index.html",

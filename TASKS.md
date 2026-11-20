@@ -81,7 +81,11 @@ patching content data.
 
 ---
 
-### T-SAHAR-05 · Device-support matrix: automate what doesn't need a physical phone [phase: p0 · size: S · status: OPEN]
+### T-SAHAR-05 · Device-support matrix: automate what doesn't need a physical phone [phase: p0 · size: S · status: CLAIMED]
+**Draft PR:** [#4](https://github.com/MohammadaliMasjedi-source/Sahar/pull/4)
+— offline asset/PWA checks and required-pack installation integrity. Implementation
+and headless checks are complete; independent review/merge and the real-device
+phone test remain open. Do not count this task as DONE before merge.
 **Context:** read `contribute/DEVICE-SUPPORT-MATRIX.md` and `SAHAR-COVERAGE-STATUS.md` §6.5
 Amendment A, which flags "still not phone-tested" (`docs/PHONE-TEST.md`) as a gap only a real
 Android device can close — out of scope here — but several of that matrix's checks (service-worker

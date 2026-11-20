@@ -1,109 +1,142 @@
-# Phone test — the honest remaining gate to "ready for a child"
+# Android offline installation check — an open device gate
 
-Sahar has been verified in a desktop browser (zero console errors, all packs
-playable, offline service worker precaches the shell). It has **not** been
-verified the way a real learner would actually encounter it: installed as an
-app on a real Android phone, with the phone in airplane mode. That is the one
-gate this document exists to close. Nothing below has been run on a real
-device yet — these are the exact steps to run it, honestly labelled as still
-open (see `SAHAR-COVERAGE-STATUS.md`).
+Adult-maintainer checklist, corrected 20 November 2026. **No real Android result
+is recorded here.** A desktop cached-reload and lesson-interaction check has
+passed for the T-SAHAR-05 candidate; that does not establish phone support,
+classroom outcomes or readiness for children. Other human/content/pilot gates in
+`SAHAR-COVERAGE-STATUS.md` remain open.
+
+Use synthetic test profiles, not a child's name or learning history. Record the
+exact commit being tested. This procedure tests the app, not any real learner.
 
 ## What you need
-- A real Android phone (the cheaper/older, the more honest the test).
-- Chrome (or another Chromium-based browser) on that phone.
-- The phone and a laptop on the **same Wi-Fi network** the first time only
-  (to serve the files once so the phone can fetch them) — after that, the
-  whole point of the test is that Wi-Fi is OFF.
 
-## 1. Serve the app to the phone (first time only, online)
-On the laptop, from the repo folder:
+- A real Android phone and Chrome; record the phone model, Android version and
+  Chrome version rather than assuming another device will behave identically.
+- **One trustworthy setup route below:** an existing HTTPS deployment of the
+  chosen commit, or a laptop with Python 3, desktop Chrome and a USB data cable.
+- For the USB route, owner-controlled USB debugging on the test phone. Follow
+  Chrome's remote-debugging instructions; no hosting purchase or account is
+  required for this local development route.
 
-```
-node -e "require('http').createServer(require('serve-handler')).listen(8123)"
-```
+## 1. Use a trustworthy origin for the first load
 
-(Any static file server works — Node's bundled `http` module + a tiny static
-handler, `npx serve .`, Python's `http.server`, etc. The app has no build
-step: it is plain HTML/CSS/JS, so any static server is enough.)
+Service-worker registration requires a secure/trustworthy origin. A laptop URL
+such as `http://192.168.1.42:8123/` may display the page on a phone, but ordinary
+LAN HTTP is **not a valid setup for this service-worker installation test**.
+The loopback exception refers to `localhost` on the device opening the page,
+not a different machine's LAN address. See the MDN sources below.
 
-Find the laptop's local IP (e.g. `192.168.1.42`), then on the phone browser
-open:
+### Route A — an existing trusted HTTPS deployment
 
-```
-http://192.168.1.42:8123/index.html
-```
+Open the maintainer-approved **HTTPS** URL for the exact commit being tested.
+It must serve the app and `sw.js` from the expected origin/scope, with a
+certificate Chrome accepts normally. If no such deployment is available, use
+Route B. Do not continue through certificate warnings or enable insecure-origin
+flags to make an invalid setup appear to pass. An HTML file opened directly or
+a GitHub source-file page is not the deployed PWA.
 
-Confirm the page loads: language buttons, the dawn-bird mascot on the
-welcome screen, the lesson shelf.
+### Route B — phone-local loopback through USB
 
-## 2. Install it as a PWA (home-screen app)
-- Chrome on Android: tap the ⋮ menu → **"Add to Home screen"** (or Chrome may
-  show an automatic "Install app" banner/icon in the address bar — either
-  path is fine).
-- Confirm the install. An "Sahar" icon should appear on the home screen.
-- Open the app **from the home-screen icon** (not the browser tab) at least
-  once while still online, so the service worker (`sw.js`) has a chance to
-  finish its install step — precaching the app shell, every content pack,
-  and every audio file listed in `audio/audio-manifest.json`.
-- Wait ~10-20 seconds after first open before switching to airplane mode
-  (the audio precache is best-effort and can take a moment on a slow
-  connection — see `sw.js`'s install handler).
+1. From the chosen repository checkout on the laptop, start this standard-library
+   server; it listens only on the laptop's loopback interface:
 
-## 3. Go fully offline
-- Turn on **airplane mode** on the phone (Wi-Fi and mobile data both off).
-- This is the real test: a school-less child with this phone will most
-  likely never have working internet at all.
+   ```sh
+   python -m http.server 8123 --bind 127.0.0.1
+   ```
 
-## 4. Play a full pack, offline, from the home-screen icon
-- Close the app completely (swipe it away from recent apps) first, so this
-  is a genuinely cold, offline start — not just a warm tab.
-- Reopen from the **home-screen icon**.
-- Confirm:
-  - [ ] The app opens at all (no "no internet" browser error page).
-  - [ ] The welcome screen shows: Sahar, the motto, the dawn-bird mascot
-        flourish, and the language switcher (fa / en / de) all work.
-  - [ ] The lesson shelf lists all 10 packs.
-  - [ ] Open any pack (e.g. `t1.literacy.first-letters`) and play it
-        **card-by-card to the end** ("آفرین! / Well done!" screen):
-    - [ ] Every card's audio actually plays (the honesty banner should read
-          the "temporary machine voice" line, not silence/error — confirms
-          the `.mp3` files were precached, not just the app shell).
-    - [ ] Tapping the **correct** picture/letter shows the mascot's praise
-          bubble + a brief confetti burst + a short WebAudio chime, and
-          advances the card.
-    - [ ] Tapping a **wrong** choice gently shakes and invites another try
-          (no penalty, no crash).
-    - [ ] The dawn progress bar (bird flying toward the sunrise) visibly
-          advances as cards are completed.
-    - [ ] Reaching the end shows the "Well done!" screen with the mascot and
-          a bigger celebration, with a working "practice again" / "back to
-          lessons" path.
-  - [ ] Switch language mid-pack (fa ↔ en ↔ de) — the UI relabels instantly,
-        RTL layout is correct for fa (mirrors correctly, mascot/progress bar
-        flip the right way), no reload/network needed.
-  - [ ] Open `teacher.html` from the footer link, offline — it should render
-        (this is a separate precached page, not just `index.html`).
-  - [ ] No visible "broken image" / blank picture tiles anywhere (every
-        `pictureFor()` icon is inline SVG, so this would indicate a real bug,
-        not just a missing asset).
+2. Connect the Android test phone by USB and set up remote debugging. In desktop
+   Chrome, open `chrome://inspect/#devices` and confirm the phone is discovered.
+3. In **Port forwarding**, map device port `8123` to laptop `localhost:8123`,
+   enable forwarding, and keep the USB connection while installing.
+4. In **Chrome on the phone**, open `http://localhost:8123/index.html`. The phone
+   sees its own loopback origin; USB forwards it to the laptop server. This is
+   Chrome's documented development route, not an insecure-origin override.
 
-## 5. Check for silent failures
-Android Chrome's remote debugging (`chrome://inspect` from a desktop Chrome,
-phone connected via USB with USB debugging on) lets you watch the Console
-tab while doing the above. Confirm:
-- [ ] Zero console errors during the entire offline playthrough above.
-- [ ] `navigator.serviceWorker.controller` is non-null (the SW is actually
-      controlling the page, not just registered).
+Follow the [official Chrome USB-forwarding guide](https://developer.chrome.com/docs/devtools/remote-debugging/local-server/)
+if the device/forwarding controls differ. Keep the same hostname, port and app
+path throughout installation and the later offline launch.
 
-## 6. What "pass" means — and what it still doesn't mean
-Passing every checkbox above means: **a child with no internet and a cheap
-Android phone can actually open and play Sahar.** That is a real, meaningful,
-narrow claim.
+## 2. Verify installation and required cache readiness
 
-It does **not** mean Sahar is "ready to use" — the other open gates
-(`SAHAR-COVERAGE-STATUS.md` §5, §6.5) still stand: no real human voice
-recording yet (machine draft voice only, honestly banner'd), no child pilot,
-no Duolingo-grade illustration pass beyond this session's mascot/celebration
-work. Record the result (pass/fail per checkbox, phone model + Android/Chrome
-version, and any console errors seen) back into `SAHAR-COVERAGE-STATUS.md`
-under a new dated entry — do not upgrade any "ready" claim without that.
+- [ ] The app loads with its language controls and lesson shelf.
+- [ ] In the **phone tab's** remotely inspected Console, `window.isSecureContext`
+      is `true` and `'serviceWorker' in navigator` is `true`.
+- [ ] The worker finishes installing/activating. Reload the phone page and check
+      that `navigator.serviceWorker.controller` is non-null. Registration alone
+      is not proof that the current page is controlled.
+- [ ] In DevTools **Application → Cache Storage**, inspect the cache matching
+      `CACHE` in the tested commit's `sw.js`. Confirm the app shell,
+      `content/packs.manifest.json`, **every pack listed in its bands**, and
+      `content/lc-fa-en-first-words.json` are present. Record the cache name.
+- [ ] Use Chrome's install/home-screen action and open the resulting icon while
+      the server is still reachable. Record whether it opens as an installed app
+      or only a browser shortcut; an icon by itself does not prove PWA installation.
+
+If secure context, activation, control or required cache checks fail, mark setup
+**blocked/failed** and stop. Merely waiting 15–20 seconds does not establish that
+installation succeeded. For an update, verify the intended worker/cache is in use,
+rather than mistaking an older installed version for this candidate.
+
+Draft audio is **optional and best-effort**. Inspect it separately if testing audio;
+missing draft audio is not evidence that the required text-first cache is missing.
+It must not prevent a lesson from being usable without sound.
+
+## 3. Remove every route back to the server
+
+- [ ] For Route B, stop the laptop HTTP server, disable port forwarding and
+      disconnect the USB cable **before the cold-start offline check**. Airplane
+      mode alone does not remove a USB-forwarded server connection.
+- [ ] Turn on airplane mode and explicitly confirm **both Wi-Fi and mobile data
+      are off**. Keep them off for Route A as well.
+- [ ] Close the app/tab completely, then reopen from the home-screen icon at the
+      same origin. Do not clear browser/app storage; this tests a cached install.
+
+## 4. Complete a pack from a cold offline launch
+
+- [ ] The app opens without the browser's network-error page.
+- [ ] The expected age-band shelf appears. In the present prototype, band 6–8
+      has ten packs and band 8–10 has four; later bands are previews, not finished
+      lessons. Check against the manifest of the exact commit being tested.
+- [ ] Open a pack **not previously opened during this installation**. Record its
+      pack ID and finish it card by card **with audio off**.
+- [ ] Correct and wrong selections produce their expected feedback without
+      skipping cards or crashing; the lesson can reach its completion screen.
+- [ ] Restart/back-to-lessons navigation works.
+- [ ] Test fa / en / de switching and Persian RTL layout without reconnecting.
+- [ ] Open the separate `teacher.html` page offline.
+- [ ] No blank/broken picture tiles are seen.
+
+### Optional audio check — record separately from text-first pass
+
+- [ ] Enable sound through an ordinary user action and check the selected pack's
+      audio offline. Record which files/languages were actually heard.
+- [ ] The existing temporary-machine-voice label remains visible; never record
+      this as a human Dari recording.
+- [ ] If a clip is absent, blocked or stalled, record the failure and confirm the
+      learner can continue without sound. Do not mark unheard clips as passed.
+
+## 5. Record evidence and limits
+
+Record pass/fail/not-tested for each checkbox, date, commit, origin/setup route,
+phone/OS/Chrome versions, worker cache name, tested pack IDs/languages and whether
+the app opened standalone or as a browser shortcut. Capture only synthetic QA
+data. Note any visible errors or Console errors actually observed; if the Console
+was not monitored, say so instead of claiming zero errors.
+
+You may reconnect USB for inspection **after** the isolated cold-start/lesson
+check; leave the server stopped and forwarding disabled so inspection does not
+silently restore access to the source files.
+
+A pass supports only the tested phone/browser/commit/pack combination. It does
+not establish all-device support, indefinite storage retention, real human Dari
+audio, reviewed new educational content, a child pilot or learning outcomes.
+Add an honest dated result to `SAHAR-COVERAGE-STATUS.md`; leave device gates open
+until they have actually been run. Do not upgrade a learner-readiness claim from
+desktop checks or this written procedure alone.
+
+## Primary references
+
+- [MDN — service-worker registration and trustworthy origins](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register)
+- [MDN — secure contexts and loopback origins](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts)
+- [Chrome — Android access to a local server through USB forwarding](https://developer.chrome.com/docs/devtools/remote-debugging/local-server/)
