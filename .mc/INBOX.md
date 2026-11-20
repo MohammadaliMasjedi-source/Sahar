@@ -1,8 +1,9 @@
 # INBOX — orders for the next session (tick when done)
 
 - [x] Implement T-SAHAR-05's device-independent offline asset/PWA checks and
-  required-pack install failure handling (20 November 2026); submitted for PR
-  review, not a completed merge or physical-phone test. See
+  required-pack install failure handling (20 November 2026); submitted as
+  [PR #4](https://github.com/MohammadaliMasjedi-source/Sahar/pull/4) for review,
+  not a completed merge or physical-phone test. See
   `docs/OFFLINE-INTEGRITY-2026-11-20.md`.
 - [ ] Independently review T-SAHAR-05 before merge, then perform
   `docs/PHONE-TEST.md` on a real Android device.
