@@ -59,6 +59,14 @@ lesson-play flow should be checked against that document before merge; results g
 `SAHAR-COVERAGE-STATUS.md`, honestly (pass/fail per checkbox, device + browser version), per that
 document's own closing instruction.
 
+**Setup requirement (corrected 20 November 2026):** use a normally trusted HTTPS
+deployment or the documented USB-forwarded **phone-local `localhost`** route.
+Plain laptop-LAN HTTP can display the page without permitting its service worker;
+it is not evidence of a valid offline installation. Verify the secure context,
+controlling worker and required cache first. For the isolated test, stop the local
+server and disconnect USB forwarding as well as disabling Wi-Fi/mobile data.
+No real Android pass is recorded by these instructions.
+
 **Honest gap:** `PHONE-TEST.md` itself states this has not yet been run end-to-end on a real device
 as of this writing. That is the single most valuable non-code contribution a Tier-A device owner can
 make — see `REVIEW-PATH.md`/`DOD-BY-TASK-TYPE.md` §8 (Testing) below.
