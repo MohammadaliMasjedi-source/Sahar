@@ -10,6 +10,8 @@ Can someone tell **play** from **replay**, and understand **home** as a destinat
 | `listen` | Listen | واوره | Is this a natural control label for playing a prompt? |
 | `again` | Hear again | بیا یې واوره | Is replaying the same sound clearly distinct from restarting the exercise? |
 
+![A contributor card showing the English Home action, the candidate کور, and controls to edit or flag it for review.](worksheet-example.jpg)
+
 Example **reply format**: `key / keep, change or unsure / your wording if different / optional explanation or back-translation`. A GitHub handle is enough; do not provide personal details, recordings or information about children.
 
 **Try the editable version:** Download/extract the branch ZIP or clone the repository, then double-click `contribute/pashto-review/index.html` inside the extracted folder. CSS and scripts sit alongside it; no server, network, installation or account is needed to run it. Try a different wording, choose a verdict, and build a review note. Nothing is saved or sent by the worksheet; copy your note before leaving. At phone width, check that Pashto reads right-to-left while the English guidance stays left-to-right.
