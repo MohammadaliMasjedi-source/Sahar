@@ -178,6 +178,8 @@ function isDue(card, today) {
 /** Apply a review answer. Returns a NEW card state (no mutation of input). */
 function schedule(card, gotIt) {
   const c = Object.assign({}, card);
+  // Optional same-day practice is not another spaced review.
+  if (c.practice) return c;
   if (gotIt) {
     c.box = Math.min((c.box || 1) + 1, INTERVALS.length); // climb
     c.reps = (c.reps || 0) + 1;
@@ -401,7 +403,7 @@ function buildQueue(pack, progress) {
   });
   const due = merged.filter((c) => isDue(c, today));
   // If nothing is due (already reviewed today), show all so the demo always works.
-  return due.length ? due : merged;
+  return due.length ? due : merged.map((card) => Object.assign({}, card, { practice: true }));
 }
 
 /* =========================================================================
@@ -1018,10 +1020,12 @@ function onAnswer(gotIt) {
   // could schedule extra advances, and reading `card.id` on an undefined card
   // would throw. Just release the lock and stop.
   if (!card) { state.advancing = false; return; }
-  const updated = schedule(card, gotIt);       // CORE decides the new box/due
-  const progress = ProgressProvider.load();
-  progress[card.id] = { box: updated.box, due: updated.due, reps: updated.reps, lapses: updated.lapses };
-  ProgressProvider.save(progress);             // persist on device
+  if (!card.practice) {
+    const updated = schedule(card, gotIt);     // CORE decides the new box/due
+    const progress = ProgressProvider.load();
+    progress[card.id] = { box: updated.box, due: updated.due, reps: updated.reps, lapses: updated.lapses };
+    ProgressProvider.save(progress);           // persist scheduled reviews only
+  }
   state.idx += 1;
   state.revealed = false;
   state.advancing = false;                     // unlock for the next card

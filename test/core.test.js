@@ -321,6 +321,53 @@ test('progress round-trips with lapses set (the "again" path) — edge case', ()
   assert.equal(r.due, addDaysISO(INTERVALS[0]));
 });
 
+/* T-SAHAR-06: practice must not become a second scheduled review. */
+for (const answer of [true, false]) {
+  test('future-card practice preserves every scheduling field: answer=' + answer, () => {
+    const p = { cards: [{ id: 'future' }] };
+    const saved = { future: { box: 3, reps: 4, lapses: 2, due: '2099-12-31' } };
+    const card = buildQueue(p, saved)[0];
+    const updated = schedule(card, answer);
+    for (const key of ['box', 'reps', 'lapses', 'due']) {
+      assert.equal(updated[key], saved.future[key], key + ' changed during practice');
+    }
+    assert.deepEqual(saved.future, { box: 3, reps: 4, lapses: 2, due: '2099-12-31' });
+  });
+}
+test('genuinely due card still advances after a successful review', () => {
+  const q = buildQueue({ cards: [{ id: 'due' }] }, {
+    due: { box: 2, reps: 3, lapses: 0, due: '2000-01-01' }
+  });
+  const updated = schedule(q[0], true);
+  assert.equal(updated.box, 3);
+  assert.equal(updated.reps, 4);
+  assert.ok(updated.due > todayISO());
+});
+test('real answer handler does not write progress during fallback practice', () => {
+  const vm = require('node:vm');
+  const initial = { future: { box: 3, reps: 4, lapses: 2, due: '2099-12-31' } };
+  const store = new Map([['sahar.progress.v1', JSON.stringify(initial)]]);
+  let writes = 0;
+  const context = {
+    console,
+    document: { addEventListener() {} },
+    localStorage: {
+      getItem(key) { return store.get(key) || null; },
+      setItem(key, value) { writes++; store.set(key, value); }
+    }
+  };
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../app.js'), 'utf8') + `
+    prepareCard = function () {};
+    render = function () {};
+    state.queue = buildQueue({ cards: [{ id: 'future' }] }, ProgressProvider.load());
+    state.idx = 0;
+    onAnswer(true);
+    if (state.idx !== 1) throw new Error('practice did not advance the session');
+  `, context);
+  assert.equal(writes, 0, 'practice wrote to durable learning progress');
+  assert.deepEqual(JSON.parse(store.get('sahar.progress.v1')), initial);
+});
+
 /* =====================================================================
  * summary
  * ===================================================================== */
