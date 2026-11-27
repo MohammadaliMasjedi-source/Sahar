@@ -1,31 +1,24 @@
-# Sahar — سحر · "Learn to live, live to learn."
+# Sahar — سحر
 
-**Sahar is a free, offline-first education app for children denied school** — literacy, numeracy,
-science, and critical thinking as small spaced-repetition lessons, in Dari (RTL), English, and German.
-
-> **Status: scaffold + working prototype.** This repo is the *foundation* — an honest, runnable
-> offline-first prototype plus the architecture, curriculum, naming, and open-source plan that the
-> full app will grow from. It is **not** a finished product, and nothing here pretends to be.
-> (House rule: *REAL 90 > FAKE 100*.)
->
-> **v1 is text-first** — every lesson works with audio off; real human Dari audio is a
-> funded-phase deliverable (next candidate grant window: Prototype Fund, Oct–Nov 2026 — see
-> [`audio/DARI-AUDIO-SOURCING-2026-07-19.md`](audio/DARI-AUDIO-SOURCING-2026-07-19.md)).
+A free, text-first learning app for children denied school. Its prototype offers short lessons in literacy, numeracy, science and critical thinking, with a local learner profile and a choice of Dari/Persian (right to left), English or German.
 
 ## Quickstart
 
-```bash
-# serve the folder (any static server works), then open http://localhost:8000
-python -m http.server 8000
+1. [Download the source ZIP](https://github.com/MohammadaliMasjedi-source/Sahar/archive/refs/heads/main.zip) and extract it, or clone this repository.
+2. With Python 3 installed, open a terminal **inside the extracted Sahar folder** and run:
+   ```sh
+   python3 -m http.server 8000 --bind 127.0.0.1
+   ```
+   Open **http://127.0.0.1:8000/** on that same computer. On Windows with Python on PATH, you can instead double-click [Start-Sahar.cmd](Start-Sahar.cmd); it opens its own local address. Close the server window or press Ctrl+C when finished.
+3. On first launch, tap **+**, choose an avatar and age band, and save. You can leave the name blank. Tap **EN** or **DE** at the top to change from Dari/Persian, then choose a lesson from the shelf. No sign-up or audio is needed.
 
-# run the headless core tests (pure Node, no dependencies)
-npm test
-```
+**Want to help?** [Pick a contribution](CONTRIBUTING.md) · [See the contributor guides](contribute/README.md) · [Run the real-phone offline check](docs/PHONE-TEST.md). Software and device testing are useful even if you do not speak Dari; new learner-facing content follows the [human review process](contribute/REVIEWER-GATE.md).
 
-Double-clicking `index.html` also works for a quick look; serving over `http://` enables the full
-service-worker/offline behaviour. After the first visit, the app is designed to run with **zero
-internet** — verified in desktop-browser testing; a real-device airplane-mode test has not been run
-yet (`docs/PHONE-TEST.md`, `TASKS.md` T-SAHAR-05, both still open).
+![Two captures of Sahar: the right-to-left, optional-name avatar setup on the left, and the English home screen with the garden and age bands on the right.](docs/preview/first-run.webp)
+
+*Two screens captured from a clean desktop Chromium session at a phone-sized viewport, using an unnamed demo profile. These are not physical-phone test results.*
+
+**What works today:** the app serves lessons locally; use the local server for a first run, since opening the HTML as a file will not load the lesson packs reliably. The offline path has been exercised in a desktop browser. A real-device airplane-mode test and native-speaker review of human Dari narration remain open; see the [coverage record](SAHAR-COVERAGE-STATUS.md) and [audio notes](audio/DARI-AUDIO-SOURCING-2026-07-19.md). For the project's dependency-free Node test suite, run `npm test` from the repository root.
 
 ---
 
