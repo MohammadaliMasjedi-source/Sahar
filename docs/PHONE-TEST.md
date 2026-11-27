@@ -11,48 +11,32 @@ open (see `SAHAR-COVERAGE-STATUS.md`).
 ## What you need
 - A real Android phone (the cheaper/older, the more honest the test).
 - Chrome (or another Chromium-based browser) on that phone.
-- The phone and a laptop on the **same Wi-Fi network** the first time only
-  (to serve the files once so the phone can fetch them) — after that, the
-  whole point of the test is that Wi-Fi is OFF.
+- Choose a first-load route below: a trusted HTTPS host serving your test revision, or a laptop, USB cable, and Android USB debugging on a test phone you control. Same Wi-Fi is not required.
 
-## 1. Serve the app to the phone (first time only, online)
-On the laptop, from the repo folder:
+## 1. Open the test revision from a trustworthy origin
 
-```
-node -e "require('http').createServer(require('serve-handler')).listen(8123)"
-```
+**Option A — HTTPS.** Serve the checkout (including its worker, manifests, packs and audio) on a static HTTPS host the phone trusts. Open its app URL in Chrome. Use the same origin throughout the test; the GitHub source-code view is not a deployment.
 
-(Any static file server works — Node's bundled `http` module + a tiny static
-handler, `npx serve .`, Python's `http.server`, etc. The app has no build
-step: it is plain HTML/CSS/JS, so any static server is enough.)
+**Option B — USB loopback.** On the laptop, run this from the repository root:
 
-Find the laptop's local IP (e.g. `192.168.1.42`), then on the phone browser
-open:
-
-```
-http://192.168.1.42:8123/index.html
+```sh
+python3 -m http.server 8123 --bind 127.0.0.1
 ```
 
-Confirm the page loads: language buttons, the dawn-bird mascot on the
-welcome screen, the lesson shelf.
+On desktop Chrome, connect the test phone using [Chrome's USB port-forwarding instructions, Android case](https://developer.chrome.com/docs/devtools/remote-debugging/local-server/#port-forwarding). In `chrome://inspect/#devices`, enable USB discovery and forward **device port 8123** to **127.0.0.1:8123 on the laptop**. On the phone, open `http://localhost:8123/index.html`. The page should show the welcome screen and lesson shelf.
 
-## 2. Install it as a PWA (home-screen app)
-- Chrome on Android: tap the ⋮ menu → **"Add to Home screen"** (or Chrome may
-  show an automatic "Install app" banner/icon in the address bar — either
-  path is fine).
-- Confirm the install. An "Sahar" icon should appear on the home screen.
-- Open the app **from the home-screen icon** (not the browser tab) at least
-  once while still online, so the service worker (`sw.js`) has a chance to
-  finish its install step — precaching the app shell, every content pack,
-  and every audio file listed in `audio/audio-manifest.json`.
-- Wait ~10-20 seconds after first open before switching to airplane mode
-  (the audio precache is best-effort and can take a moment on a slow
-  connection — see `sw.js`'s install handler).
+An ordinary `http://192.168.…` LAN address may display the page but cannot exercise service-worker registration on standard Android Chrome. [Service workers require a trustworthy origin](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register); use one of the two routes above.
 
-## 3. Go fully offline
-- Turn on **airplane mode** on the phone (Wi-Fi and mobile data both off).
-- This is the real test: a school-less child with this phone will most
-  likely never have working internet at all.
+## 2. Install and verify that the worker controls the app
+
+- Use Android Chrome's **Install app** action (often under **Add to Home screen**). A shortcut alone is not confirmation of an offline installation.
+- Open Sahar once from its home-screen icon while the host is reachable. Using desktop Chrome's remote inspector for that page, check `window.isSecureContext` is `true`. In **Application → Service Workers**, verify that this revision's `sw.js` is **activated**.
+- Reload once if needed, then verify `navigator.serviceWorker.controller?.scriptURL` points to the app's `sw.js`. If it is still missing, stop and record the error. A fixed wait or a visible home-screen icon does not establish control or complete audio coverage; test those assets below.
+
+## 3. Remove **all** routes back to the host
+
+- For the USB route, stop the laptop server, disable port forwarding and unplug USB **before** the cold launch. Airplane mode does not turn off a wired forwarding route.
+- Turn on airplane mode and confirm mobile data and Wi-Fi are both off. For the HTTPS route, also disconnect any USB forwarding or other network adapter.
 
 ## 4. Play a full pack, offline, from the home-screen icon
 - Close the app completely (swipe it away from recent apps) first, so this
@@ -89,16 +73,13 @@ welcome screen, the lesson shelf.
 
 ## 5. Check for silent failures
 Android Chrome's remote debugging (`chrome://inspect` from a desktop Chrome,
-phone connected via USB with USB debugging on) lets you watch the Console
-tab while doing the above. Confirm:
+use a trusted debugging computer) lets you inspect the Console. If reconnecting USB after the cold launch, keep the laptop server stopped and port forwarding disabled. Confirm:
 - [ ] Zero console errors during the entire offline playthrough above.
 - [ ] `navigator.serviceWorker.controller` is non-null (the SW is actually
       controlling the page, not just registered).
 
 ## 6. What "pass" means — and what it still doesn't mean
-Passing every checkbox above means: **a child with no internet and a cheap
-Android phone can actually open and play Sahar.** That is a real, meaningful,
-narrow claim.
+Passing every checkbox establishes that the recorded revision, on **this phone and browser version**, reopened offline after initial provisioning and played the tested pack. It does not establish behavior on other phones or untested packs.
 
 It does **not** mean Sahar is "ready to use" — the other open gates
 (`SAHAR-COVERAGE-STATUS.md` §5, §6.5) still stand: no real human voice
