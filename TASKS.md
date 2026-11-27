@@ -97,7 +97,8 @@ deliberately introduced stale-cache-list fixture, proving it actually checks som
 **Don't:** attempt or claim the real phone-test gate (`docs/PHONE-TEST.md`) is satisfied — this task
 only automates the device-independent subset of that matrix.
 
-### T-SAHAR-06 · Fix the Leitner fallback so replays can't advance boxes same-day [phase: p0 · size: S · status: OPEN]
+### T-SAHAR-06 · Fix the Leitner fallback so replays can't advance boxes same-day [phase: p0 · size: S · status: IN REVIEW]
+Implementation and regression evidence: `docs/T-SAHAR-06-REVIEW.md`; PR #9. Independent review and merge pending.
 **Context:** audit W-A1 (2026-07-23), finding CONFIRMED. `app.js` `buildQueue()` returns ALL
 cards when none are due ("show all so the demo always works"), and grading those replays
 advances boxes and overwrites due dates — same-day promotion through a supposedly spaced
