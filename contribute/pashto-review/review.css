@@ -1,0 +1,12 @@
+:root{color-scheme:light;font-family:system-ui,sans-serif;background:#f5f3ea;color:#1d332c}
+*{box-sizing:border-box}body{margin:0}main{max-width:55rem;margin:auto;padding:clamp(1rem,4vw,3rem)}
+header,section,article{padding:clamp(1.15rem,3vw,2rem);border-radius:1rem;margin-block-end:1rem}
+header{background:#173c35;color:#fff9de}h1{font-size:clamp(2rem,6.3vw,4rem);letter-spacing:-.045em;line-height:1.03;margin:.3em 0}
+p{line-height:1.6;max-width:63ch}h2,h3{margin-block-start:0}.intro{font-size:1.08rem}.eyebrow,.kicker{font-size:.8rem;letter-spacing:.1em;font-weight:750}
+.badge{display:inline-block;border:1px solid #b4cfc3;border-radius:2rem;padding:.2em 1em}
+section,article{background:white;border:1px solid #cbd6cc}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.85rem}
+label{display:block;font-size:.94rem;font-weight:660;margin:.8rem 0 .3rem}
+.control{font:inherit;display:block;width:100%;border:1px solid #71877b;border-radius:.45rem;padding:.55rem;background:#fff;color:#172a25}
+.ps{font-family:serif;font-size:1.45rem;line-height:1.75}.sample{padding-inline:1rem;border-inline-start:.3rem solid #cb9e50;background:#faf4e3}
+button{font:inherit;background:#1b5448;color:white;font-weight:650;border:0;border-radius:.55rem;padding:.7rem 1rem;cursor:pointer}textarea{width:100%;resize:vertical;font:inherit}a{color:#19594e} :focus-visible{outline:3px solid #846014;outline-offset:3px}code{overflow-wrap:anywhere}

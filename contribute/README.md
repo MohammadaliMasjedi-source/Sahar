@@ -5,6 +5,7 @@ detail behind it:
 
 | File | What it's for |
 |---|---|
+| [Pashto review worksheet](pashto-review/README.md) | Five-minute task for an adult Afghan Pashto speaker: compare three candidate controls. No code or installation required. |
 | [`INTERACTIVE-GUIDE.md`](INTERACTIVE-GUIDE.md) | Start here if you'd rather follow a guided, choose-your-contribution-type walkthrough than jump straight to a checklist. |
 | [`DOD-BY-TASK-TYPE.md`](DOD-BY-TASK-TYPE.md) | Definition of Done, broken out by the kind of contribution — nine types: code, translation, content-pack authoring, art, audio, docs, funding/outreach, accessibility, testing. |
 | [`PROTOCOLS-AND-STANDARDS.md`](PROTOCOLS-AND-STANDARDS.md) | The seven checkable contribution standards: offline-first, i18n + RTL, accessibility (WCAG AA), child-safety-by-design, licensing/attribution, data-minimization/privacy, performance budgets. |

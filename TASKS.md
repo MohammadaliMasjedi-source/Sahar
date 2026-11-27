@@ -133,3 +133,11 @@ unregisters this app's storage in one tap, with one confirm step. Update `PRIVAC
 **DoD:** test (or scripted DOM check) proves every app storage key is gone after the action;
 docs updated; all suites green, output in the PR body.
 **Don't:** add any network call, analytics, or export feature here; don't touch pack content.
+
+---
+
+### T-SAHAR-09 · Offline Pashto label review worksheet [phase: p0 · size: S]
+**Scope:** adult-only contributor tooling for three draft `ps-AF` controls. See the
+[worksheet](contribute/pashto-review/README.md) and [open volunteer task](https://github.com/MohammadaliMasjedi-source/Sahar/issues/5).
+**DoD:** opens without a server, renders Pashto right-to-left, exports a note for only the controls
+reviewed, and stays outside learner runtime and precache. A contributor PR does not close the separate native-language review task.
